@@ -7,6 +7,7 @@
 <title>Effettua il login</title>
 </head>
 <body>
+<%@ include file="/fragments/header.jsp" %>
 <h1>Accedi!</h1>
 <form name="login" method="POST" action="${pageContext.request.contextPath}/LoginServlet">
 	Email:<input name="email" id="email" type="text" required></input><br/>
@@ -14,5 +15,6 @@
 	<button type="submit" id="submit">Accedi</button>
 </form>
 <h4>Non sei ancora registrato? <a href="register.jsp">Registrati qui!</a> </h4>
+<%@ include file="/fragments/footer.jsp" %>
 </body>
 </html>
