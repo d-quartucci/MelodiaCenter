@@ -9,7 +9,7 @@
 <script>
     const contextPath = "${pageContext.request.contextPath}";
 </script>
-<script src="${pageContext.request.contextPath}/script/register.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/register.js"></script>
 </head>
 
 <body>
