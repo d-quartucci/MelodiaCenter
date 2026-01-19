@@ -23,16 +23,16 @@
         <!-- Area utente -->
         <div class="user-area">
 
-            <!-- Utente NON loggato -->
-            <c:if test="${empty sessionScope.user}">
+            <!-- Se l'utente non ha fatto il login, mostro le opzioni di login -->
+            <c:if test="${empty sessionScope.utente}">
                 <a href="${pageContext.request.contextPath}/common/login.jsp">Login</a>
                 <a href="${pageContext.request.contextPath}/common/register.jsp">Registrati</a>
             </c:if>
 
-            <!-- Utente loggato -->
-            <c:if test="${not empty sessionScope.user}">
+            <!-- Se l'utente ha fatto il login, mostro le opzioni dedicate allo USER -->
+            <c:if test="${not empty sessionScope.utente}">
                 <span>
-                    Ciao, <strong>${sessionScope.user.username}</strong>
+                    Ciao, <strong>${sessionScope.utente.nome}</strong>
                 </span>
 
                 <a href="${pageContext.request.contextPath}/OrdersServlet">
@@ -44,13 +44,12 @@
                 </a>
             </c:if>
 
-            <!-- Admin -->
-            <c:if test="${sessionScope.user.admin}">
+            <!-- Se l'utente è un admin, mostro le opzioni dedicate all'ADMIN -->
+            <c:if test="${sessionScope.utente.ruolo}=='ADMIN'">
                 <a href="${pageContext.request.contextPath}/admin/dashboard.jsp">
                     Admin
                 </a>
             </c:if>
-
         </div>
     </div>
 </header>

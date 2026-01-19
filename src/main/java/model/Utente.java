@@ -1,4 +1,5 @@
 package model;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Utente {
@@ -9,7 +10,7 @@ public class Utente {
 	private String password;
 	private String ruolo;
 	private String telefono;
-	private Timestamp dataRegistrazione;
+	private Date dataRegistrazione;
 
 	public Utente() { }
 
@@ -34,8 +35,8 @@ public class Utente {
 	public String getTelefono() { return telefono; }
 	public void setTelefono(String telefono) { this.telefono = telefono; }
 
-	public Timestamp getDataRegistrazione() { return dataRegistrazione; }
-	public void setDataRegistrazione(Timestamp dataRegistrazione) { this.dataRegistrazione = dataRegistrazione; }
+	public Date getDataRegistrazione() { return dataRegistrazione; }
+	public void setDataRegistrazione(Date date) { this.dataRegistrazione = date; }
 	    
 	public String toString() {
 		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email + "password" + password + "ruolo" + ruolo + "telefono" + telefono + "dataRegistrazione" + dataRegistrazione + "]";

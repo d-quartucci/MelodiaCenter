@@ -31,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		try {
 			UtenteDAO uDAO = new UtenteDAO(ds);
-			uDAO.doSave(u);
+			uDAO.doSaveOrUpdate(u); //Non verrà fatto mai l'update perché viene verificato per mezzo di JS che l'email non sia già stata utilizzata in precedenza 
 			response.sendRedirect(request.getContextPath() + "/common/login.jsp");
 		} catch(SQLException ex) {
 			ex.printStackTrace();

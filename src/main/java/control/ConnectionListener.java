@@ -21,12 +21,12 @@ public class ConnectionListener implements ServletContextListener {
 			ServletContext context = sce.getServletContext();
 			context.setAttribute("ds", ds);
 			
-			System.out.println("DataSource inizializzato con successo.\n");
+			System.out.println("> ConnectionListener: DataSource inizializzato con successo.\n");
 		} catch(NamingException ex) {
-			System.out.println("Errore di naming nell'inizializzazione del DataSource.\n");
+			System.out.println("> ConnectionListener: Errore di naming nell'inizializzazione del DataSource.\n");
 			ex.printStackTrace();
 		} catch(Exception ex) {
-			System.out.println("Errore generico di inizializzazione del DataSource.\n");
+			System.out.println("> ConnectionListener: Errore generico di inizializzazione del DataSource.\n");
 			ex.printStackTrace();
 		}
 	}
