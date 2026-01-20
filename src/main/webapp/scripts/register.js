@@ -4,10 +4,6 @@ const phoneErrorMessage = "Il numero deve contenere 10 cifre";
 const emptyFieldErrorMessage = "Campo obbligatorio";
 const passwordErrorMessage = "La password deve contenere almeno 6 caratteri";
 
-const lettersOnlyRegex = /^[A-Za-zÀ-ÿ ]+$/;
-const emailRegex = /^\S+@\S+\.\S+$/;
-const phoneRegex = /^[0-9]{10}$/;
-
 function validateFormElem(formElem, errorSpan, errorMessage){
 	if(formElem.checkValidity()) { //Se il campo è valido, lo span che contiene l'errore deve essere vuoto.
 		errorSpan.innerHTML = "";
@@ -27,8 +23,8 @@ function validate(){
 	let form = document.getElementById("registerForm");
 	
 	//Controllo se gli elementi del form sono validi. Nel caso in cui non lo siano, allora verrà mostrato nello span rispettivo il messaggio di errore
-	if(!validateFormElem(form.nome, document.getElementById("errorNome"), lettersOnlyMessage)) valid = false; //Controllo sul cognome
-	if(!validateFormElem(form.cognome, document.getElementById("errorCognome"), lettersOnlyMessage)) valid = false; //Controllo sul nome
+	if(!validateFormElem(form.nome, document.getElementById("errorNome"), lettersOnlyMessage)) valid = false; //Controllo sul nome
+	if(!validateFormElem(form.cognome, document.getElementById("errorCognome"), lettersOnlyMessage)) valid = false; //Controllo sul cognome
 	if (!validateFormElem(form.tel, document.getElementById("errorTel"), phoneErrorMessage)) valid = false; //Controllo sul numero di telefono
 	if (!validateFormElem(form.email, document.getElementById("errorEmail"), emailErrorMessage)) valid = false; //Controllo sull'email
 	if (!validateFormElem(form.password, document.getElementById("errorPassword"), passwordErrorMessage)) valid = false; //Controllo sulla password
@@ -39,7 +35,6 @@ function validate(){
 
 //Ho creato una funzione a parte per verificare che l'email non sia già registrata
 function verificaEmail(){
-	let submit = document.getElementById("submit");
 	let email = document.getElementById("email").value; //Salvo il valore da mandare alla servlet (AJAX)
 	let errorEmail = document.getElementById("errorEmail");
 	
@@ -58,11 +53,9 @@ function verificaEmail(){
 			let esiste = xhr.responseText.trim();
 			if(esiste === "true"){
 				errorEmail.innerHTML = "Questa email è già registrata!"
-				submit.disabled = true;
 			}
 			else{
 				errorEmail.innerHTML = "Email valida"
-				submit.disabled = false;
 			}
 		}
 	}
