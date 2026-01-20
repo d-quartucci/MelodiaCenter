@@ -16,20 +16,28 @@
 <%@ include file="/fragments/header.jsp" %>
 <h1>Registrati!</h1>
 
-<form name="register" method="POST" action="${pageContext.request.contextPath}/RegisterServlet">
+<form name="registerForm" method="POST" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validate()">
 <fieldset>
 <legend>Credenziali di accesso</legend>
-	Email:<input name="email" id="email" type="text" onblur="verificaEmail()" required/> <span id="errorLine"></span><br/>
-	Password:<input name="password" id="password" type="password" required/><br/>
+	Email:<input name="email" id="email" type="text" onchange="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
+	<span id="errorEmail" class="error"></span><br/>
+	
+	Password:<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" minlength=6 required/>
+	<span id="errorPassword" class="error"></span><br/>
 </fieldset>
 
 <fieldset>
 <legend>Informazioni</legend>
-	Nome:<input name="nome" id="nome" type="text" required/><br/>
-	Cognome:<input name="cognome" id="cognome" type="text" required/><br/>
-	Numero di telefono:<input name="tel" id="tel" type="tel" required/>
+	Nome:<input name="nome" id="nome" type="text" onchange="validateFormElem(this, document.getElementById('errorNome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
+	<span id="errorNome" class="error"></span><br/>
+	
+	Cognome:<input name="cognome" id="cognome" type="text" onchange="validateFormElem(this, document.getElementById('errorCognome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
+	<span id="errorCognome" class="error"></span><br/>
+	
+	Numero di telefono:<input name="tel" id="tel" type="tel" onchange="validateFormElem(this, document.getElementById('errorTel'), phoneErrorMessage)" pattern="[0-9]{10}" required/>
+	<span id="errorTel" class="error"></span>
 </fieldset>
-<button type="submit" id="submit" disabled>Registrati!</button>
+<button type="submit" id="submit">Registrati!</button>
 </form>
 
 <h4>Sei già registrato? <a href="login.jsp">Accedi qui!</a> </h4>
