@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <footer>
+<hr>
     <div class="footer-container">
 
         <div class="footer-section">
-            <h4>MelodiaCenter</h4>
             <p>
-                Negozio online di strumenti musicali.<br>
-                Chitarre, bassi, tastiere e accessori.
+                <strong>MelodiaCenter</strong>: Negozio online di strumenti musicali.<br>
             </p>
         </div>
 

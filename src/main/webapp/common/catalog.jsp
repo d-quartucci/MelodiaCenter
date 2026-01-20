@@ -12,6 +12,7 @@
 <title>Catalogo</title>
 </head>
 <body>
+	<%@ include file="/fragments/header.jsp" %>
 	<h1>Sfoglia il nostro catalogo!</h1>
 	<div id="risultati">
 		<c:if test="${not empty prodotti}">
@@ -33,5 +34,6 @@
 			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
 		</c:if>
 	</div>
+	<%@ include file="/fragments/footer.jsp" %>
 </body>
 </html>

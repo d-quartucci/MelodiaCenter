@@ -59,4 +59,5 @@
             </c:if>
         </div>
     </div>
+    <hr>
 </header>
