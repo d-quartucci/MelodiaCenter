@@ -2,7 +2,6 @@ package model.dao;
 import model.Utente;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -112,9 +111,9 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		}
 	}
 	
-	public List<Utente> doRetrieveAll() throws SQLException{
+	public ArrayList<Utente> doRetrieveAll() throws SQLException{
 		String querySQL = "SELECT * FROM utente";
-		List<Utente> listaUtenti = new ArrayList<>();
+		ArrayList<Utente> listaUtenti = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL);

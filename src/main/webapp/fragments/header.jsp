@@ -19,6 +19,13 @@
                 <li><a href="${pageContext.request.contextPath}/common/cart.jsp">Carrello</a></li>
             </ul>
         </nav>
+        
+        <div class="ricerca">
+        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/SearchServlet" method="POST">
+        		<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Allora, cosa cerchiamo..?">
+        		<button type="submit" id="pulsanteRicerca">Vai!</button>
+        	</form>
+        </div>
 
         <!-- Area utente -->
         <div class="user-area">

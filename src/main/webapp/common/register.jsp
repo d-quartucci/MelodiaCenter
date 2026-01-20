@@ -22,6 +22,7 @@
 	Email:<input name="email" id="email" type="text" onblur="verificaEmail()" required/> <span id="errorLine"></span><br/>
 	Password:<input name="password" id="password" type="password" required/><br/>
 </fieldset>
+
 <fieldset>
 <legend>Informazioni</legend>
 	Nome:<input name="nome" id="nome" type="text" required/><br/>
