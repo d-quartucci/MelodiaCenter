@@ -23,7 +23,7 @@
 					</div>
 					<div class="informazioniProdotto">
 						<h3 id="nomeProdotto">${p.nome}</h3>
-						<p class="prezzo">${p.prezzoAttuale}</p>
+						<p class="prezzo">${p.prezzoAttuale}€</p>
 					</div>
 				</div>
 			</c:forEach>

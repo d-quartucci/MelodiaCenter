@@ -6,7 +6,7 @@
 
         <!-- Logo -->
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/index.jsp">
+            <a href="${pageContext.request.contextPath}/common/index.jsp">
                 🎸 MelodiaCenter
             </a>
         </div>
