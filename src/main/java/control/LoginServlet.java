@@ -17,6 +17,10 @@ public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	public LoginServlet() {
+        super();
+    }
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -37,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/common/login.jsp").forward(request, response);
 			}
 		} catch(SQLException | ServletException | IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

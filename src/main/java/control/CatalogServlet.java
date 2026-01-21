@@ -18,6 +18,10 @@ import javax.sql.DataSource;
 public class CatalogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	public CatalogServlet() {
+        super();
+    }
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
 		

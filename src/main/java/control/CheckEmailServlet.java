@@ -17,6 +17,10 @@ import javax.sql.DataSource;
 @WebServlet("/CheckEmailServlet")
 public class CheckEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public CheckEmailServlet() {
+        super();
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
@@ -26,8 +30,8 @@ public class CheckEmailServlet extends HttpServlet {
 		boolean esiste = false;
 		try {
 			esiste = uDAO.doRetrieveByEmail(email) != null; //Se la query al DB restituisce qualcosa, l'email è già stata registrata
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} catch(SQLException ex) {
+			ex.printStackTrace();
 		}
 		
 		response.setContentType("text/plain");

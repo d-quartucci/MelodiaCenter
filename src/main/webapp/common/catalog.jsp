@@ -22,7 +22,9 @@
 						<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 					</div>
 					<div class="informazioniProdotto">
-						<h3 id="nomeProdotto">${p.nome}</h3>
+						<a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">
+							${p.nome}
+						</a>
 						<p class="prezzo">${p.prezzoAttuale}€</p>
 					</div>
 				</div>
