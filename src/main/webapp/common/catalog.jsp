@@ -36,6 +36,15 @@
 			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
 		</c:if>
 	</div>
+	<div>
+		<form name="formFiltri" action="" method="GET">
+			<input type="text" id="barraDiRicercaForm" name="barraDiRicerca" placeholder="Ricerca..." onchange="filtri.js" value="${nomeRicercato}">
+			<select id="ordinaPer" name="Ordina per">
+				<option value="prezzoCrescente">Prezzo Crescente</option>
+				<option value="prezzoDecrescente">Prezzo Decrescente</option>
+			</select>
+		</form>
+	</div>
 	<%@ include file="/fragments/footer.jsp" %>
 </body>
 </html>

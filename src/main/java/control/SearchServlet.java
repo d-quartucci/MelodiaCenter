@@ -23,13 +23,9 @@ public class SearchServlet extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-		
 		String nomeDaRicercare = request.getParameter("barraDiRicerca");
+		request.setAttribute("nomeRicercato", nomeDaRicercare); //Lo ricordiamo in modo che anche nella catalog.jsp possiamo vedere cosa è stato cercato
 		try{
 			ProdottoDAO pDAO = new ProdottoDAO(ds);
 			ArrayList<Prodotto> listaProdotti = pDAO.doRetrieveByPartialName(nomeDaRicercare);
@@ -39,5 +35,10 @@ public class SearchServlet extends HttpServlet {
 			ex.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 }

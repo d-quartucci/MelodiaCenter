@@ -14,14 +14,14 @@
         <!-- Menu principale -->
         <nav>
             <ul class="nav-links">
-                <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/common/index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/CatalogServlet">Catalogo</a></li>
                 <li><a href="${pageContext.request.contextPath}/common/cart.jsp">Carrello</a></li>
             </ul>
         </nav>
         
         <div class="ricerca">
-        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/SearchServlet" method="POST">
+        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/SearchServlet" method="GET">
         		<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Allora, cosa cerchiamo..?">
         		<button type="submit" id="pulsanteRicerca">Vai!</button>
         	</form>
