@@ -16,10 +16,10 @@
 <%@ include file="/fragments/header.jsp" %>
 <h1>Registrati!</h1>
 
-<form name="registerForm" method="POST" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validate()">
+<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validate()">
 <fieldset>
 <legend>Credenziali di accesso</legend>
-	Email:<input name="email" id="email" type="text" onchange="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
+	Email:<input name="email" id="email" type="text" oninput="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
 	<span id="errorEmail" class="error"></span><br/>
 	
 	Password:<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" minlength=6 required/>
