@@ -30,6 +30,48 @@ public class ProdottoDAO {
 		return p;
 	}
 	
+	public ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
+		//L'ORDER BY non può essere parametrica, quindi lo definiamo prima in questo modo
+		String ordineQuery = "DESC"; //Il default è decrescente
+		
+		if(ord.equals("prezzoCrescente")) {
+			ordineQuery = "ASC";
+		}
+		
+		String queryGenerica = "SELECT * FROM Prodotto WHERE IsAttivo=TRUE AND Nome LIKE ? AND PrezzoAttuale <= ? ORDER BY PrezzoAttuale " + ordineQuery;
+		String querySpecifica = "SELECT * FROM Prodotto WHERE IsAttivo=TRUE AND Nome LIKE ? AND CategoriaID = ? AND PrezzoAttuale <= ? ORDER BY PrezzoAttuale " + ordineQuery;
+		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+		//Se non ho un filtro sulla categoria, allora utilizzo la query generica
+		if(ctg.equals("tutte")) {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(queryGenerica)){
+				ps.setString(1, "%" + r + "%");
+				ps.setInt(2, Integer.parseInt(max)); //I valori del range sono tutti interi
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						Prodotto p = mapResultSetToBean(rs);
+						listaProdotti.add(p);
+					}
+				}
+			} 
+		}
+		//Se ho un filtro sulla categoria, utilizzo la query specifica
+		else {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySpecifica)){
+				ps.setString(1, "%" + r + "%");
+				ps.setInt(2, Integer.parseInt(ctg));
+				ps.setInt(3, Integer.parseInt(max));
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						Prodotto p = mapResultSetToBean(rs);
+						listaProdotti.add(p);
+					}
+				}
+			} 
+		}
+		return listaProdotti;
+	}
 	
 	public void doSaveOrUpdate(Prodotto bean) throws SQLException{
 		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
@@ -66,7 +108,7 @@ public class ProdottoDAO {
 	}
 	
 	public ArrayList<Prodotto> doRetrieveAll() throws SQLException{
-		String querySQL = "SELECT * FROM prodotto";
+		String querySQL = "SELECT * FROM prodotto WHERE IsAttivo=TRUE";
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
@@ -81,7 +123,7 @@ public class ProdottoDAO {
 	}
 	
 	public Prodotto doRetrieveByKey(Integer key) throws SQLException{
-		String querySQL = "SELECT * FROM Prodotto WHERE ID = ?";
+		String querySQL = "SELECT * FROM Prodotto WHERE ID = ? AND IsAttivo=TRUE";
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
 			ps.setInt(1, key);
