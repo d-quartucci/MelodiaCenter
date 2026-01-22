@@ -31,7 +31,7 @@ public class ProdottoDAO {
 	}
 	
 	public ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
-		//L'ORDER BY non può essere parametrica, quindi lo definiamo prima in questo modo
+		//L'ORDER BY non può essere parametrica, quindi lo definiamo prima in questo modo (SQL Injection)
 		String ordineQuery = "DESC"; //Il default è decrescente
 		
 		if(ord.equals("prezzoCrescente")) {

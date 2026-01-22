@@ -36,5 +36,9 @@ public class Prodotto implements Serializable {
 
 	public boolean isAttivo() { return attivo; }
 	public void setAttivo(boolean attivo) { this.attivo = attivo; }
+	
+	public String toString() {
+		return "Utente [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + ", imgSrc=" + imgSrc + ", attivo=" + attivo + "]";
+	}
 
 }
