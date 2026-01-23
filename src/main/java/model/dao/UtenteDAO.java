@@ -96,19 +96,6 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 				ps.setString(6, bean.getTelefono());
 				ps.executeUpdate();
 			}
-			
-			/*
-			//Questa sezione serve ad aggiungere l'ID al nostro bean per mantenerlo allineato con le informazioni contenute sul DB
-			String selectSQL = "SELECT ID FROM utente WHERE Email = ?";
-			try(Connection conn = ds.getConnection();
-					PreparedStatement psSelect = conn.prepareStatement(selectSQL)){
-				psSelect.setString(1,  bean.getEmail());
-				try(ResultSet rs = psSelect.executeQuery()){
-					if(rs.next()) {
-						bean.setId(rs.getInt("id"));
-					}
-				}
-			}*/
 		}
 	}
 	

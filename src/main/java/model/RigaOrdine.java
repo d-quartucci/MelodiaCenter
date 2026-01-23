@@ -8,12 +8,16 @@ public class RigaOrdine implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private int ordineId;
 	private int prodottoId;
 	private int quant;
 	private BigDecimal prezzoAcq;
 	
 	public RigaOrdine () {}
+	
+	public int getId() { return id; }
+	public void setId(int id) { this.id = id; }
 	
 	public int getOrdineId() { return ordineId; }
 	public void setOrdineId(int ordineId) { this.ordineId = ordineId; }
