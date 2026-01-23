@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 
@@ -29,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
 		u.setNome(request.getParameter("nome"));
 		u.setCognome(request.getParameter("cognome"));
 		u.setEmail(request.getParameter("email"));
-		u.setPassword(request.getParameter("password"));
+		u.setPassword(toHash(request.getParameter("password")));
 		u.setRuolo("USER");
 		u.setTelefono(request.getParameter("tel"));
 		
@@ -41,5 +42,20 @@ public class RegisterServlet extends HttpServlet {
 			ex.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
+	}
+	
+	private String toHash(String password) {
+		String hashString = null;
+		try {
+			java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			hashString = "";
+			for (int i = 0; i < hash.length; i++) {
+				hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).substring(1, 3);
+			}
+		} catch (java.security.NoSuchAlgorithmException e) {
+			System.out.println(e);
+		}
+		return hashString;
 	}
 }

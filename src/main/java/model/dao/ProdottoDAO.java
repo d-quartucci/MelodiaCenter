@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 import model.Prodotto;
 
-public class ProdottoDAO {
+public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	
 	private DataSource ds;
 
@@ -24,7 +24,7 @@ public class ProdottoDAO {
 		p.setCategoriaId(rs.getInt("CategoriaId"));
 		p.setNome(rs.getString("Nome"));
 		p.setDescrizione(rs.getString("Descrizione"));
-		p.setPrezzoAttuale(rs.getFloat("PrezzoAttuale"));
+		p.setPrezzoAttuale(rs.getBigDecimal("PrezzoAttuale"));
 		p.setImgSrc(rs.getString("Immagine"));
 		p.setAttivo(rs.getBoolean("IsAttivo"));
 		return p;
@@ -81,7 +81,7 @@ public class ProdottoDAO {
 		    		PreparedStatement ps = conn.prepareStatement(querySQL)) {   
 		    	ps.setString(1, bean.getNome());
 				ps.setString(2, bean.getDescrizione());
-				ps.setFloat(3, bean.getPrezzoAttuale());
+				ps.setBigDecimal(3, bean.getPrezzoAttuale());
 				ps.setString(4, bean.getImgSrc());
 				ps.setBoolean(5, bean.isAttivo());
 				ps.setInt(6, bean.getCategoriaId());
@@ -98,7 +98,7 @@ public class ProdottoDAO {
 			{
 				ps.setString(1, bean.getNome());
 				ps.setString(2, bean.getDescrizione());
-				ps.setFloat(3, bean.getPrezzoAttuale());
+				ps.setBigDecimal(3, bean.getPrezzoAttuale());
 				ps.setString(4, bean.getImgSrc());
 				ps.setBoolean(5, bean.isAttivo());
 				ps.setInt(6, bean.getCategoriaId());

@@ -28,8 +28,8 @@ public class Consulenza implements Serializable{
 	public String getRispAdmin() {return RispAdmin;}
 	public void setRispAdmin(String RispAdmin) { this.RispAdmin = RispAdmin;}
 	
-	public Date getdataRichiesta() {return dataRichiesta;}
-	public void setdataRichiesta(Date dataRichiesta) { this.dataRichiesta = dataRichiesta;}
+	public Date getDataRichiesta() {return dataRichiesta;}
+	public void setDataRichiesta(Date dataRichiesta) { this.dataRichiesta = dataRichiesta;}
 	
 	public boolean isAperto() { return aperto; }
 	public void setAperto(boolean aperto) { this.aperto = aperto; }

@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 import model.Utente;
@@ -23,11 +24,10 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String password = toHash(request.getParameter("password"));
 		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		UtenteDAO uDAO = new UtenteDAO(ds);
-		
 		try {
 			Utente u = uDAO.doRetrieveByLogin(email, password);
 			//Proviamo a fare il login
@@ -44,5 +44,24 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 			response.sendRedirect("common/error.jsp");
 		}
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		doPost(request, response);
+	}
+	
+	private String toHash(String password) {
+		String hashString = null;
+		try {
+			java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			hashString = "";
+			for (int i = 0; i < hash.length; i++) {
+				hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).substring(1, 3);
+			}
+		} catch (java.security.NoSuchAlgorithmException e) {
+			System.out.println(e);
+		}
+		return hashString;
 	}
 }

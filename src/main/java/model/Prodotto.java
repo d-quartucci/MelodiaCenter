@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Prodotto implements Serializable {
 
@@ -10,7 +11,7 @@ public class Prodotto implements Serializable {
 	private int categoriaId;
 	private String nome;
 	private String descrizione;
-	private float prezzoAttuale;
+	private BigDecimal prezzoAttuale;
 	private String imgSrc; //URL dell'immagine
 	private boolean attivo;
 	
@@ -28,8 +29,8 @@ public class Prodotto implements Serializable {
 	public String getDescrizione() { return descrizione; }
 	public void setDescrizione(String descrizione) { this.descrizione = descrizione; }
 	
-	public float getPrezzoAttuale() { return prezzoAttuale; }
-	public void setPrezzoAttuale(float prezzoAttuale) { this.prezzoAttuale = prezzoAttuale; }
+	public BigDecimal getPrezzoAttuale() { return prezzoAttuale; }
+	public void setPrezzoAttuale(BigDecimal prezzoAttuale) { this.prezzoAttuale = prezzoAttuale; }
 	
 	public String getImgSrc() { return imgSrc; }
 	public void setImgSrc(String imgSrc) { this.imgSrc = imgSrc; }
@@ -38,7 +39,7 @@ public class Prodotto implements Serializable {
 	public void setAttivo(boolean attivo) { this.attivo = attivo; }
 	
 	public String toString() {
-		return "Utente [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + ", imgSrc=" + imgSrc + ", attivo=" + attivo + "]";
+		return "Prodotto [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + ", imgSrc=" + imgSrc + ", attivo=" + attivo + "]";
 	}
 
 }

@@ -40,7 +40,16 @@ public class Carrello implements Serializable{
 	public void modificaQuantita(int idProd, int quantita) {
 		for(CarrelloItem c : listaItem){
 			if(c.getProdotto().getId() == idProd) {
-				c.getQuantita();
+				c.setQuantita(quantita);
+				break;
+			}
+		}
+	}
+	
+	public void decrementaQuantita(int idProd) {
+		for(CarrelloItem c : listaItem){
+			if(c.getProdotto().getId() == idProd && c.getQuantita() > 1) {
+				c.setQuantita(c.getQuantita() - 1);
 				break;
 			}
 		}

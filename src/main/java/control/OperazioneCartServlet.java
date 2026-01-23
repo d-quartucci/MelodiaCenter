@@ -62,6 +62,8 @@ public class OperazioneCartServlet extends HttpServlet {
 			carrello.removeItem(item);
 		} else if("mod".equals(azione)) {
 			carrello.modificaQuantita(idProd, quantita);
+		} else if("dec".equals(azione)) {
+			carrello.decrementaQuantita(idProd);
 		}
 	}
 
