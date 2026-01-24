@@ -30,7 +30,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return p;
 	}
 	
-	public ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
+	public synchronized ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
 		//L'ORDER BY non può essere parametrica, quindi lo definiamo prima in questo modo (SQL Injection)
 		String ordineQuery = "DESC"; //Il default è decrescente
 		
@@ -73,7 +73,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return listaProdotti;
 	}
 	
-	public void doSaveOrUpdate(Prodotto bean) throws SQLException{
+	public synchronized void doSaveOrUpdate(Prodotto bean) throws SQLException{
 		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
 		if(bean.getId() > 0) {
 			String querySQL = "UPDATE utente SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=? WHERE ID=?";
@@ -107,7 +107,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		}
 	}
 	
-	public ArrayList<Prodotto> doRetrieveAll() throws SQLException{
+	public synchronized ArrayList<Prodotto> doRetrieveAll() throws SQLException{
 		String querySQL = "SELECT * FROM prodotto WHERE IsAttivo=TRUE";
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
 		
@@ -122,7 +122,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return listaProdotti;
 	}
 	
-	public Prodotto doRetrieveByKey(Integer key) throws SQLException{
+	public synchronized Prodotto doRetrieveByKey(Integer key) throws SQLException{
 		String querySQL = "SELECT * FROM Prodotto WHERE ID = ? AND IsAttivo=TRUE";
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
@@ -135,7 +135,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return null;
 	}
 	
-	public boolean doDeleteByKey(Integer key) throws SQLException{
+	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
 		String querySQL = "DELETE FROM Prodotto WHERE ID = ?";
 		int test;
 		try(Connection conn = ds.getConnection();
@@ -150,7 +150,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	}
 	
 	//Utilizzo questo metodo per la ricerca tramite barra
-	public ArrayList<Prodotto> doRetrieveByPartialName(String name) throws SQLException{
+	public synchronized ArrayList<Prodotto> doRetrieveByPartialName(String name) throws SQLException{
 		String querySQL = "SELECT * FROM Prodotto WHERE Nome LIKE ? AND IsAttivo = TRUE";
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
 		try(Connection conn = ds.getConnection();

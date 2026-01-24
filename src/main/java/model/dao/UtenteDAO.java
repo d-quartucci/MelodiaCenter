@@ -65,7 +65,7 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 	}
 	
 	
-	public void doSaveOrUpdate(Utente bean) throws SQLException{
+	public synchronized void doSaveOrUpdate(Utente bean) throws SQLException{
 		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
 		if(bean.getId() > 0) {
 			String querySQL = "UPDATE utente SET Nome=?, Cognome=?, Email=?, Password=?, Ruolo=?, Telefono=? WHERE ID=?";
@@ -99,7 +99,7 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		}
 	}
 	
-	public ArrayList<Utente> doRetrieveAll() throws SQLException{
+	public synchronized ArrayList<Utente> doRetrieveAll() throws SQLException{
 		String querySQL = "SELECT * FROM utente";
 		ArrayList<Utente> listaUtenti = new ArrayList<>();
 		
@@ -114,7 +114,7 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		return listaUtenti;
 	}
 	
-	public Utente doRetrieveByKey(Integer key) throws SQLException{
+	public synchronized Utente doRetrieveByKey(Integer key) throws SQLException{
 		String querySQL = "SELECT * FROM utente WHERE ID = ?";
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
@@ -127,7 +127,7 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		return null;
 	}
 	
-	public boolean doDeleteByKey(Integer key) throws SQLException{
+	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
 		String querySQL = "DELETE FROM utente WHERE ID = ?";
 		int test;
 		try(Connection conn = ds.getConnection();

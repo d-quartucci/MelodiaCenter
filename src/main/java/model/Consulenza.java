@@ -32,7 +32,7 @@ public class Consulenza implements Serializable{
 	public void setDataRichiesta(Date dataRichiesta) { this.dataRichiesta = dataRichiesta;}
 	
 	public boolean isAperto() { return aperto; }
-	public void setAperto(boolean aperto) { this.aperto = aperto; }
+	public void setIsAperto(boolean aperto) { this.aperto = aperto; }
 	
 	public String toString() {
 		return "Consulenza [id=" + id + ", utenteId=" + utenteId + ", RispAdmin=" + RispAdmin+ 

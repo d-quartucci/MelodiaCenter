@@ -26,8 +26,8 @@ public class MetodoPagamentoDAO implements GenericDAO<MetodoPagamento, MetodoPag
 		
 		MetodoPagamentoKey key = new MetodoPagamentoKey(bean.getUtenteId(), bean.getNumCarta());
 		
-		//non utilizzo if(bean.getId() > 0) o varianti, perchè non garantisce l'esistenza della riga nel DB
-		//questo funziona perchè ID viene generato quando fai INSERT INTO
+		//Non utilizzo if(bean.getId() > 0) o varianti, perchè non garantisce l'esistenza della riga nel DB
+		//Questo funziona perchè ID viene generato quando fai INSERT INTO
 		if(doRetrieveByKey(key) != null) { // Utilizzo questo metodo per verificare se esiste realmente nel DB
 		    try (Connection conn = ds.getConnection();
 		    		PreparedStatement ps = conn.prepareStatement(query1)) {   
@@ -69,7 +69,9 @@ public class MetodoPagamentoDAO implements GenericDAO<MetodoPagamento, MetodoPag
 
 	
 	public synchronized MetodoPagamento doRetrieveByKey(MetodoPagamentoKey key) throws SQLException {
+		
 		String query = "SELECT * FROM metodopagamento WHERE UtenteID = ? AND NumeroCarta = ?";
+		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(query)){
 			ps.setInt(1, key.getFirst());
@@ -84,7 +86,9 @@ public class MetodoPagamentoDAO implements GenericDAO<MetodoPagamento, MetodoPag
 
 
 	public synchronized boolean doDeleteByKey(MetodoPagamentoKey key) throws SQLException {
-		String query = "DELETE FROM utente WHERE UtenteID = ? AND NumeroCarta = ?";
+		
+		String query = "DELETE FROM metodopagamento WHERE UtenteID = ? AND NumeroCarta = ?";
+		
 		int test;
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(query)){
@@ -100,6 +104,7 @@ public class MetodoPagamentoDAO implements GenericDAO<MetodoPagamento, MetodoPag
 
 	
 	public MetodoPagamento mapResultSetToBean(ResultSet rs) throws SQLException {
+		
 		MetodoPagamento mp = new MetodoPagamento();
 		
 		mp.setUtenteId(rs.getInt("UtenteID"));
