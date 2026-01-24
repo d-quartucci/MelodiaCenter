@@ -35,7 +35,18 @@ public class OperazioneCartServlet extends HttpServlet {
 			sessione.setAttribute("carrello", carrello);
 		}
 		
-		int quantita = Integer.parseInt(request.getParameter("q"));
+		String azione = request.getParameter("act");
+		
+		//La quantità per tutte le operazioni è sempre "1", eccetto per l'operazione di modifica diretta della quantità
+		int quantita = 1;
+		if("mod".equals(azione)) {
+			quantita = Integer.parseInt(request.getParameter("q"));
+			if(quantita <= 0) {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				return;
+			}
+		}
+		
 		int idProd = Integer.parseInt(request.getParameter("id"));
 		Prodotto prod = null;
 		ProdottoDAO pDAO = new ProdottoDAO(ds); 
@@ -46,15 +57,13 @@ public class OperazioneCartServlet extends HttpServlet {
 			response.sendRedirect("/common/error.jsp");
 			return;
 		}
-		
-		if(prod == null || quantita <= 0) {
+		//Se è stata fatta una richiesta per un prodotto non valido --> errore
+		if(prod == null) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
 		
 		CarrelloItem item = new CarrelloItem(prod, quantita);
-		
-		String azione = request.getParameter("act");
 		
 		if("add".equals(azione)) {
 			carrello.addItem(item);

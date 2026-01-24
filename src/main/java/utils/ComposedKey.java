@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 public interface ComposedKey <K1, K2> {
 	

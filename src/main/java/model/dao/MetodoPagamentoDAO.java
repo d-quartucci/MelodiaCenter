@@ -1,8 +1,8 @@
 package model.dao;
 
 import model.MetodoPagamento;
-import model.Utente;
-import Utils.MetodoPagamentoKey;
+import utils.MetodoPagamentoKey;
+
 import javax.sql.DataSource;
 
 import java.sql.Connection;
