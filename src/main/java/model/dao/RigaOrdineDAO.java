@@ -20,11 +20,10 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 		this.ds = ds;
 	}
 	
-	
-	public void doSaveOrUpdate(RigaOrdine bean) throws SQLException {
+	public synchronized void doSaveOrUpdate(RigaOrdine bean) throws SQLException {
 		
-		String query1 = "UPDATE RigaOrdine SET OrdineID = ?, ProdottoID = ?, Quantita = ?, PrezzoAcquisto = ? WHERE ID = ?";
-		String query2 = "INSERT INTO RigaOrdine (OrdineID, ProdottoID, Quantita, PrezzoAcquisto) VALUES (?, ?, ?, ?)";
+		String query1 = "UPDATE rigaordine SET OrdineID = ?, ProdottoID = ?, Quantita = ?, PrezzoAcquisto = ? WHERE ID = ?";
+		String query2 = "INSERT INTO rigaordine (OrdineID, ProdottoID, Quantita, PrezzoAcquisto) VALUES (?, ?, ?, ?)";
 		
 		if(bean.getId()>0) {
 			try(Connection con = ds.getConnection(); 
@@ -51,9 +50,9 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 	}
 
 	
-	public ArrayList<RigaOrdine> doRetrieveAll() throws SQLException {
+	public synchronized ArrayList<RigaOrdine> doRetrieveAll() throws SQLException {
 		
-		String query = "SELECT * FROM RigaOrdine";
+		String query = "SELECT * FROM rigaordine";
 		ArrayList<RigaOrdine> list = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
@@ -69,9 +68,9 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 	}
 
 	
-	public RigaOrdine doRetrieveByKey(Integer key) throws SQLException {
+	public synchronized RigaOrdine doRetrieveByKey(Integer key) throws SQLException {
 		
-		String query = "SELECT * FROM RigaOrdine WHERE ID = ?";
+		String query = "SELECT * FROM rigaordine WHERE ID = ?";
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(query);){
@@ -86,9 +85,9 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 	}
 
 	
-	public boolean doDeleteByKey(Integer key) throws SQLException {
+	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
 		
-		String query = "DELETE FROM RigaOrdine WHERE ID = ?";
+		String query = "DELETE FROM rigaordine WHERE ID = ?";
 		int test;
 		
 		try(Connection conn = ds.getConnection();

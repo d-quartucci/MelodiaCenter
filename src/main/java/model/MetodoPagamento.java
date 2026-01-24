@@ -21,10 +21,10 @@ public class MetodoPagamento implements Serializable{
 	public void setNumCarta(String numCarta) { this.numCarta = numCarta;}
 	
 	public String getProvider() {return provider;}
-	public void setProvider(String provider) { this.numCarta = provider;}
+	public void setProvider(String provider) { this.provider = provider;}
 	
-	public String getDataScad() {return provider;}
-	public void setDataScad(String provider) { this.numCarta = provider;}
+	public Date getDataScad() {return dataScad;}
+	public void setDataScad(Date dataScad) { this.dataScad = dataScad;}
 	
 	public String toString() {
 		return "MetodoPagamento [utenteId=" + utenteId + ", numero carta=" + numCarta +

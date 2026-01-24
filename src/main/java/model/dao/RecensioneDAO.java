@@ -16,7 +16,11 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 	
 	private DataSource ds;
 	
-	public void doSaveOrUpdate(Recensione bean) throws SQLException {
+	public RecensioneDAO (DataSource ds) {
+		this.ds = ds;
+	}
+	
+	public synchronized void doSaveOrUpdate(Recensione bean) throws SQLException {
 		
 		String query1= "INSERT INTO recensione (UtenteID, ProdottoID, Voto, Testo, DataInserimento) VALUES (?, ?, ?, ?, ?)";
 		String query2= "UPDATE recensione SET UtenteID=?, ProdottoID=?, Voto=?, Testo=?, DataInserimento=? WHERE ID=?";
@@ -47,7 +51,7 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 		
 	}
 	
-	public ArrayList<Recensione> doRetrieveAll() throws SQLException {
+	public synchronized ArrayList<Recensione> doRetrieveAll() throws SQLException {
 		
 		String query = "SELECT * FROM recensione" ;
 		ArrayList<Recensione> lista = new ArrayList<>();
@@ -64,7 +68,7 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 	}
 
 	
-	public Recensione doRetrieveByKey(Integer key) throws SQLException {
+	public synchronized Recensione doRetrieveByKey(Integer key) throws SQLException {
 		
 		String query = "SELECT * FROM Recensione WHERE ID = ?";
 		
@@ -79,7 +83,7 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 		return null;
 	}
 
-	public Recensione doRetrieveByVoto(Integer voto) throws SQLException {
+	public synchronized  Recensione doRetrieveByVoto(Integer voto) throws SQLException {
 		
 		String query = "SELECT * FROM Recensione WHERE Voto = ?";
 		
@@ -94,7 +98,7 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 		return null;
 	}
 	
-	public Recensione doRetrieveByData(Date data) throws SQLException {
+	public synchronized Recensione doRetrieveByData(Date data) throws SQLException {
 		
 		String query = "SELECT * FROM Recensione WHERE DataInserimento = ?";
 		
@@ -110,7 +114,7 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 		
 	}
 	
-	public boolean doDeleteByKey(Integer key) throws SQLException {
+	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
 		
 		String query = "DELETE FROM Recensione WHERE ID = ?";
 		int test;

@@ -12,7 +12,7 @@ public class Ordine implements Serializable{
 	private int utenteId;
 	private Date data;
 	private BigDecimal totale;
-	private Indirizzo indSpedizione;
+	private String indSpedizione;
 
 	public Ordine() {}
 	
@@ -28,9 +28,8 @@ public class Ordine implements Serializable{
 	public BigDecimal getTotale() {return totale;}
 	public void setTotale(BigDecimal totale) { this.totale = totale;}
 	
-	public Indirizzo getIndSpedizione() {return indSpedizione;}
-	public void setIndSpedizione(Indirizzo indSpedizione ) {this.indSpedizione = indSpedizione;}
-	
+	public String getIndSpedizione() {return indSpedizione;}
+	public void setIndSpedizione(String indSpedizione ) {this.indSpedizione = indSpedizione;}
 	
 	public String toString() {
 		return "Ordine [id=" + id + ", utenteId=" + utenteId + ", data=" + data + 
