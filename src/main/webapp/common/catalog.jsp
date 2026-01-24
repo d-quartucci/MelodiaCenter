@@ -4,13 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script>
-    const contextPath = "${pageContext.request.contextPath}";
-</script>
-<script src="${pageContext.request.contextPath}/scripts/catalog.js"></script>
-<script src="${pageContext.request.contextPath}/scripts/slider.js"></script>
-<title>Catalogo</title>
+	<meta charset="UTF-8">
+	
+	<script>
+ 	   const contextPath = "${pageContext.request.contextPath}";
+	</script>
+	<script src="${pageContext.request.contextPath}/scripts/catalog.js"></script>
+	<script src="${pageContext.request.contextPath}/scripts/slider.js"></script>
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
+	
+	<title>Catalogo</title>
 </head>
 <body>
 	<%@ include file="/fragments/header.jsp" %>

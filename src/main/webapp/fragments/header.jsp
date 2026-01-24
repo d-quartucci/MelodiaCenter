@@ -4,14 +4,10 @@
 <header>
     <div class="header-container">
 
-        <!-- Logo -->
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/common/index.jsp">
-                🎸 MelodiaCenter
-            </a>
+            <a href="${pageContext.request.contextPath}/common/index.jsp">🎸 MelodiaCenter</a>
         </div>
 
-        <!-- Menu principale -->
         <nav>
             <ul class="nav-links">
                 <li><a href="${pageContext.request.contextPath}/common/index.jsp">Home</a></li>
@@ -38,24 +34,14 @@
 
             <!-- Se l'utente ha fatto il login, mostro le opzioni dedicate allo USER -->
             <c:if test="${not empty sessionScope.utente}">
-                <span>
-                    Ciao, <strong>${sessionScope.utente.nome}</strong>
-                </span>
-
-                <a href="${pageContext.request.contextPath}/OrdersServlet">
-                    I miei ordini
-                </a>
-
-                <a href="${pageContext.request.contextPath}/LogoutServlet">
-                    Logout
-                </a>
+                <span>Ciao, <strong>${sessionScope.utente.nome}!</strong></span>
+                <a href="${pageContext.request.contextPath}/OrdersServlet">I miei ordini</a>
+                <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
             </c:if>
 
             <!-- Se l'utente è un admin, mostro le opzioni dedicate all'ADMIN -->
             <c:if test="${sessionScope.utente.ruolo}=='ADMIN'">
-                <a href="${pageContext.request.contextPath}/admin/dashboard.jsp">
-                    Admin
-                </a>
+                <a href="${pageContext.request.contextPath}/admin/dashboard.jsp">Admin</a>
             </c:if>
         </div>
     </div>

@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Effettua il login</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
+	<title>Effettua il login</title>
 </head>
 <body>
 <%@ include file="/fragments/header.jsp" %>
