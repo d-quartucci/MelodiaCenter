@@ -4,25 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Il tuo carrello</title>
-<script>
-   const contextPath = "${pageContext.request.contextPath}";
-</script>
-<script src="${pageContext.request.contextPath}/scripts/cart.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Il tuo carrello</title>
+	<script>const contextPath = "${pageContext.request.contextPath}";</script>
+	<script src="${pageContext.request.contextPath}/scripts/cart.js"></script>
 </head>
 <body>
 <%@ include file="/fragments/header.jsp" %>
 <h1>Gestisci il tuo carrello!</h1>
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
-<div id="carrelloVuoto" style="<c:if test='${not empty sessionScope.carrello.listaItem}'>display:none;</c:if>">
-    Il carrello è vuoto! Comincia la tua ricerca da
-    <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!
+<div id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
+    Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!
 </div>
 
 <!-- Sezione mostrata quando il carrello non è vuoto -->
-<c:if test="${not empty sessionScope.carrello.listaItem}">
+<c:if test="${not empty carrello.listaItem}">
 <div id="sezioneCarrello">
 <h2 id="presentazioneCarrello">Ecco i tuoi prodotti:</h2>
 
@@ -35,7 +33,7 @@
 		<th></th>
 	</tr>
 	
-	<c:forEach var="item" items="${sessionScope.carrello.listaItem}">
+	<c:forEach var="item" items="${carrello.listaItem}">
 		<tr id="tr-${item.prodotto.id}">
 			<td>${item.prodotto.nome}</td>
 			<td>${item.prodotto.prezzoAttuale}</td>
@@ -50,7 +48,7 @@
 	
 </table>
 
-<h2>Prezzo totale: <span id="spanPrezzoTotale">0€</span></h2>
+<h2>Prezzo totale: <span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
 
 <form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/CheckoutServlet">
 	<button type="submit" id="checkout">Vai al checkout!</button>

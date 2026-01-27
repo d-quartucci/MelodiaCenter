@@ -7,7 +7,7 @@ function rimuoviUno(idProdotto){
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState == 4 && xhr.status == 200){
 					document.getElementById(idProdotto + "Quantita").value = quantita - 1;
-					calcolaPrezzo();
+					aggiornaPrezzo(xhr.responseText);
 				}
 			}
 			xhr.open("GET", url, true);
@@ -22,7 +22,7 @@ function aggiungiUno(idProdotto){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById(idProdotto + "Quantita").value = quantita + 1;
-			calcolaPrezzo();
+			aggiornaPrezzo(xhr.responseText);
 		}
 	}
 	xhr.open("GET", url, true);
@@ -37,8 +37,10 @@ function cambiaQuantita(idProdotto){
 	}
 	let xhr = new XMLHttpRequest();
 	let url = contextPath + "/OperazioneCartServlet?q=" + quantita + "&id=" + idProdotto + "&act=mod";
-	if(xhr.readyState == 4 && xhr.status == 200){
-		calcolaPrezzo();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			aggiornaPrezzo(xhr.responseText);
+		}
 	}
 	xhr.open("GET", url, true);
 	xhr.send();
@@ -66,7 +68,7 @@ function rimuoviDalCarrello(idProdotto){
 					messaggioVuoto.style.display = "block";
 				}
 			} else{ //Se il carrello non è vuoto, devo ricalcolare il prezzo mostrato
-				calcolaPrezzo();
+				aggiornaPrezzo(xhr.responseText);
 			}
 		}
 	}
@@ -74,27 +76,7 @@ function rimuoviDalCarrello(idProdotto){
 	xhr.send();
 }
 
-function calcolaPrezzo(){
-	let totale = 0;
-	//Sto selezionando tutte le righe della tabellaCarello
-	let righe = document.querySelectorAll("#tabellaCarrello tr[id^='tr-']");
-
-	for(let i = 0;  i < righe.length; i++){
-		let riga = righe[i];
-		
-		//Per ogni riga, prendo il valore del prezzo e della quantità
-		let prezzo = parseFloat(riga.cells[1].textContent);
-		let quantita = parseInt(riga.querySelector("input[type='text']").value);
-		
-		//Se i valori sono validi, posso aggiungere il prezzo al totale
-		if(!isNaN(prezzo) && !isNaN(quantita)){
-			totale = totale + (prezzo * quantita);
-		}
-	}
-	//Modifico lo span che contiene il prezzo
-	document.getElementById("spanPrezzoTotale").innerHTML = totale.toFixed(2) + "€";
+function aggiornaPrezzo(responseText){
+	let risposta = JSON.parse(responseText);
+	document.getElementById("spanPrezzoTotale").innerHTML = parseFloat(risposta.totale).toFixed(2) + "€";
 }
-
-window.onload = function() {
-    calcolaPrezzo();
-};

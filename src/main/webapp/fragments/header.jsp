@@ -12,7 +12,7 @@
             <ul class="nav-links">
                 <li><a href="${pageContext.request.contextPath}/common/index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/CatalogServlet">Catalogo</a></li>
-                <li><a href="${pageContext.request.contextPath}/common/cart.jsp">Carrello</a></li>
+                <li><a href="${pageContext.request.contextPath}/CartServlet">Carrello</a></li>
             </ul>
         </nav>
         
@@ -40,7 +40,7 @@
             </c:if>
 
             <!-- Se l'utente è un admin, mostro le opzioni dedicate all'ADMIN -->
-            <c:if test="${sessionScope.utente.ruolo}=='ADMIN'">
+            <c:if test="${sessionScope.utente.ruolo=='ADMIN'}">
                 <a href="${pageContext.request.contextPath}/admin/dashboard.jsp">Admin</a>
             </c:if>
         </div>

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Carrello implements Serializable{
@@ -53,5 +54,15 @@ public class Carrello implements Serializable{
 				break;
 			}
 		}
+	}
+	
+	public BigDecimal getPrezzoTotale() {
+		BigDecimal totale = BigDecimal.ZERO;
+		for(CarrelloItem item : listaItem) {
+			BigDecimal prezzo = item.getProdotto().getPrezzoAttuale();
+			BigDecimal quantita = BigDecimal.valueOf(item.getQuantita());
+			totale = totale.add(prezzo.multiply(quantita));
+		}
+		return totale;
 	}
 }

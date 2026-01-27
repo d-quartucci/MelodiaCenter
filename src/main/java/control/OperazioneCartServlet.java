@@ -12,9 +12,12 @@ import model.Prodotto;
 import model.dao.ProdottoDAO;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
+
+import org.json.JSONObject;
 
 @WebServlet("/OperazioneCartServlet")
 public class OperazioneCartServlet extends HttpServlet {
@@ -40,21 +43,33 @@ public class OperazioneCartServlet extends HttpServlet {
 		//La quantità per tutte le operazioni è sempre "1", eccetto per l'operazione di modifica diretta della quantità
 		int quantita = 1;
 		if("mod".equals(azione)) {
-			quantita = Integer.parseInt(request.getParameter("q"));
+			try{
+				quantita = Integer.parseInt(request.getParameter("q"));
+			} catch(NumberFormatException ex) {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				return;
+			}
 			if(quantita <= 0) {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 				return;
 			}
 		}
 		
-		int idProd = Integer.parseInt(request.getParameter("id"));
+		int idProd;
+		try {
+			idProd = Integer.parseInt(request.getParameter("id"));
+		} catch(NumberFormatException ex) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			return;
+		}
+		
 		Prodotto prod = null;
 		ProdottoDAO pDAO = new ProdottoDAO(ds); 
 		try{
 			prod = pDAO.doRetrieveByKey(idProd);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
-			response.sendRedirect("/common/error.jsp");
+			response.sendRedirect(request.getContextPath() +"/common/error.jsp");
 			return;
 		}
 		//Se è stata fatta una richiesta per un prodotto non valido --> errore
@@ -74,6 +89,18 @@ public class OperazioneCartServlet extends HttpServlet {
 		} else if("dec".equals(azione)) {
 			carrello.decrementaQuantita(idProd);
 		}
+		
+		//Aggiorna il carrello in sessione
+		sessione.setAttribute("carrello", carrello);
+		
+		//Risposta JSON
+		response.setContentType("application/json");
+		BigDecimal totale = carrello.getPrezzoTotale();
+		JSONObject json = new JSONObject();
+		json.put("totale", totale.toPlainString());
+		
+		response.getWriter().write(json.toString());
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

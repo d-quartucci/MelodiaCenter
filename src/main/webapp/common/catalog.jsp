@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,8 @@
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<title>Catalogo</title>
 </head>
 <body>
@@ -27,9 +28,7 @@
 						<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 					</div>
 					<div class="informazioniProdotto">
-						<a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">
-							${p.nome}
-						</a>
+						<a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a>
 						<p class="prezzo">${p.prezzoAttuale}€</p>
 					</div>
 				</div>
@@ -40,7 +39,7 @@
 			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
 		</c:if>
 	</div>
-	<div>
+	<div id="formFiltriContainer">
 		<form name="formFiltri" action="${pageContext.request.contextPath}/FilterServlet" method="GET">
 			<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Ricerca..." value="${param.barraDiRicerca}"><br>
 			

@@ -7,7 +7,6 @@ body {
 	font-size: 100%;
 	margin: 0;
 	padding: 0;
-	font-family: Arial, Helvetica, sans-serif;
 	background-color: #f4f4f4;
 }
 
@@ -52,7 +51,6 @@ nav {
 .nav-links a {
 	display: block;
 	color: #f2f2f2;
-	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 }
@@ -67,21 +65,21 @@ nav {
 	padding: 10px;
 }
 
+.ricerca form{
+	display: inline-block;
+}
+
 .ricerca input[type=text] {
 	padding: 6px;
 	border: none;
-	font-size: 100%;
 }
+
 
 .ricerca button {
 	padding: 6px 10px;
 	background-color: #ddd;
 	border: none;
 	cursor: pointer;
-}
-
-.ricerca button:hover {
-	background-color: #ccc;
 }
 
 .user-area {
@@ -131,82 +129,82 @@ nav {
 	background-color: #555;
 }
 
-.productGrid {
-	overflow: hidden;
-	width: 100%;
-}
-
-.productCard {
-	float: left;
-	width: 31%;
-	margin: 1%;
-	padding: 15px;
-	background-color: #f9f9f9;
-	border: 1px solid #ccc;
+h1 {
 	text-align: center;
-}
-
-.product-card h3 {
 	color: #333;
 }
 
 #risultati {
 	float: left;
-	width: 75%;
-	overflow: hidden;
+	width: 70%;
+	min-height: 400px;
 }
 
 .contenitoreProdotto {
-	float: left;
-	width: 31%;
-	margin: 1%;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
 	padding: 15px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	text-align: center;
+	overflow: hidden;
+}
+
+.immagineProdotto {
+	float: left;
+	width: 120px;
 }
 
 .immagineProdotto img {
 	max-width: 100%;
-	height: 150px;
+	height: auto;
+}
+
+.informazioniProdotto {
+	float: left;
+	padding-left: 20px;
 }
 
 .informazioniProdotto a {
 	display: block;
-	margin-top: 10px;
 	text-decoration: none;
 	color: #333;
 	font-weight: bold;
+	font-size: 115%;
 }
 
 .prezzo {
 	color: #333;
 	font-weight: bold;
-	font-size: 110%;
+	margin-top: 5px;
 }
 
-form[name="formFiltri"] {
+#formFiltriContainer {
 	float: right;
-	width: 23%;
+	width: 25%;
 	background-color: #333;
 	color: #f2f2f2;
-	padding: 15px;
-	margin-top: 10px;
+	padding: 20px;
+	border-radius: 4px;
 }
 
-form[name="formFiltri"] input[type="text"], form[name="formFiltri"] select {
+form[name="formFiltri"] label {
+	display: block;
+	margin: 10px 0 5px 0;
+	font-size: 90%;
+}
+
+form[name="formFiltri"] input, form[name="formFiltri"] select {
 	width: 100%;
+	padding: 8px;
 	margin-bottom: 10px;
-	padding: 5px;
 }
 
 form[name="formFiltri"] button {
 	width: 100%;
-	padding: 10px;
+	padding: 12px;
 	background-color: #ddd;
 	border: none;
 	font-weight: bold;
 	cursor: pointer;
+	margin-top: 10px;
 }
 
 footer {
@@ -214,55 +212,24 @@ footer {
 	padding: 20px;
 	margin-top: 20px;
 	clear: both;
-	overflow: hidden;
-}
-
-.footerContainer {
-	overflow: hidden;
-}
-
-.footerSection {
-	float: left;
-	width: 45%;
-	margin: 2%;
-}
-
-.footerLinkUtili ul {
-	list-style-type: none;
-	padding: 0;
-}
-
-.footerLinkUtili ul li a {
-	text-decoration: none;
-	color: #333;
-}
-
-.footerCR {
-	text-align: center;
-	clear: both;
-	padding-top: 10px;
 }
 
 @media screen and (max-width: 768px) {
-	.logo, nav, .nav-links, .nav-links li, .ricerca, .user-area, #risultati, form[name="formFiltri"] {
+	#risultati, #formFiltriContainer {
 		float: none;
 		width: 100%;
-		text-align: left;
 	}
 
-	.nav-links a {
-		text-align: left;
-		padding: 10px;
-		border-bottom: 1px solid #444;
+	#formFiltriContainer {
+		margin-top: 20px;
 	}
 
-	.contenitoreProdotto {
-		width: 98%;
+	.logo, nav, .user-area {
 		float: none;
+		text-align: center;
 	}
 
-	.footerSection {
-		width: 100%;
+	.nav-links li {
 		float: none;
 	}
 }

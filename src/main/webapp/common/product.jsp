@@ -3,17 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>${prodotto.nome}</title>
-<script>
-    const contextPath = "${pageContext.request.contextPath}";
-</script>
-<script src="${pageContext.request.contextPath}/scripts/product.js"></script>
+	<meta charset="UTF-8">
+	<title>${prodotto.nome}</title>
+	<script>const contextPath = "${pageContext.request.contextPath}";</script>
+	<script src="${pageContext.request.contextPath}/scripts/product.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 </head>
 <body>
 <%@ include file="/fragments/header.jsp" %>
-${prodotto.nome}
-<button onclick="aggiungiAlCarrello(${prodotto.id})">Aggiungi al carrello!</button>
+<div id="immagineProdotto">
+	<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
+</div>
+<div id="informazioniProdotto">
+	<p id="nomeProdotto">${prodotto.nome}</p>
+	<p id="descProdotto">${prodotto.descrizione}</p>
+	<p id="prezzo">${prodotto.prezzoAttuale}€</p>
+	<button onclick="aggiungiAlCarrello(${prodotto.id})">Aggiungi al carrello!</button>
+</div>
+
+
 <%@ include file="/fragments/footer.jsp" %>
 </body>
 </html>

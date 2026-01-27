@@ -4,12 +4,11 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>Effettua la registrazione</title>
-<script>
-    const contextPath = "${pageContext.request.contextPath}";
-</script>
-<script src="${pageContext.request.contextPath}/scripts/register.js"></script>
+	<meta charset="UTF-8">
+	<title>Effettua la registrazione</title>
+	<script>const contextPath = "${pageContext.request.contextPath}";</script>
+	<script src="${pageContext.request.contextPath}/scripts/register.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
