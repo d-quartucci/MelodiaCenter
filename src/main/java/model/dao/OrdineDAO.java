@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import model.Ordine;
+import model.Utente;
 
 public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 
@@ -86,6 +88,20 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		return null;
 	}
 
+	public synchronized ArrayList<Ordine>  doRetrieveByDate(Date key) throws SQLException{
+		String querySQL = "SELECT * FROM ordine WHERE DATE (DataOra) = ?";
+		ArrayList<Ordine> ordine = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setDate(1, key);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				ordine.add(mapResultSetToBean(rs));
+			}
+		}
+		return ordine;
+	}
 	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
 		

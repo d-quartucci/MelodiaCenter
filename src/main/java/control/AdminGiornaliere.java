@@ -1,0 +1,62 @@
+package control;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Ordine;
+import model.Utente;
+import model.dao.OrdineDAO;
+import model.dao.UtenteDAO;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import javax.sql.DataSource;
+
+
+@WebServlet("/AdminGiornaliere")
+public class AdminGiornaliere extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+  
+    public AdminGiornaliere() {
+        super();
+       
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
+		OrdineDAO oDAO =  new OrdineDAO(ds);
+		UtenteDAO uDAO =  new UtenteDAO(ds);
+		
+		try{
+			
+			LocalDate oggi = LocalDate.now();
+			java.sql.Date sqlDate = java.sql.Date.valueOf(oggi);
+			
+			ArrayList<Ordine> ordini = oDAO.doRetrieveByDate(sqlDate);
+			ArrayList<Utente> utente = uDAO.doRetrieveByDate(sqlDate);
+			
+			request.setAttribute("utentiOggi", utente);
+			request.setAttribute("ordiniOggi", ordini);
+			
+			request.getRequestDispatcher("/admin/dashboard.jsp");
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+		}
+	}
+		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		doGet(request, response);
+	}
+
+}

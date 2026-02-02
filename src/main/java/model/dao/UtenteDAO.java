@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -125,6 +126,21 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 			}
 		}
 		return null;
+	}
+	
+	public synchronized ArrayList<Utente>  doRetrieveByDate(Date key) throws SQLException{
+		String querySQL = "SELECT utente FROM utente WHERE DATE (DataRegistrazione) = ?";
+		ArrayList<Utente> utente = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setDate(1, key);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				utente.add(mapResultSetToBean(rs));
+			}
+		}
+		return utente;
 	}
 	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
