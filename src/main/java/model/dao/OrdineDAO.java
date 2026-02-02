@@ -23,6 +23,7 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		String query1 = "UPDATE ordine SET UtenteID = ?, DataOra = ?, Totale = ?, IndirizzoSpedizione = ? WHERE ID = ?";
 		String query2 = "INSERT INTO ordine (UtenteID, DataOra, Totale, IndirizzoSpedizione ) VALUES (?, ?, ?, ?)";
 		
+		//Update
 		if(bean.getId() > 0){
 			try(Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(query1);){
@@ -33,15 +34,22 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 				ps.setInt(5, bean.getId());
 				ps.executeUpdate();
 			}
-		
+		//Insert con recupero ID, in questo caso necessario per l'eventuale creazione di oggetti RigaOrdine
 		}else {
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2);){
+					PreparedStatement ps = conn.prepareStatement(query2, PreparedStatement.RETURN_GENERATED_KEYS);){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setDate(2, bean.getData());
 				ps.setBigDecimal(3, bean.getTotale());
 				ps.setString(4, bean.getIndSpedizione());
 				ps.executeUpdate();
+				
+				try(ResultSet rs = ps.getGeneratedKeys()){
+					if(rs.next()) {
+						int idGenerato = rs.getInt(1);
+						bean.setId(idGenerato);
+					}
+				}
 			}
 		}
 	}
