@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 			if(u != null) {
 				HttpSession sessione = request.getSession(); //Prendiamo la sessione per salvare le informazioni dell'utente
 				sessione.setAttribute("utente", u);
-				response.sendRedirect("common/index.jsp");
+				response.sendRedirect(request.getContextPath() + "/common/index.jsp");
 			}
 			else {
 				request.setAttribute("error", "Email o password non validi!");
@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-			response.sendRedirect("common/error.jsp");
+			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}
 	

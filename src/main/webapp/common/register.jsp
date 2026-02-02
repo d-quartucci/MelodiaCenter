@@ -7,15 +7,16 @@
 	<meta charset="UTF-8">
 	<title>Effettua la registrazione</title>
 	<script>const contextPath = "${pageContext.request.contextPath}";</script>
-	<script src="${pageContext.request.contextPath}/scripts/register.js"></script>
+	<script src="${pageContext.request.contextPath}/scripts/validate.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 <%@ include file="/fragments/header.jsp" %>
+
 <h1>Registrati!</h1>
 
-<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validate()">
+<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validateRegister()">
 <fieldset>
 <legend>Credenziali di accesso</legend>
 	Email:<input name="email" id="email" type="text" oninput="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
@@ -39,7 +40,8 @@
 <button type="submit" id="submit">Registrati!</button>
 </form>
 
-<h4>Sei già registrato? <a href="login.jsp">Accedi qui!</a> </h4>
+<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/common/login.jsp">Accedi qui!</a> </h4>
+
 <%@ include file="/fragments/footer.jsp" %>
 </body>
 </html>

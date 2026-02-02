@@ -19,7 +19,7 @@ function validateFormElem(formElem, errorSpan, errorMessage){
 	return false; //Vi sono errori
 }
 
-function validate(){
+function validateRegister(){
 	let valid = true;
 	let form = document.getElementById("registerForm");
 	
@@ -31,6 +31,16 @@ function validate(){
 	if(!validateFormElem(form.password, document.getElementById("errorPassword"), passwordErrorMessage)) valid = false; //Controllo sulla password
 	
 	//Se uno dei controlli sugli elementi del form non è andato a buon fine, valid = false, e il submit non avviene
+	return valid;
+}
+
+function validateLogin(){
+	let valid = true;
+	let form = document.getElementById("loginForm");
+	
+	if(!validateFormElem(form.email, document.getElementById("errorEmail"), emailErrorMessage)) valid = false; //Controllo sull'email
+	if(!validateFormElem(form.password, document.getElementById("errorPassword"), passwordErrorMessage)) valid = false; //Controllo sulla password
+	
 	return valid;
 }
 
