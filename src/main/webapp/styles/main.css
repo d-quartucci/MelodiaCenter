@@ -1,235 +1,100 @@
 * {
-	box-sizing: border-box;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 body {
 	font-size: 100%;
-	margin: 0;
-	padding: 0;
-	background-color: #f4f4f4;
+	color: #333333;
+	margin : 0;
+	padding : 0;
 }
 
-header {
-	background-color: #333;
-	overflow: hidden;
-	padding: 10px;
+#headerPrincipale{
+	padding: 10px 10px 20px;
+	background-color: #2f2f2f;
+	min-height: 35px;
 }
 
-.header-container {
-	width: 100%;
-	overflow: hidden;
+.logo{
+ 	display: inline;
+ 	float: left;
+ 	padding-top : 2px;
 }
 
-.logo {
-	float: left;
-	padding: 14px 16px;
-}
-
-.logo a {
-	color: #f2f2f2;
-	text-decoration: none;
+.logo a{
+	font-family: Helvetica, sans-serif;
 	font-weight: bold;
-	font-size: 120%;
-}
-
-nav {
-	float: left;
-}
-
-.nav-links {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-
-.nav-links li {
-	float: left;
-}
-
-.nav-links a {
-	display: block;
-	color: #f2f2f2;
-	padding: 14px 16px;
+	color: white;
 	text-decoration: none;
+	font-size: 1.8em;
+	padding: 5px 12px;
+	border : 2px dotted gray;
+	border-radius: 10px;
 }
 
-.nav-links a:hover {
-	background-color: #ddd;
+.navLinks{
+	list-style-type : none;
+	float : left;
+	padding-right: 10px;
+	padding-bottom: 15px;
+}
+
+.navLinks li {
+	float : left;
+	margin-right: 15px;
+	
+}
+
+.navLinks a {
+	text-decoration: none;
+	color: white;
+}
+
+.navLinks a:hover{
+	text-decoration: underline;
 	color: black;
+	background-color: white;
 }
 
 .ricerca {
+	padding-top: 9px;
 	float: left;
-	padding: 10px;
 }
 
-.ricerca form{
-	display: inline-block;
+.ricerca #barraDiRicerca{
+	height: 25px;
+	width: 250px;
+	border-radius: 5px;
 }
 
-.ricerca input[type=text] {
-	padding: 6px;
-	border: none;
+.ricerca #pulsanteRicerca{
+	height: 31px;
+	width: 60px;
+	border-radius: 5px;
 }
 
-
-.ricerca button {
-	padding: 6px 10px;
-	background-color: #ddd;
-	border: none;
-	cursor: pointer;
+.userArea{
+	float : right;
+	padding-right: 10px;
+	padding-top: 15px;
 }
 
-.user-area {
-	float: right;
-	padding: 14px 16px;
-	color: #f2f2f2;
+.userArea li {
+	float : right;
 }
 
-.user-area a {
-	color: #f2f2f2;
+.userArea a {
 	text-decoration: none;
-	margin-left: 10px;
-	font-weight: bold;
-}
-
-.user-area a:hover {
-	text-decoration: underline;
-}
-
-.container {
-	padding: 20px;
-	background-color: #fff;
-	overflow: hidden;
-}
-
-.benvenuto {
-	background-color: #ddd;
-	padding: 20px;
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.benvenuto h1 {
-	margin-top: 0;
-}
-
-.benvenuto a {
-	background-color: #333;
 	color: white;
-	padding: 10px 20px;
-	text-decoration: none;
-	display: inline-block;
-	margin-top: 10px;
+	margin-left: 12px;
 }
 
-.benvenuto a:hover {
-	background-color: #555;
+.userArea a:hover{
+	text-decoration: underline;
+	color: black;
+	background-color: white;
 }
 
-h1 {
-	text-align: center;
-	color: #333;
-}
-
-#risultati {
-	float: left;
-	width: 70%;
-	min-height: 400px;
-}
-
-.contenitoreProdotto {
-	width: 100%;
-	border-bottom: 1px solid #ccc;
-	padding: 15px;
-	overflow: hidden;
-}
-
-.immagineProdotto {
-	float: left;
-	width: 120px;
-}
-
-.immagineProdotto img {
-	max-width: 100%;
-	height: auto;
-}
-
-.informazioniProdotto {
-	float: left;
-	padding-left: 20px;
-}
-
-.informazioniProdotto a {
-	display: block;
-	text-decoration: none;
-	color: #333;
-	font-weight: bold;
-	font-size: 115%;
-}
-
-.prezzo {
-	color: #333;
-	font-weight: bold;
-	margin-top: 5px;
-}
-
-#formFiltriContainer {
-	float: right;
-	width: 25%;
-	background-color: #333;
-	color: #f2f2f2;
-	padding: 20px;
-	border-radius: 4px;
-}
-
-form[name="formFiltri"] label {
-	display: block;
-	margin: 10px 0 5px 0;
-	font-size: 90%;
-}
-
-form[name="formFiltri"] input, form[name="formFiltri"] select {
-	width: 100%;
-	padding: 8px;
-	margin-bottom: 10px;
-}
-
-form[name="formFiltri"] button {
-	width: 100%;
-	padding: 12px;
-	background-color: #ddd;
-	border: none;
-	font-weight: bold;
-	cursor: pointer;
-	margin-top: 10px;
-}
-
-footer {
-	background-color: #f1f1f1;
-	padding: 20px;
-	margin-top: 20px;
-	clear: both;
-}
-
-@media screen and (max-width: 768px) {
-	#risultati, #formFiltriContainer {
-		float: none;
-		width: 100%;
-	}
-
-	#formFiltriContainer {
-		margin-top: 20px;
-	}
-
-	.logo, nav, .user-area {
-		float: none;
-		text-align: center;
-	}
-
-	.nav-links li {
-		float: none;
-	}
+hr {
+	clear : both;
 }

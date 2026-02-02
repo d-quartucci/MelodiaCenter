@@ -1,15 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-
-<header>
-    <div class="header-container">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<header id="headerPrincipale">
+    <div class="headerContainer">
 
         <div class="logo">
             <a href="${pageContext.request.contextPath}/common/index.jsp">🎸 MelodiaCenter</a>
         </div>
 
         <nav>
-            <ul class="nav-links">
+            <ul class="navLinks">
                 <li><a href="${pageContext.request.contextPath}/common/index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/CatalogServlet">Catalogo</a></li>
                 <li><a href="${pageContext.request.contextPath}/CartServlet">Carrello</a></li>
@@ -24,7 +27,7 @@
         </div>
 
         <!-- Area utente -->
-        <div class="user-area">
+        <div class="userArea">
 
             <!-- Se l'utente non ha fatto il login, mostro le opzioni di login -->
             <c:if test="${empty sessionScope.utente}">
@@ -45,5 +48,6 @@
             </c:if>
         </div>
     </div>
-    <hr>
 </header>
+<hr>
+</body>
