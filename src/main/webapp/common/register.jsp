@@ -8,6 +8,7 @@
 	<title>Effettua la registrazione</title>
 	<script>const contextPath = "${pageContext.request.contextPath}";</script>
 	<script src="${pageContext.request.contextPath}/scripts/validate.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 

@@ -74,8 +74,8 @@ public class OperazioneCartServlet extends HttpServlet {
 		}
 		//Se è stata fatta una richiesta per un prodotto non valido --> errore
 		if(prod == null) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
+			request.getSession().setAttribute("errorMessage", "Errore: Prodotto non valido");
+            response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 		
 		CarrelloItem item = new CarrelloItem(prod, quantita);

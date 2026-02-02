@@ -3,6 +3,10 @@ const emailErrorMessage = "Inserire un email valida (es. nome@dom.it)";
 const phoneErrorMessage = "Il numero deve contenere 10 cifre";
 const emptyFieldErrorMessage = "Campo obbligatorio";
 const passwordErrorMessage = "La password deve contenere almeno 6 caratteri";
+const civicoErrorMessage = "Inserire un valore valido"
+const PINErrorMessage = "Il PIN deve nel formato ####-####-####-####"
+const CAPErrorMessage = "Il CAP deve essere di 5 cifre"
+const CVCErrorMessage = "Il CVC deve essere di 3 cifre"
 
 function validateFormElem(formElem, errorSpan, errorMessage){
 	if(formElem.checkValidity()) { //Se il campo è valido, lo span che contiene l'errore deve essere vuoto.
@@ -40,6 +44,24 @@ function validateLogin(){
 	
 	if(!validateFormElem(form.email, document.getElementById("errorEmail"), emailErrorMessage)) valid = false; //Controllo sull'email
 	if(!validateFormElem(form.password, document.getElementById("errorPassword"), passwordErrorMessage)) valid = false; //Controllo sulla password
+	
+	return valid;
+}
+
+function validateCheckout(){
+	let valid = true;
+	let form = document.getElementById("checkoutForm");
+	
+	if(!validateFormElem(form.via, document.getElementById("errorVia"), lettersOnlyMessage)) valid = false;
+	if(!validateFormElem(form.civico, document.getElementById("errorCivico"), civicoErrorMessage)) valid = false;
+	if(!validateFormElem(form.cap, document.getElementById("errorCAP"), CAPErrorMessage)) valid = false;
+	if(!validateFormElem(form.citta, document.getElementById("errorCitta"), lettersOnlyMessage)) valid = false;
+	if(!validateFormElem(form.provincia, document.getElementById("errorProvincia"), lettersOnlyMessage)) valid = false;
+	if(!validateFormElem(form.nome, document.getElementById("errorNome"), lettersOnlyMessage)) valid = false;
+	if(!validateFormElem(form.cognome, document.getElementById("errorCognome"), lettersOnlyMessage)) valid = false;
+	if(!validateFormElem(form.provider, document.getElementById("errorProvider"), "Campo obbligatorio")) valid = false;
+	if(!validateFormElem(form.pin, document.getElementById("errorPIN"), PINErrorMessage)) valid = false;
+	if(!validateFormElem(form.cvc, document.getElementById("errorCVC"), CVCErrorMessage)) valid = false;
 	
 	return valid;
 }

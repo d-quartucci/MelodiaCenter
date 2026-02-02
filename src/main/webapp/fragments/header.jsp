@@ -1,7 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <header id="headerPrincipale">
@@ -38,6 +41,7 @@
             <!-- Se l'utente ha fatto il login, mostro le opzioni dedicate allo USER -->
             <c:if test="${not empty sessionScope.utente}">
                 <span>Ciao, <strong>${sessionScope.utente.nome}!</strong></span>
+                <a href="${pageContext.request.contextPath}/UserServlet">Profilo</a>
                 <a href="${pageContext.request.contextPath}/OrdersServlet">I miei ordini</a>
                 <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
             </c:if>
@@ -51,3 +55,4 @@
 </header>
 <hr>
 </body>
+</html>

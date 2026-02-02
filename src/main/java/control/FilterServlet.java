@@ -31,6 +31,7 @@ public class FilterServlet extends HttpServlet {
 			request.getRequestDispatcher("/common/catalog.jsp").forward(request, response);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore di utilizzo dei filtri: " + ex.getMessage());
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 		

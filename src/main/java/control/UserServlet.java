@@ -10,11 +10,11 @@ import model.Utente;
 
 import java.io.IOException;
 
-@WebServlet("/CheckoutServlet")
-public class CheckoutServlet extends HttpServlet {
+@WebServlet("/UserServlet")
+public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public CheckoutServlet() {
+       
+    public UserServlet() {
         super();
     }
 
@@ -22,7 +22,7 @@ public class CheckoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utente utente = (Utente) session.getAttribute("utente");
 		request.setAttribute("utente", utente);
-		request.getRequestDispatcher("/user/checkout.jsp").forward(request, response);
+		request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

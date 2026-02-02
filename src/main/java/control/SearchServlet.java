@@ -33,6 +33,7 @@ public class SearchServlet extends HttpServlet {
 			request.getRequestDispatcher("/common/catalog.jsp").forward(request, response);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore durante la ricerca: " + ex.getMessage());
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 		

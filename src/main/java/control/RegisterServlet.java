@@ -40,6 +40,7 @@ public class RegisterServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/common/login.jsp");
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore durante la registrazione: " + ex.getMessage());
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}
@@ -53,8 +54,8 @@ public class RegisterServlet extends HttpServlet {
 			for (int i = 0; i < hash.length; i++) {
 				hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).substring(1, 3);
 			}
-		} catch (java.security.NoSuchAlgorithmException e) {
-			System.out.println(e);
+		} catch (java.security.NoSuchAlgorithmException ex) {
+			ex.printStackTrace();
 		}
 		return hashString;
 	}

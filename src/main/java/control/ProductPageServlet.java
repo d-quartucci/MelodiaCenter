@@ -31,7 +31,8 @@ public class ProductPageServlet extends HttpServlet {
 			request.getRequestDispatcher("/common/product.jsp").forward(request, response);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
-			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+			request.getSession().setAttribute("errorMessage", "Errore durante la creazione della pagina del prodotto: " + ex.getMessage());
+            response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}
 

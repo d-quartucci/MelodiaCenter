@@ -40,9 +40,10 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error", "Email o password non validi!");
 				request.getRequestDispatcher("/common/login.jsp").forward(request, response);
 			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore durante il login: " + ex.getMessage());
+            response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}
 	

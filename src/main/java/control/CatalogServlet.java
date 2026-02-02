@@ -32,6 +32,7 @@ public class CatalogServlet extends HttpServlet {
 			request.getRequestDispatcher("/common/catalog.jsp").forward(request, response);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore di accesso al catalogo: " + ex.getMessage());
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}

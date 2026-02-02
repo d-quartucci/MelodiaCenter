@@ -32,6 +32,8 @@ public class CheckEmailServlet extends HttpServlet {
 			esiste = uDAO.doRetrieveByEmail(email) != null; //Se la query al DB restituisce qualcosa, l'email è già stata registrata
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore durante il controllo della password: " + ex.getMessage());
+            response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 		
 		response.setContentType("text/plain");
