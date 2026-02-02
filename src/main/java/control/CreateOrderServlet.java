@@ -16,8 +16,12 @@ import model.dao.RigaOrdineDAO;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
 
@@ -40,6 +44,7 @@ public class CreateOrderServlet extends HttpServlet {
 		Ordine order = new Ordine();
 		order.setUtenteId(user.getId());
 		order.setTotale(cart.getPrezzoTotale());
+		order.setData(Timestamp.valueOf(LocalDateTime.now()));
 		
 		String via = request.getParameter("via");
 		String civico = request.getParameter("civico");

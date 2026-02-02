@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import model.Ordine;
-import model.Utente;
 
 public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 
@@ -30,7 +29,7 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 			try(Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(query1);){
 				ps.setInt(1, bean.getUtenteId());
-				ps.setDate(2, bean.getData());
+				ps.setTimestamp(2, bean.getData());
 				ps.setBigDecimal(3, bean.getTotale());
 				ps.setString(4, bean.getIndSpedizione());
 				ps.setInt(5, bean.getId());
@@ -41,7 +40,7 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 			try(Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(query2, PreparedStatement.RETURN_GENERATED_KEYS);){
 				ps.setInt(1, bean.getUtenteId());
-				ps.setDate(2, bean.getData());
+				ps.setTimestamp(2, bean.getData());
 				ps.setBigDecimal(3, bean.getTotale());
 				ps.setString(4, bean.getIndSpedizione());
 				ps.executeUpdate();
@@ -88,13 +87,13 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		return null;
 	}
 
-	public synchronized ArrayList<Ordine>  doRetrieveByDate(Date key) throws SQLException{
+	public synchronized ArrayList<Ordine>  doRetrieveByDate(Date data) throws SQLException{
 		String querySQL = "SELECT * FROM ordine WHERE DATE (DataOra) = ?";
 		ArrayList<Ordine> ordine = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setDate(1, key);
+			ps.setDate(1, data);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ordine.add(mapResultSetToBean(rs));
@@ -125,7 +124,7 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		Ordine ordine = new Ordine();
 		ordine.setId(rs.getInt("ID"));
 		ordine.setUtenteId(rs.getInt("UtenteID"));
-		ordine.setData(rs.getDate("DataOra"));
+		ordine.setData(rs.getTimestamp("DataOra"));
 		ordine.setTotale(rs.getBigDecimal("Totale"));
 		ordine.setIndSpedizione(rs.getString("IndirizzoSpedizione"));
 		return ordine;

@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Ordine implements Serializable{
 	
@@ -10,7 +11,7 @@ public class Ordine implements Serializable{
 
 	private int id;
 	private int utenteId;
-	private Date data;
+	private Timestamp data;
 	private BigDecimal totale;
 	private String indSpedizione;
 
@@ -22,8 +23,8 @@ public class Ordine implements Serializable{
 	public int getUtenteId() {return utenteId;}
 	public void setUtenteId(int utenteId) { this.utenteId = utenteId;};
 	
-	public Date getData() {return data;}
-	public void setData(Date data) { this.data = data;}
+	public Timestamp getData() {return data;}
+	public void setData(Timestamp data) { this.data = data;}
 	
 	public BigDecimal getTotale() {return totale;}
 	public void setTotale(BigDecimal totale) { this.totale = totale;}

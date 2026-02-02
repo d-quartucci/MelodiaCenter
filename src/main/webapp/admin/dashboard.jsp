@@ -35,7 +35,7 @@
 		<p> Ordini di oggi </p>
 			<c:forEach var="o" items="${ordiniOggi}">
 			
-				<p> Ordine ${o.string} </p>
+				<p> Ordine ${o.id} </p>
 			
 			</c:forEach>
 		
@@ -45,9 +45,10 @@
 		
 		<p> Utenti iscritti oggi </p>
 		
-			<c:forEach var="u" items="${utenteOggi}">
+			<c:forEach var="u" items="${utentiOggi}">
 			
-				<p> Utente ${u.string} </p>
+				<p> Utente ${u.id} </p>
+				
 			</c:forEach>
 		</div>
 		

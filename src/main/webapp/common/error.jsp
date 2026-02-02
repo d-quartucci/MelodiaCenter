@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Errore: ${exception}</h1>
+	<h1>${errorMessage}</h1>
 </body>
 </html>

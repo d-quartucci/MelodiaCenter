@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 
-@WebServlet("/AdminGiornaliere")
-public class AdminGiornaliere extends HttpServlet {
+@WebServlet("/AdminDailyServlet")
+public class AdminDailyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public AdminGiornaliere() {
+    public AdminDailyServlet() {
         super();
        
     }
@@ -45,10 +45,11 @@ public class AdminGiornaliere extends HttpServlet {
 			request.setAttribute("utentiOggi", utente);
 			request.setAttribute("ordiniOggi", ordini);
 			
-			request.getRequestDispatcher("/admin/dashboard.jsp");
+			request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
 			
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore di accesso alla dashboard: " + ex.getMessage());
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}

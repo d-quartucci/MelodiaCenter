@@ -128,13 +128,13 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		return null;
 	}
 	
-	public synchronized ArrayList<Utente>  doRetrieveByDate(Date key) throws SQLException{
-		String querySQL = "SELECT utente FROM utente WHERE DATE (DataRegistrazione) = ?";
+	public synchronized ArrayList<Utente> doRetrieveByDate(Date data) throws SQLException{
+		String querySQL = "SELECT * FROM utente WHERE DATE (DataRegistrazione) = ?";
 		ArrayList<Utente> utente = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setDate(1, key);
+			ps.setDate(1, data);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				utente.add(mapResultSetToBean(rs));
