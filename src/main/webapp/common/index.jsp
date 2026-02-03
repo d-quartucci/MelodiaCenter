@@ -13,7 +13,7 @@
 <body>
 
     <!-- HEADER -->
-    <%@ include file="/fragments/header.jsp" %>
+    <jsp:include page="/fragments/header.jsp"/>
 
     <main class="container">
         <section class="benvenuto">
@@ -52,5 +52,5 @@
     </main>
 
     <!-- FOOTER -->
-    <%@ include file="/fragments/footer.jsp" %>
+    <jsp:include page="/fragments/footer.jsp"/>
 </body>

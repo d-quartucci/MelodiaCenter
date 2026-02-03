@@ -11,7 +11,7 @@
 	<script src="${pageContext.request.contextPath}/scripts/validate.js"></script>
 </head>
 <body>
-<%@ include file="/fragments/header.jsp" %>
+<jsp:include page="/fragments/header.jsp"/>
 
 <h1>Accedi!</h1>
 <h2 id="errore">${error}</h2>
@@ -26,6 +26,6 @@
 </div>
 <h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/common/register.jsp">Registrati qui!</a> </h4>
 
-<%@ include file="/fragments/footer.jsp" %>
+<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

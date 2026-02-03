@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="/fragments/header.jsp"/>
 	<h1>${errorMessage}</h1>
+	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

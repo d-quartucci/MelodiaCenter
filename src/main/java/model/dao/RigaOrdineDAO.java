@@ -82,6 +82,23 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 		
 		return null;
 	}
+	
+	public synchronized ArrayList<RigaOrdine> doRetrieveByOrderID(Integer id) throws SQLException {
+		String query = "SELECT * FROM rigaordine WHERE OrdineID = ?";
+		ArrayList<RigaOrdine> rowList = new ArrayList<RigaOrdine>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query);){
+				ps.setInt(1, id);
+				ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				RigaOrdine row = new RigaOrdine();
+				row = mapResultSetToBean(rs);
+				rowList.add(row);
+			}
+		}
+		return rowList;
+	}
 
 	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {

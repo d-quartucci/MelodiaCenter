@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 </head>
 <body>
-<%@ include file="/fragments/header.jsp" %>
+<jsp:include page="/fragments/header.jsp"/>
 <div id="immagineProdotto">
 	<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
 </div>
@@ -23,6 +23,6 @@
 </div>
 
 
-<%@ include file="/fragments/footer.jsp" %>
+<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

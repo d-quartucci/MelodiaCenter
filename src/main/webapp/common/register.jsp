@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<%@ include file="/fragments/header.jsp" %>
+<jsp:include page="/fragments/header.jsp"/>
 
 <h1>Registrati!</h1>
 
@@ -43,6 +43,6 @@
 
 <h4>Sei già registrato? <a href="${pageContext.request.contextPath}/common/login.jsp">Accedi qui!</a> </h4>
 
-<%@ include file="/fragments/footer.jsp" %>
+<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

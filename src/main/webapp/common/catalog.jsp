@@ -13,7 +13,7 @@
 	<title>Catalogo</title>
 </head>
 <body>
-	<%@ include file="/fragments/header.jsp" %>
+	<jsp:include page="/fragments/header.jsp"/>
 	<h1>Sfoglia il nostro catalogo!</h1>
 	<div id="risultati">
 		<c:if test="${not empty prodotti}">
@@ -60,6 +60,6 @@
 			<button type="submit">Applica filtri</button>
 		</form>
 	</div>
-	<%@ include file="/fragments/footer.jsp" %>
+	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

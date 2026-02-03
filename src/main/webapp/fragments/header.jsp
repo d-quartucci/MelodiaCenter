@@ -42,13 +42,13 @@
             <c:if test="${not empty sessionScope.utente}">
                 <span>Ciao, <strong>${sessionScope.utente.nome}!</strong></span>
                 <a href="${pageContext.request.contextPath}/UserServlet">Profilo</a>
-                <a href="${pageContext.request.contextPath}/OrdersServlet">I miei ordini</a>
+                <a href="${pageContext.request.contextPath}/OrdersListServlet">I miei ordini</a>
                 <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
             </c:if>
 
             <!-- Se l'utente è un admin, mostro le opzioni dedicate all'ADMIN -->
             <c:if test="${sessionScope.utente.ruolo=='ADMIN'}">
-                <a href="${pageContext.request.contextPath}//AdminDailyServlet">Admin</a>
+                <a href="${pageContext.request.contextPath}/AdminDailyServlet">Admin</a>
             </c:if>
         </div>
     </div>

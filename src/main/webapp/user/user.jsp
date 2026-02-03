@@ -9,6 +9,7 @@
 <title>Pagina dell'utente</title>
 </head>
 <body>
+	<jsp:include page="/fragments/header.jsp"/>
 	<h1>Le tue informazioni:</h1>
 	<div id="informazioniUtente">
 		<fieldset>
@@ -17,5 +18,6 @@
 			<p>Numero di telefono: ${utente.telefono}</p>
 		</fieldset>
 	</div>
+	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

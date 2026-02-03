@@ -11,7 +11,7 @@
 	<script src="${pageContext.request.contextPath}/scripts/cart.js"></script>
 </head>
 <body>
-<%@ include file="/fragments/header.jsp" %>
+<jsp:include page="/fragments/header.jsp"/>
 <h1>Gestisci il tuo carrello!</h1>
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
@@ -57,6 +57,6 @@
 </div>
 </c:if>
 
-<%@ include file="/fragments/footer.jsp" %>
+<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

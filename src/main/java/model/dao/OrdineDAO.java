@@ -86,8 +86,25 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		}
 		return null;
 	}
+	
+	public synchronized ArrayList<Ordine> doRetrieveByUserID(Integer id) throws SQLException {
+		ArrayList<Ordine> ordersList = new ArrayList<>();
+		String query = "SELECT * FROM ordine WHERE UtenteID = ?";
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query)){
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Ordine order = new Ordine();
+				order = mapResultSetToBean(rs);
+				ordersList.add(order);
+			}
+		}
+		return ordersList;
+	}
 
-	public synchronized ArrayList<Ordine>  doRetrieveByDate(Date data) throws SQLException{
+	public synchronized ArrayList<Ordine> doRetrieveByDate(Date data) throws SQLException{
 		String querySQL = "SELECT * FROM ordine WHERE DATE (DataOra) = ?";
 		ArrayList<Ordine> ordine = new ArrayList<>();
 		
