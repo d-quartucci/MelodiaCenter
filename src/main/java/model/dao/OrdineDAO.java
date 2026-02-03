@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -102,6 +103,23 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 			}
 		}
 		return ordersList;
+	}
+	
+	public synchronized ArrayList<Ordine> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin) throws SQLException{
+		String querySQL = "SELECT * FROM ordine WHERE DataOra >= ? AND DataOra <= ? ";
+		ArrayList<Ordine> ordini = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setTimestamp(1, dataIn);
+			ps.setTimestamp(2, dataFin);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				ordini.add(mapResultSetToBean(rs));
+			}
+		}
+		
+		return ordini;
 	}
 
 	public synchronized ArrayList<Ordine> doRetrieveByDate(Date data) throws SQLException{
