@@ -124,6 +124,7 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 		ro.setId(rs.getInt("ID"));
 		ro.setOrdineId(rs.getInt("OrdineID"));
 		ro.setProdottoId(rs.getInt("ProdottoID"));
+		ro.setProdottoNome(rs.getString("ProdottoNome"));
 		ro.setQuant(rs.getInt("Quantita"));
 		ro.setPrezzoAcq(rs.getBigDecimal("PrezzoAcquisto"));
 		
