@@ -17,7 +17,7 @@
 
 <h1>Registrati!</h1>
 
-<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/DoRegisterServlet" onsubmit="return validateRegister()">
+<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/RegisterServlet" onsubmit="return validateRegister()">
 <fieldset>
 <legend>Credenziali di accesso</legend>
 	Email:<input name="email" id="email" type="text" oninput="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
@@ -41,7 +41,7 @@
 <button type="submit" id="submit">Registrati!</button>
 </form>
 
-<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/LoginServlet">Accedi qui!</a> </h4>
+<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/common/login.jsp">Accedi qui!</a> </h4>
 
 <jsp:include page="/fragments/footer.jsp"/>
 </body>

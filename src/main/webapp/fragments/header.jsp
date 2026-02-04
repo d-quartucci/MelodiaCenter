@@ -11,12 +11,12 @@
     <div class="headerContainer">
 
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/home">🎸 MelodiaCenter</a>
+            <a href="${pageContext.request.contextPath}/common/index.jsp">🎸 MelodiaCenter</a>
         </div>
 
         <nav>
             <ul class="navLinks">
-                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/common/index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/CatalogServlet">Catalogo</a></li>
                 <li><a href="${pageContext.request.contextPath}/CartServlet">Carrello</a></li>
             </ul>
@@ -34,8 +34,8 @@
 
             <!-- Se l'utente non ha fatto il login, mostro le opzioni di login -->
             <c:if test="${empty sessionScope.utente}">
-                <a href="${pageContext.request.contextPath}/LoginServlet">Login</a>
-                <a href="${pageContext.request.contextPath}/RegisterServlet">Registrati</a>
+                <a href="${pageContext.request.contextPath}/common/login.jsp">Login</a>
+                <a href="${pageContext.request.contextPath}/common/register.jsp">Registrati</a>
             </c:if>
 
             <!-- Se l'utente ha fatto il login, mostro le opzioni dedicate allo USER -->
@@ -43,7 +43,7 @@
                 <span>Ciao, <strong>${sessionScope.utente.nome}!</strong></span>
                 <a href="${pageContext.request.contextPath}/UserServlet">Profilo</a>
                 <a href="${pageContext.request.contextPath}/OrdersListServlet">I miei ordini</a>
-                <a href="${pageContext.request.contextPath}/DoLogoutServlet">Logout</a>
+                <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
             </c:if>
 
             <!-- Se l'utente è un admin, mostro le opzioni dedicate all'ADMIN -->
