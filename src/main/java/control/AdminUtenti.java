@@ -5,61 +5,39 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Ordine;
 import model.Utente;
-import model.dao.OrdineDAO;
 import model.dao.UtenteDAO;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-
-@WebServlet("/AdminDailyServlet")
-public class AdminDailyServlet extends HttpServlet {
+@WebServlet("/AdminUtenti")
+public class AdminUtenti extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
   
-    public AdminDailyServlet() {
+    public AdminUtenti() {
         super();
-       
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-		OrdineDAO oDAO =  new OrdineDAO(ds);
 		UtenteDAO uDAO =  new UtenteDAO(ds);
 		
-		try{
-		
-			LocalDate oggi = LocalDate.now();
-			Date sqlDate = Date.valueOf(oggi);
-			
-			ArrayList<Ordine> ordini = oDAO.doRetrieveByDate(sqlDate);
-			ArrayList<Utente> utente = uDAO.doRetrieveByDate(sqlDate);
-			
-			request.setAttribute("utentiOggi", utente);
-			request.setAttribute("ordiniOggi", ordini);
-			
-			request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
-			
-		} catch(SQLException ex) {
+		try {
+			ArrayList<Utente> utenti = uDAO.doRetrieveAll();
+			request.setAttribute("utenti", utenti);
+			request.getRequestDispatcher("/admin/gestioneUtenti.jsp").forward(request, response);
+		}catch(SQLException ex) {
 			ex.printStackTrace();
-			request.getSession().setAttribute("errorMessage", "Errore di accesso alla dashboard: " + ex.getMessage());
+			request.getSession().setAttribute("errorMessage", "Errore di accesso al gestore ordini: " + ex.getMessage());
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}
-		
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doGet(request, response);
 	}
 

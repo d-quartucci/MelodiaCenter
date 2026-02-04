@@ -9,11 +9,15 @@ import model.Ordine;
 import model.dao.OrdineDAO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @WebServlet("/AdminFilterOrdini")
 public class AdminFilterOrdini extends HttpServlet {
@@ -24,13 +28,11 @@ public class AdminFilterOrdini extends HttpServlet {
     }
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
 	
 		try {
-			OrdineDAO oDAO = new OrdineDAO(ds);
-			
 			//prendo i parametri dalla richiesta
 			String dataIn = request.getParameter("dataIn"); 
 			String dataFin= request.getParameter("dataFin");
@@ -43,16 +45,22 @@ public class AdminFilterOrdini extends HttpServlet {
 			//Inserendo l'orario di inizio e fine giornata in modo da considerare tutto il ciclo giornaliero
 			//Cosi facendo l'admin inserirà solo le date senza orario
 	        if (dataIn != null && !dataIn.isEmpty()) {
-	            dataInDate = Timestamp.valueOf(dataIn + "00:00:00");
+	            dataInDate = Timestamp.valueOf(dataIn + " 00:00:00");
 	        }
 
 	        if (dataFin != null && !dataFin.isEmpty()) {
-	            dataFinDate = Timestamp.valueOf(dataFin + "23:59:59");
+	            dataFinDate = Timestamp.valueOf(dataFin + " 23:59:59");
 	        }
-			
+	        response.setContentType("application/json");
+	        
+	        OrdineDAO oDAO = new OrdineDAO(ds);
 			ArrayList <Ordine> ordini = oDAO.doRetrieveByFilter(dataInDate, dataFinDate, ord);
-			request.setAttribute("ordini", ordini);
-			request.getRequestDispatcher("/admin/gestioneOrdini.jsp").forward(request, response);
+			
+			//Risposta JSON
+			PrintWriter out = response.getWriter();
+			JSONArray json = new JSONArray(ordini);
+			out.print(json.toString());
+			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore di utilizzo dei filtriAdmin: " + ex.getMessage());
@@ -60,8 +68,8 @@ public class AdminFilterOrdini extends HttpServlet {
 		}
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 	
 }
