@@ -1,0 +1,31 @@
+package control;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+
+@WebServlet("/EmptyCartServlet")
+public class EmptyCartServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public EmptyCartServlet() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sessione = request.getSession(false);
+		if(sessione != null) {
+			sessione.removeAttribute("carrello");
+		}		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

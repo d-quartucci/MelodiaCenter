@@ -80,3 +80,20 @@ function aggiornaPrezzo(responseText){
 	let risposta = JSON.parse(responseText);
 	document.getElementById("spanPrezzoTotale").innerHTML = parseFloat(risposta.totale).toFixed(2) + "€";
 }
+
+function svuotaCarrello(){
+	let xhr = new XMLHttpRequest();
+	let url = contextPath + "/EmptyCartServlet";
+	xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				let div = document.getElementById("sezioneCarrello"); //Rimuovo tutta la sezione del carrello
+				div.remove();
+				let messaggioVuoto = document.getElementById("carrelloVuoto");
+				if(messaggioVuoto){
+					messaggioVuoto.style.display = "block";
+				}
+			}
+		}
+	xhr.open("GET", url, true);
+	xhr.send();
+}

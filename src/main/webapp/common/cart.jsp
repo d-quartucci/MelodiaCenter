@@ -16,7 +16,7 @@
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
 <div id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
-    Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!
+    <h3>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
 </div>
 
 <!-- Sezione mostrata quando il carrello non è vuoto -->
@@ -47,6 +47,8 @@
 	</c:forEach>
 	
 </table>
+
+<button name="svuotaCarrello" onclick="svuotaCarrello()">Svuota il carrello!</button>
 
 <h2>Prezzo totale: <span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
 
