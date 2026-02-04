@@ -11,6 +11,7 @@ public class RigaOrdine implements Serializable{
 	private int id;
 	private int ordineId;
 	private int prodottoId;
+	private String prodottoNome;
 	private int quant;
 	private BigDecimal prezzoAcq;
 	
@@ -25,6 +26,9 @@ public class RigaOrdine implements Serializable{
 	public int getProdottoId() { return prodottoId; }
 	public void setProdottoId(int prodottoId) { this.prodottoId = prodottoId; }
 	
+	public String getProdottoNome() { return prodottoNome; }
+	public void setProdottoNome(String prodottoNome) { this.prodottoNome = prodottoNome; }
+	
 	public int getQuant() { return quant; }
 	public void setQuant(int quant) { this.quant = quant; }
 	
@@ -32,7 +36,7 @@ public class RigaOrdine implements Serializable{
 	public void setPrezzoAcq(BigDecimal prezzoAcq) { this.prezzoAcq = prezzoAcq; }
 	
 	public String toString() {
-		return "RigaOrdine [ ordineId=" + ordineId + ", prodottoId=" + prodottoId 
+		return "RigaOrdine [ ordineId=" + ordineId + ", prodottoId=" + prodottoId + ", prodottoNome=" + prodottoNome
 				+ ", quantita=" + quant + ", prezzo acquisto=" + prezzoAcq + "]";
 	}
 }
