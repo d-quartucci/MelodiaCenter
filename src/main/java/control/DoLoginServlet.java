@@ -34,7 +34,7 @@ public class DoLoginServlet extends HttpServlet {
 			if(u != null) {
 				HttpSession sessione = request.getSession(); //Prendiamo la sessione per salvare le informazioni dell'utente
 				sessione.setAttribute("utente", u);
-				response.sendRedirect(request.getContextPath() + "/common/index.jsp");
+				response.sendRedirect(request.getContextPath() + "/home");
 			}
 			else {
 				request.setAttribute("error", "Email o password non validi!");

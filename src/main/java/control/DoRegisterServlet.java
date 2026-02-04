@@ -37,7 +37,7 @@ public class DoRegisterServlet extends HttpServlet {
 		try {
 			UtenteDAO uDAO = new UtenteDAO(ds);
 			uDAO.doSaveOrUpdate(u); //Non verrà fatto mai l'update perché viene verificato per mezzo di JS che l'email non sia già stata utilizzata in precedenza 
-			response.sendRedirect(request.getContextPath() + "/common/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore durante la registrazione: " + ex.getMessage());
