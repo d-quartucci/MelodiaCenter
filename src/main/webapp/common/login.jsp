@@ -16,7 +16,7 @@
 <h1>Accedi!</h1>
 <h2 id="errore">${error}</h2>
 <div id="formLogin">
-	<form id="loginForm" name="loginForm" method="POST" action="${pageContext.request.contextPath}/LoginServlet" onsubmit="return validateLogin()">
+	<form id="loginForm" name="loginForm" method="POST" action="${pageContext.request.contextPath}/DoLoginServlet" onsubmit="return validateLogin()">
 		Email:<input name="email" id="email" onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" type="text" required pattern="^\S+@\S+\.\S+$"></input>
 		<span id="errorEmail"></span><br/>
 		Password:<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" required minlength="6"></input>
@@ -24,7 +24,7 @@
 		<button type="submit" id="submit">Accedi</button>
 	</form>
 </div>
-<h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/common/register.jsp">Registrati qui!</a> </h4>
+<h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/RegisterServlet">Registrati qui!</a> </h4>
 
 <jsp:include page="/fragments/footer.jsp"/>
 </body>
