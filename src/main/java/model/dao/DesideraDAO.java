@@ -80,6 +80,22 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 		}
 		return null;
 	}
+	
+	public synchronized ArrayList<Desidera> doRetrieveByUserID(int id) throws SQLException {
+		String query = "SELECT * FROM desidera WHERE UtenteID = ?";
+		ArrayList<Desidera> list = new ArrayList<>();
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query);){
+				ps.setInt(1, id);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					Desidera item = new Desidera();
+					item = mapResultSetToBean(rs);
+					list.add(item);
+				}
+			}
+		return list;
+	}
 
 	
 	public synchronized boolean doDeleteByKey(DesideraKey key) throws SQLException {
