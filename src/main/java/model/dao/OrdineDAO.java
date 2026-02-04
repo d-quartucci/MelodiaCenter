@@ -105,8 +105,14 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		return ordersList;
 	}
 	
-	public synchronized ArrayList<Ordine> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin) throws SQLException{
-		String querySQL = "SELECT * FROM ordine WHERE DataOra >= ? AND DataOra <= ? ";
+	public synchronized ArrayList<Ordine> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin, String ord) throws SQLException{
+		
+		String ordineQuery = "DESC"; //Il default è decrescente
+		
+		if(ord.equals("prezzoCrescente")) {
+			ordineQuery = "ASC";
+		}
+		String querySQL = "SELECT * FROM ordine WHERE DataOra >= ? AND DataOra < ? ORDER BY DataOra" + ordineQuery;
 		ArrayList<Ordine> ordini = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
@@ -122,13 +128,13 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		return ordini;
 	}
 
-	public synchronized ArrayList<Ordine> doRetrieveByDate(Date data) throws SQLException{
+	public synchronized ArrayList<Ordine> doRetrieveByDate(Timestamp data) throws SQLException{
 		String querySQL = "SELECT * FROM ordine WHERE DATE (DataOra) = ?";
 		ArrayList<Ordine> ordine = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setDate(1, data);
+			ps.setTimestamp(1, data);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ordine.add(mapResultSetToBean(rs));

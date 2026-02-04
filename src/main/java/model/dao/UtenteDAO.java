@@ -1,6 +1,7 @@
 package model.dao;
 import model.Utente;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -128,13 +129,13 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		return null;
 	}
 	
-	public synchronized ArrayList<Utente> doRetrieveByDate(Date data) throws SQLException{
+	public synchronized ArrayList<Utente> doRetrieveByDate(Timestamp data) throws SQLException{
 		String querySQL = "SELECT * FROM utente WHERE DATE (DataRegistrazione) = ?";
 		ArrayList<Utente> utente = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setDate(1, data);
+			ps.setTimestamp(1, data);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				utente.add(mapResultSetToBean(rs));

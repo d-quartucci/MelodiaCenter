@@ -18,14 +18,7 @@
 	<h1> Iniziamo con la gestione !</h1>
 	
 	<!-- Menu laterale di gestione -->
-	<aside id="Menu"> 
-		<nav>
-			<ul class="MenuGestione">
-             	<li><a href="${pageContext.request.contextPath}/AdminOrdini">Ordini</a></li>
-             	<li><a href="${pageContext.request.contextPath}/AdminUtenti">Utenti</a></li>
-        	</ul>
-		</nav>
-	</aside>
+	<%@ include file = "/fragments/adminMenu.jsp"%>
 	
 	<!-- DashBoard con varie informazioni principali -->
 	<main>
@@ -35,8 +28,8 @@
 				<table>
 					<thead>
 						<tr>
-							<th>IdOrdine</th>
-							<th>IdUtente</th>
+							<th>Cod.Ordine</th>
+							<th>Cod.Utente</th>
 							<th>Data</th>
 							<th>Totale</th>
 							<th>IndirizzoSpedizione</th>
@@ -66,7 +59,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>IdUtente</th>
+							<th>Cod.Utente</th>
 							<th>Nome</th>
 							<th>Cognome</th>
 							<th>E-mail</th>

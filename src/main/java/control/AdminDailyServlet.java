@@ -11,8 +11,9 @@ import model.dao.OrdineDAO;
 import model.dao.UtenteDAO;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -36,11 +37,11 @@ public class AdminDailyServlet extends HttpServlet {
 		
 		try{
 			
-			LocalDate oggi = LocalDate.now();
-			java.sql.Date sqlDate = java.sql.Date.valueOf(oggi);
+			LocalDateTime oggi = LocalDateTime.now();
+			Timestamp ts = Timestamp.valueOf(oggi);
 			
-			ArrayList<Ordine> ordini = oDAO.doRetrieveByDate(sqlDate);
-			ArrayList<Utente> utente = uDAO.doRetrieveByDate(sqlDate);
+			ArrayList<Ordine> ordini = oDAO.doRetrieveByDate(ts);
+			ArrayList<Utente> utente = uDAO.doRetrieveByDate(ts);
 			
 			request.setAttribute("utentiOggi", utente);
 			request.setAttribute("ordiniOggi", ordini);

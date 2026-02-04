@@ -31,7 +31,6 @@ public class AdminOrdini extends HttpServlet {
 		try {
 			ArrayList<Ordine> ordini = oDAO.doRetrieveAll();
 			request.setAttribute("ordini", ordini);
-			
 			request.getRequestDispatcher("/admin/gestioneOrdini.jsp").forward(request, response);
 		}catch(SQLException ex) {
 			ex.printStackTrace();
