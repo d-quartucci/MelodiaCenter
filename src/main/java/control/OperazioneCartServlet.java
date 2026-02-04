@@ -100,7 +100,6 @@ public class OperazioneCartServlet extends HttpServlet {
 		json.put("totale", totale.toPlainString());
 		
 		response.getWriter().write(json.toString());
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

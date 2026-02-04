@@ -4,7 +4,7 @@ function aggiungiAlCarrello(idProdotto){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){
-				alert("Aggiunto al carrello!");
+				document.getElementById("aggiuntoSpan").textContent = "Aggiunto al carrello!";
 			}
 		}
 	}

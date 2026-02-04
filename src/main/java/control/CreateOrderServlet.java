@@ -16,11 +16,9 @@ import model.dao.RigaOrdineDAO;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
@@ -77,7 +75,7 @@ public class CreateOrderServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			session.setAttribute("errorMessage", "Errore durante la creazione dell'ordine: " + ex.getMessage());
-		    response.sendRedirect(request.getContextPath() + "/error.jsp");
+		    response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		    return;
 		}
 		//Svuoto il carrello

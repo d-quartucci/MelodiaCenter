@@ -19,6 +19,7 @@
 	<p id="nomeProdotto">${prodotto.nome}</p>
 	<p id="descProdotto">${prodotto.descrizione}</p>
 	<p id="prezzo">${prodotto.prezzoAttuale}€</p>
+	<span id="aggiuntoSpan"></span>
 	<button onclick="aggiungiAlCarrello(${prodotto.id})">Aggiungi al carrello!</button>
 </div>
 

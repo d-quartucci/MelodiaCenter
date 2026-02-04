@@ -44,22 +44,28 @@ public class OrderInfoServlet extends HttpServlet {
 		try{
 			idOrderRequested = Integer.parseInt(request.getParameter("id"));
 		} catch(NumberFormatException ex) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			ex.printStackTrace();
+			sessione.setAttribute("errorMessage", "Errore: ID dell'ordine non valido.");
+		    response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		    return;
 		}
 		
 		OrdineDAO oDAO = new OrdineDAO(ds);
 		try {
 			Ordine orderRequested = oDAO.doRetrieveByKey(idOrderRequested);
-			
 			//Se l'ordine non è valido, errore
 			if (orderRequested == null) {
-			    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				sessione.setAttribute("errorMessage", "Errore: ordine non valido.");
+			    response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 			    return;
 			}
 			
 			//L'ordine potrà essere visto solo dall'utente che l'ha fatto e dagli amministratori
 			if(user.getId() == orderRequested.getUtenteId() || "ADMIN".equals(user.getRuolo())) {
+				//Rendo disponibile alla JSP il prezzo totale e l'id dell'ordine per cui è stata fatta la richiesta
+				request.setAttribute("totaleOrdine", orderRequested.getTotale());
+				request.setAttribute("idOrdine", request.getParameter("id"));
+				
 				//Prendo tutte le righe associate all'ordine
 				RigaOrdineDAO roDAO = new RigaOrdineDAO(ds);
 				rows = roDAO.doRetrieveByOrderID(orderRequested.getId());
@@ -67,8 +73,9 @@ public class OrderInfoServlet extends HttpServlet {
 				request.getRequestDispatcher("/user/ordine.jsp").forward(request, response);
 			} else {
 				//Se l'ordine non è dell'utente, non potrà essere visualizzato
-				response.sendError(HttpServletResponse.SC_FORBIDDEN);
-				return;
+				sessione.setAttribute("errorMessage", "Errore: non hai accesso a questa pagina!");
+			    response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+			    return;
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
