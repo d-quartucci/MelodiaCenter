@@ -46,11 +46,11 @@ public class OperazioneCartServlet extends HttpServlet {
 			try{
 				quantita = Integer.parseInt(request.getParameter("q"));
 			} catch(NumberFormatException ex) {
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				response.sendError(400, "Errore: quantità non valida.");
 				return;
 			}
 			if(quantita <= 0) {
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				response.sendError(400, "Errore: quantità non valida.");
 				return;
 			}
 		}
@@ -59,7 +59,7 @@ public class OperazioneCartServlet extends HttpServlet {
 		try {
 			idProd = Integer.parseInt(request.getParameter("id"));
 		} catch(NumberFormatException ex) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			response.sendError(400, "Errore: id del prodotto non valido.");
 			return;
 		}
 		
@@ -69,13 +69,13 @@ public class OperazioneCartServlet extends HttpServlet {
 			prod = pDAO.doRetrieveByKey(idProd);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
-			response.sendRedirect(request.getContextPath() +"/common/error.jsp");
+			response.sendError(500, "Errore nel database:"  + ex.getMessage());
 			return;
 		}
 		//Se è stata fatta una richiesta per un prodotto non valido --> errore
 		if(prod == null) {
-			request.getSession().setAttribute("errorMessage", "Errore: Prodotto non valido");
-            response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+			response.sendError(400, "Errore: prodotto non valido.");
+			return;
 		}
 		
 		CarrelloItem item = new CarrelloItem(prod, quantita);

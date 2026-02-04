@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Carrello;
+import model.CarrelloItem;
 import model.Desidera;
 import model.Utente;
 import model.WishlistItem;
@@ -42,7 +44,7 @@ public class WishlistServlet extends HttpServlet {
 			for(Desidera des : wishlist) {
 				WishlistItem item = new WishlistItem();
 				item.setDesidera(des);
-				item.setProdotto(pDAO.doRetrieveByKey(des.getProdottoId()));
+				item.setProdotto(pDAO.doRetrieveByKey(des.getKey().getSecond()));
 				wishlistItems.add(item);
 			}
 		} catch(SQLException ex) {
@@ -50,7 +52,7 @@ public class WishlistServlet extends HttpServlet {
 			request.getSession().setAttribute("errorMessage", "Errore durante l'accesso alla wishlist: " + ex.getMessage());
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
-		request.setAttribute("wishlistItems", wishlistItems);
+		request.setAttribute("wishlist", wishlistItems);
 		request.getRequestDispatcher("/user/wishlist.jsp").forward(request, response);
 	}
 

@@ -3,27 +3,25 @@ package model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import utils.DesideraKey;
+
 public class Desidera implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int utenteId;
-	private int prodottoId;
-	private Date dataAgg;
+	private DesideraKey key;
+	private Date dataAggiunta;
 	
 	public Desidera() {}
 	
-	public int getUtenteId() {return utenteId;}
-	public void setUtenteId(int utenteId) { this.utenteId = utenteId;};
+	public DesideraKey getKey() {return key;}
+	public void setKey(DesideraKey key) { this.key = key;};
 	
-	public int getProdottoId() { return prodottoId; }
-	public void setProdottoId(int prodottoId) { this.prodottoId = prodottoId; }
-	
-	public Date getDataAgg() {return dataAgg;}
-	public void setDataAgg(Date dataAgg) { this.dataAgg = dataAgg;}
+	public Date getDataAggiunta() {return dataAggiunta;}
+	public void setDataAggiunta(Date dataAggiunta) { this.dataAggiunta = dataAggiunta;}
 	
 	public String toString() {
-		return "Desidera [utenteId=" + utenteId + ", prodottoId=" + prodottoId + ", data aggiunta=" + dataAgg + "]";
+		return "Desidera [key=" + key + ", dataAggiunta=" + dataAggiunta + "]";
 	}
 	
 }

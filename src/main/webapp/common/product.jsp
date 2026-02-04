@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,14 @@
 	<p id="descProdotto">${prodotto.descrizione}</p>
 	<p id="prezzo">${prodotto.prezzoAttuale}€</p>
 	<span id="aggiuntoSpan"></span>
-	<button onclick="aggiungiAlCarrello(${prodotto.id})">Aggiungi al carrello!</button>
+	<button id="pulsanteCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
+	<!-- Se l'utente non è loggato, non verrà visualizzato il pulsante -->
+	<c:if test="${isLogged}">
+		<button id="pulsanteWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "Già in wishlist" : "Desidero..."}</button>
+	</c:if>
+	<c:if test="${!isLogged}">
+		<h4> Per tenere traccia dei tuoi prodotti preferiti, effettua il <a href="${pageContext.request.contextPath}/LoginServlet">login</a> e aggiungi il prodotto alla lista dei desideri! </h4>
+	</c:if>
 </div>
 
 

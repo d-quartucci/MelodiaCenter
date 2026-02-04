@@ -2,23 +2,21 @@ package utils;
 
 public class DesideraKey implements ComposedKey<Integer, Integer> {
 
-	private Integer k1;
-	private Integer k2;
+	private Integer idUtente;
+	private Integer idProdotto;
 	
-	public DesideraKey(Integer k1, Integer k2) {
-		this.k1 = k1;
-		this.k2 = k2;
+	public DesideraKey(Integer idUtente, Integer idProdotto) {
+		this.idUtente = idUtente;
+		this.idProdotto = idProdotto;
 	}
 	
 	public Integer getFirst() {
-		
-		return k1;
+		return idUtente;
 	}
 
 	
 	public Integer getSecond() {
-		
-		return k2;
+		return idProdotto;
 	}
 
 }

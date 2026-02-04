@@ -24,23 +24,21 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 		String query1 = "UPDATE desidera SET DataAggiunta=? WHERE UtenteID=? AND ProdottoID=?";
 		String query2 = "INSERT INTO desidera (UtenteID, ProdottoID, DataAggiunta) VALUES (?, ?, ?)";
 		
-		DesideraKey key = new DesideraKey(bean.getUtenteId(), bean.getProdottoId());
-		
-		if(doRetrieveByKey(key) != null) {
+		if(doRetrieveByKey(bean.getKey()) != null) {
 		    try (Connection conn = ds.getConnection();
 		    		PreparedStatement ps = conn.prepareStatement(query1)) {   
-				ps.setDate(1, bean.getDataAgg());
-				ps.setInt(2, bean.getUtenteId());
-				ps.setInt(3, bean.getProdottoId());
+				ps.setDate(1, bean.getDataAggiunta());
+				ps.setInt(2, bean.getKey().getFirst());
+				ps.setInt(3, bean.getKey().getSecond());
 				ps.executeUpdate();
 		    }
 		}
 		else {
 			try (Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(query2)){
-				ps.setInt(1, bean.getUtenteId());
-				ps.setInt(2, bean.getProdottoId());
-				ps.setDate(3, bean.getDataAgg());
+				ps.setInt(1, bean.getKey().getFirst());
+				ps.setInt(2, bean.getKey().getSecond());
+				ps.setDate(3, bean.getDataAggiunta());
 				ps.executeUpdate();
 			}
 		}
@@ -49,7 +47,6 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 
 	
 	public synchronized ArrayList<Desidera> doRetrieveAll() throws SQLException {
-		
 		String query = "SELECT * FROM desidera";
 		ArrayList<Desidera> lista = new ArrayList<>();
 		
@@ -66,7 +63,6 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 
 	
 	public synchronized Desidera doRetrieveByKey(DesideraKey key) throws SQLException {
-		
 		String query = "SELECT * FROM desidera WHERE UtenteID = ? AND ProdottoID= ?";
 		
 		try(Connection conn = ds.getConnection();
@@ -99,7 +95,6 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 
 	
 	public synchronized boolean doDeleteByKey(DesideraKey key) throws SQLException {
-		
 		String query = "DELETE FROM desidera WHERE UtenteID = ? AND ProdottoID = ?";
 		
 		int test;
@@ -112,16 +107,16 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 		if(test == 0) {
 			return false;
 		}
-		return true;	}
+		return true;	
+	}
 
 	
 	public Desidera mapResultSetToBean(ResultSet rs) throws SQLException {
-		
 		Desidera d = new Desidera();
+		DesideraKey dKey = new DesideraKey(rs.getInt("UtenteID"), rs.getInt("ProdottoID"));
 		
-		d.setUtenteId(rs.getInt("UtenteID"));
-		d.setProdottoId(rs.getInt("ProdottoID"));
-		d.setDataAgg(rs.getDate("DataAggiunta"));
+		d.setKey(dKey);
+		d.setDataAggiunta(rs.getDate("DataAggiunta"));
 		
 		return d;
 	}
