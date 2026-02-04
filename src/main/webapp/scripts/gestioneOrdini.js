@@ -38,12 +38,12 @@ function eseguiFiltro(){
 
 
 function aggiornaTabella(risposta){
-	const corpoTabella = document.getElementById("corpoTable");
+	const corpoTabella = document.getElementById("corpoTableOrdini");
 	
 	corpoTabella.innerHTML = "";
 	
 	if(!risposta || risposta.length === 0){
-		corpoTabella.innerHTML = "<tr><td colspan='5' style='text-align:center; padding: 20px>Nessun ordine trovato</td></tr>";
+		corpoTabella.innerHTML = "<tr><td colspan='5' style='text-align:center'>'Nessun ordine trovato</td></tr>";
 		return;
 	}
 	//ciclo sulla risposta e ogni volta prendere un ordine con dati diversi

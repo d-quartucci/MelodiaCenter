@@ -10,6 +10,7 @@ import model.dao.OrdineDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -30,7 +31,13 @@ public class AdminOrdini extends HttpServlet {
 		
 		try {
 			ArrayList<Ordine> ordini = oDAO.doRetrieveAll();
+			LocalDate oggi = LocalDate.now();
+			LocalDate inizioMese = oggi.withDayOfMonth(1);
+
+			request.setAttribute("defaultIn", inizioMese.toString());
+			request.setAttribute("defaultFin", oggi.toString());
 			request.setAttribute("ordini", ordini);
+			
 			request.getRequestDispatcher("/admin/gestioneOrdini.jsp").forward(request, response);
 		}catch(SQLException ex) {
 			ex.printStackTrace();

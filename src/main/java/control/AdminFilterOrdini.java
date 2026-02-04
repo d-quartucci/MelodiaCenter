@@ -36,7 +36,7 @@ public class AdminFilterOrdini extends HttpServlet {
 			//prendo i parametri dalla richiesta
 			String dataIn = request.getParameter("dataIn"); 
 			String dataFin= request.getParameter("dataFin");
-			String ord = request.getParameter("ordinaData");
+			String ord = request.getParameter("ord");
 			
 			Timestamp dataInDate = null;
 			Timestamp dataFinDate = null;

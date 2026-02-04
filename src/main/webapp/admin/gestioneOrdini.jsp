@@ -23,9 +23,9 @@
     		<div id=filtriOrdiniAdmin>
     			<form name= formFiltriAdmin action = "javascript:void(0)" method="GET" >
     				<label for = "dataFrom">Dal: </label>
-    				<input type= "date" id= "dataFrom" name = "dataIn" onchange = "eseguiFiltro()" >
+    				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}" onchange = "eseguiFiltro()" >
     				<label for = "dataFrom">Al: </label>
-    				<input type= "date" id= "dataTo" name = "dataFin" onchange = "eseguiFiltro()" >
+    				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}" onchange = "eseguiFiltro()" >
     				
     				<label for = "ordinaData">Ordina per data: </label>
     				<select id= "ordinaData" name = "ordinaData" onchange = "eseguiFiltro()">
