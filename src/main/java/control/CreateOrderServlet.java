@@ -69,6 +69,7 @@ public class CreateOrderServlet extends HttpServlet {
 				RigaOrdine row = new RigaOrdine();
 				row.setOrdineId(order.getId());
 				row.setProdottoId(item.getProdotto().getId());
+				row.setProdottoNome(item.getProdotto().getNome());
 				row.setPrezzoAcq(item.getProdotto().getPrezzoAttuale().multiply(BigDecimal.valueOf(item.getQuantita())));
 				row.setQuant(item.getQuantita());
 				roDAO.doSaveOrUpdate(row);

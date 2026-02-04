@@ -21,17 +21,18 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 	
 	public synchronized void doSaveOrUpdate(RigaOrdine bean) throws SQLException {
 		
-		String query1 = "UPDATE rigaordine SET OrdineID = ?, ProdottoID = ?, Quantita = ?, PrezzoAcquisto = ? WHERE ID = ?";
-		String query2 = "INSERT INTO rigaordine (OrdineID, ProdottoID, Quantita, PrezzoAcquisto) VALUES (?, ?, ?, ?)";
+		String query1 = "UPDATE rigaordine SET OrdineID = ?, ProdottoID = ?, ProdottoNome = ?, Quantita = ?, PrezzoAcquisto = ? WHERE ID = ?";
+		String query2 = "INSERT INTO rigaordine (OrdineID, ProdottoID, ProdottoNome, Quantita, PrezzoAcquisto) VALUES (?, ?, ?, ?, ?)";
 		
 		if(bean.getId()>0) {
 			try(Connection con = ds.getConnection(); 
 					PreparedStatement ps = con.prepareStatement(query1);){
 				ps.setInt(1,bean.getOrdineId());
 				ps.setInt(2,bean.getProdottoId());
-				ps.setInt(3,bean.getQuant());
-				ps.setBigDecimal(4,bean.getPrezzoAcq());
-				ps.setInt(5,bean.getId());
+				ps.setString(3, bean.getProdottoNome());
+				ps.setInt(4,bean.getQuant());
+				ps.setBigDecimal(5,bean.getPrezzoAcq());
+				ps.setInt(6,bean.getId());
 				ps.executeUpdate();
 			}
 			
@@ -41,8 +42,9 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 					PreparedStatement ps = conn.prepareStatement(query2)){
 				ps.setInt(1, bean.getOrdineId());
 				ps.setInt(2, bean.getProdottoId());
-				ps.setInt(3, bean.getQuant());
-				ps.setBigDecimal(4, bean.getPrezzoAcq());
+				ps.setString(3, bean.getProdottoNome());
+				ps.setInt(4, bean.getQuant());
+				ps.setBigDecimal(5, bean.getPrezzoAcq());
 				ps.executeUpdate();
 			}
 		}
