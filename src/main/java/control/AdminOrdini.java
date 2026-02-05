@@ -25,15 +25,18 @@ public class AdminOrdini extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
 		OrdineDAO oDAO =  new OrdineDAO(ds);
 		
 		try {
 			ArrayList<Ordine> ordini = oDAO.doRetrieveAll();
+			//prendo la data del giorno corrente 
 			LocalDate oggi = LocalDate.now();
+			//prendo la data di inizio mese rispetto al giorno corrente
 			LocalDate inizioMese = oggi.withDayOfMonth(1);
 
+			//setto gli attributi cosi da inserire nel form dei filtri
+			//vaolori di date di default
 			request.setAttribute("defaultIn", inizioMese.toString());
 			request.setAttribute("defaultFin", oggi.toString());
 			request.setAttribute("ordini", ordini);

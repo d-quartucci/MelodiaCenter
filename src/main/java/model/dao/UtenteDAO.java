@@ -1,6 +1,7 @@
 package model.dao;
 import model.Utente;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -125,6 +126,28 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 			}
 		}
 		return null;
+	}
+	
+	public synchronized ArrayList<Utente> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin, String ord) throws SQLException{
+		
+		String ordineQuery = "DESC"; //Il default è decrescente
+		
+		if(ord.equals("menoRecenti")) {
+			ordineQuery = "ASC";
+		}
+		String querySQL = "SELECT * FROM ordine WHERE DataRegistrazione >= ? AND DataRegistrazione < ? ORDER BY DataREgistrazione " + ordineQuery;
+		ArrayList<Utente> utenti = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setTimestamp(1, dataIn);
+			ps.setTimestamp(2, dataFin);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				utenti.add(mapResultSetToBean(rs));
+			}
+		}
+		return utenti;
 	}
 	
 	public synchronized ArrayList<Utente> doRetrieveByDate(Date data) throws SQLException{

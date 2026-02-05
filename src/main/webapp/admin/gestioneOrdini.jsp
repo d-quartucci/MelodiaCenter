@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script>const contextPath = "${pageContext.request.contextPath}";</script>
-		<script src="${pageContext.request.contextPath}/scripts/gestioneOrdini.js"></script>
+		<script src="${pageContext.request.contextPath}/scripts/gestioneAdmin.js"></script>
 	</head>
 	<body>
 	
@@ -22,15 +22,15 @@
     	<main>
     		<div id=filtriOrdiniAdmin>
     			<form name= formFiltriAdmin action = "javascript:void(0)" method="GET" >
-    				<label for = "dataFrom">Dal: </label>
-    				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}" onchange = "eseguiFiltro()" >
-    				<label for = "dataFrom">Al: </label>
-    				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}" onchange = "eseguiFiltro()" >
+    				<label for = "dataFrom">dal: </label>
+    				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}" onchange = "eseguiFiltro('/AdminFilterOrdini','ordine','corpoTableOrdini')" >
+    				<label for = "dataTo">al: </label>
+    				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}" onchange = "eseguiFiltro('/AdminFilterOrdini','ordine','corpoTableOrdini')" >
     				
     				<label for = "ordinaData">Ordina per data: </label>
-    				<select id= "ordinaData" name = "ordinaData" onchange = "eseguiFiltro()">
+    				<select id= "ordinaData" name = "ordinaData" onchange = "eseguiFiltro('/AdminFilterOrdini','ordine','corpoTableOrdini')">
     					<option value = menoRecenti> meno recenti </option>
-    					<option value = piuRecenti>	piu recenti </option>
+    					<option value = piuRecenti>	più recenti </option>
     				</select><br>
     			</form>
     		</div>

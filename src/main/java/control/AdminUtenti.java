@@ -10,6 +10,7 @@ import model.dao.UtenteDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -28,7 +29,17 @@ public class AdminUtenti extends HttpServlet {
 		
 		try {
 			ArrayList<Utente> utenti = uDAO.doRetrieveAll();
+			//prendo la data del giorno corrente 
+			LocalDate oggi = LocalDate.now();
+			//prendo la data di inizio mese rispetto al giorno corrente
+			LocalDate inizioMese = oggi.withDayOfMonth(1);
+
+			//setto gli attributi cosi da inserire nel form dei filtri
+			//vaolori di date di default
+			request.setAttribute("defaultIn", inizioMese.toString());
+			request.setAttribute("defaultFin", oggi.toString());
 			request.setAttribute("utenti", utenti);
+			
 			request.getRequestDispatcher("/admin/gestioneUtenti.jsp").forward(request, response);
 		}catch(SQLException ex) {
 			ex.printStackTrace();
