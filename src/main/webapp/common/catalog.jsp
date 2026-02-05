@@ -29,7 +29,6 @@
 				</div>
 			</c:forEach>
 		</c:if>
-		
 		<c:if test="${empty prodotti}">
 			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
 		</c:if>

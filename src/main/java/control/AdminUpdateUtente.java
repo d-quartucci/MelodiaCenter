@@ -20,12 +20,12 @@ import javax.sql.DataSource;
 
 import org.json.JSONArray;
 
-@WebServlet("/AdminUptadeUtente")
-public class AdminUptadeUtente extends HttpServlet {
+@WebServlet("/admin/AdminUpdateUtente")
+public class AdminUpdateUtente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public AdminUptadeUtente() {
+    public AdminUpdateUtente() {
         super();
     }
 
@@ -44,8 +44,10 @@ public class AdminUptadeUtente extends HttpServlet {
 			
 			if(utente != null) {
 				if(campo.equals("email")) {
+
 					utente.setEmail(valore);
-				}else if(campo.equals("ruolo")) {
+				}
+				else if(campo.equals("ruolo")) {
 					utente.setRuolo(valore);
 				}
 			

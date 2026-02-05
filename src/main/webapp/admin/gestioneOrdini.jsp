@@ -21,17 +21,18 @@
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
     		<div id=filtriOrdiniAdmin>
-    			<form name= formFiltriAdmin action = "javascript:void(0)" method="GET" >
+    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/AdminFilterOrdini"  method="GET" >
     				<label for = "dataFrom">dal: </label>
-    				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}" onchange = "eseguiFiltro('/AdminFilterOrdini','ordine','corpoTableOrdini')" >
+    				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<label for = "dataTo">al: </label>
-    				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}" onchange = "eseguiFiltro('/AdminFilterOrdini','ordine','corpoTableOrdini')" >
+    				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}">
     				
     				<label for = "ordinaData">Ordina per data: </label>
-    				<select id= "ordinaData" name = "ordinaData" onchange = "eseguiFiltro('/AdminFilterOrdini','ordine','corpoTableOrdini')">
+    				<select id= "ordinaData" name = "ordinaData">
     					<option value = menoRecenti> meno recenti </option>
-    					<option value = piuRecenti>	più recenti </option>
+    					<option value = piuRecenti selected> più recenti </option>
     				</select><br>
+    				<button type="button" onclick= "eseguiFiltro('/AdminFilterUtenti','utente','corpoTableUtenti')">Filtra</button>
     			</form>
     		</div>
     		<div id=listOrdini>
