@@ -27,12 +27,12 @@ public class ConsulenzaPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("utente") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
-		    return;
-		}
-		
+		boolean isAdmin = false;
 		Utente user = (Utente) session.getAttribute("utente");
+		if("ADMIN".equals(user.getRuolo())) {
+			isAdmin = true;
+		}
+		request.setAttribute("isAdmin", isAdmin);
 		
 		int consId = 0;
 		//Prendo l'id come parametro della richiesta GET, se non è valido

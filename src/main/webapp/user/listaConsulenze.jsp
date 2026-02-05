@@ -9,18 +9,21 @@
 </head>
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
+	<!-- Sezione mostrata se sono state fatte richieste -->
 	<c:if test="${not empty consulenzaList}">
 	<div id="sezioneConsulenze">
 	<h1>Le tue richieste di consulenza:</h1>
 		<c:forEach var="consulenza" items="${consulenzaList}">
 			<div id="consulenzaDiv-${consulenza.id}">
 				<a href="${pageContext.request.contextPath}/user/ConsulenzaPageServlet?consId=${consulenza.id}">Richiesta #${consulenza.id}</a>
-				<p> Stato: ${consulenza.aperto}<p>
+				<p> Stato: ${consulenza.aperto ? 'Aperto' : 'Chiuso'}<p>
 				<br>
 			</div>
 		</c:forEach>
 	</div>
 	</c:if>
+	
+	<!-- Sezione mostrata se non sono state fatte richieste -->
 	<c:if test="${empty consulenzaList}">
 	<div id="sezioneVuota">
 		<h1>Non hai fatto alcuna richiesta.</h1>
