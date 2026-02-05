@@ -24,10 +24,18 @@
 	<!-- Se l'utente non è loggato, non verrà visualizzato il pulsante -->
 	<c:if test="${isLogged}">
 		<button id="pulsanteWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "Già in wishlist" : "Desidero..."}</button>
+		
+		<form name="richiestaConsulenza" action="${pageContext.request.contextPath}/user/CreateConsulenzaServlet?idProd=${prodotto.id}" method="POST">
+			<p>Vuoi richiedere consulenza su questo prodotto?</p>
+			<textarea id="messaggioConsulenza" name="messaggioConsulenza" placeholder="Scrivi qui le tue domande..."></textarea>
+			<button id="pulsanteConsulenza" name="pulsanteConsulenza" type="submit">Invia!</button>
+		</form>
+		
 	</c:if>
 	<c:if test="${!isLogged}">
-		<h4> Per tenere traccia dei tuoi prodotti preferiti, effettua il <a href="${pageContext.request.contextPath}/LoginServlet">login</a> e aggiungi il prodotto alla lista dei desideri! </h4>
+		<h4> Per poter tenere traccia dei tuoi prodotti preferiti e fare domande al nostro team, effettua il <a href="${pageContext.request.contextPath}/LoginServlet">login</a>!</h4>
 	</c:if>
+	
 </div>
 
 

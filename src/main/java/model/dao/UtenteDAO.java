@@ -135,7 +135,7 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		if(ord.equals("menoRecenti")) {
 			ordineQuery = "ASC";
 		}
-		String querySQL = "SELECT * FROM ordine WHERE DataRegistrazione >= ? AND DataRegistrazione < ? ORDER BY DataREgistrazione " + ordineQuery;
+		String querySQL = "SELECT * FROM ordine WHERE DataRegistrazione >= ? AND DataRegistrazione < ? ORDER BY DataRegistrazione " + ordineQuery;
 		ArrayList<Utente> utenti = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();

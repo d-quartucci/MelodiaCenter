@@ -1,4 +1,4 @@
-package control;
+package control.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 /**
  * Servlet implementation class OrderInfoServlet
  */
-@WebServlet("/OrderInfoServlet")
+@WebServlet("/user/OrderInfoServlet")
 public class OrderInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,6 +36,10 @@ public class OrderInfoServlet extends HttpServlet {
 		
 		Utente user = null;
 		HttpSession sessione = request.getSession(false);
+		if(sessione == null || sessione.getAttribute("utente") == null) {
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+		    return;
+		}
 		if(sessione != null) {
 			user = (Utente) sessione.getAttribute("utente");
 		}

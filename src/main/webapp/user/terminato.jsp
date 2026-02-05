@@ -12,7 +12,7 @@
 <jsp:include page="/fragments/header.jsp"/>
 <h1>Grazie per l'acquisto!</h1>
 <p>Arriverà entro la data:</p>
-<p>Torna alla <a href="${pageContext.request.contextPath}/common/index.jsp">home</a>!</p>
+<p>Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!</p>
 <jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

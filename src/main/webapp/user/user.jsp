@@ -18,6 +18,9 @@
 			<p>Numero di telefono: ${utente.telefono}</p>
 		</fieldset>
 	</div>
+	<div id="consulenze">
+		<a href="${pageContext.request.contextPath}/user/ConsulenzaListServlet">Visualizza le tue richieste di consulenza al nostro staff!</a>
+	</div>
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

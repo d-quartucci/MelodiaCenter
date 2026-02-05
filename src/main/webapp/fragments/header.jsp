@@ -40,9 +40,9 @@
 
             <!-- Se l'utente ha fatto il login, mostro le opzioni dedicate allo USER -->
             <c:if test="${not empty sessionScope.utente}">
-                <a href="${pageContext.request.contextPath}/UserServlet">Ciao, ${sessionScope.utente.nome}!</a>
-                <a href="${pageContext.request.contextPath}/WishlistServlet">Wishlist</a>
-                <a href="${pageContext.request.contextPath}/OrdersListServlet">I miei ordini</a>
+                <a href="${pageContext.request.contextPath}/user/UserServlet">Ciao, ${sessionScope.utente.nome}!</a>
+                <a href="${pageContext.request.contextPath}/user/WishlistServlet">Wishlist</a>
+                <a href="${pageContext.request.contextPath}/user/OrdersListServlet">I miei ordini</a>
                 <a href="${pageContext.request.contextPath}/DoLogoutServlet">Logout</a>
             </c:if>
 

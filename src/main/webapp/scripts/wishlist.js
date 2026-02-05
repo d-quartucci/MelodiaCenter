@@ -1,6 +1,6 @@
 function rimuoviDallaWishlist(idProdotto){
 	let xhr = new XMLHttpRequest();
-	let url = contextPath + "/OperazioneWishlistServlet?id=" + idProdotto + "&act=remove";
+	let url = contextPath + "/user/OperazioneWishlistServlet?id=" + idProdotto + "&act=remove";
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){

@@ -1,4 +1,4 @@
-package control;
+package control.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +10,7 @@ import model.Utente;
 
 import java.io.IOException;
 
-@WebServlet("/CheckoutServlet")
+@WebServlet("/user/CheckoutServlet")
 public class CheckoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

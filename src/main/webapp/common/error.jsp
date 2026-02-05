@@ -9,6 +9,7 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	<h1>${errorMessage}</h1>
+	Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

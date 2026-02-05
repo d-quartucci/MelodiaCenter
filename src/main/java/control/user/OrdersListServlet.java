@@ -1,4 +1,4 @@
-package control;
+package control.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/OrdersListServlet")
+@WebServlet("/user/OrdersListServlet")
 public class OrdersListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,6 +27,10 @@ public class OrdersListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		HttpSession session = request.getSession();
+		if(session == null || session.getAttribute("utente") == null) {
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+		    return;
+		}
 		Utente user = (Utente) session.getAttribute("utente");
 		OrdineDAO oDAO = new OrdineDAO(ds);
 		ArrayList<Ordine> ordersList = new ArrayList<>();

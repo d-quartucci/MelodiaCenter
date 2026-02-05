@@ -25,7 +25,7 @@
 		</fieldset>
 	</div>
 	
-	<form id="checkoutForm" name="checkoutForm" method="POST" action="${pageContext.request.contextPath}/CreateOrderServlet" onsubmit="return validateCheckout()">
+	<form id="checkoutForm" name="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/CreateOrderServlet" onsubmit="return validateCheckout()">
 		<div id="inserisciIndirizzo">
 			<h2>Inserisci l'indirizzo di consegna:</h2>
 				Via: <input id="via" name="via" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorVia"), lettersOnlyMessage)'>

@@ -1,4 +1,4 @@
-package control;
+package control.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
 
-@WebServlet("/CreateOrderServlet")
+@WebServlet("/user/CreateOrderServlet")
 public class CreateOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

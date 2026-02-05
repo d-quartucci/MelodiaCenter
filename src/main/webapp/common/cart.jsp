@@ -52,7 +52,7 @@
 
 <h2>Prezzo totale: <span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
 
-<form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/checkout.jsp">
+<form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/CheckoutServlet">
 	<button type="submit" id="checkout">Vai al checkout!</button>
 </form>
 

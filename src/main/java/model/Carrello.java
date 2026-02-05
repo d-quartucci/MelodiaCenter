@@ -13,11 +13,11 @@ public class Carrello implements Serializable{
 		listaItem = new ArrayList<>();
 	}
 	
-	public ArrayList<CarrelloItem> getListaItem() {
+	public synchronized ArrayList<CarrelloItem> getListaItem() {
 		return listaItem;
 	}
 	
-	public void addItem(CarrelloItem newItem) {
+	public synchronized void addItem(CarrelloItem newItem) {
 		//Se l'oggetto non è valido, non lo aggiungo al carrello
 		if(newItem == null || newItem.getQuantita() <= 0) {
 			return;
@@ -34,11 +34,11 @@ public class Carrello implements Serializable{
 		return;
 	}
 	
-	public void removeItem(CarrelloItem item) {
+	public synchronized void removeItem(CarrelloItem item) {
 		listaItem.remove(item);
 	}
 	
-	public void modificaQuantita(int idProd, int quantita) {
+	public synchronized void modificaQuantita(int idProd, int quantita) {
 		for(CarrelloItem c : listaItem){
 			if(c.getProdotto().getId() == idProd) {
 				c.setQuantita(quantita);
@@ -47,7 +47,7 @@ public class Carrello implements Serializable{
 		}
 	}
 	
-	public void decrementaQuantita(int idProd) {
+	public synchronized void decrementaQuantita(int idProd) {
 		for(CarrelloItem c : listaItem){
 			if(c.getProdotto().getId() == idProd && c.getQuantita() > 1) {
 				c.setQuantita(c.getQuantita() - 1);
@@ -56,7 +56,7 @@ public class Carrello implements Serializable{
 		}
 	}
 	
-	public BigDecimal getPrezzoTotale() {
+	public synchronized BigDecimal getPrezzoTotale() {
 		BigDecimal totale = BigDecimal.ZERO;
 		for(CarrelloItem item : listaItem) {
 			BigDecimal prezzo = item.getProdotto().getPrezzoAttuale();

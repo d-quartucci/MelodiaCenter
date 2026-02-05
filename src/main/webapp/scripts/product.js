@@ -1,6 +1,6 @@
 function aggiungiAlCarrello(idProdotto){
 	let xhr = new XMLHttpRequest();
-	let url = contextPath + "/OperazioneCartServlet?q=1&id=" + idProdotto + "&act=add";
+	let url = contextPath + "/user/OperazioneCartServlet?q=1&id=" + idProdotto + "&act=add";
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.status == 200){
@@ -19,7 +19,7 @@ function aggiungiAlCarrello(idProdotto){
 
 function aggiungiAllaWishlist(idProdotto){
 	let xhr = new XMLHttpRequest();
-	let url = contextPath + "/OperazioneWishlistServlet?id=" + idProdotto + "&act=add";
+	let url = contextPath + "/user/OperazioneWishlistServlet?id=" + idProdotto + "&act=add";
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){

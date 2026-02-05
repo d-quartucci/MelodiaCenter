@@ -80,6 +80,21 @@ public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 		return null;
 		
 	}
+	
+	public synchronized ArrayList<Consulenza> doRetrieveByUserID(int userID) throws SQLException {
+		ArrayList<Consulenza> list = new ArrayList<>();
+		String query = "SELECT * FROM consulenza WHERE UtenteID = ?";
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query)){
+			ps.setInt(1, userID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				 list.add(mapResultSetToBean(rs));
+			}
+		}
+		return list;
+	}
 
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
 		

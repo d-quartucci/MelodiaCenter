@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		//L'utente ha già fatto login
-		if(session != null && session.getAttribute("user") != null) {
+		if(session != null && session.getAttribute("utente") != null) {
 			response.sendRedirect(request.getContextPath() + "/common/index.jsp");
 			return;
 		}else {

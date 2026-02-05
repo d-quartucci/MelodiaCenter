@@ -1,4 +1,4 @@
-package control;
+package control.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/WishlistServlet")
+@WebServlet("/user/WishlistServlet")
 public class WishlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -20,8 +20,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		//L'utente ha già fatto login
-		if(session != null && session.getAttribute("user") != null) {
-			response.sendRedirect(request.getContextPath() + "/common/index.jsp");
+		if(session != null && session.getAttribute("utente") != null) {
+			response.sendRedirect(request.getContextPath() + "/home");
 			return;
 		} else {
 			request.getRequestDispatcher("/common/login.jsp").forward(request, response);
