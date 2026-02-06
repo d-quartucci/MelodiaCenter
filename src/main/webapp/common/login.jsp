@@ -17,10 +17,17 @@
 <h2 id="errore">${error}</h2>
 <div id="formLogin">
 	<form id="loginForm" name="loginForm" method="POST" action="${pageContext.request.contextPath}/DoLoginServlet" onsubmit="return validateLogin()">
-		Email:<input name="email" id="email" onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" type="text" required pattern="^\S+@\S+\.\S+$"></input>
+		<label for="email">Email:</label>
+		<input name="email" id="email" onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" type="text" required pattern="^\S+@\S+\.\S+$" value="${emailRicordata != null ? emailRicordata : ''}"></input>
 		<span id="errorEmail"></span><br/>
-		Password:<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" required minlength="6"></input>
+		
+		<label for="password">Password:</label>
+		<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" required minlength="6"></input>
 		<span id="errorPassword"></span><br/>
+		
+		<label for="ricordaCheckbox">Ricorda l'email</label>
+		<input name="ricordaCheckbox" id="ricordaCheckbox" type="checkbox" ${wasChecked ? "checked" : ""}>
+		
 		<button type="submit" id="submit">Accedi</button>
 	</form>
 </div>

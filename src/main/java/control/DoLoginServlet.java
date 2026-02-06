@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
@@ -25,6 +26,7 @@ public class DoLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = toHash(request.getParameter("password"));
+		String ricordaEmail = request.getParameter("ricordaCheckbox");
 		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		UtenteDAO uDAO = new UtenteDAO(ds);
@@ -34,6 +36,22 @@ public class DoLoginServlet extends HttpServlet {
 			if(u != null) {
 				HttpSession sessione = request.getSession(); //Prendiamo la sessione per salvare le informazioni dell'utente
 				sessione.setAttribute("utente", u);
+				//Controllo se la checkbox per ricordare l'email sia stata spuntata
+				if("on".equals(ricordaEmail)) {
+					//Utilizzo encode perché l'email contiene caratteri speciali
+					Cookie cookie = new Cookie("ricordaEmail", URLEncoder.encode(email, "UTF-8"));
+					cookie.setMaxAge(60 * 60 * 24 * 30); //Sono 30 giorni
+					cookie.setPath("/");
+					cookie.setHttpOnly(true); //Per evitare utilizzi da JS
+					response.addCookie(cookie); //Aggiungo il cookie alla risposta
+				} else {
+					//Se la checkbox non era selezionata, vuol dire che devo cancellare il cookie
+					Cookie cookie = new Cookie("ricordaEmail", "");
+					cookie.setMaxAge(0);
+					cookie.setPath("/");
+					cookie.setHttpOnly(true);
+					response.addCookie(cookie);
+				}
 				response.sendRedirect(request.getContextPath() + "/home");
 			}
 			else {
