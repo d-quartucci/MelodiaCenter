@@ -36,7 +36,7 @@ public class AdminFilterOrdini extends HttpServlet {
 			//prendo i parametri dalla richiesta
 			String dataIn = request.getParameter("dataIn"); 
 			String dataFin= request.getParameter("dataFin");
-			String ord = request.getParameter("ord");
+			String ord = request.getParameter("ordinaData");
 			
 			Timestamp dataInDate = null;
 			Timestamp dataFinDate = null;
@@ -51,15 +51,12 @@ public class AdminFilterOrdini extends HttpServlet {
 	        if (dataFin != null && !dataFin.isEmpty()) {
 	            dataFinDate = Timestamp.valueOf(dataFin + " 23:59:59");
 	        }
-	        response.setContentType("application/json");
 	        
 	        OrdineDAO oDAO = new OrdineDAO(ds);
 			ArrayList <Ordine> ordini = oDAO.doRetrieveByFilter(dataInDate, dataFinDate, ord);
 			
-			//Risposta JSON
-			PrintWriter out = response.getWriter();
-			JSONArray json = new JSONArray(ordini);
-			out.print(json.toString());
+			request.setAttribute("ordini", ordini);
+			request.getRequestDispatcher("/admin/corpoTabellaOrdini.jsp").forward(request, response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();

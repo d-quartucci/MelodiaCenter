@@ -9,7 +9,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script>const contextPath = "${pageContext.request.contextPath}";</script>
 		<script src="${pageContext.request.contextPath}/scripts/gestioneAdmin.js"></script>
-		<script> const adminCorrente = "${sessionScope.utente.id}";</script>
 	</head>
 	<body>
 	
@@ -30,8 +29,8 @@
     				<select id= "ordinaData" name = "ordinaData">
     					<option value = menoRecenti> iscritti meno recenti </option>
     					<option value = piuRecenti>	iscritti più recenti </option>
-    				</select><br>
-    				<button type="button" onclick = "eseguiFiltro('/AdminFilterUtenti','utente','corpoTableUtenti')">Filtra </button>
+    				</select>
+    				<button type="button" onclick = "eseguiFiltro('/admin/AdminFilterUtenti','corpoTableUtenti')">Filtra </button>
     			</form>
     		</div>
     		<div id=listUtenti>
@@ -47,38 +46,10 @@
 							<th>Data Registrazione</th>
     					</tr>
     				</thead>
-    				<tbody id = "corpoTableUtenti">
-    					<c:if test= "${not empty utenti}">
-							<c:forEach var="u" items="${utenti}">
-								
-									<tr>
-										<td>${u.id}</td>
-										<td>${u.nome}</td>
-										<td>${u.cognome}</td>
-										<td><input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>
-											<span id="errorEmail_${u.id }" class="error"></span>
-											<button type = "button" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
-											<button type = "button" id= "sav_${u.id}" onclick = "applicaModifica(${u.id})"> Applica</button>
-										</td>	
-										<td><select id= "ruolo_${u.id}" > 
-												<option value = "USER" ${u.ruolo == "USER" ? "selected" : ""} > USER</option>
-												<option value = "ADMIN" ${u.ruolo == "ADMIN" ? "selected" : ""}> ADMIN</option>
-											</select>
-											<button type = button onclick = "salvaModifica(${u.id}, 'ruolo', document.getElementById('ruolo_${u.id}').value)"> Applica</button>
-										</td>
-										<td>${u.dataRegistrazione}</td>
-									</tr>
-								
-							</c:forEach>
-						</c:if>
-						<c:if test="${empty utenti}">
-       						 <tr>
-            					<td colspan="5" style="text-align:center; padding:20px;">
-                					Nessun utente iscritto
-            					</td>
-      					  	</tr>
-    					</c:if>
+    				<tbody id= "corpoTableUtenti">
+    					<%@ include file = "CorpoTabellaUtenti.jsp"%>
     				</tbody>
+			
     			</table>
     		</div>
 		</main>

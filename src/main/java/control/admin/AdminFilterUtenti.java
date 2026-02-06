@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Utente;
 import model.dao.UtenteDAO;
 
@@ -29,12 +30,14 @@ public class AdminFilterUtenti extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
+		HttpSession session = request.getSession(false);
+		int adminId = ((Utente) session.getAttribute("utente")).getId();
 		
 		try {
 			//prendo i parametri dalla richiesta
 			String dataIn = request.getParameter("dataIn"); 
 			String dataFin= request.getParameter("dataFin");
-			String ord = request.getParameter("ord");
+			String ord = request.getParameter("ordinaData");
 			
 			Timestamp dataInDate = null;
 			Timestamp dataFinDate = null;
@@ -49,15 +52,12 @@ public class AdminFilterUtenti extends HttpServlet {
 	        if (dataFin != null && !dataFin.isEmpty()) {
 	            dataFinDate = Timestamp.valueOf(dataFin + " 23:59:59");
 	        }
-	        response.setContentType("application/json");
 	        
 	        UtenteDAO uDAO = new UtenteDAO(ds);
-			ArrayList <Utente> utenti = uDAO.doRetrieveByFilter(dataInDate, dataFinDate, ord);
+			ArrayList <Utente> utenti = uDAO.doRetrieveByFilter(adminId,dataInDate, dataFinDate, ord);
 			
-			//Risposta JSON
-			PrintWriter out = response.getWriter();
-			JSONArray json = new JSONArray(utenti);
-			out.print(json.toString());
+			request.setAttribute("utenti", utenti);
+			request.getRequestDispatcher("/admin/CorpoTabellaUtenti.jsp").forward(request,response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();

@@ -162,20 +162,21 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		
 	}
 	
- 	public synchronized ArrayList<Utente> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin, String ord) throws SQLException{
+ 	public synchronized ArrayList<Utente> doRetrieveByFilter(Integer id,Timestamp dataIn, Timestamp dataFin, String ord) throws SQLException{
 		
 		String ordineQuery = "DESC"; //Il default è decrescente
 		
 		if(ord.equals("menoRecenti")) {
 			ordineQuery = "ASC";
 		}
-		String querySQL = "SELECT * FROM utente WHERE DataRegistrazione >= ? AND DataRegistrazione < ? ORDER BY DataRegistrazione " + ordineQuery;
+		String querySQL = "SELECT * FROM utente WHERE ID <> ? AND DataRegistrazione >= ? AND DataRegistrazione < ? ORDER BY DataRegistrazione " + ordineQuery;
 		ArrayList<Utente> utenti = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setTimestamp(1, dataIn);
-			ps.setTimestamp(2, dataFin);
+			ps.setInt(1,id);
+			ps.setTimestamp(2, dataIn);
+			ps.setTimestamp(3, dataFin);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				utenti.add(mapResultSetToBean(rs));

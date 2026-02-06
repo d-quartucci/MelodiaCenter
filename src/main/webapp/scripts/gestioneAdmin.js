@@ -1,32 +1,28 @@
 function abilitaModifica(id){
-	const sMod = document.getElementById("sav_"+id);
 	
 	const emailId= document.getElementById("email_"+id);
 	
 	emailId.disabled = false;
-	sMod.disabled = false;
 	
 }
 
 function applicaModifica(id){
 	const emailId= document.getElementById("email_"+id);
 	const uEmail = emailId.value;
-	const sMod = document.getElementById("sav_"+id);
 	const errorEmail = document.getElementById("errorEmail_"+id);
 	
 	let pattern = /^\S+@\S+\.\S+$/g;
 	
 	if(uEmail.match(pattern)){
-		validateEmail(id);
 		errorEmail.innerHTML = "";
+		validateEmail(id);
+		salvaModifica(id, "email", uEmail);
 		emailId.disabled = true;
 	}else{
 		if(uEmail.trim() === ""){ //Controllo se il campo è vuoto
 			errorEmail.innerHTML = "Campo vuoto";
-			sMod.disabled = true;
 		} else {
 			errorEmail.innerHTML = "Inserire un email valida" ;
-			sMod.disabled = true;
 		}
 	}
 		
@@ -37,7 +33,6 @@ function salvaModifica(id, campo, valore){
 	
 	let xhr = new XMLHttpRequest();
 	const url = contextPath + "/admin/AdminUpdateUtente";
-	const errorEmail = document.getElementById("errorEmail_"+id);
 	
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
@@ -60,7 +55,6 @@ function salvaModifica(id, campo, valore){
 function validateEmail(id){
 	
 	const uEmail= document.getElementById("email_"+id).value;
-	const sMod = document.getElementById("sav_"+id);
 	const errorEmail = document.getElementById("errorEmail_"+id);
 	
 
@@ -73,14 +67,58 @@ function validateEmail(id){
 					let esiste = this.responseText.trim();
 						if(esiste === "true"){
 							errorEmail.innerHTML = "Email già utilizzata!";
-							sMod.disabled = true;
 						}
 						else{
 							errorEmail.innerHTML = "Email valida";
-							sMod.disabled = false;
 						}
 					}
 				}
 		}
 		xhr.send();
 }
+
+function eseguiFiltro(servletName, idCorpoTable){
+	
+	const inputIn = document.getElementById("dataFrom");
+	const inputFin = document.getElementById("dataTo");
+	const ord = document.getElementById("ordinaData").value;
+		
+	let dataIn = inputIn.value;
+	let dataFin = inputFin.value;
+		
+	//se l'admin inserisce prima la data di fine periodo
+	//mostriamo un messaggio e resettiamo il valore salvato direttamente sul DOM
+	if(dataIn && dataFin && dataIn > dataFin){
+		alert("Periodo non valido, impostare una nuova data di fine periodo");
+		inputFin.value = "";
+		return;
+	}
+		
+	//nel caso in cui inserisce prima la data di inizio periodo
+	//impostiamo un limite minimo in modo da non mettere intervalli irregolari
+	//cosi facendo impostiamo un valore minimo direttamente sul DOM
+	if(dataIn){
+		inputFin.min = dataIn;
+	}
+		
+	let url = contextPath + servletName + "?dataIn=" +encodeURIComponent(dataIn) + "&dataFin=" +encodeURIComponent(dataFin) + "&ordinaData=" +encodeURIComponent(ord);
+	let xhr = new XMLHttpRequest();
+			
+	xhr.onreadystatechange = function (){
+		if(this.readyState == 4 && this.status == 200){
+			document.getElementById(idCorpoTable).innerHTML = this.responseText;
+		}
+	}
+	xhr.open("GET", url, true);
+	xhr.send();
+
+}
+
+
+
+
+
+
+
+
+
