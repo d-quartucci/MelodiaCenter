@@ -1,4 +1,4 @@
-package control;
+package control.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/AdminOrdini")
+@WebServlet("/admin/AdminOrdini")
 public class AdminOrdini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

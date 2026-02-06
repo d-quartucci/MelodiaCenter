@@ -12,8 +12,8 @@
 	<aside id="Menu"> 
 		<nav>
 			<ul class="MenuGestione">
-             	<li><a href="${pageContext.request.contextPath}/AdminOrdini">Ordini</a></li>
-             	<li><a href="${pageContext.request.contextPath}/AdminUtenti">Utenti</a></li>
+             	<li><a href="${pageContext.request.contextPath}/admin/AdminOrdini">Ordini</a></li>
+             	<li><a href="${pageContext.request.contextPath}/admin/AdminUtenti">Utenti</a></li>
         	</ul>
 		</nav>
 	</aside>

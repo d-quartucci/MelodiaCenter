@@ -1,4 +1,4 @@
-package control;
+package control.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 
-@WebServlet("/AdminDailyServlet")
+@WebServlet("/admin/AdminDailyServlet")
 public class AdminDailyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

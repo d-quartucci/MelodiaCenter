@@ -1,4 +1,4 @@
-package control;
+package control.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -44,12 +44,18 @@ public class AdminUpdateUtente extends HttpServlet {
 			
 			if(utente != null) {
 				if(campo.equals("email")) {
-
+					
 					utente.setEmail(valore);
-				}
+				}	
+		
 				else if(campo.equals("ruolo")) {
+					
 					utente.setRuolo(valore);
-				}
+					
+				} else {
+			        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Campo non valido");
+			        return;
+			    }
 			
 				uDAO.doSaveOrUpdate(utente);
 				

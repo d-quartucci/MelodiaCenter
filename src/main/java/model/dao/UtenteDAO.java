@@ -115,11 +115,27 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		return listaUtenti;
 	}
 	
-	public synchronized Utente doRetrieveByKey(Integer key) throws SQLException{
+	public synchronized ArrayList<Utente> doRetrieveExcept(Integer id) throws SQLException{
+		String querySQL = "SELECT * FROM utente WHERE ID <> ?";
+		ArrayList<Utente> listaUtenti = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+				ps.setInt(1, id);
+				ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Utente u = mapResultSetToBean(rs);
+				listaUtenti.add(u);
+			}
+		}
+		return listaUtenti;
+	}
+	
+	public synchronized Utente doRetrieveByKey(Integer id) throws SQLException{
 		String querySQL = "SELECT * FROM utente WHERE ID = ?";
 		try(Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setInt(1, key);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				return mapResultSetToBean(rs);
@@ -128,7 +144,25 @@ public class UtenteDAO implements GenericDAO<Utente, Integer> {
 		return null;
 	}
 	
-	public synchronized ArrayList<Utente> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin, String ord) throws SQLException{
+	public synchronized boolean doExistEmail (String email, Integer id) throws  SQLException{
+		//Query che seleziona la riga con l'id diverso qua quello del parametro
+		//Cosi facendo se lo troverà darà true altrimenti false
+		String querySQL = "SELECT ID FROM users WHERE Email=? AND ID<>?"; 
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setString(1, email);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+ 	public synchronized ArrayList<Utente> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin, String ord) throws SQLException{
 		
 		String ordineQuery = "DESC"; //Il default è decrescente
 		

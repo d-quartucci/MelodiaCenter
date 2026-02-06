@@ -21,7 +21,7 @@
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
     		<div id=filtriOrdiniAdmin>
-    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/AdminFilterOrdini"  method="GET" >
+    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterOrdini"  method="GET" >
     				<label for = "dataFrom">dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<label for = "dataTo">al: </label>

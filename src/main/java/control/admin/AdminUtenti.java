@@ -1,10 +1,11 @@
-package control;
+package control.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Utente;
 import model.dao.UtenteDAO;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/AdminUtenti")
+@WebServlet("/admin/AdminUtenti")
 public class AdminUtenti extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -25,10 +26,12 @@ public class AdminUtenti extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
+		HttpSession session = request.getSession(false);
+		int adminId = ((Utente) session.getAttribute("utente")).getId();
 		UtenteDAO uDAO =  new UtenteDAO(ds);
 		
 		try {
-			ArrayList<Utente> utenti = uDAO.doRetrieveAll();
+			ArrayList<Utente> utenti = uDAO.doRetrieveExcept(adminId);
 			//prendo la data del giorno corrente 
 			LocalDate oggi = LocalDate.now();
 			//prendo la data di inizio mese rispetto al giorno corrente
