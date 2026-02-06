@@ -108,6 +108,21 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	}
 	
 	public synchronized ArrayList<Prodotto> doRetrieveAll() throws SQLException{
+		String querySQL = "SELECT * FROM prodotto";
+		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL);
+				ResultSet rs = ps.executeQuery()){
+			while(rs.next()) {
+				Prodotto u = mapResultSetToBean(rs);
+				listaProdotti.add(u);
+			}
+		}
+		return listaProdotti;
+	}
+	
+	public synchronized ArrayList<Prodotto> doRetrieveAllActive() throws SQLException{
 		String querySQL = "SELECT * FROM prodotto WHERE IsAttivo=TRUE";
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
 		

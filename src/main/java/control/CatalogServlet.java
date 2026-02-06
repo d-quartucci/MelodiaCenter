@@ -27,7 +27,7 @@ public class CatalogServlet extends HttpServlet {
 		
 		try{
 			ProdottoDAO pDAO = new ProdottoDAO(ds);
-			ArrayList<Prodotto> listaProdotti = pDAO.doRetrieveAll();
+			ArrayList<Prodotto> listaProdotti = pDAO.doRetrieveAllActive();
 			request.setAttribute("prodotti", listaProdotti);
 			request.getRequestDispatcher("/common/catalog.jsp").forward(request, response);
 		} catch(SQLException ex) {

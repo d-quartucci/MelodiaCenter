@@ -37,13 +37,13 @@ public class AuthFilter extends HttpFilter implements Filter {
 		
 		//Controllo per le pagine user
 		if(path.contains("/user/") && u == null) {
-			httpResponse.sendRedirect(httpRequest.getContextPath() + "/common/login.jsp");
+			httpResponse.sendRedirect(httpRequest.getContextPath() + "/LoginServlet");
 			return;
 		} 
 		
 		//Controllo per le pagine admin
 		if(path.contains("/admin/") && (u == null || !"ADMIN".equals(u.getRuolo()))) {
-			httpResponse.sendRedirect(httpRequest.getContextPath() + "/common/index.jsp");
+			httpResponse.sendRedirect(httpRequest.getContextPath() + "/home");
 			return;
 		}
 		

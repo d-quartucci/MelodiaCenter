@@ -35,7 +35,7 @@ public class OrdersListServlet extends HttpServlet {
 		OrdineDAO oDAO = new OrdineDAO(ds);
 		ArrayList<Ordine> ordersList = new ArrayList<>();
 		try {
-			ordersList = oDAO.doRetrieveByUserID(user.getId());
+			ordersList = oDAO.doRetrieveByUtenteID(user.getId());
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore durante l'accesso alla lista ordini: " + ex.getMessage());

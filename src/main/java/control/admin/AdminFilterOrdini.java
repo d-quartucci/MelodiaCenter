@@ -56,7 +56,7 @@ public class AdminFilterOrdini extends HttpServlet {
 			ArrayList <Ordine> ordini = oDAO.doRetrieveByFilter(dataInDate, dataFinDate, ord);
 			
 			request.setAttribute("ordini", ordini);
-			request.getRequestDispatcher("/admin/corpoTabellaOrdini.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/CorpoTabellaOrdini.jsp").forward(request, response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();

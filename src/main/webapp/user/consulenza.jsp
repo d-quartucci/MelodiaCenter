@@ -13,7 +13,7 @@
 	<jsp:include page="/fragments/header.jsp"/>
 	
 	<h1>Consulenza #${consulenza.id}</h1>
-	Il tuo messaggio:
+	Messaggio dell'utente:
 	<div id="messaggioUtente">
 		<label for="richiestaUtente"></label>
 		<textarea name="richiestaUtente" id="richiestaUtente" disabled>${consulenza.messUtente}</textarea>

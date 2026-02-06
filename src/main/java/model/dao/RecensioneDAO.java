@@ -98,6 +98,21 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 		return null;
 	}
 	
+	public synchronized ArrayList<Recensione> doRetrieveByProdottoID(int prodId) throws SQLException {
+		String query = "SELECT * FROM Recensione WHERE ProdottoID = ?";
+		ArrayList<Recensione> list = null;
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query);){
+				ps.setInt(1, prodId);
+				ResultSet rs = ps.executeQuery();
+				list = new ArrayList<>();
+			while(rs.next()) {
+				list.add(mapResultSetToBean(rs));
+			}	
+		}
+		return list;
+	}
+	
 	public synchronized Recensione doRetrieveByData(Date data) throws SQLException {
 		
 		String query = "SELECT * FROM Recensione WHERE DataInserimento = ?";

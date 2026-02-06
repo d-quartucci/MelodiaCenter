@@ -30,7 +30,7 @@
     				<select id= "ordinaData" name = "ordinaData">
     					<option value = menoRecenti> meno recenti </option>
     					<option value = piuRecenti selected> più recenti </option>
-    				</select><br>
+    				</select>
     				<button type="button" onclick= "eseguiFiltro('/admin/AdminFilterOrdini','corpoTableOrdini')">Filtra</button>
     			</form>
     		</div>

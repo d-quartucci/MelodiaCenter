@@ -35,4 +35,21 @@ function aggiungiAllaWishlist(idProdotto){
 	xhr.send();
 }
 
+//Controlla che le caselle di testo contengano qualcosa per permettere l'invio di testo
+function verificaContenuto(input, submit){
+	let mess = document.getElementById(input);
+	let sendButton = document.getElementById(submit)
+	if(mess.value != ""){
+		sendButton.disabled = false;
+	}
+	else{
+		sendButton.disabled = true;
+	}
+}
+
+function aggiornaSpan(){
+	let span = document.getElementById("spanVoto");
+	span.innerHTML = document.getElementById("voto").value;
+}
+
 window.onload()

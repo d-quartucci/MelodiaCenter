@@ -87,7 +87,7 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		return null;
 	}
 	
-	public synchronized ArrayList<Ordine> doRetrieveByUserID(Integer id) throws SQLException {
+	public synchronized ArrayList<Ordine> doRetrieveByUtenteID(Integer id) throws SQLException {
 		ArrayList<Ordine> ordersList = new ArrayList<>();
 		String query = "SELECT * FROM ordine WHERE UtenteID = ?";
 		
