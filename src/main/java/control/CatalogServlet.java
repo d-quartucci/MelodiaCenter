@@ -54,7 +54,7 @@ public class CatalogServlet extends HttpServlet {
 				ricerca = "";
 			String ordine = request.getParameter("ordinaPrezzo"); 
 			if(ordine == null)
-				ordine = "prezzoDecrescente";
+				ordine = "prezzoCrescente";
 			String categoria = request.getParameter("categoria");
 			if(categoria == null)
 				categoria = "0";

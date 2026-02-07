@@ -39,8 +39,8 @@
 			
 			<label for="ordinaPrezzo">Ordina per prezzo:</label>
 			<select id="ordinaPrezzo" name="ordinaPrezzo">
-				<option value="prezzoDecrescente">Prezzo Decrescente</option>
-				<option value="prezzoCrescente" ${param.ordinaPrezzo eq "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
+				<option value="prezzoCrescente">Prezzo Crescente</option>
+				<option value="prezzoDecrescente" ${param.ordinaPrezzo eq "prezzoDecrescente" ? "selected" : ""}>Prezzo Decrescente</option>
 			</select><br>
 			
 			<label for="categoria">Seleziona la categoria:</label>

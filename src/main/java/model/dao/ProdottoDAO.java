@@ -33,10 +33,10 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	
 	public synchronized ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
 		//L'ORDER BY non può essere parametrica, quindi lo definiamo prima in questo modo (SQL Injection)
-		String ordineQuery = "DESC"; //Il default è decrescente
+		String ordineQuery = "ASC"; //Il default è crescente
 		BigDecimal maxPrezzo = new BigDecimal(max);
-		if(ord.equals("prezzoCrescente")) {
-			ordineQuery = "ASC";
+		if(ord.equals("prezzoDecrescente")) {
+			ordineQuery = "DESC";
 		}
 		
 		String queryGenerica = "SELECT * FROM Prodotto WHERE IsAttivo=TRUE AND Nome LIKE ? AND PrezzoAttuale <= ? ORDER BY PrezzoAttuale " + ordineQuery;
