@@ -12,13 +12,15 @@
 </head>
 <body>
 <jsp:include page="/fragments/header.jsp"/>
-<div id="immagineProdotto">
+<div id="schedaProdotto">
+<div class="immagineProdotto">
 	<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
 </div>
-<div id="informazioniProdotto">
-	<p id="nomeProdotto">${prodotto.nome}</p>
+<div class="informazioniProdotto">
+	<h1 id="nomeProdotto">${prodotto.nome}</h1>
 	<p id="descProdotto">${prodotto.descrizione}</p>
 	<p id="prezzo">${prodotto.prezzoAttuale}€</p>
+</div>
 </div>
 
 <div id="sezioneFunzionalità" name="sezioneFunzionalità">
@@ -59,9 +61,9 @@
 		<c:if test="${not empty listaRecensioni}">
 			<h3>Le recenzioni dei nostri utenti:</h3>
 			<c:forEach var="r" items="${listaRecensioni}">
-				<div id="recensione-${r.recensione.id}">
-					<p id="recensione-${r.utente.nome}">${r.utente.nome} - ${r.recensione.voto}</p>
-					${r.recensione.testo}
+				<div id="recensione-${r.recensione.id}" class="recensione">
+					<h3 id="recensione-${r.utente.nome}">${r.utente.nome} - ${r.recensione.voto}/5</h3>
+					<p>${r.recensione.testo}</p>
 				</div>
 			</c:forEach>
 		</c:if>

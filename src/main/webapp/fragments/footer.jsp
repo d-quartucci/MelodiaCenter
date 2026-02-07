@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/fragments.css" type="text/css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
