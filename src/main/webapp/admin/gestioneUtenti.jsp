@@ -30,7 +30,7 @@
     					<option value = menoRecenti> iscritti meno recenti </option>
     					<option value = piuRecenti>	iscritti più recenti </option>
     				</select>
-    				<button type="button" onclick = "eseguiFiltro('/admin/AdminFilterUtenti','corpoTableUtenti')">Filtra </button>
+    				<button type="button" onclick = "eseguiFiltro('/admin/AdminFilterUtentiServlet','corpoTableUtenti')">Filtra </button>
     			</form>
     		</div>
     		<div id=listUtenti>

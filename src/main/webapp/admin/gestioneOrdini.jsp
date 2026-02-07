@@ -31,7 +31,7 @@
     					<option value = menoRecenti> meno recenti </option>
     					<option value = piuRecenti selected> più recenti </option>
     				</select>
-    				<button type="button" onclick= "eseguiFiltro('/admin/AdminFilterOrdini','corpoTableOrdini')">Filtra</button>
+    				<button type="button" onclick= "eseguiFiltro('/admin/AdminFilterOrdiniServlet','corpoTableOrdini')">Filtra</button>
     			</form>
     		</div>
     		<div id=listOrdini>

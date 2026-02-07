@@ -8,8 +8,7 @@
 </head>
 <body>
 	<c:if test= "${not empty utenti}">
-			<c:forEach var="u" items="${utenti}">
-								
+		<c:forEach var="u" items="${utenti}">				
 				<tr>
 					<td>${u.id}</td>
 					<td>${u.nome}</td>
@@ -31,7 +30,7 @@
 					<td><span id="errorEmail_${u.id }" class="error"></span>
 					</td>
 				</tr>	
-			</c:forEach>
+		</c:forEach>
 	</c:if>
 	<c:if test="${empty utenti}">
        	 <tr>

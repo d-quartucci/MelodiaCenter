@@ -20,12 +20,12 @@ import javax.sql.DataSource;
 
 import org.json.JSONArray;
 
-@WebServlet("/admin/AdminUpdateUtente")
-public class AdminUpdateUtente extends HttpServlet {
+@WebServlet("/admin/AdminUpdateUtenteServlet")
+public class AdminUpdateUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public AdminUpdateUtente() {
+    public AdminUpdateUtenteServlet() {
         super();
     }
 

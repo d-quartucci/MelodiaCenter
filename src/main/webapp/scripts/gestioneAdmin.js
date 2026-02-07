@@ -32,7 +32,7 @@ function applicaModifica(id){
 function salvaModifica(id, campo, valore){
 	
 	let xhr = new XMLHttpRequest();
-	const url = contextPath + "/admin/AdminUpdateUtente";
+	const url = contextPath + "/admin/AdminUpdateUtenteServlet";
 	
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
@@ -106,6 +106,7 @@ function eseguiFiltro(servletName, idCorpoTable){
 			
 	xhr.onreadystatechange = function (){
 		if(this.readyState == 4 && this.status == 200){
+			//Prendo la risposta dalla servlet e modifico il DOM con la risposta mandata
 			document.getElementById(idCorpoTable).innerHTML = this.responseText;
 		}
 	}

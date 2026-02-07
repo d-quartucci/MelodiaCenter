@@ -5,9 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Utente;
-import model.dao.UtenteDAO;
+import model.Ordine;
+import model.dao.OrdineDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,22 +15,21 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminUtenti")
-public class AdminUtenti extends HttpServlet {
+@WebServlet("/admin/AdminOrdiniServlet")
+public class AdminOrdiniServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
-    public AdminUtenti() {
+
+    public AdminOrdiniServlet() {
         super();
     }
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-		HttpSession session = request.getSession(false);
-		int adminId = ((Utente) session.getAttribute("utente")).getId();
-		UtenteDAO uDAO =  new UtenteDAO(ds);
+		OrdineDAO oDAO =  new OrdineDAO(ds);
 		
 		try {
-			ArrayList<Utente> utenti = uDAO.doRetrieveExcept(adminId);
+			ArrayList<Ordine> ordini = oDAO.doRetrieveAll();
 			//prendo la data del giorno corrente 
 			LocalDate oggi = LocalDate.now();
 			//prendo la data di inizio mese rispetto al giorno corrente
@@ -41,16 +39,18 @@ public class AdminUtenti extends HttpServlet {
 			//vaolori di date di default
 			request.setAttribute("defaultIn", inizioMese.toString());
 			request.setAttribute("defaultFin", oggi.toString());
-			request.setAttribute("utenti", utenti);
+			request.setAttribute("ordini", ordini);
 			
-			request.getRequestDispatcher("/admin/gestioneUtenti.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/gestioneOrdini.jsp").forward(request, response);
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore di accesso al gestore ordini: " + ex.getMessage());
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
+		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

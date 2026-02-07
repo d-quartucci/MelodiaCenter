@@ -5,8 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Ordine;
-import model.dao.OrdineDAO;
+import jakarta.servlet.http.HttpSession;
+import model.Utente;
+import model.dao.UtenteDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,21 +18,21 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-@WebServlet("/admin/AdminFilterOrdini")
-public class AdminFilterOrdini extends HttpServlet {
+@WebServlet("/admin/AdminFilterUtentiServlet")
+public class AdminFilterUtentiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public AdminFilterOrdini() {
+  
+    public AdminFilterUtentiServlet() {
         super();
     }
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-	
+		HttpSession session = request.getSession(false);
+		int adminId = ((Utente) session.getAttribute("utente")).getId();
+		
 		try {
 			//prendo i parametri dalla richiesta
 			String dataIn = request.getParameter("dataIn"); 
@@ -52,21 +53,23 @@ public class AdminFilterOrdini extends HttpServlet {
 	            dataFinDate = Timestamp.valueOf(dataFin + " 23:59:59");
 	        }
 	        
-	        OrdineDAO oDAO = new OrdineDAO(ds);
-			ArrayList <Ordine> ordini = oDAO.doRetrieveByFilter(dataInDate, dataFinDate, ord);
+	        UtenteDAO uDAO = new UtenteDAO(ds);
+			ArrayList <Utente> utenti = uDAO.doRetrieveByFilter(adminId,dataInDate, dataFinDate, ord);
 			
-			request.setAttribute("ordini", ordini);
-			request.getRequestDispatcher("/admin/CorpoTabellaOrdini.jsp").forward(request, response);
+			request.setAttribute("utenti", utenti);
+			request.getRequestDispatcher("/admin/CorpoTabellaUtenti.jsp").forward(request,response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore di utilizzo dei filtriAdmin: " + ex.getMessage());
             response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
+
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
+
 }
