@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Amministrazione Ordini</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script>const contextPath = "${pageContext.request.contextPath}";</script>
 		<script src="${pageContext.request.contextPath}/scripts/gestioneAdmin.js"></script>
+		<title>Gestione Ordini</title>
 	</head>
 	<body>
 	
@@ -20,7 +19,7 @@
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
     		<div id=filtriOrdiniAdmin>
-    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterOrdini"  method="GET" >
+    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet"  method="GET" >
     				<label for = "dataFrom">dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<label for = "dataTo">al: </label>
@@ -54,6 +53,5 @@
 		</main>
 		 <!-- FOOTER -->
     <%@ include file="/fragments/footer.jsp" %>
-    
 	</body>
 </html>

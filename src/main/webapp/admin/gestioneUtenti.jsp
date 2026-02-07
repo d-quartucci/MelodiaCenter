@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Amministrazione Utenti</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script>const contextPath = "${pageContext.request.contextPath}";</script>
 		<script src="${pageContext.request.contextPath}/scripts/gestioneAdmin.js"></script>
+		<title>Gestione Utenti</title>
 	</head>
 	<body>
 	
@@ -19,7 +18,7 @@
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
     		<div id=filtriUtentiAdmin>
-    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterUtenti" method="GET" >
+    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterUtentiServlet" method="GET" >
     				<label for = "dataFrom">Iscritto dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<label for = "dataTo">al: </label>
@@ -49,7 +48,6 @@
     				<tbody id= "corpoTableUtenti">
     					<%@ include file = "CorpoTabellaUtenti.jsp"%>
     				</tbody>
-			
     			</table>
     		</div>
 		</main>
