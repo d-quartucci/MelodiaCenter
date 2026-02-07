@@ -14,6 +14,8 @@ public class Prodotto implements Serializable {
 	private BigDecimal prezzoAttuale;
 	private String imgSrc; //URL dell'immagine
 	private boolean attivo;
+	private boolean evidenza;
+	private int quantitaVendute;
 	
 	public Prodotto() { };
 	
@@ -38,8 +40,14 @@ public class Prodotto implements Serializable {
 	public boolean isAttivo() { return attivo; }
 	public void setAttivo(boolean attivo) { this.attivo = attivo; }
 	
+	public boolean isEvidenza() { return evidenza; }
+	public void setEvidenza(boolean evidenza) { this.evidenza = evidenza; } 
+	
+	public int getQuantitaVendute() { return quantitaVendute; }
+	public void setQuantitaVendute(int quantitaVendute) { this.quantitaVendute = quantitaVendute; }
+	
 	public String toString() {
-		return "Prodotto [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + ", imgSrc=" + imgSrc + ", attivo=" + attivo + "]";
+		return "Prodotto [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + ", imgSrc=" + imgSrc + ", attivo=" + attivo + ", evidenza = " + evidenza + ", quantitaVendute = " + quantitaVendute + "]";
 	}
 
 }

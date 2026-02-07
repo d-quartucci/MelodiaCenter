@@ -12,6 +12,7 @@ import model.Ordine;
 import model.RigaOrdine;
 import model.Utente;
 import model.dao.OrdineDAO;
+import model.dao.ProdottoDAO;
 import model.dao.RigaOrdineDAO;
 
 import java.io.IOException;
@@ -62,6 +63,11 @@ public class CreateOrderServlet extends HttpServlet {
 			
 			//A questo punto creo i bean RigaOrdine e li inserisco nel DB
 			RigaOrdineDAO roDAO = new RigaOrdineDAO(ds);
+			
+			//Mi serve ad aggiornare le vendite del singolo prodotto nel DB
+			ProdottoDAO pDAO = new ProdottoDAO(ds);
+			
+			int temp;
 			//Per ogni elemento del carrello avremo una diversa RigaOrdine
 			for(CarrelloItem item : cartItems) {
 				RigaOrdine row = new RigaOrdine();
@@ -71,6 +77,11 @@ public class CreateOrderServlet extends HttpServlet {
 				row.setPrezzoAcq(item.getProdotto().getPrezzoAttuale().multiply(BigDecimal.valueOf(item.getQuantita())));
 				row.setQuant(item.getQuantita());
 				roDAO.doSaveOrUpdate(row);
+				
+				//Aggiungo la quantità comprata al numero di prodotti di quel tipo venduti
+				temp = item.getProdotto().getQuantitaVendute();
+				item.getProdotto().setQuantitaVendute(temp + row.getQuant());
+				pDAO.doSaveOrUpdate(item.getProdotto());
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();

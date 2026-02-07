@@ -77,7 +77,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	public synchronized void doSaveOrUpdate(Prodotto bean) throws SQLException{
 		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
 		if(bean.getId() > 0) {
-			String querySQL = "UPDATE prodotto SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=? WHERE ID=?";
+			String querySQL = "UPDATE prodotto SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=?, inEvidenza=?, QuantitaVendute = ? WHERE ID=?";
 		    try (Connection conn = ds.getConnection();
 		    		PreparedStatement ps = conn.prepareStatement(querySQL)) {   
 		    	ps.setString(1, bean.getNome());
@@ -86,14 +86,16 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 				ps.setString(4, bean.getImgSrc());
 				ps.setBoolean(5, bean.isAttivo());
 				ps.setInt(6, bean.getCategoriaId());
-				ps.setInt(7, bean.getId());
+				ps.setBoolean(7, bean.isEvidenza());
+				ps.setInt(8, bean.getQuantitaVendute());
+				ps.setInt(9, bean.getId());
 				ps.executeUpdate();
 		    }
 		}
 		
 		//Altrimenti facciamo SAVE
 		else {
-			String querySQL = "INSERT INTO prodotto (Nome, Descrizione, PrezzoAttuale, Immagine, isAttivo, CategoriaId) VALUES (?, ?, ?, ?, ?, ?)";
+			String querySQL = "INSERT INTO prodotto (Nome, Descrizione, PrezzoAttuale, Immagine, isAttivo, CategoriaId, inEvidenza, QuantitaVendute) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			try (Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(querySQL))
 			{
@@ -103,6 +105,8 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 				ps.setString(4, bean.getImgSrc());
 				ps.setBoolean(5, bean.isAttivo());
 				ps.setInt(6, bean.getCategoriaId());
+				ps.setBoolean(7, bean.isEvidenza());
+				ps.setInt(8, bean.getQuantitaVendute());
 				ps.executeUpdate();
 			}
 		}
@@ -125,6 +129,36 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	
 	public synchronized ArrayList<Prodotto> doRetrieveAllActive() throws SQLException{
 		String querySQL = "SELECT * FROM prodotto WHERE IsAttivo=TRUE";
+		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL);
+				ResultSet rs = ps.executeQuery()){
+			while(rs.next()) {
+				Prodotto u = mapResultSetToBean(rs);
+				listaProdotti.add(u);
+			}
+		}
+		return listaProdotti;
+	}
+	
+	public synchronized ArrayList<Prodotto> doRetrieveInEvidenza() throws SQLException{
+		String querySQL = "SELECT * FROM prodotto WHERE IsAttivo=TRUE AND InEvidenza=TRUE";
+		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL);
+				ResultSet rs = ps.executeQuery()){
+			while(rs.next()) {
+				Prodotto u = mapResultSetToBean(rs);
+				listaProdotti.add(u);
+			}
+		}
+		return listaProdotti;
+	}
+	
+	public synchronized ArrayList<Prodotto> doRetrieveBestSellers() throws SQLException{
+		String querySQL = "SELECT * FROM prodotto WHERE IsAttivo=TRUE ORDER BY QuantitaVendute DESC LIMIT 3";
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
 		
 		try(Connection conn = ds.getConnection();
