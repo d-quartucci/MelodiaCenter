@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +34,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	public synchronized ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
 		//L'ORDER BY non può essere parametrica, quindi lo definiamo prima in questo modo (SQL Injection)
 		String ordineQuery = "DESC"; //Il default è decrescente
-		
+		BigDecimal maxPrezzo = new BigDecimal(max);
 		if(ord.equals("prezzoCrescente")) {
 			ordineQuery = "ASC";
 		}
@@ -41,12 +42,12 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		String queryGenerica = "SELECT * FROM Prodotto WHERE IsAttivo=TRUE AND Nome LIKE ? AND PrezzoAttuale <= ? ORDER BY PrezzoAttuale " + ordineQuery;
 		String querySpecifica = "SELECT * FROM Prodotto WHERE IsAttivo=TRUE AND Nome LIKE ? AND CategoriaID = ? AND PrezzoAttuale <= ? ORDER BY PrezzoAttuale " + ordineQuery;
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
-		//Se non ho un filtro sulla categoria, allora utilizzo la query generica
-		if(ctg.equals("tutte")) {
+		//Se è stato selezionato "tutte" nella categoria, non avrò filtro sulla categoria
+		if(ctg.equals("0")) {
 			try(Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(queryGenerica)){
 				ps.setString(1, "%" + r + "%");
-				ps.setInt(2, Integer.parseInt(max)); //I valori del range sono tutti interi
+				ps.setBigDecimal(2, maxPrezzo);
 				try(ResultSet rs = ps.executeQuery()){
 					while(rs.next()) {
 						Prodotto p = mapResultSetToBean(rs);
@@ -61,7 +62,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 					PreparedStatement ps = conn.prepareStatement(querySpecifica)){
 				ps.setString(1, "%" + r + "%");
 				ps.setInt(2, Integer.parseInt(ctg));
-				ps.setInt(3, Integer.parseInt(max));
+				ps.setBigDecimal(3, maxPrezzo);
 				try(ResultSet rs = ps.executeQuery()){
 					while(rs.next()) {
 						Prodotto p = mapResultSetToBean(rs);
@@ -76,7 +77,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 	public synchronized void doSaveOrUpdate(Prodotto bean) throws SQLException{
 		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
 		if(bean.getId() > 0) {
-			String querySQL = "UPDATE utente SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=? WHERE ID=?";
+			String querySQL = "UPDATE prodotto SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=? WHERE ID=?";
 		    try (Connection conn = ds.getConnection();
 		    		PreparedStatement ps = conn.prepareStatement(querySQL)) {   
 		    	ps.setString(1, bean.getNome());
@@ -92,7 +93,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		
 		//Altrimenti facciamo SAVE
 		else {
-			String querySQL = "INSERT INTO utente (Nome, Descrizione, PrezzoAttuale, Immagine, isAttivo, CategoriaId) VALUES (?, ?, ?, ?, ?, ?)";
+			String querySQL = "INSERT INTO prodotto (Nome, Descrizione, PrezzoAttuale, Immagine, isAttivo, CategoriaId) VALUES (?, ?, ?, ?, ?, ?)";
 			try (Connection conn = ds.getConnection();
 					PreparedStatement ps = conn.prepareStatement(querySQL))
 			{

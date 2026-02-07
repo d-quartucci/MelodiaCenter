@@ -16,8 +16,8 @@
 	<jsp:include page="/fragments/header.jsp"/>
 	<h1>Sfoglia il nostro catalogo!</h1>
 	<div id="risultati">
-		<c:if test="${not empty prodotti}">
-			<c:forEach var="p" items="${prodotti}">
+		<c:if test="${not empty listaProdotti}">
+			<c:forEach var="p" items="${listaProdotti}">
 				<div class="contenitoreProdotto">
 					<div class="immagineProdotto">
 						<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
@@ -29,32 +29,35 @@
 				</div>
 			</c:forEach>
 		</c:if>
-		<c:if test="${empty prodotti}">
+		<c:if test="${empty listaProdotti}">
 			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
 		</c:if>
 	</div>
 	<div id="formFiltriContainer">
-		<form name="formFiltri" action="${pageContext.request.contextPath}/FilterServlet" method="GET">
+		<form name="formFiltri" action="${pageContext.request.contextPath}/CatalogServlet" method="POST">
 			<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Ricerca..." value="${param.barraDiRicerca}"><br>
 			
 			<label for="ordinaPrezzo">Ordina per prezzo:</label>
 			<select id="ordinaPrezzo" name="ordinaPrezzo">
 				<option value="prezzoDecrescente">Prezzo Decrescente</option>
-				<option value="prezzoCrescente" ${param.ordinaPrezzo == "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
+				<option value="prezzoCrescente" ${param.ordinaPrezzo eq "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
 			</select><br>
 			
 			<label for="categoria">Seleziona la categoria:</label>
 			<select id="categoria" name="categoria">
-				<option value="tutte">Tutte</option>
-				<option value="1" ${param.categoria == "1" ? "selected" : ""}>Chitarra</option> <!-- Questi valori corrispondono all'ID su Database per la corrispondente categoria -->
-				<option value="2" ${param.categoria == "2" ? "selected" : ""}>Pianoforte</option> <!-- Il motivo della scelta è legato alla natura dell'ID autoincrementante -->
-				<option value="3" ${param.categoria == "3" ? "selected" : ""}>Percussione</option>
-				<option value="4" ${param.categoria == "4" ? "selected" : ""}>A fiato</option>
+				<!-- "Tutte" e la categoria di default -->
+				<option value="0" ${param.categoria == null || param.categoria == '0' ? 'selected' : ''}>Tutte</option>
+				<!-- Le altre categorie -->
+				<c:forEach var="c" items="${listaCategorie}">
+				<!--  Controllo che il parametro già inserito in passato non sia nullo e che esso corrisponda all'id della categoria rappresentata dall'option -->
+					<option value="${c.id}" ${param.categoria == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
+				</c:forEach>
 			</select><br>
 			
-			<label for="prezzoMax">Prezzo massimo:</label>
-			<input id="prezzoMax" name="prezzoMax" type="range" min="0" max="10000" step="250" value=${param.prezzoMax == null ? "5000" : param.prezzoMax} oninput="aggiornaSpan()"> 
-			<span id="prezzoMaxVisual">${param.prezzoMax == null ? "5000" : param.prezzoMax}€</span><br>
+			<label for="prezzoFiltro">Prezzo massimo:</label>
+			<input id="prezzoFiltro" name="prezzoFiltro" type="range" min="0" max="${prezzoMax}" step="500" 
+				value="${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}" oninput="aggiornaSpan()"> 
+			<span id="prezzoFiltroVisual">${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}€</span><br>
 			
 			<button type="submit">Applica filtri</button>
 		</form>
