@@ -1,6 +1,19 @@
 function abilitaModifica(id){
 	
-	document.getElementById("email_"+id).disabled = false;
+	const bMod = document.getElementById("mod_"+id);
+	
+	if(bMod.innerText == "Modifica" ){
+		
+		document.getElementById("email_"+id).disabled = false;
+		
+		bMod.innerText = "Applica";
+		
+	}else if (bMod.innerText == "Applica" ){
+		applicaModifica(id);
+		document.getElementById("email_"+id).disabled = true;
+
+		bMod.innerText = "Modifica";
+	}
 	
 }
 
@@ -35,10 +48,7 @@ function salvaModifica(id, campo, valore){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
-				console.log(this.responseText);
-				
-			}else{
-				console.log(this.responseText);
+				alert(this.responseText);
 			}
 		}
 	}

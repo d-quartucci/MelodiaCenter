@@ -19,13 +19,13 @@
     
     <main>
     	<div>
-    		<form action = "/admin/AdminFormServlet" method = "post" enctype = "multipart/form-data">
+    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminProdottiServlet">
     			<fieldset>
     				<legend>Inserisci Nuovo Prodotto</legend>
     				<label for = "nome">Nome: </label>
     				<input type = "text" id="nome" name="nome" placeholder = "Nome prodotto" required>
-    				<select name="categoria" required>
-        				<option value="0">Seleziona Categoria</option>
+    				<select id = "categoria" name="categoria" required>
+        				<option value="">Seleziona Categoria</option>
         				<c:forEach var="c" items="${categorie}">
 							<option value="${c.id}">${c.nome}</option>
 						</c:forEach>
@@ -36,7 +36,7 @@
     				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
     				<label for = "image">Immagine </label><br>
     				
-    				<button type= button onclick = "salvaProdotto()">Salva</button>
+    				<button type="submit" id="submit">Salva</button>
     			</fieldset>
     		</form>
     	</div>

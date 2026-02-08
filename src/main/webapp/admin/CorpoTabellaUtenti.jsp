@@ -13,11 +13,11 @@
 					<td>${u.id}</td>
 					<td>${u.nome}</td>
 					<td>${u.cognome}</td>
-					<td><input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>			
-						<button type = "button" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
-						<button type = "button" id= "sav_${u.id}" onclick = "applicaModifica(${u.id})"> Applica</button>
-					</td>	
 					<td>
+						<input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>			
+						<button type = "button" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
+					</td>	
+					<td id="TastoMod">
 						<select id= "ruolo_${u.id}" > 
 							<option value = "USER" ${u.ruolo == "USER" ? "selected" : ""} > USER</option>
 							<option value = "ADMIN" ${u.ruolo == "ADMIN" ? "selected" : ""}> ADMIN</option>
@@ -27,7 +27,8 @@
 					<td>
 						${u.dataRegistrazione} 
 					</td>
-					<td><span id="errorEmail_${u.id }" class="error"></span>
+					<td id = "ErrorSpan">
+						<span id="errorEmail_${u.id }" class="error"></span>
 					</td>
 				</tr>	
 		</c:forEach>

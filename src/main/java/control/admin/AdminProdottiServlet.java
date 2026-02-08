@@ -11,6 +11,7 @@ import model.dao.CategoriaDAO;
 import model.dao.ProdottoDAO;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class AdminProdottiServlet extends HttpServlet {
         super();
     }
 
+//Mostra TUTTI i prodotti nel database
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
@@ -45,10 +47,39 @@ public class AdminProdottiServlet extends HttpServlet {
 		}
 	}
 
-
+//Prende i dati dal form, li salva nel DATABASE e passa la logica per mostrala viene rendirizzata alla servlet stessa che effettua la GET
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
+		
+		try {
+		
+			String nome = request.getParameter("nome");
+			String descr = request.getParameter("descr");
+			int catg = Integer.parseInt(request.getParameter("categoria"));
+			BigDecimal prezzo = new BigDecimal (request.getParameter("prezzo"));
+		
+			ProdottoDAO pDAO = new ProdottoDAO(ds);
+			Prodotto prodotto = new Prodotto();
+		
+			prodotto.setNome(nome);
+			prodotto.setDescrizione(descr);
+			prodotto.setPrezzoAttuale(prezzo);
+			prodotto.setCategoriaId(catg);
+			prodotto.setAttivo(true);
+			prodotto.setEvidenza(false);
+		
+			pDAO.doSaveOrUpdate(prodotto);
+			
+			ArrayList<Prodotto>	prodotti = pDAO.doRetrieveAll();		
+			request.setAttribute("prodotti", prodotti);
+			response.sendRedirect(request.getContextPath() + "/admin/AdminProdottiServlet");
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Errore Update: " + ex.getMessage());
+            response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+		}
 	}
 
 }

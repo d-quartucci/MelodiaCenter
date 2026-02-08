@@ -23,15 +23,18 @@
 						<option value = "false" ${p.attivo == "false" ? "selected" : ""}>non attivo</option>
 					</select>
 				</td>
-				<th>
+				<td>
 					<select id= "evidenza_${p.id}" disabled> 
 						<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >attivo</option>
 						<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>non attivo</option>
 					</select>
-				</th>
-				<th>
+				</td>
+				<td id= "tastoMod">
 					<button type = "button" id= "mod_${p.id}" onclick = "abilitaModifica(${p.id})"> Modifica</button>
-				</th>
+				</td>
+				<td id= "ErrorSpan">
+					<span id="error_${p.id}" class="error"></span>
+				</td>
 			</tr>	
 		</c:forEach>
 	</c:if>
