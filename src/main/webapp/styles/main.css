@@ -1,16 +1,87 @@
 @charset "UTF-8";
-#benvenuto {
-	clear: both;
-	text-align: center;
+
+* {
+	font-family: Arial, sans-serif;
 }
 
-#bestSellers img{
+body {
+	font-size: 100%;
+	color: #333333;
+	background-color: #D1D1D1;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #333333;
+	text-decoration: none;
+}
+
+a:hover {
+	color: white;
+	background-color: #333333;
+}
+
+/* Sezione immagine prodotti */
+
+.immagineProdotto img{
 	max-height: 250px;
 	max-width: 250px;
 	height: auto;
-	width : auto;
+	width: auto;
 	border: 3px dashed gray;
-    display: block;
+}
+
+/* Sezione home */
+#benvenuto {
+	clear: both;
+	text-align: center;
+	background-color: white;
+	border: 3px dashed gray;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	width: 30%;
+}
+
+#bestSellers #benvenuto {
+	padding-left: 20px;
+}
+
+#bestSellers .contenitoreProdotto {
+	width: 100%;
+	height: 275px;
+	margin-bottom: 50px;
+	clear: both;
+	border-bottom: 3px dotted #333333;
+	border-radius: 2px;
+	position: relative;
+}
+
+#bestSellers .informazioniProdotto {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: white;
+	border: 3px dashed gray;
+	width:30%;
+	text-align: center;
+}
+
+#sezioneCategorie, #bestSellers {
+	width: 60%;
+}
+
+#sezioneCategorie ul {
+	list-style-image: url('../images/ChiaveSol.png');
+}
+
+#sezioneCategorie ul li {
+	line-height: 2em;
+	margin-bottom:10px;
+}
+
+#sezioneCategorie hr {
+	clear: none;
 }
 
 #sezioneCategorie a {
@@ -19,7 +90,10 @@
 }
 
 #prodottiEvidenziati {
-	float: right;
+	position: absolute;
+	right: 0;
+	width: 20%;
+	text-align: center;
 	margin: 0 1% 20px 0;
 	background-color: white;
 	padding: 10px;
@@ -41,22 +115,157 @@
 	line-height: 0.5em;
 }
 
-#prodottiEvidenziati .contenitoreProdotto {
+@media screen and (max-width: 1200px){
+	#prodottiEvidenziati h2 {
+		font-size: 1.2em;
+	}
+	
+	#benvenuto {
+		width:60%;
+	}
+	
+	#prodottiEvidenziati .immagineProdotto img {
+		max-height: 100px;
+		max-width: 100px;
+	}
+	
+	#bestSellers .immagineProdotto img {
+		max-height: 150px;
+		max-width: 150px;
+	}
+	
+	#bestSellers .informazioniProdotto {
+		width:40%;
+		padding-right: 10px;
+	}
+}
+
+@media screen and (max-width: 480px){
+	#prodottiEvidenziati .immagineProdotto img {
+		max-height: 75px;
+		max-width: 75px;
+	}
+	
+	#bestSellers .immagineProdotto img {
+		max-height: 100px;
+		max-width: 100px;
+	}
+}
+
+/* Sezione catalogo */
+
+#sezioneFiltriCatalog {
+	position: fixed;
+	top: 20%;
+	right: 1%;
+	background-color: white;
+	border: 3px dashed gray;
+	padding: 1%;
+	padding-right: 0;
+	width: 25%;
+	min-width: 200px; /* Per non farla diventare troppo piccola */
+}
+
+#sezioneFiltriCatalog #barraDiRicerca, #sezioneFiltriCatalog select {
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+#sezioneFiltriCatalog #barraDiRicerca {
+	width: 87%; 
+}
+
+#sezioneFiltriCatalog select {
+	width: 90%
+}
+
+#sezioneFiltriCatalog label {
+	display: block;
+	margin-top: 10px;
+	width: 90%;
+}
+
+#sezioneFiltriCatalog #prezzoFiltro {
+	width: 75%;
+	margin-top: 15px;
+}
+
+#sezioneFiltriCatalog #prezzoFiltroVisual {
+	display: inline-block;
+	width: 15%;
+	font-weight: bold;
+}
+
+#sezioneFiltriCatalog button {
+	width: 90%;
+	margin-top: 20px;
+	padding: 10px 0;
+}
+
+/* Sezione contenitore prodotti catalogo */
+
+.contenitoreProdottoCatalogo {
+	width: 60%;
+	height: 275px;
+	margin-bottom: 50px;
+	clear: both;
+	border-bottom: 3px solid gray;
+	position: relative;
+}
+
+.contenitoreProdottoCatalogo .informazioniProdotto {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+	border: 3px dashed gray;
+	width:30%;
 	text-align: center;
 }
 
-.immagineProdotto img{
-	max-height: 250px;
-	max-width: 250px;
-	height: auto;
-	width : auto;
-	border: 3px dashed gray;
+.contenitoreProdottoCatalogo .immagineProdotto {
+	padding-left: 20px;
 }
 
-#schedaProdotto .immagineProdotto {
-	float: left;
-	margin: 10px;
+@media screen and (max-width: 1200px){
+	
+	.contenitoreProdottoCatalogo .immagineProdotto img {
+		max-height: 150px;
+		max-width: 150px;
+	}
+	
+	.contenitoreProdottoCatalogo .informazioniProdotto {
+		width:40%;
+		padding-right: 10px;
+	}
 }
+
+@media screen and (max-width: 550px){
+	.contenitoreProdottoCatalogo .immagineProdotto img {
+		max-height: 75px;
+		max-width: 75px;
+	}
+	
+	.contenitoreProdottoCatalogo .immagineProdotto img {
+		max-height: 100px;
+		max-width: 100px;
+	}
+	
+	#sezioneFiltriCatalog {
+		position: static;
+		width: 90%;
+		margin: 5%;
+	}
+	
+	.contenitoreProdottoCatalogo {
+		width: 90%;
+		margin: 5%;
+	}
+}
+
+/* Sezione Pagina Prodotto */
+
+/* Sezione funzionalità prodotto */
 
 #sezioneFunzionalità {
 	clear: both;
@@ -72,4 +281,6 @@
 .recenzione p {
 	font-weight: bold;
 }
+
+
 

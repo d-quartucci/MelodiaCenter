@@ -40,12 +40,17 @@
 
 <section id="sezioneCategorie">
 	<h2>Seleziona la categoria che fa per te e comincia ad esplorare il nostro catalogo!</h2>
+	<ul id="listaCategorie">
 	<c:forEach var="c" items="${listaCategorie}">
-		<div id="categoria-${c.id}">
+		<li id="categoria-${c.id}">
 			<a href="${pageContext.request.contextPath}/CatalogServlet?categoria=${c.id}">${c.nome}</a>
-		</div>
+		</li>
 	</c:forEach>
+	</ul>
+	<hr>
 </section>
+
+
 
 <section id="bestSellers">
 	<h2>I nostri bestsellers!</h2>
@@ -55,7 +60,7 @@
 				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 			</div>
 			<div class="informazioniProdotto">
-				<p><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></p>
+				<h3><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></h3>
 				<p class="prezzo">${p.prezzoAttuale}€</p>
 				<p class="descrizioneProdotto">${p.descrizione}</p>
 			</div>

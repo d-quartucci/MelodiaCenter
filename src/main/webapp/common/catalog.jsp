@@ -15,25 +15,9 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	<h1>Sfoglia il nostro catalogo!</h1>
-	<div id="risultati">
-		<c:if test="${not empty listaProdotti}">
-			<c:forEach var="p" items="${listaProdotti}">
-				<div class="contenitoreProdotto">
-					<div class="immagineProdotto">
-						<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
-					</div>
-					<div class="informazioniProdotto">
-						<a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a>
-						<p class="prezzo">${p.prezzoAttuale}€</p>
-					</div>
-				</div>
-			</c:forEach>
-		</c:if>
-		<c:if test="${empty listaProdotti}">
-			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
-		</c:if>
-	</div>
-	<div id="formFiltriContainer">
+	
+	<section id="sezioneFiltriCatalog">
+		<h2>Filtra tra i prodotti:</h2>
 		<form name="formFiltri" action="${pageContext.request.contextPath}/CatalogServlet" method="POST">
 			<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Ricerca..." value="${param.barraDiRicerca}"><br>
 			
@@ -61,7 +45,27 @@
 			
 			<button type="submit">Applica filtri</button>
 		</form>
-	</div>
+	</section>
+	
+	<section id="risultati">
+		<c:if test="${not empty listaProdotti}">
+			<c:forEach var="p" items="${listaProdotti}">
+				<div class="contenitoreProdottoCatalogo">
+					<div class="informazioniProdotto">
+						<h3><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></h3>
+						<p class="prezzo">${p.prezzoAttuale}€</p>
+					</div>
+					<div class="immagineProdotto">
+						<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty listaProdotti}">
+			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
+		</c:if>
+	</section>
+	
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="/fragments/header.jsp"/>
-<div id="schedaProdotto">
+<section id="schedaProdotto">
 <div class="immagineProdotto">
 	<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
 </div>
@@ -21,22 +21,22 @@
 	<p id="descProdotto">${prodotto.descrizione}</p>
 	<p id="prezzo">${prodotto.prezzoAttuale}€</p>
 </div>
-</div>
+</section>
 
-<div id="sezioneFunzionalità" name="sezioneFunzionalità">
+<section id="sezioneFunzionalità">
 
-	<div id="sezioneCarrello" name="sezioneCarrello">
+	<section id="sezioneCarrello">
 		<span id="aggiuntoSpan"></span>
 		<button id="pulsanteCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
-	</div>
+	</section>
 	
-	<div id="sezioneWishlist" name="sezioneWishlist">
+	<section id="sezioneWishlist">
 		<c:if test="${isLogged}">
 			<button id="pulsanteWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "Già in wishlist" : "Desidero..."}</button>
 		</c:if>
-	</div>
+	</section>
 	
-	<div id="sezioneConsulenza" name="sezioneConsulenza">
+	<section id="sezioneConsulenza">
 		<c:if test="${isLogged}">
 			<form name="richiestaConsulenza" action="${pageContext.request.contextPath}/user/CreateConsulenzaServlet?idProd=${prodotto.id}" method="POST">
 				<h3>Vuoi richiedere consulenza su questo prodotto?</h3>
@@ -44,17 +44,17 @@
 				<button id="pulsanteConsulenza" name="pulsanteConsulenza" type="submit" disabled>Invia!</button>
 			</form>
 		</c:if>
-	</div>
+	</section>
 	
-	<div id="sezioneNotLogged" name="sezioneNotLogged">
+	<section id="sezioneNotLogged">
 		<c:if test="${!isLogged}">
 			<h4> Per poter tenere traccia dei tuoi prodotti preferiti e fare domande al nostro team, effettua il <a href="${pageContext.request.contextPath}/LoginServlet">login</a>!</h4>
 		</c:if>
-	</div>
-</div>
+	</section>
+</section>
 
-<div id="sezioneRecensioni" name="sezioneRecensioni">
-	<div id="leggiRecensioni" name="leggiRecensioni">
+<section id="sezioneRecensioni">
+	<section id="leggiRecensioni">
 		<c:if test="${empty listaRecensioni}">
 			<h3>Non ci sono ancora recensioni per questo prodotto!</h3>
 		</c:if>
@@ -67,18 +67,18 @@
 				</div>
 			</c:forEach>
 		</c:if>
-	</div>
+	</section>
 	<c:if test="${puoRecensire}">
-		<div id="scriviRecensione" name="scriviRecensione">
+		<section id="scriviRecensione">
 			<form name="inviaRecensione" method="POST" action="${pageContext.request.contextPath}/user/CreateRecensioneServlet?prodottoId=${prodotto.id}">
 				<p>Hai acquistato questo prodotto in precendenza... dicci la tua!</p>
 				<textarea id="recensioneInput" name="recensioneInput" placeholder="Scrivi qui la tua recensione..." oninput="verificaContenuto('recensioneInput', 'recensioneSubmit')"></textarea>
 				<input id="voto" name="voto" type="range" min="1" max="5" step="1" value="5" oninput="aggiornaSpan()"> <span id="spanVoto" name="spanVoto">5</span>
 				<button id="recensioneSubmit" name="recensioneSubmit" type="submit" disabled>Invia!</button>
 			</form>
-		</div>
+		</section>
 	</c:if>
-</div>
+</section>
 	
 <jsp:include page="/fragments/footer.jsp"/>
 </body>

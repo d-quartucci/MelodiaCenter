@@ -1,16 +1,4 @@
 @charset "UTF-8";
-* {
-	font-family: Arial, sans-serif;
-}
-
-body {
-	font-size: 100%;
-	color: #333333;
-	background-color: #D1D1D1;
-	margin: 0;
-	padding: 0;
-}
-
 #headerPrincipale {
 	padding: 0.6em 0.6em 1.25em;
 	background-color: #2f2f2f;
