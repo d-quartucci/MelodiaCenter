@@ -26,16 +26,16 @@
     				<input type = "text" id="nome" name="nome" placeholder = "Nome prodotto" required>
     				<select name="categoria" required>
         				<option value="0">Seleziona Categoria</option>
-        				<option value="1">Chitarra</option>
-        				<option value="2">Percussioni</option>
-        				<option value="3">A fiato</option>
-        				<option value="4">Pianoforte</option>
+        				<c:forEach var="c" items="${categorie}">
+							<option value="${c.id}">${c.nome}</option>
+						</c:forEach>
     				</select><br>
     				<label for = "prezzo">Prezzo: </label>
     				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="0" placeholder= "0.00" required><br>
     				<label for = "descrizione">Descrizione: </label><br>
     				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
     				<label for = "image">Immagine </label><br>
+    				
     				<button type= button onclick = "salvaProdotto()">Salva</button>
     			</fieldset>
     		</form>
@@ -51,10 +51,12 @@
 						<th>Prezzo</th>
 						<th>Immagine</th>
 						<th>Descrizione</th>
+						<th>Quantità Vendute</th>
 						<th>Attivo</th>
+						<th>Evidenza</th>
     				</tr>
     			</thead>
-    			<tbody id= "corpoTablePrdotti">
+    			<tbody id= "corpoTableProdotti">
     				<%@ include file = "CorpoTabellaProdotti.jsp"%>
     			</tbody>
     		</table>

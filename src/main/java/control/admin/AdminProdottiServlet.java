@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Categoria;
 import model.Prodotto;
+import model.dao.CategoriaDAO;
 import model.dao.ProdottoDAO;
 
 import java.io.IOException;
@@ -26,10 +28,13 @@ public class AdminProdottiServlet extends HttpServlet {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
 		ProdottoDAO pDAO = new ProdottoDAO(ds);
+		CategoriaDAO cDAO = new CategoriaDAO(ds);
 		
 		try {
 			ArrayList<Prodotto> prodotti = pDAO.doRetrieveAll();
+			ArrayList<Categoria>categorie = cDAO.doRetrieveAll();
 			
+			request.setAttribute("categorie", categorie);
 			request.setAttribute("prodotti", prodotti);
 			request.getRequestDispatcher("/admin/gestioneProdotti.jsp").forward(request, response);
 			

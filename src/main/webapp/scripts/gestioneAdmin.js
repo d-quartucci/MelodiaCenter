@@ -1,8 +1,6 @@
 function abilitaModifica(id){
 	
-	const emailId= document.getElementById("email_"+id);
-	
-	emailId.disabled = false;
+	document.getElementById("email_"+id).disabled = false;
 	
 }
 
