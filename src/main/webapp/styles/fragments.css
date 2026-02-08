@@ -93,6 +93,14 @@ hr {
 	clear: both;
 }
 
+#footerContainer {
+	margin-left: 20px;
+}
+
+#footerCR {
+	text-align: center;
+}
+
 @media screen and (max-width: 1200px) {
 	.logo{
 		display: block;
@@ -118,13 +126,17 @@ hr {
 }
 
 @media screen and (max-width: 960px) {
-	.ricerca {
+	.navLinks {
 		display: none;
 	}
 }
 
 @media screen and (max-width: 650px) {
 	.userArea {
+		float: left;
+	}
+	
+	.ricerca {
 		display: none;
 	}
 }

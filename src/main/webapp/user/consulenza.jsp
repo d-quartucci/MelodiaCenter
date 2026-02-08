@@ -12,26 +12,36 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	
-	<h1>Consulenza #${consulenza.id}</h1>
-	Messaggio dell'utente:
-	<div id="messaggioUtente">
-		<label for="richiestaUtente"></label>
-		<textarea name="richiestaUtente" id="richiestaUtente" disabled>${consulenza.messUtente}</textarea>
-	</div>
+	<h1 id="presentazioneConsulenza">Consulenza #${consulenza.id}</h1>
 	
+	<section id="sezioneMessaggiConsulenza">
+		<section id="sezioneMessaggiUtente">
+			<div id="messaggioUtente">
+				<h2>Messaggio dell'utente:</h2>
+				<textarea name="richiestaUtente" id="richiestaUtente" disabled>${consulenza.messUtente}</textarea>
+			</div>
+		</section>
+		
 	<c:if test="${not empty consulenza.rispAdmin}">
-		<div name="messaggioAdmin" id="messaggioAdmin">
-			<label for="rispostaAdmin">Risposta dell'admin:</label>
-			<textarea name="rispostaAdmin" id="rispostaAdmin" disabled>${consulenza.rispAdmin}</textarea>
-		</div>
+		<section id="sezioneRispostaAdmin">
+			<div id="messaggioAdmin">
+				<h2>Risposta dell'admin:</h2>
+				<textarea name="rispostaAdmin" id="rispostaAdmin" disabled>${consulenza.rispAdmin}</textarea>
+			</div>
+		</section>
 	</c:if>
 	
+	</section>
+	
 	<c:if test="${isAdmin}">
-		<form name="aggiornaRispostaForm" method="POST" action="${pageContext.request.contextPath}/admin/RispostaConsulenzaServlet?consId=${consulenza.id}">
-			<label for="aggiornaRisposta"></label>
-			<textarea id="messaggioRisposta" name="messaggioRisposta" placeholder="Inserisci qui la risposta..."></textarea>
-			<button id="pulsanteRisposta" name="pulsanteRisposta" type="submit">Invia risposta</button>
-		</form>
+		<section id="rispondiConsulenza">
+		<h2>Rispondi all'utente, o aggiorna la risposta:</h2>
+			<form name="aggiornaRispostaForm" method="POST" action="${pageContext.request.contextPath}/admin/RispostaConsulenzaServlet?consId=${consulenza.id}">
+				<label for="aggiornaRisposta"></label>
+				<textarea id="messaggioRisposta" name="messaggioRisposta" placeholder="Inserisci qui la risposta..."></textarea>
+				<button id="pulsanteRisposta" name="pulsanteRisposta" type="submit">Invia risposta</button>
+			</form>
+		</section>
 	</c:if>
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>

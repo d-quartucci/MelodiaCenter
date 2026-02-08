@@ -8,15 +8,15 @@
 <body>
 <footer>
 <hr>
-    <div class="footerContainer">
+    <div id="footerContainer">
 
-        <div class="footerInfo">
+        <div id="footerInfo">
             <p>
                 <strong>MelodiaCenter</strong>: Negozio online di strumenti musicali.<br>
             </p>
         </div>
 
-        <div class="footerLinkUtili">
+        <div id="footerLinkUtili">
             <h4>Link utili</h4>
             <ul>
                 <li>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="footerCR">
+    <div id="footerCR">
         <p>© 2025 MelodiaCenter – Progetto universitario</p>
     </div>
 </footer>

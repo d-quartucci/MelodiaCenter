@@ -14,7 +14,7 @@
 </head>
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
-	<h1>Sfoglia il nostro catalogo!</h1>
+	<h1 id="presentazioneCatalogo">Sfoglia il nostro catalogo!</h1>
 	
 	<section id="sezioneFiltriCatalog">
 		<h2>Filtra tra i prodotti:</h2>
@@ -39,7 +39,7 @@
 			</select><br>
 			
 			<label for="prezzoFiltro">Prezzo massimo:</label>
-			<input id="prezzoFiltro" name="prezzoFiltro" type="range" min="0" max="${prezzoMax}" step="500" 
+			<input id="prezzoFiltro" name="prezzoFiltro" type="range" min="0" max="${prezzoMax}" step="250" 
 				value="${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}" oninput="aggiornaSpan()"> 
 			<span id="prezzoFiltroVisual">${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}€</span><br>
 			

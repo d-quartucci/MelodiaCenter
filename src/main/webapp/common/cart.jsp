@@ -13,43 +13,44 @@
 </head>
 <body>
 <jsp:include page="/fragments/header.jsp"/>
-<h1>Gestisci il tuo carrello!</h1>
+<h1 id="introduzioneCarrello">Gestisci il tuo carrello!</h1>
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
-<div id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
-    <h3>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
-</div>
+<section id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
+    <h2>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+</section>
 
 <!-- Sezione mostrata quando il carrello non è vuoto -->
 <c:if test="${not empty carrello.listaItem}">
-<div id="sezioneCarrello">
-<h2 id="presentazioneCarrello">Ecco i tuoi prodotti:</h2>
+<section id="sezioneCarrello">
+	<h2 id="presentazioneCarrello">Ecco i tuoi prodotti:</h2>
 
-<!-- Tabella con tutti i prodotti inseriti nel carrello -->
-<table id="tabellaCarrello" border="1">
-	<tr>
-		<th>Nome</th>
-		<th>Prezzo</th>
-		<th>Quantità</th>
-		<th></th>
-	</tr>
+	<!-- Tabella con tutti i prodotti inseriti nel carrello -->
+	<table id="tabellaCarrello">
 	
-	<c:forEach var="item" items="${carrello.listaItem}">
-		<tr id="tr-${item.prodotto.id}">
-			<td>${item.prodotto.nome}</td>
-			<td>${item.prodotto.prezzoAttuale}</td>
-			<td>
-				<button id="${item.prodotto.id}RimuoviUno" onclick="rimuoviUno(${item.prodotto.id})">-</button>
-				<input id="${item.prodotto.id}Quantita" type="text" size="3" value="${item.quantita}" oninput="cambiaQuantita(${item.prodotto.id})">
-				<button id="${item.prodotto.id}AggiungiUno" onclick="aggiungiUno(${item.prodotto.id})">+</button>
-			</td>
-			<td><button name="rimuoviDalCarrello" onclick="rimuoviDalCarrello(${item.prodotto.id})">Rimuovi!</button></td>
+		<tr>
+			<th>Nome</th>
+			<th>Prezzo</th>
+			<th>Quantità</th>
+			<th></th>
 		</tr>
-	</c:forEach>
 	
-</table>
+		<c:forEach var="item" items="${carrello.listaItem}">
+			<tr id="tr-${item.prodotto.id}">
+				<td>${item.prodotto.nome}</td>
+				<td>${item.prodotto.prezzoAttuale}€</td>
+				<td>
+					<button id="${item.prodotto.id}RimuoviUno" onclick="rimuoviUno(${item.prodotto.id})">-</button>
+					<input id="${item.prodotto.id}Quantita" type="text" size="3" value="${item.quantita}" oninput="cambiaQuantita(${item.prodotto.id})">
+					<button id="${item.prodotto.id}AggiungiUno" onclick="aggiungiUno(${item.prodotto.id})">+</button>
+				</td>
+				<td><button name="rimuoviDalCarrello" onclick="rimuoviDalCarrello(${item.prodotto.id})">Rimuovi!</button></td>
+			</tr>
+		</c:forEach>
+	
+	</table>
 
-<button name="svuotaCarrello" onclick="svuotaCarrello()">Svuota il carrello!</button>
+<button id="svuotaCarrello" name="svuotaCarrello" onclick="svuotaCarrello()">Svuota il carrello!</button>
 
 <h2>Prezzo totale: <span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
 
@@ -57,7 +58,7 @@
 	<button type="submit" id="checkout">Vai al checkout!</button>
 </form>
 
-</div>
+</section>
 </c:if>
 
 <jsp:include page="/fragments/footer.jsp"/>

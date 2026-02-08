@@ -63,7 +63,7 @@
 			<h2>Non ci sono ancora recensioni per questo prodotto!</h2>
 		</c:if>
 		<c:if test="${not empty listaRecensioni}">
-			<h2>Le recenzioni dei nostri utenti:</h2>
+			<h2>Le recensioni dei nostri utenti:</h2>
 			<c:forEach var="r" items="${listaRecensioni}">
 				<div id="recensione-${r.recensione.id}" class="recensione">
 					<h3 id="recensione-${r.utente.nome}" class="recensioneNome">${r.utente.nome} - ${r.recensione.voto}/5</h3>

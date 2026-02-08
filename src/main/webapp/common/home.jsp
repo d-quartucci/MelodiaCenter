@@ -23,7 +23,7 @@
 	<h3>Il tuo negozio online di strumenti musicali!</h3>
 </section>
 
-<section id="prodottiEvidenziati">
+<aside id="prodottiEvidenziati">
 	<h2>I prodotti scelti dal nostro staff!</h2>
 	<c:forEach var="p" items="${listaInEvidenza}">
 		<div class="contenitoreProdotto">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</c:forEach>
-</section>
+</aside>
 
 <section id="sezioneCategorie">
 	<h2>Seleziona la categoria che fa per te e comincia ad esplorare il nostro catalogo!</h2>

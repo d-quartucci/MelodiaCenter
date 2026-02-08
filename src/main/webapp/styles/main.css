@@ -39,12 +39,8 @@ a:hover {
 	background-color: white;
 	border: 3px dashed gray;
 	margin: 0 auto;
-	margin-bottom: 15px;
-	width: 30%;
-}
-
-#bestSellers #benvenuto {
-	padding-left: 20px;
+	width: 40%;
+	padding: 10px;
 }
 
 #bestSellers .contenitoreProdotto {
@@ -69,6 +65,7 @@ a:hover {
 
 #sezioneCategorie, #bestSellers {
 	width: 60%;
+	margin-left: 20px;
 }
 
 #sezioneCategorie ul {
@@ -204,6 +201,10 @@ a:hover {
 
 /* Sezione contenitore prodotti catalogo */
 
+#presentazioneCatalogo {
+	margin-left: 20px;
+}
+
 .contenitoreProdottoCatalogo {
 	width: 60%;
 	height: 275px;
@@ -211,6 +212,7 @@ a:hover {
 	clear: both;
 	border-bottom: 3px solid gray;
 	position: relative;
+	margin-left: 20px;
 }
 
 .contenitoreProdottoCatalogo .informazioniProdotto {
@@ -245,19 +247,18 @@ a:hover {
 	
 	#sezioneFiltriCatalog #prezzoFiltro {
 		width: 60%;
-		margin-top: 15px;
 	}
 
 	#sezioneFiltriCatalog #prezzoFiltroVisual {
-		display: inline-block;
 		width: 10%;
-		font-weight: bold;
 	}
 }
 
 @media screen and (max-width: 600px){
 	
 	.contenitoreProdottoCatalogo {
+		width: 90%;
+		margin: 5%;
 		height: 150px;
 	}
 	
@@ -271,11 +272,6 @@ a:hover {
 		width: 90%;
 		margin: 5%;
 	}
-	
-	.contenitoreProdottoCatalogo {
-		width: 90%;
-		margin: 5%;
-	}
 }
 
 /* Sezione Pagina Prodotto */
@@ -283,7 +279,7 @@ a:hover {
 #schedaProdotto {
 	width: 50%;
 	background-color: white;
-	border: 3px dashed gray;
+	border: 3px solid gray;
 	margin: 20px;
 	overflow: hidden;
 }
@@ -309,18 +305,19 @@ a:hover {
 }
 
 #sezioneFunzionalità button {
-	width: 200px;
-	height: 50px;
-	display: block;
-	margin-bottom: 10px;
+	padding: 10px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	float: left;
 }
 
 #sezioneConsulenza {
 	background-color: white;
 	width: 95%;
 	padding: 10px;
-	border: 3px dashed gray;
+	border: 3px solid gray;
 	margin: 20px;
+	clear: both;
 }
 
 #sezioneConsulenza textarea {
@@ -343,6 +340,8 @@ a:hover {
 
 #sezioneRecensioni .recensione {
 	margin-top: 30px;
+	border: 3px solid gray;
+	line-height: 1.5em;
 }
 
 #sezioneRecensioni .bodyRecensione {
@@ -355,7 +354,7 @@ a:hover {
 	width: 95%;
 	padding: 10px;
 	margin-top: 30px;
-	border: 3px dashed gray;
+	border: 3px solid gray;
 }
 
 #scriviRecensione textarea {
@@ -403,4 +402,160 @@ a:hover {
 	}
 
 }
+
+/* Sezione Carrello */
+
+#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
+	margin-left: 20px;
+}
+
+#tabellaCarrello {
+	border-collapse: collapse;
+	border: 2px solid gray;
+	background-color: white;
+}
+
+#tabellaCarrello td, #tabellaCarrello th {
+	padding: 10px;
+}
+
+#svuotaCarrello, #checkout {
+	padding: 10px;
+	margin-top: 20px;
+}
+
+/* Sezione Checkout */
+
+#informazioniUtente, #presentazioneCheckout, #sezioneCheckoutForm {
+	width: 40%;
+	margin: 20px auto;
+}
+
+#informazioniFieldset, #inserisciIndirizzo, #inserisciPagamento {
+	font-weight: bold;
+	border: 3px solid gray;
+	background-color: white;
+	padding: 20px;
+}
+
+#inserisciIndirizzo, #inserisciPagamento {
+	line-height: 2em;
+}
+
+#inserisciIndirizzo input[type="text"], #inserisciPagamento input[type="text"], 
+#inserisciIndirizzo input[type="password"], #inserisciPagamento input[type="password"]{
+	width: 50%;
+	float: right;
+}
+
+#sezioneCheckoutForm button{
+	padding: 10px;
+	float: right;
+	margin: 10px 0 10px 10px;
+}
+
+/* Sezione Area Utente */
+
+#sezioneUtente {
+	width: 40%;
+	margin: 20px auto;
+	background-color: white;
+	border: 3px dashed gray;
+}
+
+#sezioneUtente p {
+	margin: 20px auto;
+	padding: 10px;
+	font-weight: bold;
+}
+
+#presentazioneUtente, #consulenzeLink{
+	width: 40%;
+	margin: 20px auto;
+}
+
+#consulenzeLink {
+	width: 50%;
+}
+
+#consulenzeLink h2 {
+	text-align: center;
+}
+
+#consulenzeLink a {
+	text-decoration: none;
+}
+
+/* Sezione Lista Consulenzze */
+
+.presentazioneConsulenze {
+	width: 40%;
+	margin: 20px auto;
+}
+
+#sezioneConsulenze {
+	width: 40%;
+	margin: 20px auto;
+	background-color: white;
+	border: 3px dashed gray;
+}
+
+#sezioneConsulenze .consulenzaDiv {
+	border: 2px solid gray;
+	background-color: white;
+	margin: 20px auto;
+	width: 70%;
+	padding: 10px;
+}
+
+/* Sezione Consulenza */
+#presentazioneConsulenza, #sezioneMessaggiConsulenza {
+	width: 70%;
+	margin: 20px auto;
+}
+
+#sezioneMessaggiConsulenza  {
+	width: 70%;
+	border: 2px solid gray;
+	background-color: white;
+	margin: 20px auto;
+	padding: 10px;
+	overflow: hidden;
+}
+
+#sezioneMessaggiConsulenza #messaggioUtente {
+	float: left;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 40%;
+}
+
+#sezioneMessaggiConsulenza #messaggioAdmin {
+	float: right;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 40%;
+}
+
+#messaggioUtente textarea, #messaggioAdmin textarea, #rispondiConsulenza textarea{
+	resize: none;
+	width: 90%;
+	height: 250px;
+}
+
+#rispondiConsulenza {
+	width: 70%;
+	border: 2px solid gray;
+	background-color: white;
+	margin: 20px auto;
+	padding: 10px;
+	overflow: hidden;
+}
+
+#rispondiConsulenza button {
+	display: block;
+	padding: 10px;
+	margin: 10px 0 10px 10px;
+}
+
 

@@ -14,7 +14,7 @@
 	<h1>Ecco la lista degli ordini che hai effettuato in passato:</h1>
 		<c:forEach var="order" items="${listaOrdini}">
 			<div id="orderDiv-${order.id}"></div>
-			<h3><a href="${pageContext.request.contextPath}/user/OrderInfoServlet?id=${order.id}">Ordine ID: ${order.id}</a></h3><br>
+			<h3><a href="${pageContext.request.contextPath}/user/OrderInfoServlet?id=${order.id}">Ordine ID: #${order.id}</a></h3><br>
 		</c:forEach>
 	</c:if>
 	<c:if test="${empty listaOrdini}">
