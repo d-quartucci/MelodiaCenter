@@ -9,6 +9,7 @@
 	<title>Il tuo carrello</title>
 	<script>const contextPath = "${pageContext.request.contextPath}";</script>
 	<script src="${pageContext.request.contextPath}/scripts/cart.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" type="text/css">
 </head>
 <body>
 <jsp:include page="/fragments/header.jsp"/>

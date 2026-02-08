@@ -93,7 +93,7 @@ hr {
 	clear: both;
 }
 
-@media screen and (max-width: 936px) {
+@media screen and (max-width: 1200px) {
 	.logo{
 		display: block;
 		float: none;
@@ -117,8 +117,14 @@ hr {
 	}
 }
 
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 960px) {
 	.ricerca {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.userArea {
 		display: none;
 	}
 }

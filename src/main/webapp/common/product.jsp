@@ -12,39 +12,43 @@
 </head>
 <body>
 <jsp:include page="/fragments/header.jsp"/>
+
 <section id="schedaProdotto">
-<div class="immagineProdotto">
-	<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
-</div>
-<div class="informazioniProdotto">
-	<h1 id="nomeProdotto">${prodotto.nome}</h1>
-	<p id="descProdotto">${prodotto.descrizione}</p>
-	<p id="prezzo">${prodotto.prezzoAttuale}€</p>
-</div>
+
+	<div class="immagineProdotto">
+		<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
+	</div>
+	
+	<div class="informazioniProdotto">
+		<h1 id="nomeProdotto">${prodotto.nome}</h1>
+		<p id="descProdotto">${prodotto.descrizione}</p>
+		<p id="prezzo">${prodotto.prezzoAttuale}€</p>
+	</div>
+	
 </section>
 
 <section id="sezioneFunzionalità">
 
 	<section id="sezioneCarrello">
-		<span id="aggiuntoSpan"></span>
 		<button id="pulsanteCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
 	</section>
-	
+
 	<section id="sezioneWishlist">
 		<c:if test="${isLogged}">
 			<button id="pulsanteWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "Già in wishlist" : "Desidero..."}</button>
 		</c:if>
 	</section>
-	
-	<section id="sezioneConsulenza">
-		<c:if test="${isLogged}">
-			<form name="richiestaConsulenza" action="${pageContext.request.contextPath}/user/CreateConsulenzaServlet?idProd=${prodotto.id}" method="POST">
-				<h3>Vuoi richiedere consulenza su questo prodotto?</h3>
-				<textarea id="messaggioConsulenza" name="messaggioConsulenza" placeholder="Scrivi qui le tue domande..." oninput="verificaContenuto('messaggioConsulenza', 'pulsanteConsulenza')"></textarea>
-				<button id="pulsanteConsulenza" name="pulsanteConsulenza" type="submit" disabled>Invia!</button>
-			</form>
-		</c:if>
-	</section>
+		
+</section>
+
+<section id="sezioneConsulenza">
+	<c:if test="${isLogged}">
+		<form name="richiestaConsulenza" action="${pageContext.request.contextPath}/user/CreateConsulenzaServlet?idProd=${prodotto.id}" method="POST">
+			<h3>Vuoi richiedere consulenza su questo prodotto?</h3>
+			<textarea id="messaggioConsulenza" name="messaggioConsulenza" placeholder="Scrivi qui le tue domande..." oninput="verificaContenuto('messaggioConsulenza', 'pulsanteConsulenza')"></textarea>
+			<button id="pulsanteConsulenza" name="pulsanteConsulenza" type="submit" disabled>Invia!</button>
+		</form>
+	</c:if>
 	
 	<section id="sezioneNotLogged">
 		<c:if test="${!isLogged}">
@@ -52,26 +56,27 @@
 		</c:if>
 	</section>
 </section>
-
+		
 <section id="sezioneRecensioni">
 	<section id="leggiRecensioni">
 		<c:if test="${empty listaRecensioni}">
-			<h3>Non ci sono ancora recensioni per questo prodotto!</h3>
+			<h2>Non ci sono ancora recensioni per questo prodotto!</h2>
 		</c:if>
 		<c:if test="${not empty listaRecensioni}">
-			<h3>Le recenzioni dei nostri utenti:</h3>
+			<h2>Le recenzioni dei nostri utenti:</h2>
 			<c:forEach var="r" items="${listaRecensioni}">
 				<div id="recensione-${r.recensione.id}" class="recensione">
-					<h3 id="recensione-${r.utente.nome}">${r.utente.nome} - ${r.recensione.voto}/5</h3>
-					<p>${r.recensione.testo}</p>
+					<h3 id="recensione-${r.utente.nome}" class="recensioneNome">${r.utente.nome} - ${r.recensione.voto}/5</h3>
+					<p class="bodyRecensione">${r.recensione.testo}</p>
 				</div>
 			</c:forEach>
 		</c:if>
 	</section>
+	
 	<c:if test="${puoRecensire}">
 		<section id="scriviRecensione">
 			<form name="inviaRecensione" method="POST" action="${pageContext.request.contextPath}/user/CreateRecensioneServlet?prodottoId=${prodotto.id}">
-				<p>Hai acquistato questo prodotto in precendenza... dicci la tua!</p>
+				<h3>Hai acquistato questo prodotto in precendenza... dicci la tua!</h3>
 				<textarea id="recensioneInput" name="recensioneInput" placeholder="Scrivi qui la tua recensione..." oninput="verificaContenuto('recensioneInput', 'recensioneSubmit')"></textarea>
 				<input id="voto" name="voto" type="range" min="1" max="5" step="1" value="5" oninput="aggiornaSpan()"> <span id="spanVoto" name="spanVoto">5</span>
 				<button id="recensioneSubmit" name="recensioneSubmit" type="submit" disabled>Invia!</button>
