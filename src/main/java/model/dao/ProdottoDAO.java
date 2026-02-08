@@ -28,6 +28,8 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		p.setPrezzoAttuale(rs.getBigDecimal("PrezzoAttuale"));
 		p.setImgSrc(rs.getString("Immagine"));
 		p.setAttivo(rs.getBoolean("IsAttivo"));
+		p.setQuantitaVendute(rs.getInt("QuantitaVendute"));
+		p.setEvidenza(rs.getBoolean("InEvidenza"));
 		return p;
 	}
 	

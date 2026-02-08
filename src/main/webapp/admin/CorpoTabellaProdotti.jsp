@@ -16,9 +16,9 @@
 				<td><input type = "text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></td>
 				<td>${p.imgSrc}</td>
 				<td><textarea  id="descr_${p.id}" rows = 5  cols = 30 disabled>${p.descrizione}</textarea></td>
-				<th>${p.quantitaVendute}</th>
+				<td>${p.quantitaVendute}</td>
 				<td>
-					<select id= "attivo_${p.id}"disabled > 
+					<select id= "attivo_${p.id}" disabled > 
 						<option value = "true" ${p.attivo == "true" ? "selected" : ""} >attivo</option>
 						<option value = "false" ${p.attivo == "false" ? "selected" : ""}>non attivo</option>
 					</select>
