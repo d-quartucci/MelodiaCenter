@@ -18,7 +18,9 @@
 				</c:forEach>
 				<td><input type = "text" id= "nome_${p.id}" value= "${p.nome}" disabled></td>
 				<td><input type = "text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></td>
-				<td>${p.imgSrc}</td>
+				<td id= "image">
+					<img id="image_${p.id}" src="${pageContext.request.contextPath}/images/${p.imgSrc}" alt="Immagine ${p.nome}"><br>
+                 </td>
 				<td><textarea  id="descr_${p.id}" rows = 5  cols = 30 disabled>${p.descrizione}</textarea></td>
 				<td>${p.quantitaVendute}</td>
 				<td>

@@ -31,7 +31,7 @@ function salvaModifica(id){
 	const attivo = document.getElementById("attivo_" + id).value;
 	const evidenza = document.getElementById("evidenza_" + id).value;
 	const ErrorSpan = document.getElementById("error_" + id);
-	
+		
 	let xhr = new XMLHttpRequest();
 	const url = contextPath + "/admin/AdminUpdateProdottiServlet";
 	
@@ -69,5 +69,4 @@ function eliminaProd(id){
 	 
 	 xhr.open("GET", url, true);
 	 xhr.send();
-	
 }

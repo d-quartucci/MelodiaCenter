@@ -115,7 +115,8 @@ function eseguiFiltro(servletName, idCorpoTable){
 		inputFin.min = dataIn;
 	}
 		
-	let url = contextPath + servletName + "?dataIn=" +encodeURIComponent(dataIn) + "&dataFin=" +encodeURIComponent(dataFin) + "&ordinaData=" +encodeURIComponent(ord);
+	let url = contextPath + servletName + "?dataIn=" +encodeURIComponent(dataIn) + "&dataFin=" 
+				+ encodeURIComponent(dataFin) + "&ordinaData=" +encodeURIComponent(ord);
 	let xhr = new XMLHttpRequest();
 			
 	xhr.onreadystatechange = function (){

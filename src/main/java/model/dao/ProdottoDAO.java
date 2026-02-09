@@ -76,6 +76,50 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return listaProdotti;
 	}
 	
+	public synchronized ArrayList<Prodotto> toRetriveByFilterAdmin(String ricerca, String ord, String ctg) throws SQLException{
+		
+		String ordineQuery = "ASC";
+		if(ord.equals("vendutiDecrescente")|| ord.equals("prezzoDecrescente")) {
+			ordineQuery = "DESC";
+		}
+		
+		String colonna = "QuantitaVendute ";// Default
+	    if (ord.equals("prezzoDecrescente") || ord.equals("prezzoCrescente") ) {
+	        colonna = "PrezzoAttuale ";
+	    }
+		
+		String querySQL1 = "SELECT * FROM Prodotto WHERE Nome LIKE ? AND CategoriaID = ? ORDER BY " + colonna + ordineQuery;
+		String querySQL2 = "SELECT * FROM Prodotto WHERE Nome LIKE ? ORDER BY "+ colonna + ordineQuery;
+		
+		ArrayList<Prodotto> prodotti = new ArrayList<>();
+		if(ctg.equals("0")) {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySQL2)){
+				ps.setString(1, "%" + ricerca + "%");
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						Prodotto p = mapResultSetToBean(rs);
+						prodotti.add(p);
+					}
+				}
+			} 
+		}
+		else {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySQL1)){
+				ps.setString(1, "%" + ricerca + "%");
+				ps.setInt(2, Integer.parseInt(ctg));
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						Prodotto p = mapResultSetToBean(rs);
+						prodotti.add(p);
+					}
+				}
+			} 
+		}
+		return prodotti;
+	}
+	
 	public synchronized void doSaveOrUpdate(Prodotto bean) throws SQLException{
 		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
 		if(bean.getId() > 0) {

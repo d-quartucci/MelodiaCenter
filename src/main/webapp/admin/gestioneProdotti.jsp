@@ -18,11 +18,12 @@
 <%@ include file = "/fragments/adminMenu.jsp"%>
     
     <main>
-    	<div>
-    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminProdottiServlet">
+    	<div id= "creazioneProdotto">
+    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminProdottiServlet" enctype="multipart/form-data">
     			<fieldset>
     				<legend>Inserisci Nuovo Prodotto</legend>
     				<label for = "nome">Nome: </label>
+    				
     				<input type = "text" id="nome" name="nome" placeholder = "Nome prodotto" required>
     				<select id = "categoria" name="categoria" required>
         				<option value="">Seleziona Categoria</option>
@@ -30,17 +31,47 @@
 							<option value="${c.id}">${c.nome}</option>
 						</c:forEach>
     				</select><br>
+    				
     				<label for = "prezzo">Prezzo: </label>
     				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="0" placeholder= "0.00" required><br>
+    				
     				<label for = "descrizione">Descrizione: </label><br>
     				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
+    				
     				<label for = "image">Immagine </label><br>
+    				<input type="file" id="image" name="image" accept="image/*" required><br><br>
     				
     				<button type="submit" id="submit">Salva</button>
     			</fieldset>
     		</form>
     	</div>
     	<div id=listProdotti>
+    	<section id="sezioneFiltriAdmin">
+			<h2>Filtro prodotti:</h2>
+			<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterProdottiServlet" >
+				
+				<label for="barraDiRicerca">Ricerca:</label>	
+				<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Nome prodotto..." value="${param.barraDiRicerca}"><br>
+				
+				<label for="filtroCtg">Seleziona categoria:</label>
+				<select id= "filtroCtg" name="filtroCtg">
+					<option value = "0" ${param.filtroCtg == null || param.Ctg == '0' ? 'selected' : ''}>Tutte</option>
+					<c:forEach var= "c" items= "${categorie}">
+						<option value = "${c.id}" ${param.filtroCtg == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
+					</c:forEach>
+				</select><br>
+				
+				<label for="ordinaPrezzo">Ordina: </label>
+				<select id="ordina" name="ordina">
+					<option value="prezzoCrescente" ${param.ordina == "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
+					<option value="prezzoDecrescente" ${param.ordina == "prezzoDecrescente" ? "selected" : ""}>Prezzo Decrescente</option>
+					<option value="vendutiCrescente" ${param.ordina == "VendutiCrescente" ? "selected" : ""}>Quantità Crescente</option>
+					<option value="vendutiDecrescente" ${param.ordina == "VendutiDecrescente" ? "selected" : ""}>Quantità Decrescente</option>
+				</select><br>
+			
+				<button type="submit">Applica filtri</button>
+		</form>
+	</section>
     		<p>Lista Prodotti</p>
     		<table>
     			<thead id = "testaTableProdotti">
