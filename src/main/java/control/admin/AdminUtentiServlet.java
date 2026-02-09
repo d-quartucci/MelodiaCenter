@@ -46,7 +46,7 @@ public class AdminUtentiServlet extends HttpServlet {
 			request.getRequestDispatcher("/admin/gestioneUtenti.jsp").forward(request, response);
 		}catch(SQLException ex) {
 			ex.printStackTrace();
-			request.getSession().setAttribute("errorMessage", "Errore di accesso al gestore ordini: " + ex.getMessage());
+			request.getSession().setAttribute("errorMessage", "Errore Update: " + ex.getMessage());
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}

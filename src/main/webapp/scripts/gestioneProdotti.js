@@ -49,3 +49,25 @@ function salvaModifica(id){
 	xhr.send(params);
 	
 }
+
+
+function eliminaProd(id){
+	 let xhr = new XMLHttpRequest();
+	 const url = contextPath + "/admin/AdminDeleteProdotto?id="+ id;
+	 
+	 xhr.onreadystatechange = function(){
+	 	if(this.readyState === 4 ){
+	 		if(this.status === 200)
+				alert("Eliminazione avvenuta con successo");
+				location.reload();        // Ricarica la pagina per aggiornare la lista prodotti
+			} else if (this.status === 403) {
+				alert("Errore: Il prodotto è presente in un ordine e non può essere rimosso.");
+			} else if (this.status === 404){
+				alert("Errore: Il prodotto non trovato");
+			}
+	 }
+	 
+	 xhr.open("GET", url, true);
+	 xhr.send();
+	
+}

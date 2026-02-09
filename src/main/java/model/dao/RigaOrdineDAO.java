@@ -101,6 +101,21 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 		}
 		return rowList;
 	}
+	
+	public synchronized RigaOrdine doRetrieveByProdottoID(Integer id) throws SQLException {
+		String query = "SELECT * FROM rigaordine WHERE ProdottoID = ? LIMIT 1";
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query);){
+				ps.setInt(1, id);
+				ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return mapResultSetToBean(rs);
+				
+			}
+		}
+		return null;
+	}
 
 	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {

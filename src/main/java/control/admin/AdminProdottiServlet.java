@@ -42,7 +42,7 @@ public class AdminProdottiServlet extends HttpServlet {
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
-			request.getSession().setAttribute("errorMessage", "Errore di accesso al gestore ordini: " + ex.getMessage());
+			request.getSession().setAttribute("errorMessage", "Errore gestione prodotti: " + ex.getMessage());
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}

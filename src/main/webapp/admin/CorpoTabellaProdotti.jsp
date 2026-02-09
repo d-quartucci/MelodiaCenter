@@ -11,7 +11,11 @@
 		<c:forEach var= "p" items="${prodotti}">
 			<tr>
 				<td>${p.id}</td>
-				<td>${p.categoriaId}</td>
+				<c:forEach var="c" items="${categorie}">
+               		 <c:if test="${c.id == p.categoriaId}">
+                   	 <td>${c.id}-(${c.nome})</td>
+                	</c:if>
+				</c:forEach>
 				<td><input type = "text" id= "nome_${p.id}" value= "${p.nome}" disabled></td>
 				<td><input type = "text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></td>
 				<td>${p.imgSrc}</td>
@@ -31,6 +35,9 @@
 				</td>
 				<td id= "tastoMod">
 					<button type = "button" id= "mod_${p.id}" onclick = "abilitaModifica(${p.id})"> Modifica</button>
+				</td>
+				<td id= "tastoDel">
+					<button type = "button" id= "del_${p.id}" onclick = "eliminaProd(${p.id})"> Elimina</button>
 				</td>
 				<td id= "ErrorSpan">
 					<span id="error_${p.id}" class="error"></span>

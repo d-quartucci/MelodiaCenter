@@ -48,7 +48,13 @@ function salvaModifica(id, campo, valore){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
-				alert(this.responseText);
+				alert("Salvataggio avvenuto con successo");
+				location.reload();        // Ricarica la pagina per aggiornare la lista utenti
+			}else if(this.status === 400){
+				alert("Errore: Campo non valido");
+				
+			}else if(this.status === 404){
+				alert("Errore: Utente non trovato");
 			}
 		}
 	}

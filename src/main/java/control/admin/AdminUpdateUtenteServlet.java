@@ -53,7 +53,7 @@ public class AdminUpdateUtenteServlet extends HttpServlet {
 					utente.setRuolo(valore);
 					
 				} else {
-			        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Campo non valido");
+			        response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			        return;
 			    }
 			
@@ -61,11 +61,10 @@ public class AdminUpdateUtenteServlet extends HttpServlet {
 				
 				//Invia messaggio e codice di stato alla JS positivo
 				response.setStatus(HttpServletResponse.SC_OK);
-				response.getWriter().write("Salvataggio Riuscito");
 			}
 			else {
 				//Invia messaggio e codice di stato alla JS negativo
-				response.sendError(HttpServletResponse.SC_NOT_FOUND, "Utente non trovato");
+				response.sendError(HttpServletResponse.SC_NOT_FOUND); 
 			}
 			
 		}catch(SQLException ex) {
