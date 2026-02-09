@@ -9,10 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<jsp:include page="/fragments/header.jsp"/>
-<h1>Grazie per l'acquisto!</h1>
-<p>Arriverà entro la data:</p>
-<p>Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!</p>
-<jsp:include page="/fragments/footer.jsp"/>
+	<jsp:include page="/fragments/header.jsp"/>
+	<h1>Grazie per l'acquisto!</h1>
+	<p>Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!</p>
+	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

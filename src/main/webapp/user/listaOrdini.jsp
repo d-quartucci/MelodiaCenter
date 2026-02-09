@@ -22,8 +22,10 @@
 		</section>
 	</c:if>
 	<c:if test="${empty listaOrdini}">
-		<h1>Non hai ancora effettuato un ordine!</h1>
-		<h3>Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+		<h1 class="presentazione">Non hai ancora effettuato un ordine!</h1>
+		<section id="sezioneOrdini" class="contenitore">
+			<h2>Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+		</section>
 	</c:if>
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>

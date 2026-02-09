@@ -532,25 +532,25 @@ a:hover {
 @media screen and (max-width: 768px) {
 
 	#schedaProdotto {
-		width: 95%;
+		width: 90%;
 	}
 
 	#schedaProdotto .immagineProdotto, #schedaProdotto .informazioniProdotto {
 		float: none;
-		width: 100%;
+		width: 95%;
 		text-align: center;
 	}
 	
 	#sezioneConsulenza {
-		width: 95%;
+		width: 88%;
 	}
 
 	#sezioneFunzionalità {
-		width: 95%;
+		width: 88%;
 	}
 	
 	#sezioneRecensioni {
-		width: 95%;;
+		width: 88%;;
 	}
 
 }
@@ -657,7 +657,8 @@ a:hover {
 }
 
 #sezioneUtente p {
-	margin: 20px auto;
+	margin-left: 20px;
+	font-size: 1.3em;
 	padding: 10px;
 	font-weight: bold;
 }
@@ -679,25 +680,29 @@ a:hover {
 	text-decoration: none;
 }
 
-/* Sezione Lista Consulenze e Lista Ordine */
+/* Sezione Lista Consulenze, Lista Ordine e lista dei prodotti desiderati dell'utente */
 
 .presentazione {
 	width: 40%;
 	margin: 20px auto;
 }
 
-#sezioneConsulenze, #sezioneOrdini {
+#sezioneConsulenze, #sezioneOrdini, #listaRigheOrdine, #sezioneWishlist{
 	width: 40%;
 	margin: 20px auto;
 	background-color: white;
 }
 
-#sezioneConsulenze .consulenzaDiv, #sezioneOrdini .ordineDiv {
+#sezioneConsulenze .consulenzaDiv, #sezioneOrdini .ordineDiv, #listaRigheOrdine .rigaOrdine, #sezioneWishlist .rigaWishlist{
 	border: 2px solid gray;
 	background-color: white;
 	margin: 20px auto;
 	width: 70%;
 	padding: 10px;
+}
+
+#sezioneConsulenze h2, #sezioneOrdini h2, #sezioneWishlist h2, #sezioneVuotaWishlist h2{
+	margin-left: 20px;
 }
 
 /* Sezione Consulenza */
@@ -744,4 +749,54 @@ a:hover {
 	display: block;
 	padding: 10px;
 	margin: 10px 0 10px 10px;
+}
+
+/* Sezione Pagina Ordine */
+
+#listaRigheOrdine h2{
+	float: right;
+	margin-right: 20px;
+}
+
+/* Sezione wishlist */
+
+#sezioneVuotaWishlist .contenitore {
+	width: 40%;
+	margin: 20px auto;
+	background-color: white;
+}
+
+#sezioneWishlist .contenitoreProdotto {
+	width: 95%;
+	height: 275px;
+	border: 3px solid gray;
+	padding: 10px;
+	margin: 20px auto;
+	clear: both;
+	position: relative;
+}
+
+#sezioneWishlist .informazioniProdotto {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30%;
+	text-align: center;
+}
+
+#sezioneWishlist button {
+	height: 40px;
+	width: 70px;
+}
+
+@media screen and (max-width: 1600px){
+	#sezioneWishlist, #sezioneVuotaWishlist{
+		width: 70%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#sezioneWishlist, #sezioneVuotaWishlist {
+		width: 95%;
+	}
 }

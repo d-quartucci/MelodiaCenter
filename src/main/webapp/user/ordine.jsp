@@ -10,12 +10,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
 	<jsp:include page="/fragments/header.jsp"/>
-	<h2>Ordine ID: ${idOrdine}</h2>
-	<c:forEach var="riga" items="${righeOrdine}">
-	<div id="div-${riga.prodottoNome}">Prodotto: ${riga.prodottoNome}<br>Quantità: ${riga.quant}<br>Prezzo: ${riga.prezzoAcq}€</div><br>
-	</c:forEach>
-	<h3>Prezzo totale: ${totaleOrdine}€</h3>
+	<h1 class="presentazione">Ordine ID: #${idOrdine}</h1>
+	<section id="listaRigheOrdine" class="contenitore">
+		<c:forEach var="riga" items="${righeOrdine}">
+			<div class="rigaOrdine" id="div-${riga.prodottoNome}">
+				<h3>Prodotto: <a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${riga.prodottoId}">${riga.prodottoNome}</a></h3>
+				<p>Quantità: ${riga.quant}</p>
+				<p>Prezzo: ${riga.prezzoAcq}€</p>
+			</div>
+		</c:forEach>
+		<h2>Prezzo totale: ${totaleOrdine}€</h2>
+	</section>
 	<jsp:include page="/fragments/footer.jsp"/>
+	
 </body>
 </html>

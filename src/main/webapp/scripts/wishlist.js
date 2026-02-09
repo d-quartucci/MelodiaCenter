@@ -15,7 +15,7 @@ function rimuoviDallaWishlist(idProdotto){
 					if(sezioneWishlist){
 						sezioneWishlist.remove();
 					}	
-					let sezioneVuota = document.getElementById("sezioneVuota");
+					let sezioneVuota = document.getElementById("sezioneVuotaWishlist");
 					if(sezioneVuota){
 						sezioneVuota.style.display = "block";
 					}

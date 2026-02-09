@@ -13,21 +13,28 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	<c:if test="${not empty wishlist}">
-	<div id="sezioneWishlist">
-	<h1>Ecco la lista dei desideri...</h1>
+	<h1 class="presentazione">Ecco la lista dei desideri...</h1>
+	<section id="sezioneWishlist" class="contenitore">
 		<c:forEach var="wish" items="${wishlist}">
-			<div id="wishDiv-${wish.prodotto.id}">
-				<a href="ProductPageServlet?prodottoId=${wish.prodotto.id}">${wish.prodotto.nome}</a> ${wish.prodotto.prezzoAttuale}€
-				<button id="wishRemove-${wish.prodotto.id}" onclick="rimuoviDallaWishlist(${wish.prodotto.id})">Rimuovi</button>
-				<br>
+			<div id="wishDiv-${wish.prodotto.id}" class="contenitoreProdotto">
+				<div class="immagineProdotto">
+				<img src="${pageContext.request.contextPath}/images/${wish.prodotto.imgSrc}">
+				</div>
+				<div class="informazioniProdotto">
+					<h2><a href="ProductPageServlet?prodottoId=${wish.prodotto.id}">${wish.prodotto.nome}</a></p>
+					<p>${wish.prodotto.prezzoAttuale}€</p>
+					<button id="wishRemove-${wish.prodotto.id}" onclick="rimuoviDallaWishlist(${wish.prodotto.id})">Rimuovi</button>
+				</div>
 			</div>
 		</c:forEach>
-	</div>
+	</section>
 	</c:if>
 	
-	<div id="sezioneVuota" style="<c:if test='${not empty wishlist}'>display:none;</c:if>">
-		<h1>Non aggiunto nulla alla tua lista dei desideri!</h1>
-		<h3>Comincia a sognare <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+	<div id="sezioneVuotaWishlist" style="<c:if test='${not empty wishlist}'>display:none;</c:if>">
+		<h1 class="presentazione">Non hai ancora aggiunto nulla alla tua wishlist!</h1>
+		<section class="contenitore">
+			<h2>Comincia a sognare <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+		</section>
 	</div>
 	
 	<jsp:include page="/fragments/footer.jsp"/>
