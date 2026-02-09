@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="/fragments/header.jsp"/>
 
-<section id="schedaProdotto">
+<section id="schedaProdotto" class="contenitore">
 
 	<div class="immagineProdotto">
 		<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
@@ -29,7 +29,7 @@
 
 <section id="sezioneFunzionalità">
 
-	<section id="sezioneCarrello">
+	<section id="sezioneAggiungiCarrello">
 		<button id="pulsanteCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
 	</section>
 
@@ -41,7 +41,7 @@
 		
 </section>
 
-<section id="sezioneConsulenza">
+<section id="sezioneConsulenza" class="contenitore">
 	<c:if test="${isLogged}">
 		<form name="richiestaConsulenza" action="${pageContext.request.contextPath}/user/CreateConsulenzaServlet?idProd=${prodotto.id}" method="POST">
 			<h3>Vuoi richiedere consulenza su questo prodotto?</h3>

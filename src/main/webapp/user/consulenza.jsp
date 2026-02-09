@@ -14,7 +14,7 @@
 	
 	<h1 id="presentazioneConsulenza">Consulenza #${consulenza.id}</h1>
 	
-	<section id="sezioneMessaggiConsulenza">
+	<section id="sezioneMessaggiConsulenza" class="contenitore">
 		<section id="sezioneMessaggiUtente">
 			<div id="messaggioUtente">
 				<h2>Messaggio dell'utente:</h2>
@@ -34,7 +34,7 @@
 	</section>
 	
 	<c:if test="${isAdmin}">
-		<section id="rispondiConsulenza">
+		<section id="rispondiConsulenza" class="contenitore">
 		<h2>Rispondi all'utente, o aggiorna la risposta:</h2>
 			<form name="aggiornaRispostaForm" method="POST" action="${pageContext.request.contextPath}/admin/RispostaConsulenzaServlet?consId=${consulenza.id}">
 				<label for="aggiornaRisposta"></label>

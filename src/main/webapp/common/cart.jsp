@@ -22,11 +22,11 @@
 
 <!-- Sezione mostrata quando il carrello non è vuoto -->
 <c:if test="${not empty carrello.listaItem}">
-<section id="sezioneCarrello">
+<section id="sezioneCarrello" class="contenitore">
 	<h2 id="presentazioneCarrello">Ecco i tuoi prodotti:</h2>
 
 	<!-- Tabella con tutti i prodotti inseriti nel carrello -->
-	<table id="tabellaCarrello">
+	<table id="tabellaCarrello" class="contenitore">
 	
 		<tr>
 			<th>Nome</th>
@@ -40,9 +40,9 @@
 				<td>${item.prodotto.nome}</td>
 				<td>${item.prodotto.prezzoAttuale}€</td>
 				<td>
-					<button id="${item.prodotto.id}RimuoviUno" onclick="rimuoviUno(${item.prodotto.id})">-</button>
+					<button class="pulsanteOpCarrello" id="${item.prodotto.id}RimuoviUno" onclick="rimuoviUno(${item.prodotto.id})">-</button>
 					<input id="${item.prodotto.id}Quantita" type="text" size="3" value="${item.quantita}" oninput="cambiaQuantita(${item.prodotto.id})">
-					<button id="${item.prodotto.id}AggiungiUno" onclick="aggiungiUno(${item.prodotto.id})">+</button>
+					<button class="pulsanteOpCarrello" id="${item.prodotto.id}AggiungiUno" onclick="aggiungiUno(${item.prodotto.id})">+</button>
 				</td>
 				<td><button name="rimuoviDalCarrello" onclick="rimuoviDalCarrello(${item.prodotto.id})">Rimuovi!</button></td>
 			</tr>
@@ -50,17 +50,20 @@
 	
 	</table>
 
-<button id="svuotaCarrello" name="svuotaCarrello" onclick="svuotaCarrello()">Svuota il carrello!</button>
+	<button id="svuotaCarrello" name="svuotaCarrello" onclick="svuotaCarrello()">Svuota il carrello!</button>
 
-<h2>Prezzo totale: <span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
-
-<form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/CheckoutServlet">
-	<button type="submit" id="checkout">Vai al checkout!</button>
-</form>
+	<section id="sezioneDestraCarrello">
+		<h2>Prezzo totale:<span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
+	
+		<form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/CheckoutServlet">
+			<button type="submit" id="checkout">Vai al checkout!</button>
+		</form>
+	</section>
 
 </section>
 </c:if>
 
 <jsp:include page="/fragments/footer.jsp"/>
 </body>
+
 </html>

@@ -11,7 +11,7 @@
 <body> 
 	<jsp:include page="/fragments/header.jsp"/>
 	<h1 id="presentazioneUtente">Le tue informazioni:</h1>
-	<section id="sezioneUtente">
+	<section id="sezioneUtente" class="contenitore">
 		<div id="informazioniUtente">
 			<p>Nome: ${utente.nome}</p>
 			<p>Cognome: ${utente.cognome}</p>

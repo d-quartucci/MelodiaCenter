@@ -11,11 +11,15 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	<c:if test="${not empty listaOrdini}">
-	<h1>Ecco la lista degli ordini che hai effettuato in passato:</h1>
-		<c:forEach var="order" items="${listaOrdini}">
-			<div id="orderDiv-${order.id}"></div>
-			<h3><a href="${pageContext.request.contextPath}/user/OrderInfoServlet?id=${order.id}">Ordine ID: #${order.id}</a></h3><br>
-		</c:forEach>
+	<h1 class="presentazione">Ecco la lista degli ordini che hai effettuato in passato:</h1>
+		<section id="sezioneOrdini" class="contenitore">
+			<c:forEach var="order" items="${listaOrdini}">
+				<div id="orderDiv-${order.id}" class="ordineDiv">
+					<a href="${pageContext.request.contextPath}/user/OrderInfoServlet?id=${order.id}">Ordine ID: #${order.id}</a>
+					<p> Prezzo: ${order.totale}€<p>
+				</div>
+			</c:forEach>
+		</section>
 	</c:if>
 	<c:if test="${empty listaOrdini}">
 		<h1>Non hai ancora effettuato un ordine!</h1>

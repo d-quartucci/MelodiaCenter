@@ -1,25 +1,182 @@
 @charset "UTF-8";
 
+/* Sezione header */
+#headerPrincipale {
+	background-color: #F57F3C;
+	font-size: 1.2em;
+	height: 95px;
+	width: 100%;
+	clear: both;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.logo {
+	float: left;
+	width: 300px;
+	padding: 15px;
+}
+
+.logo a {
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	font-size: 1.8em;
+	border: 3px ridge black;
+	border-radius: 20px;
+	display: inline-block;
+	padding: 5px;
+}
+
+.logo a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.navLinks {
+	float: left;
+	list-style-type: none;
+	width: 300px;
+	margin: 0;
+}
+
+.navLinks li {
+	float: left;
+	margin: 0 5px;
+	padding-top: 35px;
+}
+
+.navLinks a {
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+}
+
+.navLinks a:hover, .userArea a:hover {
+	text-decoration: underline;
+	background-color: #F9B08A;
+	color: white;
+}
+
+.ricerca {
+	float: left;
+	width: 400px;
+	padding-top: 30px;
+	text-align: left;
+	margin-left: 10px;
+}
+
+.ricerca #barraDiRicerca {
+	height: 30px;
+	width: 70%;
+}
+
+.ricerca #pulsanteRicerca {
+	width: 35px;
+	height: 35px;
+	padding: 5px;
+}
+
+.userArea {
+	float: right;
+	width: 500px;
+	text-align: right;
+	padding: 35px 20px 0 0;
+}
+
+.userArea li {
+	float: left;
+	margin: 5px;
+}
+
+.userArea a {
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+}
+
+hr {
+	clear: both;
+}
+
+#footerContainer {
+	margin-left: 20px;
+}
+
+#footerCR {
+	text-align: center;
+}
+
+@media screen and (max-width: 1650px) {
+	.logo{
+		display: block;
+		float: none;
+		clear: both;
+		text-align: center;
+		width: 100%;
+		padding: 5px 0;
+	}
+	
+	#headerPrincipale {
+		height: 130px;
+	}
+	
+	.navLinks li, .userArea{
+		padding-top: 15px;
+	}
+	
+	.navLinks {
+		width: 300px;
+	}
+	
+	.ricerca {
+		width: 300px;
+		padding-top: 10px;
+	}
+	
+	.userArea {
+		width: 500px;
+	}
+}
+
+@media screen and (max-width: 1250px) {
+	.ricerca {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.userArea {
+		float: left;
+	}
+	
+	.navLinks {
+		display: none;
+	}
+	
+}
+
+/* Sezione principale */
+
 * {
 	font-family: Arial, sans-serif;
 }
 
 body {
 	font-size: 100%;
-	color: #333333;
-	background-color: #D1D1D1;
+	color: #2A2A2A;
+	background-color: #fce7d9;
 	margin: 0;
 	padding: 0;
 }
 
 a {
-	color: #333333;
+	color: #2A2A2A;
 }
 
 a:hover {
-	color: white;
-	background-color: #333333;
-	text-decoration: none;
+	text-decoration: underline;
+	color: gray;
 }
 
 /* Sezione immagine prodotti */
@@ -29,16 +186,22 @@ a:hover {
 	max-width: 100%;
 	height: auto;
 	width: auto;
-	border: 3px dashed gray;
+	border: 6px dashed #FFA15C;
+}
+
+.contenitore {
+	border: 4px solid #FFA15C;
+	background-color: white;
+	border-radius: 10px;
+	overflow: scroll;
 }
 
 /* Sezione home */
 #benvenuto {
 	clear: both;
 	text-align: center;
-	background-color: white;
-	border: 3px dashed gray;
 	margin: 0 auto;
+	margin-bottom: 10px;
 	width: 40%;
 	padding: 10px;
 }
@@ -48,8 +211,6 @@ a:hover {
 	height: 275px;
 	margin-bottom: 50px;
 	clear: both;
-	border-bottom: 3px dotted #333333;
-	border-radius: 2px;
 	position: relative;
 }
 
@@ -57,8 +218,6 @@ a:hover {
 	position: absolute;
 	right: 0;
 	top: 0;
-	background-color: white;
-	border: 3px dashed gray;
 	width: 30%;
 	text-align: center;
 }
@@ -92,10 +251,7 @@ a:hover {
 	width: 20%;
 	text-align: center;
 	margin: 0 1% 20px 0;
-	background-color: white;
 	padding: 10px;
-	border-radius: 10px;
-	border: 3px dashed gray;
 }
 
 #prodottiEvidenziati h2 {
@@ -104,7 +260,7 @@ a:hover {
 
 #prodottiEvidenziati a {
 	font-size: 1.2em;
-	text-decoration: none;
+	font-weight: bold;
 }
 
 #prodottiEvidenziati p {
@@ -155,8 +311,6 @@ a:hover {
 	position: fixed;
 	top: 20%;
 	right: 1%;
-	background-color: white;
-	border: 3px dashed gray;
 	padding: 1%;
 	padding-right: 0;
 	width: 25%;
@@ -210,7 +364,7 @@ a:hover {
 	height: 275px;
 	margin-bottom: 50px;
 	clear: both;
-	border-bottom: 3px solid gray;
+	border-bottom: 3px solid #2C3E50;
 	position: relative;
 	margin-left: 20px;
 }
@@ -219,8 +373,6 @@ a:hover {
 	position: absolute;
 	top: 0;
 	right: 0;
-	background-color: white;
-	border: 3px dashed gray;
 	width: 30%;
 	text-align: center;
 }
@@ -278,8 +430,6 @@ a:hover {
 
 #schedaProdotto {
 	width: 50%;
-	background-color: white;
-	border: 3px solid gray;
 	margin: 20px;
 	overflow: hidden;
 }
@@ -312,11 +462,10 @@ a:hover {
 }
 
 #sezioneConsulenza {
-	background-color: white;
-	width: 95%;
-	padding: 10px;
-	border: 3px solid gray;
+	padding: 20px 10px;
 	margin: 20px;
+	width: 30%;
+	overflow: hidden;
 	clear: both;
 }
 
@@ -328,6 +477,7 @@ a:hover {
 
 #sezioneConsulenza button {
 	width: 10%;
+	height: 40px;
 	margin-top: 10px;
 	display: block;
 }
@@ -341,11 +491,12 @@ a:hover {
 #sezioneRecensioni .recensione {
 	margin-top: 30px;
 	border: 3px solid gray;
-	line-height: 1.5em;
+	border-radius: 6px;
+	line-height: 1.8em;
 }
 
 #sezioneRecensioni .bodyRecensione {
-	border: 2px solid gray;
+	border: 3px groove gray;
 	padding: 10px;
 }
 
@@ -355,6 +506,7 @@ a:hover {
 	padding: 10px;
 	margin-top: 30px;
 	border: 3px solid gray;
+	border-radius: 6px;
 }
 
 #scriviRecensione textarea {
@@ -406,22 +558,64 @@ a:hover {
 /* Sezione Carrello */
 
 #sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
+	width: 50%;
+	margin: 30px auto;
+}
+
+#sezioneCarrello * {
 	margin-left: 20px;
+}
+
+#sezioneDestraCarrello {
+	margin-right: 20px;
+	float: right;
+	text-align: right;
 }
 
 #tabellaCarrello {
 	border-collapse: collapse;
-	border: 2px solid gray;
-	background-color: white;
+	overflow: scroll;
+	font-size: 1.3em;
 }
 
 #tabellaCarrello td, #tabellaCarrello th {
 	padding: 10px;
 }
 
+#tabellaCarrello .pulsanteOpCarrello {
+	height: 30px;
+	width: 30px;
+}
+
+#tabellaCarrello input[type="text"]{
+	height: 30px;
+	width: 30px;
+	text-align: center;
+}
+
+#tabellaCarrello button {
+	padding: 8px;
+}
+
 #svuotaCarrello, #checkout {
 	padding: 10px;
 	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: 1700px){
+	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
+		width: 75%;
+		margin: 30px auto;
+	}
+}
+
+@media screen and (max-width: 650px){
+	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
+		width: 95%;
+		margin: 30px auto;
+	}
 }
 
 /* Sezione Checkout */
@@ -460,7 +654,6 @@ a:hover {
 	width: 40%;
 	margin: 20px auto;
 	background-color: white;
-	border: 3px dashed gray;
 }
 
 #sezioneUtente p {
@@ -486,21 +679,20 @@ a:hover {
 	text-decoration: none;
 }
 
-/* Sezione Lista Consulenzze */
+/* Sezione Lista Consulenze e Lista Ordine */
 
-.presentazioneConsulenze {
+.presentazione {
 	width: 40%;
 	margin: 20px auto;
 }
 
-#sezioneConsulenze {
+#sezioneConsulenze, #sezioneOrdini {
 	width: 40%;
 	margin: 20px auto;
 	background-color: white;
-	border: 3px dashed gray;
 }
 
-#sezioneConsulenze .consulenzaDiv {
+#sezioneConsulenze .consulenzaDiv, #sezioneOrdini .ordineDiv {
 	border: 2px solid gray;
 	background-color: white;
 	margin: 20px auto;
@@ -516,8 +708,6 @@ a:hover {
 
 #sezioneMessaggiConsulenza  {
 	width: 70%;
-	border: 2px solid gray;
-	background-color: white;
 	margin: 20px auto;
 	padding: 10px;
 	overflow: hidden;
@@ -545,8 +735,6 @@ a:hover {
 
 #rispondiConsulenza {
 	width: 70%;
-	border: 2px solid gray;
-	background-color: white;
 	margin: 20px auto;
 	padding: 10px;
 	overflow: hidden;
@@ -557,5 +745,3 @@ a:hover {
 	padding: 10px;
 	margin: 10px 0 10px 10px;
 }
-
-

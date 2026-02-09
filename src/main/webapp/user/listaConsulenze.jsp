@@ -14,8 +14,8 @@
 	
 		<!-- Sezione mostrata se sono state fatte richieste -->
 	<c:if test="${not empty consulenzaList}">
-		<h1 class="presentazioneConsulenze">Le tue richieste di consulenza:</h1>
-		<section id="sezioneConsulenze">
+		<h1 class="presentazione">Le tue richieste di consulenza:</h1>
+		<section id="sezioneConsulenze" class="contenitore">
 			<c:forEach var="consulenza" items="${consulenzaList}">
 				<div id="consulenzaDiv-${consulenza.id}" class="consulenzaDiv">
 					<a href="${pageContext.request.contextPath}/user/ConsulenzaPageServlet?consId=${consulenza.id}">Richiesta #${consulenza.id}</a>
@@ -27,8 +27,8 @@
 	
 		<!-- Sezione mostrata se non sono state fatte richieste -->
 	<c:if test="${empty consulenzaList}">
-		<h1 class="presentazioneConsulenze">Non hai fatto alcuna richiesta.</h1>
-		<section id="sezioneVuota">
+		<h1 class="presentazione">Non hai fatto alcuna richiesta.</h1>
+		<section id="sezioneVuotaConsulenza">
 			<h3>Per creare una richiesta, vai alla pagina del prodotto di interesse!</h3>
 		</section>
 	</c:if>

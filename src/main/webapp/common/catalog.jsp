@@ -16,7 +16,7 @@
 	<jsp:include page="/fragments/header.jsp"/>
 	<h1 id="presentazioneCatalogo">Sfoglia il nostro catalogo!</h1>
 	
-	<section id="sezioneFiltriCatalog">
+	<section id="sezioneFiltriCatalog" class="contenitore">
 		<h2>Filtra tra i prodotti:</h2>
 		<form name="formFiltri" action="${pageContext.request.contextPath}/CatalogServlet" method="POST">
 			<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Ricerca..." value="${param.barraDiRicerca}"><br>
@@ -51,7 +51,7 @@
 		<c:if test="${not empty listaProdotti}">
 			<c:forEach var="p" items="${listaProdotti}">
 				<div class="contenitoreProdottoCatalogo">
-					<div class="informazioniProdotto">
+					<div class="informazioniProdotto contenitore">
 						<h3><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></h3>
 						<p class="prezzo">${p.prezzoAttuale}€</p>
 					</div>

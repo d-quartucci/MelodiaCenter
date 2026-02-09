@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="/fragments/header.jsp"/>
 
-<section id="benvenuto">
+<section id="benvenuto" class="contenitore">
 	<c:if test="${empty sessionScope.utente}">	
 		<h1>Benvenuto su MelodiaCenter 🎶</h1>
 	</c:if>
@@ -23,7 +23,7 @@
 	<h3>Il tuo negozio online di strumenti musicali!</h3>
 </section>
 
-<aside id="prodottiEvidenziati">
+<aside id="prodottiEvidenziati" class="contenitore">
 	<h2>I prodotti scelti dal nostro staff!</h2>
 	<c:forEach var="p" items="${listaInEvidenza}">
 		<div class="contenitoreProdotto">
@@ -59,7 +59,7 @@
 			<div class="immagineProdotto">
 				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 			</div>
-			<div class="informazioniProdotto">
+			<div class="informazioniProdotto contenitore">
 				<h3><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></h3>
 				<p class="prezzo">${p.prezzoAttuale}€</p>
 				<p class="descrizioneProdotto">${p.descrizione}</p>
