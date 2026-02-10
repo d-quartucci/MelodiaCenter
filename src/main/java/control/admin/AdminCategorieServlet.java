@@ -5,11 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import model.Categoria;
-import model.Prodotto;
 import model.dao.CategoriaDAO;
-import model.dao.ProdottoDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,36 +14,32 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminProdottiServlet")
-public class AdminProdottiServlet extends HttpServlet {
+@WebServlet("/admin/AdminCategorieServlet")
+public class AdminCategorieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	
-    public AdminProdottiServlet() {
+       
+    public AdminCategorieServlet() {
         super();
+        
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-		ProdottoDAO pDAO = new ProdottoDAO(ds);
 		CategoriaDAO cDAO = new CategoriaDAO(ds);
 		
 		try {
-			
-			ArrayList<Prodotto> prodotti = pDAO.doRetrieveAll();
 			ArrayList<Categoria>categorie = cDAO.doRetrieveAll();
 			
 			request.setAttribute("categorie", categorie);
-			request.setAttribute("prodotti", prodotti);
-			request.getRequestDispatcher("/admin/gestioneProdotti.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/gestioneCategorie.jsp").forward(request, response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
-			request.getSession().setAttribute("errorMessage", "Errore gestione prodotti: " + ex.getMessage());
+			request.getSession().setAttribute("errorMessage", "Errore gestione categorie: " + ex.getMessage());
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		}
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

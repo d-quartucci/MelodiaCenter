@@ -76,7 +76,7 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return listaProdotti;
 	}
 	
-	public synchronized ArrayList<Prodotto> toRetriveByFilterAdmin(String ricerca, String ord, String ctg) throws SQLException{
+	public synchronized ArrayList<Prodotto> doRetriveByFilterAdmin(String ricerca, String ord, String ctg) throws SQLException{
 		
 		String ordineQuery = "ASC";
 		if(ord.equals("vendutiDecrescente")|| ord.equals("prezzoDecrescente")) {

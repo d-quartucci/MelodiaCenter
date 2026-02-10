@@ -12,9 +12,11 @@
 	<aside id="Menu"> 
 		<nav>
 			<ul class="MenuGestione">
+				<li><a href="${pageContext.request.contextPath}/admin/AdminUtentiServlet">Utenti</a></li>
              	<li><a href="${pageContext.request.contextPath}/admin/AdminOrdiniServlet">Ordini</a></li>
-             	<li><a href="${pageContext.request.contextPath}/admin/AdminUtentiServlet">Utenti</a></li>
              	<li><a href="${pageContext.request.contextPath}/admin/AdminProdottiServlet">Prodotti</a></li>
+             	<li><a href="${pageContext.request.contextPath}/admin/AdminCategorieServlet">Categorie</a></li>
+             	<!--<li><a href="${pageContext.request.contextPath}/admin/AdminConsulenzaServlet">Prodotti</a></li>-->
         	</ul>
 		</nav>
 	</aside>

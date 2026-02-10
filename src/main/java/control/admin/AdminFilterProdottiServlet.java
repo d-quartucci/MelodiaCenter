@@ -49,7 +49,7 @@ public class AdminFilterProdottiServlet extends HttpServlet {
 				ordine = "prezzoDecrescente";
 			
 			//Applico i filtri
-			ArrayList<Prodotto> prodotti = pDAO.toRetriveByFilterAdmin(ricerca, ordine, categoria);
+			ArrayList<Prodotto> prodotti = pDAO.doRetriveByFilterAdmin(ricerca, ordine, categoria);
 			
 			request.setAttribute("categorie", categorie);
 			request.setAttribute("prodotti", prodotti);

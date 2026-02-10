@@ -18,7 +18,7 @@
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
     		<div id=filtriUtentiAdmin>
-    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterUtentiServlet" method="GET" >
+    			<form name= formFiltriAdmin method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterUtentiServlet">
     				<label for = "dataFrom">Iscritto dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<label for = "dataTo">al: </label>
