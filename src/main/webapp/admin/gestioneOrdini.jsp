@@ -18,7 +18,7 @@
     <!-- Menu laterale di gestione -->
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
-    		<div id=filtriOrdiniAdmin>
+    		<div id="filtriOrdiniAdmin">
     			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet">
     				<label for = "dataFrom">dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">

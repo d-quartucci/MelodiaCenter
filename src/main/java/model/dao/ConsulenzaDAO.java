@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
 import model.Consulenza;
+import model.Ordine;
 
 public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 
@@ -48,7 +50,6 @@ public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 		}
 	}
 
-	
 	public synchronized ArrayList<Consulenza> doRetrieveAll() throws SQLException {
 		
 		String query = "SELECT * FROM consulenza";
@@ -96,6 +97,44 @@ public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 		return list;
 	}
 
+	public synchronized ArrayList<Consulenza> doRetrieveByFilter(Timestamp dataIn, Timestamp dataFin, String stato, String ord) throws SQLException{
+		
+		String ordineQuery = "DESC"; //Il default è decrescente
+		
+		if(ord.equals("menoRecenti")) {
+			ordineQuery = "ASC";
+		}
+		String querySQL1 = "SELECT * FROM consulenza WHERE DataRichiesta >= ? AND DataRichiesta < ? AND isAperto = ? ORDER BY DataRichiesta " + ordineQuery;
+		String querySQL2 = "SELECT * FROM consulenza WHERE DataRichiesta >= ? AND DataRichiesta < ? ORDER BY DataRichiesta " + ordineQuery;
+		ArrayList<Consulenza> consulenze = new ArrayList<>();
+		if(stato.equals("0")) {
+		
+			try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL2)){
+				ps.setTimestamp(1, dataIn);
+				ps.setTimestamp(2, dataFin);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					consulenze.add(mapResultSetToBean(rs));
+				}
+			}
+		}
+		else {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySQL1)){
+				ps.setTimestamp(1, dataIn);
+				ps.setTimestamp(2, dataFin);
+				int valoreStato = stato.equals("aperto") ? 1 : 0;
+				ps.setInt(3, valoreStato);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					consulenze.add(mapResultSetToBean(rs));
+				}
+			}
+		}
+		return consulenze;
+	}
+	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
 		
 		String query = "DELETE FROM consulenza WHERE ID = ?";
@@ -111,7 +150,6 @@ public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 		}
 		return true;
 	}
-
 	
 	public Consulenza mapResultSetToBean(ResultSet rs) throws SQLException {
 		

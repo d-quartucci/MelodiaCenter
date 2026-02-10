@@ -5,40 +5,45 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import model.Categoria;
-import model.Prodotto;
-import model.dao.CategoriaDAO;
-import model.dao.ProdottoDAO;
+import model.Consulenza;
+import model.dao.ConsulenzaDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminProdottiServlet")
-public class AdminProdottiServlet extends HttpServlet {
+@WebServlet("/admin/AdminConsulenzaServlet")
+public class AdminConsulenzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	
-    public AdminProdottiServlet() {
+       
+
+    public AdminConsulenzaServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
+
 		
 		try {
-			ProdottoDAO pDAO = new ProdottoDAO(ds);
-			CategoriaDAO cDAO = new CategoriaDAO(ds);
-			ArrayList<Prodotto> prodotti = pDAO.doRetrieveAll();
-			ArrayList<Categoria>categorie = cDAO.doRetrieveAll();
+			ConsulenzaDAO cDAO = new ConsulenzaDAO(ds);
+			ArrayList<Consulenza> consulenze = cDAO.doRetrieveAll();
 			
-			request.setAttribute("categorie", categorie);
-			request.setAttribute("prodotti", prodotti);
-			request.getRequestDispatcher("/admin/gestioneProdotti.jsp").forward(request, response);
+			//prendo la data del giorno corrente 
+			LocalDate oggi = LocalDate.now();
+			//prendo la data di inizio mese rispetto al giorno corrente
+			LocalDate inizioMese = oggi.withDayOfMonth(1);
+
+			//setto gli attributi cosi da inserire nel form dei filtri
+			//vaolori di date di default
+			request.setAttribute("defaultIn", inizioMese.toString());
+			request.setAttribute("defaultFin", oggi.toString());
+			
+			request.setAttribute("consulenze", consulenze);
+			request.getRequestDispatcher("/admin/gestioneConsulenza.jsp").forward(request, response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
