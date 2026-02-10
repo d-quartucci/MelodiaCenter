@@ -47,7 +47,7 @@
     	</div>
     	<div id=listProdotti>
     		<section id="sezioneFiltriAdmin">
-				<h2>Filtro prodotti:</h2>
+				<p>Filtro prodotti:</p>
 				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterProdottiServlet" >
 				
 					<label for="barraDiRicerca">Ricerca:</label>	
@@ -72,64 +72,66 @@
 					<button type="submit">Applica filtri</button>
 				</form>
 			</section>
-    		<p>Lista Prodotti</p>
-    		<table>
-    			<thead id = "testaTableProdotti">
-    				<tr>
-    					<th>Cod.Prodotto</th>
-						<th>Cod.Categoria</th>
-						<th>Nome</th>
-						<th>Prezzo</th>
-						<th>Immagine</th>
-						<th>Descrizione</th>
-						<th>Quantità Vendute</th>
-						<th>Attivo</th>
-						<th>Evidenza</th>
-    				</tr>
-    			</thead>
-    			<tbody id= "corpoTableProdotti">
-    				<c:if test= "${not empty prodotti}">
-						<c:forEach var= "p" items="${prodotti}">
-							<tr>
-								<td>${p.id}</td>
-								<c:forEach var="c" items="${categorie}">
-	               					 <c:if test="${c.id == p.categoriaId}">
-	                   	 				<td>${c.id}-(${c.nome})</td>
-                					</c:if>
-								</c:forEach>
-								<td><input type = "text" id= "nome_${p.id}" value= "${p.nome}" disabled></td>
-								<td><input type = "text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></td>
-								<td id= "image">
-									<img id="image_${p.id}" src="${pageContext.request.contextPath}/images/${p.imgSrc}" alt="Immagine ${p.nome}"><br>
-                 				</td>
-								<td><textarea  id="descr_${p.id}" rows = 5  cols = 30 disabled>${p.descrizione}</textarea></td>
-								<td>${p.quantitaVendute}</td>
-								<td>
-									<select id= "attivo_${p.id}" disabled > 
-										<option value = "true" ${p.attivo == "true" ? "selected" : ""} >attivo</option>
-										<option value = "false" ${p.attivo == "false" ? "selected" : ""}>non attivo</option>
-									</select>
-								</td>
-								<td>
-									<select id= "evidenza_${p.id}" disabled> 
-										<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >attivo</option>
-										<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>non attivo</option>
-									</select>
-								</td>
-								<td id= "tastoMod">
-									<button type = "button" id= "mod_${p.id}" onclick = "abilitaModifica(${p.id})"> Modifica</button>
-								</td>
-								<td id= "tastoDel">
-									<button type = "button" id= "del_${p.id}" onclick = "eliminaProd(${p.id})"> Elimina</button>
-								</td>
-								<td id= "ErrorSpan">
-									<span id="error_${p.id}" class="error"></span>
-								</td>
-							</tr>	
-						</c:forEach>
-					</c:if>
-    			</tbody>
-    		</table>
+			<section id="sezioneListaProdotti">
+    			<p>Lista Prodotti</p>
+    			<table id ="tabellaPrdotti">
+    				<thead id = "testaTableProdotti">
+    					<tr>
+    						<th>Cod.Prodotto</th>
+							<th>Cod.Categoria</th>
+							<th>Nome</th>
+							<th>Prezzo</th>
+							<th>Immagine</th>
+							<th>Descrizione</th>
+							<th>Quantità Vendute</th>
+							<th>Attivo</th>
+							<th>Evidenza</th>
+    					</tr>
+    				</thead>
+    				<tbody id= "corpoTableProdotti">
+    					<c:if test= "${not empty prodotti}">
+							<c:forEach var= "p" items="${prodotti}">
+								<tr>
+									<td>${p.id}</td>
+									<c:forEach var="c" items="${categorie}">
+	               						 <c:if test="${c.id == p.categoriaId}">
+	                   	 					<td>${c.id}-(${c.nome})</td>
+                						</c:if>
+									</c:forEach>
+									<td><input type = "text" id= "nome_${p.id}" value= "${p.nome}" disabled></td>
+									<td><input type = "text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></td>
+									<td id= "image">
+										<img id="image_${p.id}" src="${pageContext.request.contextPath}/images/${p.imgSrc}" alt="Immagine ${p.nome}"><br>
+       		          				</td>
+									<td><textarea  id="descr_${p.id}" rows = 5  cols = 30 disabled>${p.descrizione}</textarea></td>
+									<td>${p.quantitaVendute}</td>
+									<td>
+										<select id= "attivo_${p.id}" disabled > 
+											<option value = "true" ${p.attivo == "true" ? "selected" : ""} >attivo</option>
+											<option value = "false" ${p.attivo == "false" ? "selected" : ""}>non attivo</option>
+										</select>
+									</td>
+									<td>
+										<select id= "evidenza_${p.id}" disabled> 
+											<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >attivo</option>
+											<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>non attivo</option>
+										</select>
+									</td>
+									<td id= "tastoMod">
+										<button type = "button" id= "mod_${p.id}" onclick = "abilitaModifica(${p.id})"> Modifica</button>
+									</td>
+									<td id= "tastoDel">
+										<button type = "button" id= "del_${p.id}" onclick = "eliminaProd(${p.id})"> Elimina</button>
+									</td>
+									<td id= "ErrorSpan">
+										<span id="error_${p.id}" class="error"></span>
+									</td>
+								</tr>	
+							</c:forEach>
+						</c:if>
+    				</tbody>
+    			</table>
+    		</section>
     	</div>
     </main>
         <!-- FOOTER -->

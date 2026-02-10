@@ -42,7 +42,6 @@ public class CategoriaDAO implements GenericDAO <Categoria, Integer> {
 		}
 	}
 
-	
 	public synchronized ArrayList<Categoria> doRetrieveAll() throws SQLException {
 		
 		String query = "SELECT * FROM categoria";
@@ -59,7 +58,6 @@ public class CategoriaDAO implements GenericDAO <Categoria, Integer> {
 		return lista;
 	}
 
-	
 	public synchronized Categoria doRetrieveByKey(Integer key) throws SQLException {
 		
 	String query = "SELECT * FROM categoria WHERE ID = ?";
@@ -75,6 +73,39 @@ public class CategoriaDAO implements GenericDAO <Categoria, Integer> {
 		return null;
 	}
 
+	public synchronized ArrayList<Categoria> doRetrieveByFilter(String ctg) throws SQLException{
+
+		String querySQL1 = "SELECT * FROM Categoria";
+		String querySQL2 = "SELECT * FROM Categoria WHERE id = ?";
+		ArrayList<Categoria> categorie = new ArrayList<>();
+		//Se è stato selezionato "tutte" nella categoria, non avrò filtro sulla categoria
+		if(ctg.equals("0")) {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySQL1)){
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						Categoria c = mapResultSetToBean(rs);
+						categorie.add(c);
+					}
+				}
+			} 
+		}
+		//Se ho un filtro sulla categoria, utilizzo la query specifica
+		else {
+			try(Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySQL2)){
+				ps.setInt(1,Integer.parseInt(ctg));
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						Categoria c = mapResultSetToBean(rs);
+						categorie.add(c);
+					}
+				}
+			} 
+		}
+		return categorie;
+	}
+	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
 		
 		String query = "DELETE FROM categoria WHERE ID = ?";
@@ -91,7 +122,6 @@ public class CategoriaDAO implements GenericDAO <Categoria, Integer> {
 		return true;
 	}
 
-	
 	public Categoria mapResultSetToBean(ResultSet rs) throws SQLException {
 	Categoria ct = new Categoria();
 		

@@ -39,7 +39,6 @@ function applicaModifica(id){
 		
 }
 
-
 function salvaModifica(id, campo, valore){
 	
 	let xhr = new XMLHttpRequest();
@@ -49,10 +48,9 @@ function salvaModifica(id, campo, valore){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
 				alert("Salvataggio avvenuto con successo");
-				location.reload();        // Ricarica la pagina per aggiornare la lista utenti
+				location.reload();
 			}else if(this.status === 400){
 				alert("Errore: Campo non valido");
-				
 			}else if(this.status === 404){
 				alert("Errore: Utente non trovato");
 			}
@@ -65,13 +63,11 @@ function salvaModifica(id, campo, valore){
 	xhr.send(params);
 }
 
-
 function validateEmail(id){
 	
 	const uEmail= document.getElementById("email_"+id).value;
 	const errorEmail = document.getElementById("errorEmail_"+id);
 	
-
 	let xhr = new XMLHttpRequest();
 	let url = contextPath + "/CheckEmailServlet?email=" + encodeURIComponent(uEmail);
 	xhr.open("GET", url, true);

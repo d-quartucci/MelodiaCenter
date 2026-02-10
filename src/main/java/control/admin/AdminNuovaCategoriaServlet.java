@@ -13,11 +13,11 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminCategoriaServlet")
-public class AdminCategoriaServlet extends HttpServlet {
+@WebServlet("/admin/AdminNuovaCategoriaServlet")
+public class AdminNuovaCategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminCategoriaServlet() {
+    public AdminNuovaCategoriaServlet() {
         super();
     }
 
@@ -36,7 +36,7 @@ public class AdminCategoriaServlet extends HttpServlet {
 			
 			cDAO.doSaveOrUpdate(categoria);
 			
-			response.sendRedirect(request.getContextPath() + "/admin/gestioneCategoria.jsp");
+			response.sendRedirect(request.getContextPath() + "/admin/AdminCategorieServlet");
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
