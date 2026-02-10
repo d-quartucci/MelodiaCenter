@@ -19,7 +19,7 @@
 	<%@ include file = "/fragments/adminMenu.jsp"%>
     	<main>
     		<div id=filtriOrdiniAdmin>
-    			<form name= formFiltriAdmin action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet"  method="GET" >
+    			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet">
     				<label for = "dataFrom">dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<label for = "dataTo">al: </label>
@@ -30,7 +30,7 @@
     					<option value = menoRecenti> meno recenti </option>
     					<option value = piuRecenti selected> più recenti </option>
     				</select>
-    				<button type="button" onclick= "eseguiFiltro('/admin/AdminFilterOrdiniServlet','corpoTableOrdini')">Filtra</button>
+    				<button type="submit">Filtra</button>
     			</form>
     		</div>
     		<div id=listOrdini>
@@ -46,7 +46,24 @@
     					</tr>
     				</thead>
     				<tbody id = "corpoTableOrdini">
-						<%@ include file = "CorpoTabellaOrdini.jsp"%>
+						<c:if test= "${not empty ordini}">
+							<c:forEach var="o" items="${ordini}">
+								<tr>
+									<td>${o.id}</td>
+									<td>${o.utenteId}</td>
+									<td>${o.data}</td>
+									<td>${o.totale}€</td>
+									<td>${o.indSpedizione}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty ordini}">
+       						<tr>
+           						<td colspan="5" style="text-align:center; padding:20px;">
+                					Nessun ordine presente
+          						 </td>
+      						</tr>
+   						</c:if>
     				</tbody>
     			</table>
     		</div>

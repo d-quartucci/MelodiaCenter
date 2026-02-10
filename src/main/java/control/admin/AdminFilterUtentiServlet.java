@@ -57,7 +57,7 @@ public class AdminFilterUtentiServlet extends HttpServlet {
 			ArrayList <Utente> utenti = uDAO.doRetrieveByFilter(adminId,dataInDate, dataFinDate, ord);
 			
 			request.setAttribute("utenti", utenti);
-			request.getRequestDispatcher("/admin/CorpoTabellaUtenti.jsp").forward(request,response);
+			request.getRequestDispatcher("/admin/gestioneUtenti.jsp").forward(request,response);
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
