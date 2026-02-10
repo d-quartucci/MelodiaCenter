@@ -14,34 +14,56 @@
 
 <body>
 <jsp:include page="/fragments/header.jsp"/>
+<section id="sezioneRegister">
+	<h1 class="presentazione">Registrati!</h1>
+	<section class="contenitore" id="sezioneRegister">
 
-<h1>Registrati!</h1>
+		<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/DoRegisterServlet" onsubmit="return validateRegister()">
+			<fieldset>
+				<legend>Credenziali di accesso</legend>
+				<div class="riga">
+					<label for="email">Email:</label>
+					<input name="email" id="email" type="text" oninput="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
+					<span id="errorEmail" class="error"></span><br/>
+				</div>	
+				
+				<div class="riga">
+					<label for="password">Password:</label>
+					<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" minlength=6 required/>
+					<span id="errorPassword" class="error"></span><br/>
+				</div>	
+			</fieldset>
 
-<form id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/DoRegisterServlet" onsubmit="return validateRegister()">
-<fieldset>
-<legend>Credenziali di accesso</legend>
-	Email:<input name="email" id="email" type="text" oninput="verificaEmail()" pattern="^\S+@\S+\.\S+$" required/>
-	<span id="errorEmail" class="error"></span><br/>
-	
-	Password:<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" minlength=6 required/>
-	<span id="errorPassword" class="error"></span><br/>
-</fieldset>
-
-<fieldset>
-<legend>Informazioni</legend>
-	Nome:<input name="nome" id="nome" type="text" onchange="validateFormElem(this, document.getElementById('errorNome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
-	<span id="errorNome" class="error"></span><br/>
-	
-	Cognome:<input name="cognome" id="cognome" type="text" onchange="validateFormElem(this, document.getElementById('errorCognome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
-	<span id="errorCognome" class="error"></span><br/>
-	
-	Numero di telefono:<input name="tel" id="tel" type="tel" onchange="validateFormElem(this, document.getElementById('errorTel'), phoneErrorMessage)" pattern="[0-9]{10}" required/>
-	<span id="errorTel" class="error"></span>
-</fieldset>
-<button type="submit" id="submit">Registrati!</button>
-</form>
-
-<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/LoginServlet">Accedi qui!</a> </h4>
+			<fieldset>
+				<legend>Informazioni</legend>
+				<div class="riga">
+					<label for="nome">Nome:</label>
+					<input name="nome" id="nome" type="text" onchange="validateFormElem(this, document.getElementById('errorNome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
+					<span id="errorNome" class="error"></span><br/>
+				</div>
+				
+	   			<div class="riga">
+					<label for="cognome">Cognome:</label>
+					<input name="cognome" id="cognome" type="text" onchange="validateFormElem(this, document.getElementById('errorCognome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
+					<span id="errorCognome" class="error"></span><br/>
+				</div>
+			
+				<div class="riga">
+					<label for="tel">Numero di telefono:</label>
+					<input name="tel" id="tel" type="tel" onchange="validateFormElem(this, document.getElementById('errorTel'), phoneErrorMessage)" pattern="[0-9]{10}" required/>
+					<span id="errorTel" class="error"></span>
+				</div>
+		
+			</fieldset>
+			<div class="rigaExtra">
+				<button type="submit" id="submit">Registrati!</button>
+			</div>
+		</form>
+		<div class="rigaExtra">
+			<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/LoginServlet">Accedi qui!</a> </h4>
+		</div>
+	</section>
+</section>
 
 <jsp:include page="/fragments/footer.jsp"/>
 </body>

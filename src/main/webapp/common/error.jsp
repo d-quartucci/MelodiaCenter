@@ -8,8 +8,10 @@
 </head>
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
-	<h1>${errorMessage}</h1>
-	Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!
+	<section class="contenitore" id="sezioneErrore">
+		<h1>${errorMessage}</h1>
+		<h3>Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!</h3>
+	</section>
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>

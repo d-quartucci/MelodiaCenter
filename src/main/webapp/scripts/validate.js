@@ -1,8 +1,8 @@
 const lettersOnlyMessage = "Questo campo deve contenere solo lettere";
 const emailErrorMessage = "Inserire un email valida (es. nome@dom.it)";
-const phoneErrorMessage = "Il numero deve contenere 10 cifre";
+const phoneErrorMessage = "Questo campo deve contenere 10 cifre";
 const emptyFieldErrorMessage = "Campo obbligatorio";
-const passwordErrorMessage = "La password deve contenere almeno 6 caratteri";
+const passwordErrorMessage = "Questo campo deve contenere almeno 6 caratteri";
 const civicoErrorMessage = "Inserire un valore valido"
 const PINErrorMessage = "Il PIN deve nel formato ####-####-####-####"
 const CAPErrorMessage = "Il CAP deve essere di 5 cifre"

@@ -373,7 +373,7 @@ a:hover {
 	height: 275px;
 	margin-bottom: 50px;
 	clear: both;
-	border-bottom: 3px solid #2C3E50;
+	border-bottom: 2px solid gray;
 	position: relative;
 	margin-left: 20px;
 }
@@ -577,6 +577,10 @@ a:hover {
 	margin-left: 20px;
 }
 
+#carrelloVuoto h2 {
+	padding-left: 20px;
+}
+
 #sezioneDestraCarrello {
 	margin-right: 20px;
 	float: right;
@@ -636,6 +640,12 @@ a:hover {
 	width: 40%;
 	margin: 20px auto;
 }
+
+#sezioneCheckoutForm span {
+	font-weight: lighter;
+	font-size: smaller;
+}
+
 
 #informazioniFieldset, #inserisciIndirizzo, #inserisciPagamento {
 	font-weight: bold;
@@ -826,7 +836,6 @@ a:hover {
 #sezioneVuotaWishlist .contenitore {
 	width: 40%;
 	margin: 20px auto;
-	background-color: white;
 }
 
 #sezioneWishlist .contenitoreProdotto {
@@ -836,15 +845,15 @@ a:hover {
 	padding: 10px;
 	margin: 20px auto;
 	clear: both;
-	position: relative;
 	font-size: 0.8em;
+	position: relative;
 }
 
 #sezioneWishlist .informazioniProdotto {
 	position: absolute;
 	right: 0;
 	top: 0;
-	width: 30%;
+	width: 50%;
 	text-align: center;
 }
 
@@ -854,8 +863,14 @@ a:hover {
 }
 
 @media screen and (max-width: 1600px){
-	#sezioneWishlist, #sezioneVuotaWishlist{
+	#sezioneWishlist, #sezioneVuotaWishlist .contenitore{
 		width: 70%
+	}
+	
+	#sezioneWishlist button {
+		height: 30px;
+		width: 60px;
+		font-size: 1.2em;
 	}
 	
 	#sezioneWishlist .contenitoreProdotto {
@@ -871,7 +886,173 @@ a:hover {
 }
 
 @media screen and (max-width: 650px){
-	#sezioneWishlist, #sezioneVuotaWishlist {
+	#sezioneWishlist, #sezioneVuotaWishlist .contenitore {
+		width: 95%;
+	}
+}
+
+/* Sezione login */
+
+#sezioneLogin .contenitore {
+	width: 40%;
+	margin: 20px auto;
+}
+
+#sezioneLogin span {
+	font-weight: lighter;
+	font-size: smaller;
+}
+
+#sezioneLogin .errore {
+	width: 60%;
+	margin: 20px auto;
+}
+
+#sezioneLogin .contenitore .riga {
+	width: 60%;
+	margin: 20px auto;
+	clear: both;
+}
+
+#sezioneLogin h4 {
+	float: right;
+	padding-bottom: 10px;
+}
+
+#sezioneLogin .riga label {
+	width: 50%;
+	float: left;
+	text-align: left;
+}
+
+#sezioneLogin input[type="text"], #sezioneLogin input[type="password"]{
+	width: 45%;
+	float: right;
+}
+
+#ricordaEmail label{
+	width: auto;
+	float: left;
+	margin-right: 10px;
+}
+
+#sezioneLogin .riga input[type="checkbox"] {
+	float: left;
+	width: auto;
+	margin-top: 5px;
+}
+
+#sezioneLogin button {
+	width: 75px;
+	height: 30px;
+	margin-top: 20px;
+}
+
+
+@media screen and (max-width: 1600px){
+	#sezioneLogin .contenitore{
+		width: 70%
+	}
+	#sezioneRegister .riga {
+		width: 85%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#sezioneLogin .contenitore {
+		width: 95%;
+	}
+}
+
+/* Sezione register */
+
+#sezioneRegister .contenitore {
+	width: 40%;
+	margin: 20px auto;
+}
+
+#sezioneRegister fieldset {
+	margin: 10px auto;
+	padding-bottom: 20px;
+	width: 70%;
+}
+
+#sezioneRegister span {
+	font-weight: lighter;
+	font-size: smaller;
+}
+
+#sezioneRegister .riga {
+	width: 60%;
+	margin: 20px auto;
+	clear: both;
+}
+
+#sezioneRegister .rigaExtra {
+	width: 70%;
+	margin: 20px auto;
+	clear: both;
+}
+
+#sezioneRegister h4 {
+	float: right;
+    width: 100%;
+    text-align: right;
+    margin-top: 20px;
+}
+
+#sezioneRegister .riga label {
+	width: 50%;
+	float: left;
+	text-align: left;
+}
+
+#sezioneRegister input[type="text"], #sezioneRegister input[type="password"], #sezioneRegister input[type="tel"]{
+	width: 45%;
+	float: right;
+}
+
+#sezioneRegister button {
+	width: 75px;
+    height: 35px;
+    float: right;
+}
+
+@media screen and (max-width: 1600px){
+	#sezioneRegister .contenitore{
+		width: 70%
+	}
+	
+	#sezioneRegister .riga {
+		width: 85%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#sezioneRegister .contenitore {
+		width: 95%;
+	}
+}
+
+/* Sezione Acquisto Terminato ed Errore */
+#sezioneTerminato, #sezioneErrore {
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#sezioneTerminato h1, #sezioneErrore h1 {
+	margin: 20px;
+}
+
+@media screen and (max-width: 1600px){
+	#sezioneTerminato, #sezioneErrore {
+		width: 70%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#sezioneTerminato, #sezioneErrore {
 		width: 95%;
 	}
 }

@@ -13,25 +13,40 @@
 <body>
 <jsp:include page="/fragments/header.jsp"/>
 
-<h1>Accedi!</h1>
-<h2 id="errore">${error}</h2>
-<div id="formLogin">
-	<form id="loginForm" name="loginForm" method="POST" action="${pageContext.request.contextPath}/DoLoginServlet" onsubmit="return validateLogin()">
-		<label for="email">Email:</label>
-		<input name="email" id="email" onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" type="text" required pattern="^\S+@\S+\.\S+$" value="${emailRicordata != null ? emailRicordata : ''}"></input>
-		<span id="errorEmail"></span><br/>
-		
-		<label for="password">Password:</label>
-		<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" required minlength="6"></input>
-		<span id="errorPassword"></span><br/>
-		
-		<label for="ricordaCheckbox">Ricorda l'email</label>
-		<input name="ricordaCheckbox" id="ricordaCheckbox" type="checkbox" ${wasChecked ? "checked" : ""}>
-		
-		<button type="submit" id="submit">Accedi</button>
-	</form>
-</div>
-<h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/RegisterServlet">Registrati qui!</a> </h4>
+<section id="sezioneLogin">
+<h1 class="presentazione">Accedi!</h1>
+	<section class="contenitore">
+	<h2 class="errore">${error}</h2>
+		<form id="loginForm" name="loginForm" method="POST" action="${pageContext.request.contextPath}/DoLoginServlet" onsubmit="return validateLogin()">
+			
+			<div class="riga">
+				<label for="email">Email:</label>
+				<input name="email" id="email" onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" type="text" required pattern="^\S+@\S+\.\S+$" value="${emailRicordata != null ? emailRicordata : ''}"></input>
+				<span id="errorEmail"></span><br/>
+			</div>
+			
+			<div class="riga">
+				<label for="password">Password:</label>
+				<input name="password" id="password" type="password" onchange="validateFormElem(this, document.getElementById('errorPassword'), passwordErrorMessage)" required minlength="6"></input>
+				<span id="errorPassword"></span><br/>
+			</div>
+			
+			<div class="riga" id="ricordaEmail">
+				<label for="ricordaCheckbox">Ricorda l'email?</label>
+				<input name="ricordaCheckbox" id="ricordaCheckbox" type="checkbox" ${wasChecked ? "checked" : ""}>
+			</div>
+			
+			<div class="riga">
+				<button type="submit" id="submit">Accedi!</button>
+			</div>
+			
+		</form>
+		<div class="riga">
+			<h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/RegisterServlet">Registrati qui!</a> </h4>
+		</div>
+	</section>
+</section>
+
 
 <jsp:include page="/fragments/footer.jsp"/>
 </body>

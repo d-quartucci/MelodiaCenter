@@ -16,7 +16,7 @@
 <h1 id="introduzioneCarrello">Gestisci il tuo carrello!</h1>
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
-<section id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
+<section class="contenitore" id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
     <h2>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
 </section>
 
