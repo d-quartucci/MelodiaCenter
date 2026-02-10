@@ -12,7 +12,9 @@ function rimuoviDallaWishlist(idProdotto){
 				let allDivs = document.querySelectorAll("#sezioneWishlist div[id^='wishDiv-']");
 				if(allDivs.length === 0){
 					let sezioneWishlist = document.getElementById("sezioneWishlist");
-					if(sezioneWishlist){
+					let presentazioneWishlist = document.getElementById("presentazioneWishlistPiena");
+					if(sezioneWishlist && presentazioneWishlist){
+						presentazioneWishlist.remove();
 						sezioneWishlist.remove();
 					}	
 					let sezioneVuota = document.getElementById("sezioneVuotaWishlist");

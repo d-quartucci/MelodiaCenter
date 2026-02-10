@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	<c:if test="${not empty wishlist}">
-	<h1 class="presentazione">Ecco la lista dei desideri...</h1>
+	<h1 id="presentazioneWishlistPiena" class="presentazione">Ecco la lista dei desideri...</h1>
 	<section id="sezioneWishlist" class="contenitore">
 		<c:forEach var="wish" items="${wishlist}">
 			<div id="wishDiv-${wish.prodotto.id}" class="contenitoreProdotto">
@@ -21,7 +21,7 @@
 				<img src="${pageContext.request.contextPath}/images/${wish.prodotto.imgSrc}">
 				</div>
 				<div class="informazioniProdotto">
-					<h2><a href="ProductPageServlet?prodottoId=${wish.prodotto.id}">${wish.prodotto.nome}</a></p>
+					<h2><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${wish.prodotto.id}">${wish.prodotto.nome}</a></p>
 					<p>${wish.prodotto.prezzoAttuale}€</p>
 					<button id="wishRemove-${wish.prodotto.id}" onclick="rimuoviDallaWishlist(${wish.prodotto.id})">Rimuovi</button>
 				</div>

@@ -31,7 +31,7 @@
 		<tr>
 			<th>Nome</th>
 			<th>Prezzo</th>
-			<th>Quantità</th>
+			<th class="sezioneQuantità">Quantità</th>
 			<th></th>
 		</tr>
 	
@@ -39,7 +39,7 @@
 			<tr id="tr-${item.prodotto.id}">
 				<td>${item.prodotto.nome}</td>
 				<td>${item.prodotto.prezzoAttuale}€</td>
-				<td>
+				<td class="sezioneQuantità">
 					<button class="pulsanteOpCarrello" id="${item.prodotto.id}RimuoviUno" onclick="rimuoviUno(${item.prodotto.id})">-</button>
 					<input id="${item.prodotto.id}Quantita" type="text" size="3" value="${item.quantita}" oninput="cambiaQuantita(${item.prodotto.id})">
 					<button class="pulsanteOpCarrello" id="${item.prodotto.id}AggiungiUno" onclick="aggiungiUno(${item.prodotto.id})">+</button>

@@ -147,9 +147,11 @@ hr {
 
 @media screen and (max-width: 900px) {
 	.userArea {
-		float: left;
+		float: none;
+		width: 95%;
+		margin: 0 auto;
 	}
-	
+
 	.navLinks {
 		display: none;
 	}
@@ -254,6 +256,10 @@ a:hover {
 	padding: 10px;
 }
 
+#prodottiEvidenziati .immagineProdotto {
+	margin-bottom: 10px;
+}
+
 #prodottiEvidenziati h2 {
 	padding: 10px;
 }
@@ -293,15 +299,18 @@ a:hover {
 	}
 }
 
-@media screen and (max-width: 480px){
-	#prodottiEvidenziati .immagineProdotto img {
-		max-height: 75px;
-		max-width: 75px;
+@media screen and (max-width: 800px){
+	
+	#benvenuto {
+		width: 90%;
 	}
 	
-	#bestSellers .immagineProdotto img {
-		max-height: 100px;
-		max-width: 100px;
+	#prodottiEvidenziati {
+		display: none;
+	}
+	
+	#bestSellers, #sezioneCategorie {
+		width: 90%;
 	}
 }
 
@@ -355,7 +364,7 @@ a:hover {
 
 /* Sezione contenitore prodotti catalogo */
 
-#presentazioneCatalogo {
+#presentazioneCatalogo, #nessunRisultato {
 	margin-left: 20px;
 }
 
@@ -406,7 +415,7 @@ a:hover {
 	}
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 800px){
 	
 	.contenitoreProdottoCatalogo {
 		width: 90%;
@@ -456,6 +465,8 @@ a:hover {
 
 #sezioneFunzionalità button {
 	padding: 10px;
+	height: 50px;
+	min-width: 200px;
 	margin-bottom: 20px;
 	margin-left: 10px;
 	float: left;
@@ -576,6 +587,8 @@ a:hover {
 	border-collapse: collapse;
 	overflow: scroll;
 	font-size: 1.3em;
+	width: 70%;
+	margin: 0 auto;
 }
 
 #tabellaCarrello td, #tabellaCarrello th {
@@ -606,15 +619,14 @@ a:hover {
 
 @media screen and (max-width: 1700px){
 	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
-		width: 75%;
-		margin: 30px auto;
+		width: 70%;
 	}
+	
 }
 
 @media screen and (max-width: 650px){
 	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
 		width: 95%;
-		margin: 30px auto;
 	}
 }
 
@@ -646,6 +658,25 @@ a:hover {
 	padding: 10px;
 	float: right;
 	margin: 10px 0 10px 10px;
+}
+
+/* Classe riutilizzata nelle sezioni successive */
+
+.presentazione { 
+	width: 40%;
+	margin: 20px auto;
+}
+
+@media screen and (max-width: 1600px){
+	.presentazione {
+		width: 70%
+	}
+}
+
+@media screen and (max-width: 650px){
+	.presentazione {
+		width: 95%
+	}
 }
 
 /* Sezione Area Utente */
@@ -680,12 +711,19 @@ a:hover {
 	text-decoration: none;
 }
 
-/* Sezione Lista Consulenze, Lista Ordine e lista dei prodotti desiderati dell'utente */
-
-.presentazione {
-	width: 40%;
-	margin: 20px auto;
+@media screen and (max-width: 1600px){
+	#sezioneUtente, #consulenzeLink {
+		width: 70%
+	}
 }
+
+@media screen and (max-width: 650px){
+	#sezioneUtente, #consulenzeLink {
+		width: 95%;
+	}
+}
+
+/* Sezione Lista Consulenze, Lista Ordine e lista dei prodotti desiderati dell'utente */
 
 #sezioneConsulenze, #sezioneOrdini, #listaRigheOrdine, #sezioneWishlist{
 	width: 40%;
@@ -706,6 +744,7 @@ a:hover {
 }
 
 /* Sezione Consulenza */
+
 #presentazioneConsulenza, #sezioneMessaggiConsulenza {
 	width: 70%;
 	margin: 20px auto;
@@ -751,11 +790,35 @@ a:hover {
 	margin: 10px 0 10px 10px;
 }
 
+@media screen and (max-width: 1600px){
+	#sezioneConsulenze, #sezioneMessaggiConsulenza, #rispondiConsulenza, #sezioneOrdini{
+		width: 70%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#sezioneConsulenze, #sezioneMessaggiConsulenza, #rispondiConsulenza, #sezioneOrdini {
+		width: 90%;
+	}
+}
+
 /* Sezione Pagina Ordine */
 
 #listaRigheOrdine h2{
 	float: right;
 	margin-right: 20px;
+}
+
+@media screen and (max-width: 1600px){
+	#listaRigheOrdine{
+		width: 70%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#listaRigheOrdine {
+		width: 95%;
+	}
 }
 
 /* Sezione wishlist */
@@ -774,6 +837,7 @@ a:hover {
 	margin: 20px auto;
 	clear: both;
 	position: relative;
+	font-size: 0.8em;
 }
 
 #sezioneWishlist .informazioniProdotto {
@@ -792,6 +856,17 @@ a:hover {
 @media screen and (max-width: 1600px){
 	#sezioneWishlist, #sezioneVuotaWishlist{
 		width: 70%
+	}
+	
+	#sezioneWishlist .contenitoreProdotto {
+		height: 200px;
+		width: 85%;
+		font-size: 0.6em;
+	}
+	
+	#sezioneWishlist img {
+		width: 150px;
+		height: 150px;
 	}
 }
 

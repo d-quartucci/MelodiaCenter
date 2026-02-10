@@ -12,7 +12,7 @@
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
 	
-	<h1 id="presentazioneConsulenza">Consulenza #${consulenza.id}</h1>
+	<h1 id="presentazioneConsulenza" class="presentazione">Consulenza #${consulenza.id}</h1>
 	
 	<section id="sezioneMessaggiConsulenza" class="contenitore">
 		<section id="sezioneMessaggiUtente">

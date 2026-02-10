@@ -30,12 +30,12 @@
 <section id="sezioneFunzionalità">
 
 	<section id="sezioneAggiungiCarrello">
-		<button id="pulsanteCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
+		<button id="pulsanteAggiungiCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
 	</section>
 
-	<section id="sezioneWishlist">
+	<section id="sezioneAggiungiWishlist">
 		<c:if test="${isLogged}">
-			<button id="pulsanteWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "Già in wishlist" : "Desidero..."}</button>
+			<button id="pulsanteAggiungiWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "In wishlist" : "Desidero..."}</button>
 		</c:if>
 	</section>
 		

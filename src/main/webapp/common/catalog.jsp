@@ -29,7 +29,7 @@
 			
 			<label for="categoria">Seleziona la categoria:</label>
 			<select id="categoria" name="categoria">
-				<!-- "Tutte" e la categoria di default -->
+				<!-- "Tutte" è la categoria di default -->
 				<option value="0" ${param.categoria == null || param.categoria == '0' ? 'selected' : ''}>Tutte</option>
 				<!-- Le altre categorie -->
 				<c:forEach var="c" items="${listaCategorie}">
@@ -62,7 +62,7 @@
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty listaProdotti}">
-			<p class="nessunRisultato"> Non è stato trovato alcun risultato! </p>
+			<h3 id="nessunRisultato"> Non è stato trovato alcun risultato! </h3>
 		</c:if>
 	</section>
 	

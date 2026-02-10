@@ -4,8 +4,8 @@ function aggiungiAlCarrello(idProdotto){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.status == 200){
-				document.getElementById("pulsanteCarrello").disabled = "true";
-				document.getElementById("pulsanteCarrello").innerHTML = "Prodotto già nel carrello";
+				document.getElementById("pulsanteAggiungiCarrello").disabled = "true";
+				document.getElementById("pulsanteAggiungiCarrello").innerHTML = "Prodotto già nel carrello";
 			}
 			else{
 				alert(xhr.statusText);
@@ -23,8 +23,8 @@ function aggiungiAllaWishlist(idProdotto){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){
-				document.getElementById("pulsanteWishlist").disabled = "true";
-				document.getElementById("pulsanteWishlist").innerHTML = "Già in wishlist";
+				document.getElementById("pulsanteAggiungiWishlist").disabled = "true";
+				document.getElementById("pulsanteAggiungiWishlist").innerHTML = "Già in wishlist";
 			}
 			else{
 				alert(xhr.statusText);

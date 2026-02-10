@@ -21,7 +21,7 @@
         </nav>
         
         <div class="ricerca">
-        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/SearchServlet" method="GET">
+        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/CatalogServlet" method="POST">
         		<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Allora, cosa cerchiamo..?">
         		<button type="submit" id="pulsanteRicerca">Vai!</button>
         	</form>
