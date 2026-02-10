@@ -28,7 +28,7 @@
     				<label for = "ordinaData">Ordina per data: </label>
     				<select id= "ordinaData" name = "ordinaData">
     					<option value = menoRecenti> meno recenti </option>
-    					<option value = piuRecenti selected> più recenti </option>
+    					<option value = piuRecenti ${param.ordinaData == "piuRecenti" ? "selected" : ""}> più recenti </option>
     				</select>
     				<button type="submit">Filtra</button>
     			</form>

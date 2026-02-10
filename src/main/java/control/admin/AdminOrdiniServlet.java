@@ -26,9 +26,10 @@ public class AdminOrdiniServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-		OrdineDAO oDAO =  new OrdineDAO(ds);
+		
 		
 		try {
+			OrdineDAO oDAO =  new OrdineDAO(ds);
 			ArrayList<Ordine> ordini = oDAO.doRetrieveAll();
 			//prendo la data del giorno corrente 
 			LocalDate oggi = LocalDate.now();

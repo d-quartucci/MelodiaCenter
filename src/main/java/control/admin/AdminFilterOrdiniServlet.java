@@ -55,6 +55,8 @@ public class AdminFilterOrdiniServlet extends HttpServlet {
 	        OrdineDAO oDAO = new OrdineDAO(ds);
 			ArrayList <Ordine> ordini = oDAO.doRetrieveByFilter(dataInDate, dataFinDate, ord);
 			
+			request.setAttribute("defaultIn", dataIn);
+			request.setAttribute("defaultFin", dataFin);
 			request.setAttribute("ordini", ordini);
 			request.getRequestDispatcher("/admin/gestioneOrdini.jsp").forward(request, response);
 			

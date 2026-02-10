@@ -55,7 +55,7 @@
 				
 					<label for="filtroCtg">Seleziona categoria:</label>
 					<select id= "filtroCtg" name="filtroCtg">
-						<option value = "0" ${param.filtroCtg == null || param.Ctg == '0' ? 'selected' : ''}>Tutte</option>
+						<option value = "0" ${param.filtroCtg == null || param.filtroCtg == '0' ? 'selected' : ''}>Tutte</option>
 						<c:forEach var= "c" items= "${categorie}">
 							<option value = "${c.id}" ${param.filtroCtg == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
 						</c:forEach>

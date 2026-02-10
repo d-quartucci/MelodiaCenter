@@ -26,11 +26,12 @@ public class AdminUtentiServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
-		HttpSession session = request.getSession(false);
-		int adminId = ((Utente) session.getAttribute("utente")).getId();
-		UtenteDAO uDAO =  new UtenteDAO(ds);
 		
 		try {
+			
+			HttpSession session = request.getSession(false);
+			int adminId = ((Utente) session.getAttribute("utente")).getId();
+			UtenteDAO uDAO =  new UtenteDAO(ds);
 			
 			//prendo la data del giorno corrente 
 			LocalDate oggi = LocalDate.now();

@@ -52,10 +52,12 @@ public class AdminFilterUtentiServlet extends HttpServlet {
 	        if (dataFin != null && !dataFin.isEmpty()) {
 	            dataFinDate = Timestamp.valueOf(dataFin + " 23:59:59");
 	        }
-	        
+			
 	        UtenteDAO uDAO = new UtenteDAO(ds);
 			ArrayList <Utente> utenti = uDAO.doRetrieveByFilter(adminId,dataInDate, dataFinDate, ord);
 			
+			request.setAttribute("defaultIn", dataIn);
+			request.setAttribute("defaultFin", dataFin);
 			request.setAttribute("utenti", utenti);
 			request.getRequestDispatcher("/admin/gestioneUtenti.jsp").forward(request,response);
 			
