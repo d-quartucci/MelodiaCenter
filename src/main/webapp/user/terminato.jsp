@@ -10,8 +10,11 @@
 </head>
 <body>
 	<jsp:include page="/fragments/header.jsp"/>
-	<h1>Grazie per l'acquisto!</h1>
-	<p>Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!</p>
+	<section class="contenitore" id="sezioneTerminato">
+		<h1>Grazie per l'acquisto!</h1>
+		<h3>Il tuo ordine sarà consegnato entro il ${data}.</h3>
+		<h3>Torna alla <a href="${pageContext.request.contextPath}/home">home</a>!</h3>
+	</section>
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>
 </html>
