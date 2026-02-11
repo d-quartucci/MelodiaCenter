@@ -13,29 +13,33 @@
 	
 	<!-- HEADER -->
     <%@ include file="/fragments/header.jsp" %>
-    
-    <!-- Menu laterale di gestione -->
-	<%@ include file = "/fragments/adminMenu.jsp"%>
-    	<main>
-    		<div id="filtriUtentiAdmin" >
+    <main class ="pageAdmin">
+    			<!-- Menu laterale di gestione -->
+		<aside>
+			<%@ include file = "/fragments/adminMenu.jsp"%>
+		</aside>
+    		<section class= "contenitore" id="filtriUtentiAdmin" >
+    			<h1>Filtri Utenti</h1>
     			<form id= "formFiltriAdmin"  name= "formFiltriAdmin" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterUtentiServlet">
-    				<label for = "dataFrom">Iscritto dal: </label>
+    				<label for = "dataFrom">ISCRITTO DAL: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
-    				<label for = "dataTo">al: </label>
+    				<br>
+    				<label for = "dataTo">ISCRITTO AL: </label>
     				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}" >
-    				
-    				<label for = "ordinaData">Ordina per data: </label>
+    				<br>
+    				<label for = "ordinaData">ORDINA PER DATA: </label>
     				<select id= "ordinaData" name = "ordinaData">
-    					<option value = "menoRecenti"> iscritti meno recenti </option>
-    					<option value = "piuRecenti" ${param.ordinaData == "piuRecenti" ? "selected" : ""}>iscritti più recenti </option>
+    					<option value = "menoRecenti"> meno recenti </option>
+    					<option value = "piuRecenti" ${param.ordinaData == "piuRecenti" ? "selected" : ""}>più recenti </option>
     				</select>
-    				<button type="submit" >Filtra </button>
+    			
+    				<button type="submit" id="BottoneFiltro">Filtra </button>
     			</form>
-    		</div>
-    		<div id=listUtenti>
-    			<p>Lista Utenti</p>
-    			<table>
-    				<thead id = "testaTableUtenti">
+    		</section>
+    		<section class= "contenitore" id=listUtenti>
+    			<h1>Lista Utenti</h1>
+    			<table class= "tabellaAdmin">
+    				<thead>
     					<tr>
     						<th>Cod.Utente</th>
 							<th>Nome</th>
@@ -45,7 +49,7 @@
 							<th>Data Registrazione</th>
     					</tr>
     				</thead>
-    				<tbody id= "corpoTableUtenti">
+    				<tbody>
     					<c:if test= "${not empty utenti}">
 							<c:forEach var="u" items="${utenti}">				
 								<tr>
@@ -57,14 +61,14 @@
 										<button type = "button" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
 									</td>	
 									<td id="TastoMod">
-										<select id= "ruolo_${u.id}" > 
+										<select class="menuTendina" id= "ruolo_${u.id}" > 
 											<option value = "USER" ${u.ruolo == "USER" ? "selected" : ""} > USER</option>
 											<option value = "ADMIN" ${u.ruolo == "ADMIN" ? "selected" : ""}> ADMIN</option>
 										</select>
 										<button type = button onclick = "salvaModifica(${u.id}, 'ruolo', document.getElementById('ruolo_${u.id}').value)"> Applica</button>
 									</td>
 									<td>${u.dataRegistrazione}</td>
-									<td id = "ErrorSpan">
+									<td id ="ErrorSpan">
 										<span id="errorEmail_${u.id }" class="error"></span>
 									</td>
 								</tr>	
@@ -79,8 +83,8 @@
     					</c:if>
     				</tbody>
     			</table>
-    		</div>
-		</main>
+    		</section>
+    </main>
 		 <!-- FOOTER -->
     <%@ include file="/fragments/footer.jsp" %>
     

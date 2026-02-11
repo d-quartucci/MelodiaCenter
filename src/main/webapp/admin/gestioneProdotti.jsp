@@ -17,8 +17,7 @@
         <!-- Menu laterale di gestione -->
 <%@ include file = "/fragments/adminMenu.jsp"%>
     
-    <main>
-    	<div id= "creazioneProdotto">
+    	<section id= "creazioneProdotto">
     		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminNuovoProdottoServlet" enctype="multipart/form-data">
     			<fieldset>
     				<legend>Inserisci Nuovo Prodotto</legend>
@@ -44,9 +43,8 @@
     				<button type="submit" id="submit">Salva</button>
     			</fieldset>
     		</form>
-    	</div>
-    	<div id=listProdotti>
-    		<section id="sezioneFiltriAdmin">
+    	</section>
+    	 <section id="sezioneFiltriAdmin">
 				<p>Filtro prodotti:</p>
 				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterProdottiServlet" >
 				
@@ -71,8 +69,8 @@
 			
 					<button type="submit">Applica filtri</button>
 				</form>
-			</section>
-			<section id="sezioneListaProdotti">
+		</section>
+    	<section id=listProdotti>
     			<p>Lista Prodotti</p>
     			<table id ="tabellaPrdotti">
     				<thead id = "testaTableProdotti">
@@ -131,9 +129,7 @@
 						</c:if>
     				</tbody>
     			</table>
-    		</section>
-    	</div>
-    </main>
+    	</section>
         <!-- FOOTER -->
 <%@ include file="/fragments/footer.jsp" %>
 </body>

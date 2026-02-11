@@ -16,7 +16,7 @@
     
         <!-- Menu laterale di gestione -->
 <%@ include file = "/fragments/adminMenu.jsp"%>
-	    <div id="filtriConsulenzaAdmin">
+	    <section id="filtriConsulenzaAdmin">
     		<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterConsulenzeServlet">
     			<label for = "dataFrom">dal: </label>
     			<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
@@ -37,8 +37,8 @@
     			
     			<button type="submit">Filtra</button>
     		</form>
-    	</div>
-    	<div id="listaConsulenza">
+    	</section>
+    	<section id="listaConsulenza">
 			<c:if test="${not empty consulenze}">
 				<h1 class="presentazione">Le tue richieste di consulenza:</h1>
 				<section id="sezioneConsulenze" class="contenitore">
@@ -54,7 +54,7 @@
 			<c:if test="${empty consulenze}">
 				Non ci sono consulenze
 			</c:if>
-		</div>
+		</section>
         <!-- FOOTER -->
 <%@ include file="/fragments/footer.jsp" %>
 

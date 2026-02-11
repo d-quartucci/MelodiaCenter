@@ -17,24 +17,22 @@
         <!-- Menu laterale di gestione -->
 <%@ include file = "/fragments/adminMenu.jsp"%>
 
-	<main>
-		<div id= "creazioneCategoria">
-    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminNuovaCategoriaServlet" enctype="multipart/form-data">
+		<section id= "creazioneCategoria">
+    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminNuovaCategoriaServlet">
     			<fieldset>
     				<legend>Inserisci Nuova Categoria</legend>
     				
     				<label for = "nome">Nome: </label>
-    				<input type = "text" id="nome" name="nome" placeholder = "Nome prodotto" required><br>
+    				<input type = "text" id="nome" name="nome" placeholder = "Nome categoria..." required><br>
 
     				<label for = "descrizione">Descrizione: </label><br>
-    				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
+    				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci categoria..." required></textarea><br>
     				
     				<button type="submit" id="submit">Salva</button>
     			</fieldset>
     		</form>
-    	</div>
-		<div id = "ListaCategorie">
-		    <section id="sezioneFiltri">
+    	</section >
+    	 <section id="sezioneFiltri">
 				<p>Filtro Categorie:</p>
 				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterCategoriaServlet" >
 				
@@ -83,8 +81,6 @@
 					</tbody>
 				</table>
 			</section>
-		</div>
-	</main>
         <!-- FOOTER -->
 <%@ include file="/fragments/footer.jsp" %>
 </body>

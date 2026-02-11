@@ -30,7 +30,7 @@ function salvaModifica(id){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200)
-				ErrorSpan.innerHTML = "Salvataggio Completato";
+				ErrorSpan.innerHTML = "Salvataggio effettuato!";
 		}
 	}
 	
@@ -44,16 +44,16 @@ function salvaModifica(id){
 function eliminaCtg(id){
 	 let xhr = new XMLHttpRequest();
 	 const url = contextPath + "/admin/AdminDeleteCategoria?id="+ id;
+	 const ErrorSpan = document.getElementById("error_" + id);
 	 
 	 xhr.onreadystatechange = function(){
 	 	if(this.readyState === 4 ){
 	 		if(this.status === 200)
-				alert("Eliminazione avvenuta con successo");
-				location.reload();
+				ErrorSpan.innerHTML = "Eliminazione avvenuta con successo!";
 			} else if (this.status === 403) {
-				alert("Errore: La categoria appartiene ad un prodotto.");
+				ErrorSpan.innerHTML = "Errore: La categoria utilizzata!";
 			} else if (this.status === 404){
-				alert("Errore: Categoria non trovata.");
+				ErrorSpan.innerHTML = "Errore: Categoria non trovata!";
 			}
 	 }
 	 

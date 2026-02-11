@@ -17,8 +17,7 @@
     
     <!-- Menu laterale di gestione -->
 	<%@ include file = "/fragments/adminMenu.jsp"%>
-    	<main>
-    		<div id="filtriOrdiniAdmin">
+    		<section id="filtriOrdiniAdmin">
     			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet">
     				<label for = "dataFrom">dal: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
@@ -32,8 +31,8 @@
     				</select>
     				<button type="submit">Filtra</button>
     			</form>
-    		</div>
-    		<div id=listOrdini>
+    		</section>
+    		<section id=listOrdini>
     			<p>Lista Ordini</p>
     			<table>
     				<thead id = "testaTableOrdini">
@@ -66,8 +65,7 @@
    						</c:if>
     				</tbody>
     			</table>
-    		</div>
-		</main>
+    		</section>
 		 <!-- FOOTER -->
     <%@ include file="/fragments/footer.jsp" %>
 	</body>

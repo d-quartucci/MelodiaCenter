@@ -38,7 +38,7 @@ function salvaModifica(id){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200)
-				ErrorSpan.innerHTML = "Salvataggio Completato";
+				ErrorSpan.innerHTML = "Salvataggio effettuato!";
 		}
 	}
 	
@@ -54,16 +54,16 @@ function salvaModifica(id){
 function eliminaProd(id){
 	 let xhr = new XMLHttpRequest();
 	 const url = contextPath + "/admin/AdminDeleteProdotto?id="+ id;
+	 const ErrorSpan = document.getElementById("error_" + id);
 	 
 	 xhr.onreadystatechange = function(){
 	 	if(this.readyState === 4 ){
 	 		if(this.status === 200)
-				alert("Eliminazione avvenuta con successo");
-				location.reload();        // Ricarica la pagina per aggiornare la lista prodotti
+				ErrorSpan.innerHTML = "Eliminazione effettuata!";
 			} else if (this.status === 403) {
-				alert("Errore: Il prodotto è presente in un ordine e non può essere rimosso.");
+				ErrorSpan.innerHTML = "Errore: Il prodotto è presente in un ordine!";
 			} else if (this.status === 404){
-				alert("Errore: Il prodotto non trovato");
+				ErrorSpan.innerHTML = "Errore: Il prodotto non trovato!";
 			}
 	 }
 	 
