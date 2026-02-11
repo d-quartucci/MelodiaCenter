@@ -1,6 +1,6 @@
 function aggiungiAlCarrello(idProdotto){
 	let xhr = new XMLHttpRequest();
-	let url = contextPath + "/OperazioneCartServlet?q=1&id=" + idProdotto + "&act=add";
+	let url = contextPath + "/OperazioneCartServlet?id=" + idProdotto + "&act=add";
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.status == 200){
@@ -8,7 +8,7 @@ function aggiungiAlCarrello(idProdotto){
 				document.getElementById("pulsanteAggiungiCarrello").innerHTML = "Prodotto già nel carrello";
 			}
 			else{
-				alert(xhr.statusText);
+				alert("Errore nell'aggiunta del prodotto!");
 			}
 		}
 		
@@ -27,7 +27,7 @@ function aggiungiAllaWishlist(idProdotto){
 				document.getElementById("pulsanteAggiungiWishlist").innerHTML = "Già in wishlist";
 			}
 			else{
-				alert(xhr.statusText);
+				alert("Errore nell'aggiunta del prodotto!");
 			}	
 		}
 	}
