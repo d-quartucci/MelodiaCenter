@@ -21,19 +21,19 @@
     		<section class= "contenitore" id="filtriUtentiAdmin" >
     			<h1>Filtri Utenti</h1>
     			<form id= "formFiltriAdmin"  name= "formFiltriAdmin" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterUtentiServlet">
-    				<label for = "dataFrom">ISCRITTO DAL: </label>
+    				<label for = "dataFrom"> DAL: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<br>
-    				<label for = "dataTo">ISCRITTO AL: </label>
+    				<label for = "dataTo">AL: </label>
     				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}" >
     				<br>
     				<label for = "ordinaData">ORDINA PER DATA: </label>
-    				<select id= "ordinaData" name = "ordinaData">
+    				<select class="menuTendina" id= "ordinaData" name = "ordinaData">
     					<option value = "menoRecenti"> meno recenti </option>
     					<option value = "piuRecenti" ${param.ordinaData == "piuRecenti" ? "selected" : ""}>più recenti </option>
     				</select>
     			
-    				<button type="submit" id="BottoneFiltro">Filtra </button>
+    				<button type="submit" class="bottoneFiltro">Filtra </button>
     			</form>
     		</section>
     		<section class= "contenitore" id=listUtenti>
@@ -58,14 +58,14 @@
 									<td>${u.cognome}</td>
 									<td>
 										<input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>			
-										<button type = "button" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
+										<button type = "button" class= "bottoneMod" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
 									</td>	
 									<td id="TastoMod">
-										<select class="menuTendina" id= "ruolo_${u.id}" > 
+										<select class="menuTendina" id= "ruolo_${u.id}"> 
 											<option value = "USER" ${u.ruolo == "USER" ? "selected" : ""} > USER</option>
 											<option value = "ADMIN" ${u.ruolo == "ADMIN" ? "selected" : ""}> ADMIN</option>
 										</select>
-										<button type = button onclick = "salvaModifica(${u.id}, 'ruolo', document.getElementById('ruolo_${u.id}').value)"> Applica</button>
+										<button type = button class= "bottoneMod" onclick = "salvaModifica(${u.id}, 'ruolo', document.getElementById('ruolo_${u.id}').value)"> Applica</button>
 									</td>
 									<td>${u.dataRegistrazione}</td>
 									<td id ="ErrorSpan">

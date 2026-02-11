@@ -14,27 +14,30 @@
 	
 	<!-- HEADER -->
     <%@ include file="/fragments/header.jsp" %>
-    
-    <!-- Menu laterale di gestione -->
-	<%@ include file = "/fragments/adminMenu.jsp"%>
-    		<section id="filtriOrdiniAdmin">
+    <main class ="pageAdmin">	    			<!-- Menu laterale di gestione -->
+		<aside>
+			<%@ include file = "/fragments/adminMenu.jsp"%>
+		</aside>
+    		<section class= "contenitore" id="filtriOrdiniAdmin">
+    			<h1>Filtri Ordini</h1>
     			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet">
-    				<label for = "dataFrom">dal: </label>
+    				<label for = "dataFrom">DAL: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
-    				<label for = "dataTo">al: </label>
+    				<br>
+    				<label for = "dataTo">AL: </label>
     				<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}">
-    				
-    				<label for = "ordinaData">Ordina per data: </label>
-    				<select id= "ordinaData" name = "ordinaData">
+    				<br>
+    				<label for = "ordinaData">ORDINA PER DATA: </label>
+    				<select class="menuTendina" id= "ordinaData" name = "ordinaData">
     					<option value = menoRecenti> meno recenti </option>
     					<option value = piuRecenti ${param.ordinaData == "piuRecenti" ? "selected" : ""}> più recenti </option>
     				</select>
-    				<button type="submit">Filtra</button>
+    				<button type="submit" class= "bottoneFiltro">Filtra</button>
     			</form>
     		</section>
-    		<section id=listOrdini>
-    			<p>Lista Ordini</p>
-    			<table>
+    		<section class= "contenitore" id=listOrdini>
+    			<h1>Lista Ordini</h1>
+    			<table class= "tabellaAdmin">
     				<thead id = "testaTableOrdini">
     					<tr>
     						<th>Cod.Ordine</th>
@@ -58,14 +61,15 @@
 						</c:if>
 						<c:if test="${empty ordini}">
        						<tr>
-           						<td colspan="5" style="text-align:center; padding:20px;">
-                					Nessun ordine presente
+           						<td>
+                					<h1>Nessun ordine presente </h1>
           						 </td>
       						</tr>
    						</c:if>
     				</tbody>
     			</table>
     		</section>
+    	</main>
 		 <!-- FOOTER -->
     <%@ include file="/fragments/footer.jsp" %>
 	</body>

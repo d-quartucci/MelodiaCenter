@@ -13,34 +13,38 @@
 <body>
 			<!-- HEADER -->
 <%@ include file="/fragments/header.jsp" %>
-    
-        <!-- Menu laterale di gestione -->
-<%@ include file = "/fragments/adminMenu.jsp"%>
-	    <section id="filtriConsulenzaAdmin">
-    		<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterConsulenzeServlet">
-    			<label for = "dataFrom">dal: </label>
+    <main class ="pageAdmin">
+    	 <aside>
+			<%@ include file = "/fragments/adminMenu.jsp"%>
+		</aside>
+	    <section class= "contenitore" id="filtriConsulenzaAdmin">
+			<h1>Filtri Consulenze</h1>
+    		<form id= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterConsulenzeServlet">
+    			<label for = "dataFrom">DAL: </label>
     			<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
-    			<label for = "dataTo">al: </label>
+    			<br>
+    			<label for = "dataTo">AL: </label>
     			<input type= "date" id= "dataTo" name = "dataFin" value="${defaultFin}">
-    				
-    			<label for = "ordinaData">Ordina per data: </label>
-    			<select id= "ordinaData" name = "ordinaData">
+    			<br>	
+    			<label for = "ordinaData">ORDINA PER DATA: </label>
+    			<select class="menuTendina" id= "ordinaData" name = "ordinaData">
     				<option value = "menoRecenti"> meno recenti </option>
     				<option value = "piuRecenti" ${param.ordinaData == "piuRecenti" ? "selected" : ""}> più recenti </option>
     			</select>
-    			<label for = "ordinaStato">Ordina per stato: </label>
-    			<select id= "ordinaStato" name = "ordinaStato">
+    			<br>
+    			<label for = "ordinaStato">ORDINA PER STATO: </label>
+    			<select class="menuTendina" id= "ordinaStato" name = "ordinaStato">
     				<option value = "0"> Tutte </option>
     				<option value = "chiuso" ${param.ordinaStato == "chiuso" ? "selected" : ""}>Chiuso </option>
     				<option value = "aperto" ${param.ordinaStato == "aperto" ? "selected" : ""}>Aperto</option>
     			</select>
     			
-    			<button type="submit">Filtra</button>
+    			<button type="submit" id="bottoneConsulenza" class= "bottoneFiltro">Filtra</button>
     		</form>
     	</section>
     	<section id="listaConsulenza">
 			<c:if test="${not empty consulenze}">
-				<h1 class="presentazione">Le tue richieste di consulenza:</h1>
+				<h1 id="labelListConsulenze">Le tue richieste di consulenza:</h1>
 				<section id="sezioneConsulenze" class="contenitore">
 					<c:forEach var="c" items="${consulenze}">
 						<div id="consulenzaDiv-${c.id}" class="consulenzaDiv">
@@ -52,11 +56,11 @@
 				</section>
 			</c:if>
 			<c:if test="${empty consulenze}">
-				Non ci sono consulenze
+				<h1>Non ci sono consulenze </h1>
 			</c:if>
 		</section>
-        <!-- FOOTER -->
-<%@ include file="/fragments/footer.jsp" %>
-
+        		<!-- FOOTER -->
+		<%@ include file="/fragments/footer.jsp" %>
+	</main>
 </body>
 </html>
