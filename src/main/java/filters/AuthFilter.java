@@ -37,7 +37,7 @@ public class AuthFilter extends HttpFilter implements Filter {
 		
 		//Controllo per le pagine user
 		if(path.contains("/user/") && u == null) {
-			httpResponse.sendRedirect(httpRequest.getContextPath() + "/LoginServlet");
+			httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
 			return;
 		} 
 		

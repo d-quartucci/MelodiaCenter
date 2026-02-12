@@ -15,13 +15,13 @@
         <nav>
             <ul class="navLinks">
                 <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/CatalogServlet">Catalogo</a></li>
-                <li><a href="${pageContext.request.contextPath}/CartServlet">Carrello</a></li>
+                <li><a href="${pageContext.request.contextPath}/catalog">Catalogo</a></li>
+                <li><a href="${pageContext.request.contextPath}/cart">Carrello</a></li>
             </ul>
         </nav>
         
         <div class="ricerca">
-        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/CatalogServlet" method="POST">
+        	<form name="formDiRicerca" action="${pageContext.request.contextPath}/catalog" method="POST">
         		<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Allora, cosa cerchiamo..?">
         		<button type="submit" id="pulsanteRicerca">Vai!</button>
         	</form>
@@ -32,15 +32,15 @@
 
             <!-- Se l'utente non ha fatto il login, mostro le opzioni di login -->
             <c:if test="${empty sessionScope.utente}">
-                <a href="${pageContext.request.contextPath}/LoginServlet">Login</a>
-                <a href="${pageContext.request.contextPath}/RegisterServlet">Registrati</a>
+                <a href="${pageContext.request.contextPath}/login">Login</a>
+                <a href="${pageContext.request.contextPath}/register">Registrati</a>
             </c:if>
 
             <!-- Se l'utente ha fatto il login, mostro le opzioni dedicate allo USER -->
             <c:if test="${not empty sessionScope.utente}">
-                <a href="${pageContext.request.contextPath}/user/UserServlet">Account</a>
-                <a href="${pageContext.request.contextPath}/user/WishlistServlet">Wishlist</a>
-                <a href="${pageContext.request.contextPath}/user/OrdersListServlet">I miei ordini</a>
+                <a href="${pageContext.request.contextPath}/user/userInfo">Account</a>
+                <a href="${pageContext.request.contextPath}/user/wishlist">Wishlist</a>
+                <a href="${pageContext.request.contextPath}/user/orderList">I miei ordini</a>
                 <a href="${pageContext.request.contextPath}/DoLogoutServlet">Logout</a>
             </c:if>
 

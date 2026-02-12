@@ -31,7 +31,7 @@
 				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 			</div>
 			<div class="informazioniProdotto">
-				<a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a>
+				<a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a>
 				<p class="prezzo">${p.prezzoAttuale}€</p>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 	<ul id="listaCategorie">
 	<c:forEach var="c" items="${listaCategorie}">
 		<li id="categoria-${c.id}">
-			<a href="${pageContext.request.contextPath}/CatalogServlet?categoria=${c.id}">${c.nome}</a>
+			<a href="${pageContext.request.contextPath}/catalog?categoria=${c.id}">${c.nome}</a>
 		</li>
 	</c:forEach>
 	</ul>
@@ -60,7 +60,7 @@
 				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 			</div>
 			<div class="informazioniProdotto contenitore">
-				<h3><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></h3>
+				<h3><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a></h3>
 				<p class="prezzo">${p.prezzoAttuale}€</p>
 				<p class="descrizioneProdotto">${p.descrizione}</p>
 			</div>

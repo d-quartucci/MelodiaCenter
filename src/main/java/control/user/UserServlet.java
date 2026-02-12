@@ -10,7 +10,7 @@ import model.Utente;
 
 import java.io.IOException;
 
-@WebServlet("/user/UserServlet")
+@WebServlet("/user/userInfo")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

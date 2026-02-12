@@ -42,7 +42,7 @@
 			
 		</form>
 		<div class="riga">
-			<h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/RegisterServlet">Registrati qui!</a> </h4>
+			<h4>Non sei ancora registrato? <a href="${pageContext.request.contextPath}/register">Registrati qui!</a> </h4>
 		</div>
 	</section>
 </section>

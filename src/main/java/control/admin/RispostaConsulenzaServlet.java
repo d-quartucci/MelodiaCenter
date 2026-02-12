@@ -50,7 +50,7 @@ public class RispostaConsulenzaServlet extends HttpServlet {
 		}
 		
 		//Faccio il refresh della pagina
-		response.sendRedirect(request.getContextPath() + "/user/ConsulenzaPageServlet?consId=" + toUpdate.getId());
+		response.sendRedirect(request.getContextPath() + "/user/consulenza?consId=" + toUpdate.getId());
 	}
 
 }

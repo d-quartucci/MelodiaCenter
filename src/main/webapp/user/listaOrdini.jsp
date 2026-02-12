@@ -15,7 +15,7 @@
 		<section id="sezioneOrdini" class="contenitore">
 			<c:forEach var="order" items="${listaOrdini}">
 				<div id="orderDiv-${order.id}" class="ordineDiv">
-					<a href="${pageContext.request.contextPath}/user/OrderInfoServlet?id=${order.id}">Ordine ID: #${order.id}</a>
+					<a href="${pageContext.request.contextPath}/user/order?id=${order.id}">Ordine ID: #${order.id}</a>
 					<p> Prezzo: ${order.totale}€<p>
 				</div>
 			</c:forEach>
@@ -24,7 +24,7 @@
 	<c:if test="${empty listaOrdini}">
 		<h1 class="presentazione">Non hai ancora effettuato un ordine!</h1>
 		<section id="sezioneOrdini" class="contenitore">
-			<h2>Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+			<h2>Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
 		</section>
 	</c:if>
 	<jsp:include page="/fragments/footer.jsp"/>

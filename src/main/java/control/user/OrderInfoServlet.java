@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 /**
  * Servlet implementation class OrderInfoServlet
  */
-@WebServlet("/user/OrderInfoServlet")
+@WebServlet("/user/order")
 public class OrderInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

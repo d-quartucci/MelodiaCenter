@@ -18,7 +18,7 @@
 	
 	<section id="sezioneFiltriCatalog" class="contenitore">
 		<h2>Filtra tra i prodotti:</h2>
-		<form name="formFiltri" action="${pageContext.request.contextPath}/CatalogServlet" method="POST">
+		<form name="formFiltri" action="${pageContext.request.contextPath}/catalog" method="POST">
 			<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Ricerca..." value="${param.barraDiRicerca}"><br>
 			
 			<label for="ordinaPrezzo">Ordina per prezzo:</label>
@@ -52,7 +52,7 @@
 			<c:forEach var="p" items="${listaProdotti}">
 				<div class="contenitoreProdottoCatalogo">
 					<div class="informazioniProdotto contenitore">
-						<h3><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${p.id}">${p.nome}</a></h3>
+						<h3><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a></h3>
 						<p class="prezzo">${p.prezzoAttuale}€</p>
 					</div>
 					<div class="immagineProdotto">

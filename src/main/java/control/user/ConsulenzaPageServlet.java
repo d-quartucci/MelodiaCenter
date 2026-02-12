@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-@WebServlet("/user/ConsulenzaPageServlet")
+@WebServlet("/user/consulenza")
 public class ConsulenzaPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

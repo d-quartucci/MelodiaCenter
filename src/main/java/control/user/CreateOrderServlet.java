@@ -91,7 +91,7 @@ public class CreateOrderServlet extends HttpServlet {
 		}
 		//Svuoto il carrello
 		session.removeAttribute("carrello");
-		response.sendRedirect(request.getContextPath() + "/user/TerminatoServlet");
+		response.sendRedirect(request.getContextPath() + "/user/terminato");
 	}
 
 

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/user/WishlistServlet")
+@WebServlet("/user/wishlist")
 public class WishlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

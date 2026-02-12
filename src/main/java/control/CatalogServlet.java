@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 //Viene chiamata quando l'utente accede alla pagina catalogo
-@WebServlet("/CatalogServlet")
+@WebServlet("/catalog")
 public class CatalogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -20,13 +20,13 @@
             <h4>Link utili</h4>
             <ul>
                 <li>
-                    <a href="${pageContext.request.contextPath}/HomeServlet">Home</a>
+                    <a href="${pageContext.request.contextPath}/home">Home</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/CatalogServlet">Catalogo</a>
+                    <a href="${pageContext.request.contextPath}/catalog">Catalogo</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/CartServlet">Carrello</a>
+                    <a href="${pageContext.request.contextPath}/cart">Carrello</a>
                 </li>
             </ul>
         </div>

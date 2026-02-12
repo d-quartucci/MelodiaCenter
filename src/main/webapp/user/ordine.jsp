@@ -16,7 +16,7 @@
 	<section id="listaRigheOrdine" class="contenitore">
 		<c:forEach var="riga" items="${righeOrdine}">
 			<div class="rigaOrdine" id="div-${riga.prodottoNome}">
-				<h3>Prodotto: <a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${riga.prodottoId}">${riga.prodottoNome}</a></h3>
+				<h3>Prodotto: <a href="${pageContext.request.contextPath}/product?prodottoId=${riga.prodottoId}">${riga.prodottoNome}</a></h3>
 				<p>Quantità: ${riga.quant}</p>
 				<p>Prezzo: ${riga.prezzoAcq}€</p>
 			</div>

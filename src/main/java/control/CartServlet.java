@@ -10,7 +10,7 @@ import model.Carrello;
 
 import java.io.IOException;
 
-@WebServlet("/CartServlet")
+@WebServlet("/cart")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

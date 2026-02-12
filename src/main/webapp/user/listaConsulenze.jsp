@@ -18,7 +18,7 @@
 		<section id="sezioneConsulenze" class="contenitore">
 			<c:forEach var="consulenza" items="${consulenzaList}">
 				<div id="consulenzaDiv-${consulenza.id}" class="consulenzaDiv">
-					<a href="${pageContext.request.contextPath}/user/ConsulenzaPageServlet?consId=${consulenza.id}">Richiesta #${consulenza.id}</a>
+					<a href="${pageContext.request.contextPath}/user/consulenza?consId=${consulenza.id}">Richiesta #${consulenza.id}</a>
 					<p> Stato: ${consulenza.aperto ? 'Aperto' : 'Chiuso'}<p>
 				</div>
 			</c:forEach>

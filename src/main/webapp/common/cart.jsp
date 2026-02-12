@@ -17,7 +17,7 @@
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
 <section class="contenitore" id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
-    <h2>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h3>
+    <h2>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
 </section>
 
 <!-- Sezione mostrata quando il carrello non è vuoto -->
@@ -55,7 +55,7 @@
 	<section id="sezioneDestraCarrello">
 		<h2>Prezzo totale:<span id="spanPrezzoTotale">${carrello.prezzoTotale}€</span></h2>
 	
-		<form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/CheckoutServlet">
+		<form id="checkoutForm" method="POST" action="${pageContext.request.contextPath}/user/checkout">
 			<button type="submit" id="checkout">Vai al checkout!</button>
 		</form>
 	</section>

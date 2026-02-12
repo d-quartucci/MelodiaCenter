@@ -60,7 +60,7 @@
 			</div>
 		</form>
 		<div class="rigaExtra">
-			<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/LoginServlet">Accedi qui!</a> </h4>
+			<h4>Sei già registrato? <a href="${pageContext.request.contextPath}/login">Accedi qui!</a> </h4>
 		</div>
 	</section>
 </section>

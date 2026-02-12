@@ -20,7 +20,7 @@
 		</div>
 	</section>
 	<div id="consulenzeLink">
-		<h2><a href="${pageContext.request.contextPath}/user/ConsulenzaListServlet">Premi qui per visualizzare le tue richieste di consulenza al nostro staff!</a></h2>
+		<h2><a href="${pageContext.request.contextPath}/user/consulenzaList">Premi qui per visualizzare le tue richieste di consulenza al nostro staff!</a></h2>
 	</div>
 	<jsp:include page="/fragments/footer.jsp"/>
 </body>

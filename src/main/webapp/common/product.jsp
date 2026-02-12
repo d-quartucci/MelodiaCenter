@@ -52,7 +52,7 @@
 	
 	<section id="sezioneNotLogged">
 		<c:if test="${!isLogged}">
-			<h4> Per poter tenere traccia dei tuoi prodotti preferiti e fare domande al nostro team, effettua il <a href="${pageContext.request.contextPath}/LoginServlet">login</a>!</h4>
+			<h4> Per poter tenere traccia dei tuoi prodotti preferiti e fare domande al nostro team, effettua il <a href="${pageContext.request.contextPath}/login">login</a>!</h4>
 		</c:if>
 	</section>
 </section>
