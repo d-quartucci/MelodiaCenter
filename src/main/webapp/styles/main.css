@@ -53,7 +53,7 @@
 }
 
 .navLinks a:hover, .userArea a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 	background-color: #F9B08A;
 	color: white;
 }
@@ -668,6 +668,18 @@ a:hover {
 	padding: 10px;
 	float: right;
 	margin: 10px 0 10px 10px;
+}
+
+@media screen and (max-width: 1600px){
+	#informazioniUtente, #presentazioneCheckout, #sezioneCheckoutForm  {
+		width: 70%
+	}
+}
+
+@media screen and (max-width: 650px){
+	#informazioniUtente, #presentazioneCheckout, #sezioneCheckoutForm  {
+		width: 95%
+	}
 }
 
 /* Classe riutilizzata nelle sezioni successive */
