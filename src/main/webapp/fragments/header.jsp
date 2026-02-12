@@ -46,7 +46,7 @@
 
             <!-- Se l'utente è un admin, mostro le opzioni dedicate all'ADMIN -->
             <c:if test="${sessionScope.utente.ruolo=='ADMIN'}">
-                <a href="${pageContext.request.contextPath}/admin/AdminDailyServlet">Admin</a>
+                <a href="${pageContext.request.contextPath}/admin/Daily">Admin</a>
             </c:if>
         </div>
 </header>

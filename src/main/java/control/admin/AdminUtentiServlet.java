@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminUtentiServlet")
+@WebServlet("/admin/Utenti")
 public class AdminUtentiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -39,7 +39,7 @@ public class AdminUtentiServlet extends HttpServlet {
 			LocalDate inizioMese = oggi.withDayOfMonth(1);
 			ArrayList<Utente> utenti = uDAO.doRetrieveExcept(adminId);
 			//setto gli attributi cosi da inserire nel form dei filtri
-			//vaolori di date di default
+			//valori di date di default
 			request.setAttribute("defaultIn", inizioMese.toString());
 			request.setAttribute("defaultFin", oggi.toString());
 			request.setAttribute("utenti", utenti);

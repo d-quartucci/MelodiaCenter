@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminNuovaCategoriaServlet")
+@WebServlet("/admin/nuovaCategoria")
 public class AdminNuovaCategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class AdminNuovaCategoriaServlet extends HttpServlet {
 			
 			cDAO.doSaveOrUpdate(categoria);
 			
-			response.sendRedirect(request.getContextPath() + "/admin/AdminCategorieServlet");
+			response.sendRedirect(request.getContextPath() + "/admin/Categorie");
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();

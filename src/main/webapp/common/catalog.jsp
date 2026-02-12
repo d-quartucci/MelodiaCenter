@@ -39,7 +39,7 @@
 			</select><br>
 			
 			<label for="prezzoFiltro">Prezzo massimo:</label>
-			<input id="prezzoFiltro" name="prezzoFiltro" type="range" min="0" max="${prezzoMax}" step="250" 
+			<input id="prezzoFiltro" name="prezzoFiltro" type="range" min="0" max="${prezzoMax}" step="50" 
 				value="${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}" oninput="aggiornaSpan()"> 
 			<span id="prezzoFiltroVisual">${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}€</span><br>
 			

@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-@WebServlet("/admin/AdminFilterOrdiniServlet")
+@WebServlet("/admin/FilterOrdini")
 public class AdminFilterOrdiniServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

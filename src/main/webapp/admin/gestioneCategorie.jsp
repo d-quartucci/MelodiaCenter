@@ -14,41 +14,44 @@
 			<!-- HEADER -->
 <%@ include file="/fragments/header.jsp" %>
     
-        <!-- Menu laterale di gestione -->
-<%@ include file = "/fragments/adminMenu.jsp"%>
-
+	 <main class ="pageAdmin">
+    	<aside>
+			<%@ include file = "/fragments/adminMenu.jsp"%>
+		</aside>
 		<section id= "creazioneCategoria">
-    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminNuovaCategoriaServlet">
-    			<fieldset>
-    				<legend>Inserisci Nuova Categoria</legend>
+    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" action = "${pageContext.request.contextPath}/admin/nuovaCategoria">
+    			<fieldset class= "contenitore" id= "FormCreaCtg">
+    				<legend><h2>Crea Categoria</h2></legend>
     				
-    				<label for = "nome">Nome: </label>
+    				<label for = "nome">Nome</label>
+    				<br>
     				<input type = "text" id="nome" name="nome" placeholder = "Nome categoria..." required><br>
 
-    				<label for = "descrizione">Descrizione: </label><br>
-    				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci categoria..." required></textarea><br>
-    				
-    				<button type="submit" id="submit">Salva</button>
+    				<label for = "descrizione">Descrizione </label><br>
+    				<textarea class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci categoria..." required></textarea>
+    				<br>
+    				<button class= "bottoneMod" type="submit" id="submitC">Salva</button>
     			</fieldset>
     		</form>
     	</section >
-    	 <section id="sezioneFiltri">
-				<p>Filtro Categorie:</p>
-				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterCategoriaServlet" >
+    	 <section class= "contenitore" id="filtriCategorieAdmin">
+				<h2>Filtro Categorie:</h2>
+				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/FilterCategoria" >
 				
 					<label for="filtroCtg">Seleziona categoria:</label>
-					<select id= "filtroCtg" name="filtroCtg">
+					<select class="menuTendina" id= "tendaCtg" name="tendaCtg">
 						<option value = "0" ${param.filtroCtg == null || param.filtroCtg == '0' ? 'selected' : ''}>Tutte</option>
 						<c:forEach var= "c" items= "${categorie}">
 							<option value = "${c.id}" ${param.filtroCtg == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
 						</c:forEach>
-					</select><br>
+					</select>
 			
-					<button type="submit">Applica filtri</button>
+					<button class= "bottoneMod" id="FiltroCtg" type="submit">Filtra</button>
 				</form>
 			</section>
-			<section id="sezioneListaCategorie">
-				<table id="tabellaCategoria">
+			<section class= "contenitore" id="listaCtg">
+			<h2>Lista Categorie:</h2>
+				<table class= "tabellaAdmin" id="tabellaCtg">
 					<thead id="testaTableCategoria">
 						 <tr>
     						<th>Cod.Categoria</th>
@@ -61,26 +64,27 @@
 							<c:forEach var="c" items="${ctgFiltrate}">
 								 <tr>
     								<td>${c.id}</td>
-									<td><input type = "text" id= "nome_${c.id}" value= "${c.nome}" disabled></td>
-									<td><input type = "text" id= "descr_${c.id}" value= "${c.descr}" disabled></td>
-									<td id= "tastoMod">
-										<button type = "button" id= "mod_${c.id}" onclick = "abilitaModifica(${c.id})"> Modifica</button>
+									<td><input class="inputBox" type="text" id= "nome_${c.id}" value= "${c.nome}" disabled></td>
+									<td><input class="inputBox" type="text" id= "descr_${c.id}" value= "${c.descr}" disabled></td>
+									<td class= "TastiUtenti" id= "tastoMod">
+										<button class= "bottoneMod" type="button" id= "mod_${c.id}" onclick = "abilitaModifica(${c.id})"> Modifica</button>
 									</td>
-									<td id= "tastoDel">
-										<button type = "button" id= "del_${c.id}" onclick = "eliminaCtg(${c.id})"> Elimina</button>
-									</td>
-									<td id= "ErrorSpan">
-										<span id="error_${c.id}" class="error"></span>
+									<td class= "TastiUtenti" id= "tastoDel">
+										<button class= "bottoneMod" type="button" id= "del_${c.id}" onclick = "eliminaCtg(${c.id})"> Elimina</button>
 									</td>
     							</tr>
+    							<h5 id= "ErrorSpan">
+									<span id="error_${c.id}" class="error"></span>
+								</h5>
 							</c:forEach>
 						</c:if>
 						<c:if test= "${empty ctgFiltrate}">
-							Non ci sono categorie
+							<h2 class="emptyTable">Non ci sono categorie!</h2>
 						</c:if>
 					</tbody>
 				</table>
 			</section>
+		</main>
         <!-- FOOTER -->
 <%@ include file="/fragments/footer.jsp" %>
 </body>

@@ -20,7 +20,7 @@
 		</aside>
     		<section class= "contenitore" id="filtriUtentiAdmin" >
     			<h1>Filtri Utenti</h1>
-    			<form id= "formFiltriAdmin"  name= "formFiltriAdmin" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterUtentiServlet">
+    			<form id= "formFiltriAdmin"  name= "formFiltriAdmin" method="GET" action="${pageContext.request.contextPath}/admin/FilterUtenti">
     				<label for = "dataFrom"> DAL: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<br>
@@ -68,18 +68,14 @@
 										<button type = button class= "bottoneMod" onclick = "salvaModifica(${u.id}, 'ruolo', document.getElementById('ruolo_${u.id}').value)"> Applica</button>
 									</td>
 									<td>${u.dataRegistrazione}</td>
-									<td id ="ErrorSpan">
-										<span id="errorEmail_${u.id }" class="error"></span>
-									</td>
-								</tr>	
+								</tr>
+								 <h5 id= "ErrorSpan">
+									<span id="error_${c.id}" class="error"></span>
+								</h5>
 							</c:forEach>
 						</c:if>
 						<c:if test="${empty utenti}">
-       	 					<tr>
-            					<td colspan="5" style="text-align:center; padding:20px;">
-                					Nessun utente iscritto
-           						 </td>
-      						</tr>
+                			<h2 class="emptyTable">Nessun utente presente!</h2>
     					</c:if>
     				</tbody>
     			</table>

@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 /**
  * Servlet implementation class AdminNuovoProdottoServlet
  */
-@WebServlet(value="/admin/AdminNuovoProdottoServlet", initParams = {
+@WebServlet(value="/admin/NuovoProdotto", initParams = {
 		@WebInitParam (name = "fileUpload", value= "images")//nome della cartella images
 })
 @MultipartConfig(
@@ -85,7 +85,7 @@ public class AdminNuovoProdottoServlet extends HttpServlet {
 		
 			pDAO.doSaveOrUpdate(prodotto);
 
-			response.sendRedirect(request.getContextPath() + "/admin/AdminProdottiServlet");
+			response.sendRedirect(request.getContextPath() + "/admin/Prodotti");
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();

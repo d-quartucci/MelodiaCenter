@@ -1072,12 +1072,20 @@ a:hover {
 
 /*Menu laterale Admin*/
 
+.emptyTable{
+	 text-align: center;
+	 color: #F57F3C;
+}
+
 .MenuGestione{
   list-style-type: none;
   background-color: #FCE7D9;
   float: left;
+  width: 200px;
   margin-top: 95px;
   margin-right: 50px;
+  margin-bottom: 715px;
+  padding-top: 50px;
   padding-left: 0;
 }
 
@@ -1102,6 +1110,7 @@ a:hover {
 
 .pageAdmin{
 	max-width: 90%;
+	overflow: hidden;
 }
 
 #Ordini, #Utenti {
@@ -1155,6 +1164,11 @@ a:hover {
 	#Ordini, #Utenti{
 		overflow-x:scroll;
 	}
+	
+	.MenuGestione{
+ 	 	margin-bottom: 150px;
+	}
+
 }
 
 @media screen and (max-width: 650px) {
@@ -1170,6 +1184,10 @@ a:hover {
 
 		#Ordini, #Utenti{
 		overflow-x:auto;
+	}
+	
+	.MenuGestione{
+ 	 	margin-bottom: 150px;
 	}
 }
 
@@ -1261,6 +1279,7 @@ label {
   background-color: #F57F3C;
   border: 2px solid #FCE7D9;
   padding: 6px 6px;
+  color: white;
 }
 
 /*media per utenti e ordini*/
@@ -1320,7 +1339,7 @@ label {
 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
 
     .tabellaAdmin td {
         display:block;
@@ -1335,9 +1354,13 @@ label {
     }
     
     .bottoneFiltro {
+    	margin-top:60px;
     	position:relative;
      	float: left;
-
+    }
+    
+    #ordinaData{
+    	float:left;
     }
 
 }
@@ -1384,8 +1407,250 @@ label {
         margin-left:10px;
         float: left;
     }
- 
 }
+
+/*Gestione Prodotti */
+
+#FormCreazione{
+	padding-top:0;
+	padding-bottom:50px;
+	width: 280px ;
+}
+
+
+#listProdotti, #filtriProdottiAdmin{
+	margin-bottom: 20px;
+	padding: 20px 20px;	
+	padding-bottom: 20px;
+}
+
+#listProdotti{
+	margin-left: 240px; 
+    margin-bottom: 30px;
+    padding: 20px 20px;
+    padding-bottom: 60px;
+    width: auto;
+}
+
+#tabellaProdotti tr, th{
+	font-size: 0.9em;
+}
+
+#tabellaProdotti tr, td{
+	font-size: 0.9em;
+}
+
+#FormProdotto{
+	margin-bottom: 20px;
+	width: 50%;
+}
+
+#filtriProdottiAdmin{
+	padding-top:10px;
+	margin-right: 50%;
+	width: 80%;
+}
+
+#FiltroProd{
+	margin-top:0;
+	margin-left: 20px; 
+	margin-bottom:0;
+	
+}
+
+#nome, #prezzo, #descr{
+	border: 2px solid  #F57F3C;
+	border-radius: 5px;
+	padding: 5px;
+	width: 55%;
+	margin-bottom:6px;
+}
+#barraDiRicerca{
+	border: 2px solid  #F57F3C;
+	border-radius: 5px;
+	padding: 5px;
+	width: 20%;
+	margin-bottom:6px;
+}
+
+#categoria{
+	width:58%;
+	margin-bottom:6px;	
+}
+
+#submitP{
+	margin-top:0;
+	margin-left: 200px; 
+}
+
+#filtroCtg, #filtroOrdina{
+	width: 20%;
+}
+
+.ImageAdmin{
+	width:60px;
+	height:60px;
+}
+
+.TextAreaAdmin{
+	resize: none;
+	height:110px;
+	width: 150px;
+}
+
+td.TastiUtenti{
+	background-color: #ffffff;
+}
+
+
+.tabellaAdmin tbody tr:hover td.TastiUtenti {
+	background-color: #ffffff;
+}
+
+
+#tabellaProdotti th:nth-child(8),
+#tabellaProdotti td:nth-child(8) {
+    width: 100px;
+    min-width: 80px;
+}
+
+
+#tabellaProdotti th:nth-child(9),
+#tabellaProdotti td:nth-child(9) {
+    width: 100px;
+    min-width: 80px;
+}
+
+
+#tabellaProdotti td:nth-child(8) .menuTendina,
+#tabellaProdotti td:nth-child(9) .menuTendina {
+    width: 50%;
+    min-width: 60px;
+}
+
+#tabellaProdotti td:nth-child(5) input[type="text"] {
+    width: 80px;
+    min-width: 80px;
+}
+
+#ErrorSpan{
+	position:relative;
+}
+
+@media screen and (max-width: 1650px){
+		.MenuGestione{
+ 	 	margin-bottom: 150px;
+	}
+		#listProdotti{
+		margin-left:0;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	#tabellaProdotti td {
+        display:block;
+    }
+	
+	#tabellaProdotti th{
+		display:none;
+	}
+
+	#listProdotti {
+      	overflow-x:auto;
+    }
+    
+    #ordinaData{
+    	float:left;
+    }
+}
+
+@media screen and (max-width: 900px) {
+	#listProdotti{
+		margin-left:0;
+	}
+	
+	#FiltroProd{
+		position:absolute;
+    }
+}
+
+/*Gestione Categoria*/
+
+#FormCategoria{
+	margin-bottom: 20px;
+	width: 50%;
+}
+
+#listaCtg, #filtriCategorieAdmin{
+	margin-bottom: 20px;
+	padding: 20px 20px;	
+	padding-bottom: 20px;
+}
+
+#listaCtg{
+	margin-left: 250px; 
+    padding: 20px 20px;
+    padding-bottom: 60px;
+    width: auto;
+}
+
+#filtriCategorieAdmin{
+	padding-top: 0;
+	margin-right: 50%;
+	width: 50%;
+}
+
+#tendaCtg{
+	width:200px;
+}
+
+#FiltroCtg {
+    margin-left:30px;
+    padding: 8px 16px;
+}
+
+#creazioneCategoria {
+    padding: 5px;
+}
+
+#submitC{
+	margin-top:0;
+	margin-left: 300px;
+  	padding: 10px 16px;
+}
+
+#listaCtg{
+	width:50%;
+}
+
+@media screen and (max-width: 1450px){
+	
+	#listaCtg{
+		margin-left:0;
+	}
+	
+}
+
+@media screen and (max-width: 1400px) {
+	#tabellaCtg td {
+        display:block;
+    }
+	
+	#tabellaCtg th{
+		display:none;
+	}
+
+	#listaCtg{
+      	overflow-x:auto;
+    }
+    
+}
+
+
+
+
+
+
 
 
 

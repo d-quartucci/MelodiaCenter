@@ -14,78 +14,86 @@
 		<!-- HEADER -->
 <%@ include file="/fragments/header.jsp" %>
     
-        <!-- Menu laterale di gestione -->
-<%@ include file = "/fragments/adminMenu.jsp"%>
-    
-    	<section id= "creazioneProdotto">
-    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/AdminNuovoProdottoServlet" enctype="multipart/form-data">
-    			<fieldset>
-    				<legend>Inserisci Nuovo Prodotto</legend>
-    				<label for = "nome">Nome: </label>
-    				
-    				<input type = "text" id="nome" name="nome" placeholder= "Nome prodotto" required>
-    				<select id = "categoria" name="categoria" required>
+	 <main class ="pageAdmin">
+    	<aside>
+			<%@ include file = "/fragments/adminMenu.jsp"%>
+		</aside>
+    	<section id= "SezioneCreaProdotto">
+    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/NuovoProdotto" enctype="multipart/form-data">
+    			<fieldset id= "FormCreazione" class= "contenitore">
+    				<legend ><h2>Crea Prodotto</h2></legend>
+    				<label for="nome">Nome </label>
+    				<br>
+    				<input type="text" id="nome" name="nome" placeholder= "Nome prodotto..." required>
+    				<br>
+    				<label for="categoria">Categoria</label>
+    				<br>
+    				<select class="menuTendina" id = "categoria" name="categoria" required>
         				<option value="">Seleziona Categoria</option>
         				<c:forEach var="c" items="${categorie}">
 							<option value="${c.id}">${c.nome}</option>
 						</c:forEach>
-    				</select><br>
+    				</select>
+    				<br>
     				
-    				<label for = "prezzo">Prezzo: </label>
+    				<label for = "prezzo">Prezzo </label>
+    				<br>
     				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="0" placeholder= "0.00" required><br>
     				
-    				<label for = "descrizione">Descrizione: </label><br>
-    				<textarea  id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
+    				<label id="labelDescr" for = "descrizione">Descrizione</label>
+    				<br>
+    				<textarea  class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
     				
-    				<label for = "image">Immagine </label><br>
+    				<label for = "image">Inserisci un immagine: </label>
+    				<br>
     				<input type="file" id="image" name="image" accept="image/*" required><br><br>
     				
-    				<button type="submit" id="submit">Salva</button>
+    				<button type="submit" id="submitP" class="bottoneFiltro">Salva</button>
     			</fieldset>
     		</form>
     	</section>
-    	 <section id="sezioneFiltriAdmin">
-				<p>Filtro prodotti:</p>
-				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/AdminFilterProdottiServlet" >
+    	 <section class= "contenitore" id="filtriProdottiAdmin">
+				<h2>Filtri Prodotti:</h2>
+				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/FilterProdotti" >
 				
-					<label for="barraDiRicerca">Ricerca:</label>	
-					<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Nome prodotto..." value="${param.barraDiRicerca}"><br>
+					<label for="barraDiRicerca">RICERCA:</label>	
+					<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Nome prodotto..." value="${param.barraDiRicerca}">
 				
-					<label for="filtroCtg">Seleziona categoria:</label>
-					<select id= "filtroCtg" name="filtroCtg">
+					<label id= "labelCtg" for="filtroCtg">CATEGORIA:</label>
+					<select class="menuTendina" id= "filtroCtg" name="filtroCtg">
 						<option value = "0" ${param.filtroCtg == null || param.filtroCtg == '0' ? 'selected' : ''}>Tutte</option>
 						<c:forEach var= "c" items= "${categorie}">
 							<option value = "${c.id}" ${param.filtroCtg == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
 						</c:forEach>
-					</select><br>
+					</select>
 				
-					<label for="ordinaPrezzo">Ordina: </label>
-					<select id="ordina" name="ordina">
+					<label for="filtroOrdina">ORDINA:</label>
+					<select class="menuTendina" id="filtroOrdina" name="filtroOrdina">
 						<option value="prezzoCrescente" ${param.ordina == "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
 						<option value="prezzoDecrescente" ${param.ordina == "prezzoDecrescente" ? "selected" : ""}>Prezzo Decrescente</option>
 						<option value="vendutiCrescente" ${param.ordina == "VendutiCrescente" ? "selected" : ""}>Quantità Crescente</option>
 						<option value="vendutiDecrescente" ${param.ordina == "VendutiDecrescente" ? "selected" : ""}>Quantità Decrescente</option>
-					</select><br>
+					</select>
 			
-					<button type="submit">Applica filtri</button>
+					<button class="bottoneFiltro" id="FiltroProd" type="submit">Filtra</button>
 				</form>
 		</section>
-    	<section id=listProdotti>
-    			<p>Lista Prodotti</p>
-    			<table id ="tabellaPrdotti">
+    	<section class= "contenitore"  id=listProdotti>
+    			<h2>Lista Prodotti:</h2>
+    			<table class= "tabellaAdmin" id ="tabellaProdotti">
     				<thead id = "testaTableProdotti">
     					<tr>
-    						<th>Cod.Prodotto</th>
-							<th>Cod.Categoria</th>
+    						<th>Cod.Prod</th>
+							<th>Categoria</th>
+							<th>Img</th>
 							<th>Nome</th>
 							<th>Prezzo</th>
-							<th>Immagine</th>
 							<th>Descrizione</th>
-							<th>Quantità Vendute</th>
+							<th>Q.Vendute</th>
 							<th>Attivo</th>
 							<th>Evidenza</th>
     					</tr>
-    				</thead>
+    			</thead>
     				<tbody id= "corpoTableProdotti">
     					<c:if test= "${not empty prodotti}">
 							<c:forEach var= "p" items="${prodotti}">
@@ -93,43 +101,49 @@
 									<td>${p.id}</td>
 									<c:forEach var="c" items="${categorie}">
 	               						 <c:if test="${c.id == p.categoriaId}">
-	                   	 					<td>${c.id}-(${c.nome})</td>
+	                   	 					<td>Cd:${c.id}<br>(${c.nome})</td>
                 						</c:if>
 									</c:forEach>
-									<td><input type = "text" id= "nome_${p.id}" value= "${p.nome}" disabled></td>
-									<td><input type = "text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></td>
-									<td id= "image">
-										<img id="image_${p.id}" src="${pageContext.request.contextPath}/images/${p.imgSrc}" alt="Immagine ${p.nome}"><br>
+									<td id= "tdImage">
+										<img class="ImageAdmin" id="image_${p.id}" src="${pageContext.request.contextPath}/images/${p.imgSrc}" alt="Immagine ${p.nome}"><br>
        		          				</td>
-									<td><textarea  id="descr_${p.id}" rows = 5  cols = 30 disabled>${p.descrizione}</textarea></td>
+									<td><textarea class="TextAreaAdmin"  id= "nome_${p.id}" disabled>${p.nome}</textarea >
+									<td><input type="text" id= "prezzo_${p.id}" value= "${p.prezzoAttuale}" disabled></input>
+
+									<td><textarea  class="TextAreaAdmin" id="descr_${p.id}" disabled>${p.descrizione}</textarea></td>
 									<td>${p.quantitaVendute}</td>
-									<td>
-										<select id= "attivo_${p.id}" disabled > 
-											<option value = "true" ${p.attivo == "true" ? "selected" : ""} >attivo</option>
-											<option value = "false" ${p.attivo == "false" ? "selected" : ""}>non attivo</option>
+									<td >
+										<select class="menuTendina" id= "attivo_${p.id}" disabled > 
+											<option value = "true" ${p.attivo == "true" ? "selected" : ""} >SI</option>
+											<option value = "false" ${p.attivo == "false" ? "selected" : ""}>NO</option>
 										</select>
 									</td>
-									<td>
-										<select id= "evidenza_${p.id}" disabled> 
-											<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >attivo</option>
-											<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>non attivo</option>
+									<td >
+										<select class="menuTendina" id="evidenza_${p.id}" disabled> 
+											<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >SI</option>
+											<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>NO</option>
 										</select>
 									</td>
-									<td id= "tastoMod">
-										<button type = "button" id= "mod_${p.id}" onclick = "abilitaModifica(${p.id})"> Modifica</button>
+
+									<td class= "TastiUtenti" id= "tastoMod">
+										<button type = "button" class= "bottoneMod" id= "mod_${p.id}" onclick = "abilitaModifica(${p.id})"> Modifica</button>
+
+									<td class= "TastiUtenti" id= "tastoDel">
+										<button type = "button" class= "bottoneMod" id= "del_${p.id}" onclick = "eliminaProd(${p.id})"> Elimina</button>
 									</td>
-									<td id= "tastoDel">
-										<button type = "button" id= "del_${p.id}" onclick = "eliminaProd(${p.id})"> Elimina</button>
-									</td>
-									<td id= "ErrorSpan">
+								</tr>
+								<h5 id= "ErrorSpan">
 										<span id="error_${p.id}" class="error"></span>
-									</td>
-								</tr>	
+									</h5>
 							</c:forEach>
 						</c:if>
+						<c:if test="${empty prodotti}">
+                			<h2 class="emptyTable">Nessun prodotto presente!</h2> 
+   						</c:if>
     				</tbody>
     			</table>
     	</section>
+    </main>
         <!-- FOOTER -->
 <%@ include file="/fragments/footer.jsp" %>
 </body>

@@ -48,7 +48,7 @@
 					</table>
 				</c:if>
 				<c:if test = "${empty ordiniOggi}">
-					<p> Non ci sono ordini giornalieri! </p>
+					<h2 class="emptyTable">Nessun ordine giornaliero!</h2> 
 				</c:if>
 			</section>
 	
@@ -79,7 +79,7 @@
 					</table>
 				</c:if>
 				<c:if test = "${empty utentiOggi }">
-					<p> Non ci sono nuove iscrizioni giornaliere! </p>
+					<h2 class="emptyTable">Nessuna iscrizione giornaliera!</h2>
 				</c:if>
 			</section>
 		</main>

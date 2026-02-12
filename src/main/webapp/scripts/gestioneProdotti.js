@@ -33,12 +33,16 @@ function salvaModifica(id){
 	const ErrorSpan = document.getElementById("error_" + id);
 		
 	let xhr = new XMLHttpRequest();
-	const url = contextPath + "/admin/AdminUpdateProdottiServlet";
+	const url = contextPath + "/admin/UpdateProdotti";
 	
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
-			if(this.status === 200)
+			if(this.status === 200){
 				ErrorSpan.innerHTML = "Salvataggio effettuato!";
+				setTimeout(function(){
+							ErrorSpan.innerHTML = "";
+							}, 10000);
+			}
 		}
 	}
 	
@@ -53,17 +57,22 @@ function salvaModifica(id){
 
 function eliminaProd(id){
 	 let xhr = new XMLHttpRequest();
-	 const url = contextPath + "/admin/AdminDeleteProdotto?id="+ id;
+	 const url = contextPath + "/admin/DeleteProdotto?id="+ id;
 	 const ErrorSpan = document.getElementById("error_" + id);
 	 
 	 xhr.onreadystatechange = function(){
 	 	if(this.readyState === 4 ){
 	 		if(this.status === 200)
 				ErrorSpan.innerHTML = "Eliminazione effettuata!";
+				setTimeout(function(){
+						ErrorSpan.innerHTML = "";
+						}, 10000);
 			} else if (this.status === 403) {
-				ErrorSpan.innerHTML = "Errore: Il prodotto è presente in un ordine!";
+				alert("Errore: Il prodotto è presente in un ordine!");
+				location.reload();
 			} else if (this.status === 404){
-				ErrorSpan.innerHTML = "Errore: Il prodotto non trovato!";
+				alert("Errore: Il prodotto non trovato!");
+				location.reload();
 			}
 	 }
 	 

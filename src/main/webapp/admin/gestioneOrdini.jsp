@@ -20,7 +20,7 @@
 		</aside>
     		<section class= "contenitore" id="filtriOrdiniAdmin">
     			<h1>Filtri Ordini</h1>
-    			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterOrdiniServlet">
+    			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/FilterOrdini">
     				<label for = "dataFrom">DAL: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<br>
@@ -60,11 +60,7 @@
 							</c:forEach>
 						</c:if>
 						<c:if test="${empty ordini}">
-       						<tr>
-           						<td>
-                					<h1>Nessun ordine presente </h1>
-          						 </td>
-      						</tr>
+                			<h2 class="emptyTable">Nessun ordine presente!</h2> 
    						</c:if>
     				</tbody>
     			</table>

@@ -31,9 +31,11 @@ function applicaModifica(id){
 		emailId.disabled = true;
 	}else{
 		if(uEmail.trim() === ""){ //Controllo se il campo è vuoto
-			errorEmail.innerHTML = "Errore: Campo vuoto!";
+			alert("Errore: Campo vuoto!");
+			location.reload();
 		} else {
-			errorEmail.innerHTML = "Errore: Email non valida!" ;
+			alert("Errore: Email non valida!");
+			location.reload();
 		}
 	}
 		
@@ -44,16 +46,21 @@ function salvaModifica(id, campo, valore){
 	const errorEmail = document.getElementById("errorEmail_"+id);
 	
 	let xhr = new XMLHttpRequest();
-	const url = contextPath + "/admin/AdminUpdateUtenteServlet";
+	const url = contextPath + "/admin/UpdateUtente";
 	
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
 				errorEmail.innerHTML ="Salvataggio effettuato!";
+				setTimeout(function(){
+						ErrorSpan.innerHTML = "";
+						}, 10000);
 			}else if(this.status === 400){
-				errorEmail.innerHTML ="Errore: Campo non valido!";
+				alert("Errore: Campo non valido!");
+				location.reload();
 			}else if(this.status === 404){
-				errorEmail.innerHTML = "Errore: Utente non trovato!";
+				alert("Errore: Utente non trovato!");
+				location.reload();
 			}
 		}
 	}
@@ -77,10 +84,14 @@ function validateEmail(id){
 				if(this.status===200){
 					let esiste = this.responseText.trim();
 						if(esiste === "true"){
-							errorEmail.innerHTML = "Errore: Email già usata!";
+							alert("Errore: Email già usata!");
+							location.reload();
 						}
 						else{
 							errorEmail.innerHTML = "Email valida!";
+							setTimeout(function(){
+									ErrorSpan.innerHTML = "";
+									}, 10000);
 						}
 					}
 				}

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 
-@WebServlet("/admin/AdminDeleteCategoria")
+@WebServlet("/admin/DeleteCategoria")
 public class AdminDeleteCategoria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

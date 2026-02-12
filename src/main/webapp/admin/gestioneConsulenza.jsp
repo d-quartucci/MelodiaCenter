@@ -19,7 +19,7 @@
 		</aside>
 	    <section class= "contenitore" id="filtriConsulenzaAdmin">
 			<h1>Filtri Consulenze</h1>
-    		<form id= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/AdminFilterConsulenzeServlet">
+    		<form id= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/FilterConsulenze">
     			<label for = "dataFrom">DAL: </label>
     			<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     			<br>
@@ -48,7 +48,7 @@
 				<section id="sezioneConsulenze" class="contenitore">
 					<c:forEach var="c" items="${consulenze}">
 						<div id="consulenzaDiv-${c.id}" class="consulenzaDiv">
-							<a href="${pageContext.request.contextPath}/user/ConsulenzaPageServlet?consId=${c.id}">Richiesta #${c.id}</a>
+							<a href="${pageContext.request.contextPath}/user/consulenza?consId=${c.id}">Richiesta #${c.id}</a>
 							<p> Stato: ${c.aperto ? 'Aperto' : 'Chiuso'}<p>
 							<p> Data Richiesta: ${c.dataRichiesta}<p>
 						</div>
@@ -56,7 +56,7 @@
 				</section>
 			</c:if>
 			<c:if test="${empty consulenze}">
-				<h1>Non ci sono consulenze </h1>
+				<h2 class="emptyTable">Non ci sono consulenze !</h2>
 			</c:if>
 		</section>
         		<!-- FOOTER -->

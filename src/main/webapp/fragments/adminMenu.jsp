@@ -10,12 +10,12 @@
 <body>
 	<aside id="MenuLaterale"> 
 			<ul class="MenuGestione">
-				<li class="selettore"><a class= "active" href="${pageContext.request.contextPath}/admin/AdminDailyServlet">Menù</a></li>
-				<li class="selettore"><a href="${pageContext.request.contextPath}/admin/AdminUtentiServlet">Utenti</a></li>
-             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/AdminOrdiniServlet">Ordini</a></li>
-             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/AdminProdottiServlet">Prodotti</a></li>
-             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/AdminCategorieServlet">Categorie</a></li>
-             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/AdminConsulenzaServlet">Consulenze</a></li>
+				<li class="selettore"><a class= "active" href="${pageContext.request.contextPath}/admin/Daily">Menù</a></li>
+				<li class="selettore"><a href="${pageContext.request.contextPath}/admin/Utenti">Utenti</a></li>
+             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/Ordini">Ordini</a></li>
+             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/Prodotti">Prodotti</a></li>
+             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/Categorie">Categorie</a></li>
+             	<li class="selettore"><a href="${pageContext.request.contextPath}/admin/Consulenza">Consulenze</a></li>
         	</ul>
 	</aside>
 </body>

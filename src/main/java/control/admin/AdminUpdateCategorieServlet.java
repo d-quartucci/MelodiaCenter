@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminUpdateCategorieServlet")
+@WebServlet("/admin/UpdateCategorie")
 public class AdminUpdateCategorieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

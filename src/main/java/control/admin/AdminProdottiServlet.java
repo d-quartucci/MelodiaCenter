@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-@WebServlet("/admin/AdminProdottiServlet")
+@WebServlet("/admin/Prodotti")
 public class AdminProdottiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
