@@ -83,8 +83,8 @@ function verificaEmail(){
 	xhr.open("GET", url, true);
 		
 	xhr.onreadystatechange = function(){
-		if(xhr.readyState === 4){
-			if(xhr.status===200){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
 				let esiste = xhr.responseText.trim();
 				if(esiste === "true"){
 					errorEmail.innerHTML = "Email già utilizzata!";
@@ -94,6 +94,9 @@ function verificaEmail(){
 					errorEmail.innerHTML = "Email valida";
 					submit.disabled = false;
 				}
+			} else if(xhr.status == 500){
+				errorEmail.innerHTML = "Errore nel controllo dell'email!";
+				submit.disabled = true;
 			}
 		}
 	}
