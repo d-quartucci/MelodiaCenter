@@ -28,7 +28,7 @@
 						<thead>
 							<tr>
 								<th>Cod.Ordine</th>
-								<th>Cod.Utente</th>
+								<th id="thUtente">Cod.Utente</th>
 								<th>Data</th>
 								<th>Totale</th>
 								<th>IndirizzoSpedizione</th>
@@ -58,7 +58,7 @@
 					<table class= "tabellaAdmin">
 						<thead>
 							<tr>
-								<th>Cod.Utente</th>
+								<th id="thOrdine">Cod.Utente</th>
 								<th>Nome</th>
 								<th>Cognome</th>
 								<th>E-mail</th>

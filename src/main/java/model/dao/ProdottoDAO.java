@@ -231,6 +231,19 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return null;
 	}
 	
+	public synchronized Prodotto doRetrieveByKeyAdmin(Integer key) throws SQLException{
+		String querySQL = "SELECT * FROM Prodotto WHERE ID = ?";
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setInt(1, key);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return mapResultSetToBean(rs);
+			}
+		}
+		return null;
+	}
+	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
 		String querySQL = "DELETE FROM Prodotto WHERE ID = ?";
 		int test;

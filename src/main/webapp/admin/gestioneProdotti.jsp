@@ -23,7 +23,7 @@
     				<legend>Inserisci Nuovo Prodotto</legend>
     				<label for = "nome">Nome: </label>
     				
-    				<input type = "text" id="nome" name="nome" placeholder = "Nome prodotto" required>
+    				<input type = "text" id="nome" name="nome" placeholder= "Nome prodotto" required>
     				<select id = "categoria" name="categoria" required>
         				<option value="">Seleziona Categoria</option>
         				<c:forEach var="c" items="${categorie}">

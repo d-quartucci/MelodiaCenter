@@ -9,7 +9,7 @@
 <body>
 <header id="headerPrincipale">
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/home">🎸 MelodiaCenter</a>
+            <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
         </div>
 
         <nav>

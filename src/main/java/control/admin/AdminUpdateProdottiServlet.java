@@ -41,7 +41,7 @@ public class AdminUpdateProdottiServlet extends HttpServlet {
 			Boolean evidenza = Boolean.parseBoolean(request.getParameter("evidenza"));
 			
 			ProdottoDAO pDAO = new ProdottoDAO(ds);
-			Prodotto prodotto = pDAO.doRetrieveByKey(id);
+			Prodotto prodotto = pDAO.doRetrieveByKeyAdmin(id);
 			
 			prodotto.setNome(nome);
 			prodotto.setDescrizione(descr);
