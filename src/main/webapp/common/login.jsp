@@ -16,7 +16,7 @@
 <section id="sezioneLogin">
 <h1 class="presentazione">Accedi!</h1>
 	<section class="contenitore">
-	<h2 class="errore">${error}</h2>
+	<h2 class="errore">${errorLogin}</h2>
 		<form id="loginForm" name="loginForm" method="POST" action="${pageContext.request.contextPath}/DoLoginServlet" onsubmit="return validateLogin()">
 			
 			<div class="riga">

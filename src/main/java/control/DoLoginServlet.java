@@ -55,8 +55,8 @@ public class DoLoginServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/home");
 			}
 			else {
-				request.setAttribute("error", "Email o password non validi!");
-				request.getRequestDispatcher("/common/login.jsp").forward(request, response);
+				request.getSession().setAttribute("errorLogin", "Email o password non validi!");
+				response.sendRedirect(request.getContextPath() + "/login");
 			}
 		} catch(SQLException ex) {
 			ex.printStackTrace();
