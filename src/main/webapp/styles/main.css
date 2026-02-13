@@ -261,18 +261,30 @@ a:hover {
 	list-style-image: url('../images/ChiaveSol.png');
 }
 
-#sezioneCategorie ul li {
+#sezioneCategorie .contenitore {
+	width: 85%;
+}
+
+#sezioneCategorie li {
+	margin-bottom: 20px;
+}
+
+#sezioneCategorie p {
+	margin-left: 20px;
+}
+
+#sezioneCategorie a{
+	text-decoration: none;
+}
+
+#sezioneCategorie .nomeCategoria  {
 	line-height: 2em;
-	margin-bottom:10px;
-}
-
-#sezioneCategorie hr {
-	clear: none;
-}
-
-#sezioneCategorie a {
 	font-size: 1.25em;
 	margin: 10px;
+}
+
+#sezioneCategoria .descCategoria {
+	padding: 10px;
 }
 
 #prodottiEvidenziati {
