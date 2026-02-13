@@ -16,7 +16,7 @@
 <section id="schedaProdotto" class="contenitore">
 
 	<div class="immagineProdotto">
-		<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}">
+		<img src="${pageContext.request.contextPath}/images/${prodotto.imgSrc}" alt="${prodotto.nome}">
 	</div>
 	
 	<div class="informazioniProdotto">

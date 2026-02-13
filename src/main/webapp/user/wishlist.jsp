@@ -18,10 +18,10 @@
 		<c:forEach var="wish" items="${wishlist}">
 			<div id="wishDiv-${wish.prodotto.id}" class="contenitoreProdotto">
 				<div class="immagineProdotto">
-					<img src="${pageContext.request.contextPath}/images/${wish.prodotto.imgSrc}">
+					<img src="${pageContext.request.contextPath}/images/${wish.prodotto.imgSrc}" alt="${wish.prodotto.nome}">
 				</div>
 				<div class="informazioniProdotto">
-					<h2><a href="${pageContext.request.contextPath}/ProductPageServlet?prodottoId=${wish.prodotto.id}">${wish.prodotto.nome}</a></h2>
+					<h2><a href="${pageContext.request.contextPath}/product?prodottoId=${wish.prodotto.id}">${wish.prodotto.nome}</a></h2>
 					<p>${wish.prodotto.prezzoAttuale}€</p>
 					<button id="wishRemove-${wish.prodotto.id}" onclick="rimuoviDallaWishlist(${wish.prodotto.id})">Rimuovi</button>
 				</div>
@@ -33,7 +33,7 @@
 	<div id="sezioneVuotaWishlist" style="<c:if test='${not empty wishlist}'>display:none;</c:if>">
 		<h1 class="presentazione">Non hai ancora aggiunto nulla alla tua wishlist!</h1>
 		<section class="contenitore">
-			<h2>Comincia a sognare <a href="${pageContext.request.contextPath}/CatalogServlet">qui</a>!</h2>
+			<h2>Comincia a sognare <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h2>
 		</section>
 	</div>
 	

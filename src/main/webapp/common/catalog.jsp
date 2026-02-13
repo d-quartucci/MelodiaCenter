@@ -55,7 +55,7 @@
 						<h3><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a></h3>
 						<p class="prezzo">${p.prezzoAttuale}€</p>
 					</div>
-					<div class="immagineProdotto">
+					<div class="immagineProdotto" alt="${p.nome}">
 						<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
 					</div>
 				</div>
