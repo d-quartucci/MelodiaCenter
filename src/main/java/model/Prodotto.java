@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 public class Prodotto implements Serializable {
 
@@ -16,6 +17,7 @@ public class Prodotto implements Serializable {
 	private boolean attivo;
 	private boolean evidenza;
 	private int quantitaVendute;
+	private Timestamp dataAggiunta;
 	
 	public Prodotto() { };
 	
@@ -46,8 +48,12 @@ public class Prodotto implements Serializable {
 	public int getQuantitaVendute() { return quantitaVendute; }
 	public void setQuantitaVendute(int quantitaVendute) { this.quantitaVendute = quantitaVendute; }
 	
+	public Timestamp getDataAggiunta() { return dataAggiunta; }
+	public void setDataAggiunta(Timestamp dataAggiunta) { this.dataAggiunta = dataAggiunta; }
+	
 	public String toString() {
-		return "Prodotto [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + ", imgSrc=" + imgSrc + ", attivo=" + attivo + ", evidenza = " + evidenza + ", quantitaVendute = " + quantitaVendute + "]";
+		return "Prodotto [id=" + id + ", categoriaId=" + categoriaId + ", nome=" + nome + ", descrizione=" + descrizione + ", prezzoAttuale=" + prezzoAttuale + 
+				", imgSrc=" + imgSrc + ", attivo=" + attivo + ", evidenza = " + evidenza + ", quantitaVendute = " + quantitaVendute + ", dataAggiunta=" + dataAggiunta + "]";
 	}
 
 }

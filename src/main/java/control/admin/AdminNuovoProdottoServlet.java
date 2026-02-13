@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -82,6 +84,7 @@ public class AdminNuovoProdottoServlet extends HttpServlet {
 			prodotto.setImgSrc(fileName);
 			prodotto.setAttivo(true);
 			prodotto.setEvidenza(false);
+			prodotto.setDataAggiunta(Timestamp.valueOf(LocalDateTime.now()));
 		
 			pDAO.doSaveOrUpdate(prodotto);
 

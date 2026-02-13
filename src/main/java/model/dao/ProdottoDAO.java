@@ -30,7 +30,49 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		p.setAttivo(rs.getBoolean("IsAttivo"));
 		p.setQuantitaVendute(rs.getInt("QuantitaVendute"));
 		p.setEvidenza(rs.getBoolean("InEvidenza"));
+		p.setDataAggiunta(rs.getTimestamp("dataAggiunta"));
 		return p;
+	}
+	
+	public synchronized void doSaveOrUpdate(Prodotto bean) throws SQLException{
+		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
+		if(bean.getId() > 0) {
+			String querySQL = "UPDATE prodotto SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=?, inEvidenza=?, QuantitaVendute = ?, DataAggiunta =? WHERE ID=?";
+		    try (Connection conn = ds.getConnection();
+		    		PreparedStatement ps = conn.prepareStatement(querySQL)) {   
+		    	ps.setString(1, bean.getNome());
+				ps.setString(2, bean.getDescrizione());
+				ps.setBigDecimal(3, bean.getPrezzoAttuale());
+				ps.setString(4, bean.getImgSrc());
+				ps.setBoolean(5, bean.isAttivo());
+				ps.setInt(6, bean.getCategoriaId());
+				ps.setBoolean(7, bean.isEvidenza());
+				ps.setInt(8, bean.getQuantitaVendute());
+				ps.setTimestamp(9, bean.getDataAggiunta());
+				ps.setInt(10, bean.getId());
+				
+				ps.executeUpdate();
+		    }
+		}
+		
+		//Altrimenti facciamo SAVE
+		else {
+			String querySQL = "INSERT INTO prodotto (Nome, Descrizione, PrezzoAttuale, Immagine, isAttivo, CategoriaId, inEvidenza, QuantitaVendute, DataAggiunta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			try (Connection conn = ds.getConnection();
+					PreparedStatement ps = conn.prepareStatement(querySQL))
+			{
+				ps.setString(1, bean.getNome());
+				ps.setString(2, bean.getDescrizione());
+				ps.setBigDecimal(3, bean.getPrezzoAttuale());
+				ps.setString(4, bean.getImgSrc());
+				ps.setBoolean(5, bean.isAttivo());
+				ps.setInt(6, bean.getCategoriaId());
+				ps.setBoolean(7, bean.isEvidenza());
+				ps.setInt(8, bean.getQuantitaVendute());
+				ps.setTimestamp(9, bean.getDataAggiunta());
+				ps.executeUpdate();
+			}
+		}
 	}
 	
 	public synchronized ArrayList<Prodotto> doRetrieveByFilters(String r, String ord, String ctg, String max) throws SQLException{
@@ -120,44 +162,6 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return prodotti;
 	}
 	
-	public synchronized void doSaveOrUpdate(Prodotto bean) throws SQLException{
-		//Se l'Id non è 0, cioè il valore di default del bean, vuol dire che esso già esiste nel DB. Per questo facciamo UPDATE.
-		if(bean.getId() > 0) {
-			String querySQL = "UPDATE prodotto SET Nome=?, Descrizione=?, PrezzoAttuale=?, Immagine=?, isAttivo=?, CategoriaId=?, inEvidenza=?, QuantitaVendute = ? WHERE ID=?";
-		    try (Connection conn = ds.getConnection();
-		    		PreparedStatement ps = conn.prepareStatement(querySQL)) {   
-		    	ps.setString(1, bean.getNome());
-				ps.setString(2, bean.getDescrizione());
-				ps.setBigDecimal(3, bean.getPrezzoAttuale());
-				ps.setString(4, bean.getImgSrc());
-				ps.setBoolean(5, bean.isAttivo());
-				ps.setInt(6, bean.getCategoriaId());
-				ps.setBoolean(7, bean.isEvidenza());
-				ps.setInt(8, bean.getQuantitaVendute());
-				ps.setInt(9, bean.getId());
-				ps.executeUpdate();
-		    }
-		}
-		
-		//Altrimenti facciamo SAVE
-		else {
-			String querySQL = "INSERT INTO prodotto (Nome, Descrizione, PrezzoAttuale, Immagine, isAttivo, CategoriaId, inEvidenza, QuantitaVendute) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			try (Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(querySQL))
-			{
-				ps.setString(1, bean.getNome());
-				ps.setString(2, bean.getDescrizione());
-				ps.setBigDecimal(3, bean.getPrezzoAttuale());
-				ps.setString(4, bean.getImgSrc());
-				ps.setBoolean(5, bean.isAttivo());
-				ps.setInt(6, bean.getCategoriaId());
-				ps.setBoolean(7, bean.isEvidenza());
-				ps.setInt(8, bean.getQuantitaVendute());
-				ps.executeUpdate();
-			}
-		}
-	}
-	
 	public synchronized ArrayList<Prodotto> doRetrieveAll() throws SQLException{
 		String querySQL = "SELECT * FROM prodotto";
 		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
@@ -244,20 +248,6 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return null;
 	}
 	
-	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
-		String querySQL = "DELETE FROM Prodotto WHERE ID = ?";
-		int test;
-		try(Connection conn = ds.getConnection();
-				PreparedStatement ps = conn.prepareStatement(querySQL)){
-			ps.setInt(1, key);
-			test = ps.executeUpdate(); //Se l'update ha avuto successo, verrà restituito "1", in quanto è stata modificata un record del DB, altrimenti "0"
-		}
-		if(test == 0) {
-			return false;
-		}
-		return true;
-	}
-	
 	//Utilizzo questo metodo per la ricerca tramite barra
 	public synchronized ArrayList<Prodotto> doRetrieveByPartialName(String name) throws SQLException{
 		String querySQL = "SELECT * FROM Prodotto WHERE Nome LIKE ? AND IsAttivo = TRUE";
@@ -273,5 +263,35 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 			}
 		}
 		return listaProdotti;
+	}
+		
+	public synchronized ArrayList<Prodotto> doRetrieveRecenti(int limit) throws SQLException {
+		String querySQL = "SELECT * FROM Prodotto ORDER BY DataAggiunta DESC LIMIT ?";
+		ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setInt(1, limit);
+			try(ResultSet rs = ps.executeQuery()){
+				while(rs.next()) {
+					Prodotto p = mapResultSetToBean(rs);
+					listaProdotti.add(p);
+				}
+			}
+		}
+		return listaProdotti;
+	}
+	
+	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
+		String querySQL = "DELETE FROM Prodotto WHERE ID = ?";
+		int test;
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(querySQL)){
+			ps.setInt(1, key);
+			test = ps.executeUpdate(); //Se l'update ha avuto successo, verrà restituito "1", in quanto è stata modificata un record del DB, altrimenti "0"
+		}
+		if(test == 0) {
+			return false;
+		}
+		return true;
 	}
 }
