@@ -28,7 +28,7 @@
 	<c:forEach var="p" items="${listaInEvidenza}">
 		<div class="contenitoreProdotto">
 			<div class="immagineProdotto">
-				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
+				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}" alt="${p.nome}">
 			</div>
 			<div class="informazioniProdotto">
 				<a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a>

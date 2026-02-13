@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import model.Consulenza;
-import model.Ordine;
 
 public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 

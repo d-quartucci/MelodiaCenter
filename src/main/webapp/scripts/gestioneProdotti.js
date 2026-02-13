@@ -38,7 +38,7 @@ function salvaModifica(id){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
-				ErrorSpan.innerHTML = "Salvataggio effettuato!";
+				ErrorSpan.innerHTML = nome + ": Salvataggio effettuato!";
 				setTimeout(function(){
 							ErrorSpan.innerHTML = "";
 							}, 10000);
