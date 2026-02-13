@@ -41,6 +41,8 @@ public class HomeServlet extends HttpServlet {
 		ArrayList<Prodotto> listaBestSellers = new ArrayList<>();
 		//Creo la lista delle categorie
 		ArrayList<Categoria> listaCategorie = new ArrayList<>();
+		//Creo la lista dei prodotti più acquistati nell'ultimo mese
+		ArrayList<Prodotto> listaRecenti = new ArrayList<>();
 		
 		ProdottoDAO pDAO = new ProdottoDAO(ds);
 		CategoriaDAO cDAO = new CategoriaDAO(ds);
@@ -48,6 +50,7 @@ public class HomeServlet extends HttpServlet {
 			listaInEvidenza = pDAO.doRetrieveInEvidenza();
 			listaBestSellers = pDAO.doRetrieveBestSellers();
 			listaCategorie = cDAO.doRetrieveAll(); 
+			listaRecenti = pDAO.doRetrieveRecenti(3);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore durante il caricamento della home! Ci scusiamo per l'inconveniente.");
@@ -57,6 +60,7 @@ public class HomeServlet extends HttpServlet {
 		request.setAttribute("listaInEvidenza", listaInEvidenza);
 		request.setAttribute("listaBestSellers", listaBestSellers);
 		request.setAttribute("listaCategorie", listaCategorie);
+		request.setAttribute("listaRecenti", listaRecenti);
 		
 		request.getRequestDispatcher("/common/home.jsp").forward(request, response);
 	}

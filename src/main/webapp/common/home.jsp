@@ -44,13 +44,27 @@
 	<c:forEach var="c" items="${listaCategorie}">
 		<li id="categoria-${c.id}">
 			<a href="${pageContext.request.contextPath}/catalog?categoria=${c.id}">${c.nome}</a>
+			<p>${c.descr}</p>
 		</li>
 	</c:forEach>
 	</ul>
-	<hr>
 </section>
 
-
+<section id="aggiuntiDiRecente">
+	<h2>Nuovi arrivi!</h2>
+	<c:forEach var="p" items="${listaRecenti}">
+		<div class="contenitoreProdotto">
+			<div class="immagineProdotto">
+				<img src="${pageContext.request.contextPath}/images/${p.imgSrc}">
+			</div>
+			<div class="informazioniProdotto contenitore">
+				<h3><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a></h3>
+				<p class="prezzo">${p.prezzoAttuale}€</p>
+				<p class="descrizioneProdotto">${p.descrizione}</p>
+			</div>
+		</div>
+	</c:forEach>
+</section>
 
 <section id="bestSellers">
 	<h2>I nostri bestsellers!</h2>
