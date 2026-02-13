@@ -84,7 +84,7 @@ public class CreateConsulenzaServlet extends HttpServlet {
 		}
 		request.setAttribute("consulenza", consulBean);
 		
-		response.sendRedirect(request.getContextPath() + "/user/ConsulenzaListServlet");
+		response.sendRedirect(request.getContextPath() + "/user/consulenzaList");
 	}
 
 }

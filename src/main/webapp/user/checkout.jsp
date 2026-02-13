@@ -52,7 +52,7 @@
 		<h2>Inserisci il metodo di pagamento:</h2>
 		<div id="inserisciPagamento">
 			<label for="nome">Nome: </label>
-			<input id="nome" name="nome" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorNome"), lettersOnlyMessage)'>
+			<input id="nomeCheckout" name="nome" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorNome"), lettersOnlyMessage)'>
 			<span id="errorNome"></span><br>
 			
 			<label for="cognome">Cognome: </label>

@@ -21,6 +21,12 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+		
+		//Non manteniamo il messaggio di errore ogni volta che accedo alla pagina di login (per essere scrupolosi)
+		if(session != null && session.getAttribute("errorLogin") != null) {
+			request.setAttribute("errorLogin", session.getAttribute("errorLogin"));
+			session.removeAttribute("errorLogin");
+		}
 		//Utilizzo un booleano per vedere se l'ultima volta è stato richiesto di ricordare l'email
 		//In tal caso, quando verrà fatto accesso alla JSP, la checkbox sarà selezionata
 		Boolean checked = false;

@@ -58,7 +58,7 @@ public class CreateRecensioneServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		    return;
 		}
-		response.sendRedirect(request.getContextPath() + "/ProductPageServlet?prodottoId=" + idProd);
+		response.sendRedirect(request.getContextPath() + "/product?prodottoId=" + idProd);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
