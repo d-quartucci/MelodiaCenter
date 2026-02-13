@@ -60,12 +60,13 @@
 	float: left;
 	width: 400px;
 	padding-top: 30px;
+	padding-bottom: 10px;
 	text-align: left;
 	margin-left: 10px;
 }
 
 .ricerca #barraDiRicerca {
-	height: 30px;
+	height: 25px;
 	width: 70%;
 }
 
@@ -120,20 +121,27 @@ hr {
 	}
 	
 	.navLinks li, .userArea{
-		padding-top: 15px;
+		padding-top: 10px;
 	}
 	
 	.navLinks {
 		width: 300px;
+		padding-left : 10px;
 	}
 	
 	.ricerca {
 		width: 300px;
-		padding-top: 10px;
+		padding-top: 0px;
+		margin-top: 0px;
 	}
 	
 	.userArea {
 		width: 500px;
+		padding-right: 10px;
+	}
+	
+	.userArea, .navLinks {
+		font-size: smaller;
 	}
 }
 
@@ -141,17 +149,34 @@ hr {
 	.ricerca {
 		display: none;
 	}
+	
+	.userArea {
+		width: 60%;
+	}
+	
+	.navLinks {
+		width: 30%;
+	}
+	
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
 	.userArea {
-		float: none;
 		width: 95%;
+		float: none;
 		margin: 0 auto;
+		padding-right: 0;
+		text-align: center;
 	}
 
 	.navLinks {
 		display: none;
+	}
+	
+	.userArea li {
+		float: none;
+		margin: 5px 10px;
+		display: inline-block;
 	}
 	
 }
@@ -197,6 +222,7 @@ a:hover {
 }
 
 /* Sezione home */
+
 #benvenuto {
 	clear: both;
 	text-align: center;
@@ -413,7 +439,7 @@ a:hover {
 	}
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1000px){
 	
 	.contenitoreProdottoCatalogo {
 		width: 90%;
@@ -436,7 +462,7 @@ a:hover {
 /* Sezione Pagina Prodotto */
 
 #schedaProdotto {
-	width: 50%;
+	width: 60%;
 	margin: 20px;
 	overflow: hidden;
 }
@@ -449,8 +475,16 @@ a:hover {
 
 #schedaProdotto .informazioniProdotto {
 	float: left;
-	width: 60%;
+	width: 55%;
 	padding: 20px;
+	text-align: center;
+}
+
+#schedaProdotto #prezzo {
+	width: 200px;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
 }
 
 /* Sezione funzionalità prodotto */
@@ -473,7 +507,7 @@ a:hover {
 #sezioneConsulenza {
 	padding: 20px 10px;
 	margin: 20px;
-	width: 30%;
+	width: 58%;
 	overflow: hidden;
 	clear: both;
 }
@@ -538,7 +572,7 @@ a:hover {
 	border: 3px dashed gray;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 
 	#schedaProdotto {
 		width: 90%;
@@ -846,30 +880,46 @@ a:hover {
 #sezioneVuotaWishlist .contenitore {
 	width: 40%;
 	margin: 20px auto;
+	padding: 20px 0;
+}
+
+#sezioneWishlist .contenitore {
+	width: 60%;
+	margin: 20px auto;
+	padding: 10px;
 }
 
 #sezioneWishlist .contenitoreProdotto {
-	width: 95%;
-	height: 275px;
+	width: 90%;
+	min-height: 180px;
 	border: 3px solid gray;
 	padding: 10px;
 	margin: 20px auto;
 	clear: both;
-	font-size: 0.8em;
-	position: relative;
+	overflow: hidden;
 }
 
 #sezioneWishlist .informazioniProdotto {
-	position: absolute;
-	right: 0;
-	top: 0;
+	float: left;
 	width: 50%;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#sezioneWishlist .immagineProdotto {
+	float: left;
+	width: 40%;
 	text-align: center;
 }
 
 #sezioneWishlist button {
 	height: 40px;
-	width: 70px;
+	width: 100px;
+}
+
+#sezioneWishlist .immagineProdotto img {
+	width: 200px;
+	height: 200px;
 }
 
 @media screen and (max-width: 1600px){
@@ -880,22 +930,20 @@ a:hover {
 	#sezioneWishlist button {
 		height: 30px;
 		width: 60px;
-		font-size: 1.2em;
 	}
 	
 	#sezioneWishlist .contenitoreProdotto {
 		height: 200px;
 		width: 85%;
-		font-size: 0.6em;
 	}
 	
-	#sezioneWishlist img {
+	#sezioneWishlist .immagineProdotto img {
 		width: 150px;
 		height: 150px;
 	}
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 1000px){
 	#sezioneWishlist, #sezioneVuotaWishlist .contenitore {
 		width: 95%;
 	}
