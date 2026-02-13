@@ -89,9 +89,9 @@ function rimuoviDalCarrello(idProdotto){
 				alert("Errore: riprova più tardi!");
 			}
 		}
+	}
 	xhr.open("GET", url, true);
 	xhr.send();
-	}
 }
 
 function aggiornaPrezzo(responseText){
