@@ -23,21 +23,20 @@
 		<h1 id="nomeProdotto">${prodotto.nome}</h1>
 		<p id="descProdotto">${prodotto.descrizione}</p>
 		<p id="prezzo">${prodotto.prezzoAttuale}€</p>
+		
+		<div id="sezioneFunzionalità">
+			<div id="sezioneAggiungiCarrello">
+				<button id="pulsanteAggiungiCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
+			</div>
+
+			<div id="sezioneAggiungiWishlist">
+				<c:if test="${isLogged}">
+					<button id="pulsanteAggiungiWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "In wishlist" : "Desidero..."}</button>
+				</c:if>
+			</div>
+		</div>
 	</div>
 	
-</section>
-
-<section id="sezioneFunzionalità">
-
-	<section id="sezioneAggiungiCarrello">
-		<button id="pulsanteAggiungiCarrello" onclick="aggiungiAlCarrello(${prodotto.id})" <c:if test="${inCart}">disabled</c:if>>${inCart ? "Prodotto già nel carrello" : "Aggiungi al carrello!"}</button>
-	</section>
-
-	<section id="sezioneAggiungiWishlist">
-		<c:if test="${isLogged}">
-			<button id="pulsanteAggiungiWishlist" onclick="aggiungiAllaWishlist(${prodotto.id})" <c:if test="${inWishlist}">disabled</c:if>>${inWishlist ? "In wishlist" : "Desidero..."}</button>
-		</c:if>
-	</section>
 		
 </section>
 
@@ -56,7 +55,7 @@
 		</c:if>
 	</section>
 </section>
-		
+
 <section id="sezioneRecensioni">
 	<section id="leggiRecensioni">
 		<c:if test="${empty listaRecensioni}">

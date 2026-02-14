@@ -501,28 +501,30 @@ a:hover {
 /* Sezione Pagina Prodotto */
 
 #schedaProdotto {
-	width: 60%;
-	margin: 20px;
+	width: 45%;
+	margin: 20px 20px 20px 10%;
 	overflow: hidden;
+	float: left;
+	padding-bottom: 20px;
 }
 
 #schedaProdotto .immagineProdotto {
 	float: left;
-	width: 30%;
-	padding: 20px;
+	width: 35%;
+	margin-left: 20px;
+	margin-top: 20px;
 }
 
 #schedaProdotto .informazioniProdotto {
 	float: left;
-	width: 55%;
-	padding: 20px;
+	width: 60%;
 	text-align: center;
 }
 
 #schedaProdotto #prezzo {
 	width: 200px;
 	text-align: center;
-	margin: 0 auto;
+	margin: 10px auto;
 	display: block;
 }
 
@@ -530,43 +532,47 @@ a:hover {
 
 #sezioneFunzionalità {
 	clear: both;
-	width: 50%;
-	margin: 20px;
+	width: 100%;
+	text-align: center;
+	padding-top: 10px;
+	margin: 0 auto;
+}
+
+#sezioneAggiungiCarrello, #sezioneAggiungiWishlist {
+	float: none;
+	margin: 5px;
 }
 
 #sezioneFunzionalità button {
-	padding: 10px;
-	height: 50px;
-	min-width: 200px;
-	margin-bottom: 20px;
-	margin-left: 10px;
-	float: left;
+	height: 45px;
+	width: 175px;
+	margin-bottom: 10px;
 }
 
 #sezioneConsulenza {
-	padding: 20px 10px;
-	margin: 20px;
-	width: 58%;
-	overflow: hidden;
-	clear: both;
+	width: 20%;
+	float: right;
+	margin: 20px 17% 20px 20px;
+	text-align: center;
 }
 
 #sezioneConsulenza textarea {
 	resize: none;
-	width: 90%;
+	width: 80%;
 	height: 100px;
 }
 
 #sezioneConsulenza button {
-	width: 10%;
+	width: 30%;
 	height: 40px;
-	margin-top: 10px;
+	margin: 10px auto;
 	display: block;
+	text-align: center;
 }
 
 #sezioneRecensioni {
-	width: 95%;
-	margin: 20px;
+	width: 80%;
+	margin: 20px 10%;
 	clear: both;
 }
 
@@ -589,6 +595,7 @@ a:hover {
 	margin-top: 30px;
 	border: 3px solid gray;
 	border-radius: 6px;
+	overflow: hidden;
 }
 
 #scriviRecensione textarea {
@@ -605,34 +612,59 @@ a:hover {
 
 .recensione {
 	background-color: white;
-	width: 100%;
-	margin-bottom: 10px;
+	width: 95%;
 	padding: 10px;
+	margin-bottom: 10px;
 	border: 3px dashed gray;
 }
 
-@media screen and (max-width: 1000px) {
+#sezioneNotLogged {
+	font-size: 0.9em;
+}
+
+@media screen and (max-width: 1250px) {
 
 	#schedaProdotto {
 		width: 90%;
+		float: none;
+		margin: 0 auto;
 	}
 
 	#schedaProdotto .immagineProdotto, #schedaProdotto .informazioniProdotto {
 		float: none;
 		width: 95%;
+		margin: 0 auto;
+		padding: 0;
 		text-align: center;
 	}
 	
+	#schedaProdotto .immagineProdotto {
+		margin-top: 10px;
+	}
+	
 	#sezioneConsulenza {
-		width: 88%;
+		width: 90%;
+		float: none;
+		margin: 20px auto;
+		padding: 0;
+	}
+	
+	#sezioneConsulenza textarea {
+		height: 200px;
 	}
 
 	#sezioneFunzionalità {
-		width: 88%;
+		width: 95%;
+		float: none;
+		margin: 0 auto;
+		padding: 0;
 	}
 	
 	#sezioneRecensioni {
-		width: 88%;;
+		width: 90%;
+		float: none;
+		margin: 0 auto;
+		padding: 0;
 	}
 
 }
@@ -642,10 +674,12 @@ a:hover {
 #sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
 	width: 50%;
 	margin: 30px auto;
+	overflow: scroll;
+	padding: 10px;
 }
 
-#sezioneCarrello * {
-	margin-left: 20px;
+#sezioneCarrello{
+	font-size: smaller;
 }
 
 #carrelloVuoto h2 {
@@ -662,12 +696,13 @@ a:hover {
 	border-collapse: collapse;
 	overflow: scroll;
 	font-size: 1.3em;
-	width: 70%;
+	width: 90%;
 	margin: 0 auto;
 }
 
 #tabellaCarrello td, #tabellaCarrello th {
-	padding: 10px;
+	padding: 5px;
+	text-align: center;
 }
 
 #tabellaCarrello .pulsanteOpCarrello {
@@ -692,16 +727,16 @@ a:hover {
 }
 
 
-@media screen and (max-width: 1700px){
+@media screen and (max-width: 1250px){
 	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
-		width: 70%;
+		width: 95%;
+		padding: 2px;
 	}
-	
 }
 
 @media screen and (max-width: 650px){
-	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
-		width: 95%;
+	#tabellaCarrello button {
+		padding: 5px;
 	}
 }
 
@@ -873,14 +908,23 @@ a:hover {
 #rispondiConsulenza {
 	width: 70%;
 	margin: 20px auto;
-	padding: 10px;
 	overflow: hidden;
+}
+
+#rispondiConsulenza h2 {
+	text-align: center;
+}
+
+#rispondiConsulenza textarea {
+	margin: 20px auto;
+	width: 90%;
+	display: block;
 }
 
 #rispondiConsulenza button {
 	display: block;
 	padding: 10px;
-	margin: 10px 0 10px 10px;
+	margin: 10px 10% 10px 90%;
 }
 
 @media screen and (max-width: 1600px){

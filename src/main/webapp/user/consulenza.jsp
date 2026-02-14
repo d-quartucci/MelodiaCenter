@@ -39,7 +39,7 @@
 			<form name="aggiornaRispostaForm" method="POST" action="${pageContext.request.contextPath}/admin/RispostaConsulenzaServlet?consId=${consulenza.id}">
 				<label for="aggiornaRisposta"></label>
 				<textarea id="messaggioRisposta" name="messaggioRisposta" placeholder="Inserisci qui la risposta..."></textarea>
-				<button id="pulsanteRisposta" name="pulsanteRisposta" type="submit">Invia risposta</button>
+				<button id="pulsanteRisposta" name="pulsanteRisposta" type="submit">Invia!</button>
 			</form>
 		</section>
 	</c:if>
