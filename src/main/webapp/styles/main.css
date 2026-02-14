@@ -228,41 +228,48 @@ a:hover {
 	text-align: center;
 	margin: 0 auto;
 	margin-bottom: 10px;
+	padding: 5px;
+	font-size: smaller;
 	width: 40%;
-	padding: 10px;
+}
+
+#bestSellers, #aggiuntiDiRecente{
+	width: 35%;
+	float: left;
+	margin-left: 20px;
+	display: inline;
 }
 
 #bestSellers .contenitoreProdotto, #aggiuntiDiRecente .contenitoreProdotto {
 	width: 100%;
-	height: 275px;
-	margin-bottom: 50px;
+	height: 175px;
+	margin: 20px;
 	clear: both;
-	position: relative;
+}
+
+#bestSellers img, #aggiuntiDiRecente img{
+	height: 150px;
+	float: left;
 }
 
 #bestSellers .informazioniProdotto, #aggiuntiDiRecente .informazioniProdotto {
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 30%;
+	float: left;
+	width: 40%;
 	text-align: center;
+	margin-left: 10px;
 }
 
-#sezioneCategorie, #bestSellers, #aggiuntiDiRecente {
+#sezioneCategorie {
 	width: 60%;
 	margin-left: 20px;
 }
 
-#aggiuntiDiRecente, #sezioneCategorie {
+#sezioneCategorie {
 	border-bottom: 2px ridge gray;
 }
 
-#sezioneCategorie ul {
-	list-style-image: url('../images/ChiaveSol.png');
-}
-
 #sezioneCategorie .contenitore {
-	width: 85%;
+	width: 90%;
 }
 
 #sezioneCategorie li {
@@ -270,7 +277,7 @@ a:hover {
 }
 
 #sezioneCategorie p {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 #sezioneCategorie a{
@@ -278,19 +285,14 @@ a:hover {
 }
 
 #sezioneCategorie .nomeCategoria  {
-	line-height: 2em;
+	line-height: 1em;
 	font-size: 1.25em;
-	margin: 10px;
-}
-
-#sezioneCategoria .descCategoria {
-	padding: 10px;
 }
 
 #prodottiEvidenziati {
 	position: absolute;
 	right: 0;
-	width: 20%;
+	width: 22%;
 	text-align: center;
 	margin: 0 1% 20px 0;
 	padding: 10px;
@@ -298,6 +300,12 @@ a:hover {
 
 #prodottiEvidenziati .immagineProdotto {
 	margin-bottom: 10px;
+}
+
+#prodottiEvidenziati .immagineProdotto img {
+	width: 175px;
+	height: 175px;
+	border-style: solid;
 }
 
 #prodottiEvidenziati h2 {
@@ -314,9 +322,13 @@ a:hover {
 	line-height: 0.5em;
 }
 
+#prodottiEvidenziati {
+	border: 6px solid #FFA15C;
+}
+
 @media screen and (max-width: 1200px){
-	#prodottiEvidenziati h2 {
-		font-size: 1.2em;
+	#prodottiEvidenziati {
+		font-size: smaller;
 	}
 	
 	#benvenuto {
@@ -329,17 +341,17 @@ a:hover {
 	}
 	
 	#bestSellers .immagineProdotto img, #aggiuntiDiRecente .immagineProdotto img {
-		max-height: 150px;
-		max-width: 150px;
+		max-height: 100px;
+		max-width: 100px;
 	}
 	
 	#bestSellers .informazioniProdotto, #aggiuntiDiRecente .informazioniProdotto {
-		width: 40%;
-		padding-right: 10px;
+		width: 50%;
+		font-size: smaller;
 	}
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 950px){
 	
 	#benvenuto {
 		width: 90%;
@@ -349,8 +361,12 @@ a:hover {
 		display: none;
 	}
 	
-	#bestSellers, #sezioneCategorie, #aggiuntiDiRecente {
+	#aggiuntiDiRecente, #bestSellers, #sezioneCategorie {
 		width: 90%;
+	}
+	
+	#aggiuntiDiRecente .informazioniProdotto, #bestSellers .informazioniProdotto{
+		width: 70%;
 	}
 }
 
@@ -444,6 +460,7 @@ a:hover {
 	.contenitoreProdottoCatalogo .informazioniProdotto {
 		width:40%;
 		padding-right: 10px;
+		text-align: center;
 	}
 	
 	#sezioneFiltriCatalog #prezzoFiltro {
@@ -466,6 +483,10 @@ a:hover {
 	.contenitoreProdottoCatalogo .immagineProdotto img {
 		max-height: 125px;
 		max-width: 125px;
+	}
+	
+	.contenitoreProdottoCatalogo {
+		font-size: smaller;
 	}
 	
 	#sezioneFiltriCatalog {
@@ -1709,14 +1730,3 @@ td.TastiUtenti{
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-

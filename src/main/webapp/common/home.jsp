@@ -38,19 +38,6 @@
 	</c:forEach>
 </aside>
 
-<section id="sezioneCategorie">
-	<h2>Seleziona la categoria che fa per te e comincia ad esplorare il nostro catalogo!</h2>
-	<ul id="listaCategorie">
-	<c:forEach var="c" items="${listaCategorie}">
-		<a href="${pageContext.request.contextPath}/catalog?categoria=${c.id}">
-			<li id="categoria-${c.id}" class="contenitore">
-				<p class="nomeCategoria">${c.nome}</p>
-				<p class="descCategoria">${c.descr}</p>
-			</li>
-		</a>
-	</c:forEach>
-	</ul>
-</section>
 
 <section id="aggiuntiDiRecente">
 	<h2>Nuovi arrivi!</h2>
@@ -83,6 +70,21 @@
 		</div>
 	</c:forEach>
 </section>
+
+<section id="sezioneCategorie">
+	<h2>Seleziona la categoria che fa per te e comincia ad esplorare il nostro catalogo!</h2>
+	<ul id="listaCategorie">
+	<c:forEach var="c" items="${listaCategorie}">
+		<a href="${pageContext.request.contextPath}/catalog?categoria=${c.id}">
+			<li id="categoria-${c.id}" class="contenitore">
+				<p class="nomeCategoria">${c.nome}</p>
+				<p class="descCategoria">${c.descr}</p>
+			</li>
+		</a>
+	</c:forEach>
+	</ul>
+</section>
+
 
 <jsp:include page="/fragments/footer.jsp"/>
 </body>
