@@ -10,7 +10,7 @@
 </head>
 <body> 
 	<jsp:include page="/fragments/header.jsp"/>
-	<h1 id="presentazioneUtente">Le tue informazioni:</h1>
+	<h1 id="presentazioneUtente" class="presentazione">Le tue informazioni:</h1>
 	<section id="sezioneUtente" class="contenitore">
 		<div id="informazioniPaginaUtente">
 			<p>Nome: ${utente.nome}</p>

@@ -705,6 +705,10 @@ a:hover {
 	text-align: center;
 }
 
+#tabellaCarrello tr {
+	margin-bottom: 10px;
+}
+
 #tabellaCarrello .pulsanteOpCarrello {
 	height: 30px;
 	width: 30px;
@@ -776,7 +780,7 @@ a:hover {
 	margin: 10px 0 10px 10px;
 }
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	#informazioniUtente, #presentazioneCheckout, #sezioneCheckoutForm  {
 		width: 70%
 	}
@@ -795,7 +799,7 @@ a:hover {
 	margin: 20px auto;
 }
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	.presentazione {
 		width: 70%
 	}
@@ -817,7 +821,7 @@ a:hover {
 
 #sezioneUtente p {
 	margin-left: 20px;
-	font-size: 1.3em;
+	font-size: 1.2em;
 	padding: 10px;
 	font-weight: bold;
 }
@@ -839,14 +843,14 @@ a:hover {
 	text-decoration: none;
 }
 
-@media screen and (max-width: 1600px){
-	#sezioneUtente, #consulenzeLink {
+@media screen and (max-width: 1250px){
+	#sezioneUtente, #consulenzeLink, #presentazioneUtente {
 		width: 70%
 	}
 }
 
 @media screen and (max-width: 650px){
-	#sezioneUtente, #consulenzeLink {
+	#sezioneUtente, #consulenzeLink, #presentazioneUtente {
 		width: 95%;
 	}
 }
@@ -927,7 +931,7 @@ a:hover {
 	margin: 10px 10% 10px 90%;
 }
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	#sezioneConsulenze, #sezioneMessaggiConsulenza, #rispondiConsulenza, #sezioneOrdini{
 		width: 70%
 	}
@@ -946,7 +950,7 @@ a:hover {
 	margin-right: 20px;
 }
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	#listaRigheOrdine{
 		width: 70%
 	}
@@ -960,33 +964,34 @@ a:hover {
 
 /* Sezione wishlist */
 
-#sezioneVuotaWishlist .contenitore {
+#sezioneVuotaWishlist .contenitore, #sezioneWishlist{
 	width: 40%;
 	margin: 20px auto;
 	padding: 20px 0;
 }
 
-#sezioneWishlist .contenitore {
-	width: 60%;
+
+#presentazioneWishlistPiena, #sezioneVuotaWishlist .presentazione {
+	width: 40%;
 	margin: 20px auto;
-	padding: 10px;
 }
 
 #sezioneWishlist .contenitoreProdotto {
 	width: 90%;
 	min-height: 180px;
-	border: 3px solid gray;
-	padding: 10px;
+	border: 4px dotted gray;
+	border-radius: 20px;
 	margin: 20px auto;
+	padding: 20px 0;
 	clear: both;
 	overflow: hidden;
 }
 
 #sezioneWishlist .informazioniProdotto {
 	float: left;
-	width: 50%;
+	width: 60%;
 	text-align: center;
-	padding-top: 20px;
+	padding: 20px 0 0 0;
 	font-size: smaller;
 }
 
@@ -997,38 +1002,28 @@ a:hover {
 }
 
 #sezioneWishlist button {
-	height: 40px;
-	width: 100px;
+	height: 30px;
+	width: 60px;
 }
 
 #sezioneWishlist .immagineProdotto img {
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 }
 
-@media screen and (max-width: 1600px){
-	#sezioneWishlist, #sezioneVuotaWishlist .contenitore{
+@media screen and (max-width: 1250px){
+	#sezioneWishlist, #sezioneVuotaWishlist .contenitore, #presentazioneWishlistPiena, #sezioneVuotaWishlist .presentazione{
 		width: 70%
-	}
-	
-	#sezioneWishlist button {
-		height: 30px;
-		width: 60px;
 	}
 	
 	#sezioneWishlist .contenitoreProdotto {
 		height: 200px;
 		width: 85%;
 	}
-	
-	#sezioneWishlist .immagineProdotto img {
-		width: 150px;
-		height: 150px;
-	}
 }
 
 @media screen and (max-width: 1000px){
-	#sezioneWishlist, #sezioneVuotaWishlist .contenitore {
+	#sezioneWishlist, #sezioneVuotaWishlist .contenitore, #presentazioneWishlistPiena, #sezioneVuotaWishlist .presentazione {
 		width: 95%;
 	}
 }
@@ -1092,7 +1087,7 @@ a:hover {
 }
 
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	#sezioneLogin .contenitore{
 		width: 70%
 	}
@@ -1161,7 +1156,7 @@ a:hover {
     float: right;
 }
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	#sezioneRegister .contenitore{
 		width: 70%
 	}
@@ -1188,7 +1183,7 @@ a:hover {
 	margin: 20px;
 }
 
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1250px){
 	#sezioneTerminato, #sezioneErrore {
 		width: 70%
 	}
@@ -1200,7 +1195,7 @@ a:hover {
 	}
 }
 
-/*pagina Admin*/
+/*Pagina Admin*/
 
 /*Menu laterale Admin*/
 
