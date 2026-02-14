@@ -207,10 +207,8 @@ a:hover {
 /* Sezione immagine prodotti */
 
 .immagineProdotto img{
-	max-height: 250px;
-	max-width: 100%;
-	height: auto;
-	width: auto;
+	height: 200px;
+	width: 200px;
 	border: 6px dashed #FFA15C;
 }
 
@@ -249,6 +247,7 @@ a:hover {
 
 #bestSellers img, #aggiuntiDiRecente img{
 	height: 150px;
+	width: 150px;
 	float: left;
 }
 
@@ -442,7 +441,7 @@ a:hover {
 	text-align: center;
 }
 
-.contenitoreProdottoCatalogo .immagineProdotto {
+.contenitoreProdottoCatalogo .immagineProdotto{
 	padding-left: 20px;
 }
 
