@@ -209,7 +209,9 @@ a:hover {
 .immagineProdotto img{
 	height: 200px;
 	width: 200px;
-	border: 6px dashed #FFA15C;
+	border: 5px solid #FFA15C;
+	padding: 2px;
+	border-radius: 10px;
 }
 
 .contenitore {
@@ -234,8 +236,11 @@ a:hover {
 #bestSellers, #aggiuntiDiRecente{
 	width: 35%;
 	float: left;
-	margin-left: 20px;
 	display: inline;
+}
+
+#bestSellers h2, #aggiuntiDiRecente h2 {
+	margin-left: 20px;
 }
 
 #bestSellers .contenitoreProdotto, #aggiuntiDiRecente .contenitoreProdotto {
@@ -255,16 +260,13 @@ a:hover {
 	float: left;
 	width: 40%;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 20px;
+	height: 150px;
 }
 
 #sezioneCategorie {
 	width: 60%;
 	margin-left: 20px;
-}
-
-#sezioneCategorie {
-	border-bottom: 2px ridge gray;
 }
 
 #sezioneCategorie .contenitore {
@@ -347,6 +349,7 @@ a:hover {
 	#bestSellers .informazioniProdotto, #aggiuntiDiRecente .informazioniProdotto {
 		width: 50%;
 		font-size: smaller;
+		height: 125px;
 	}
 }
 
@@ -365,7 +368,7 @@ a:hover {
 	}
 	
 	#aggiuntiDiRecente .informazioniProdotto, #bestSellers .informazioniProdotto{
-		width: 70%;
+		width: 60%;
 	}
 }
 
@@ -940,6 +943,7 @@ a:hover {
 	width: 50%;
 	text-align: center;
 	padding-top: 20px;
+	font-size: smaller;
 }
 
 #sezioneWishlist .immagineProdotto {
