@@ -33,7 +33,7 @@
 	<div id="sezioneVuotaWishlist" style="<c:if test='${not empty wishlist}'>display:none;</c:if>">
 		<h1 class="presentazione">Non hai ancora aggiunto nulla alla tua wishlist!</h1>
 		<section class="contenitore">
-			<h2>Comincia a sognare <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h2>
+			<h3>Comincia a sognare <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
 		</section>
 	</div>
 	

@@ -38,7 +38,7 @@
 				<legend>Informazioni</legend>
 				<div class="riga">
 					<label for="nome">Nome:</label>
-					<input name="nome" id="nome" type="text" onchange="validateFormElem(this, document.getElementById('errorNome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
+					<input name="nome" id="nomeUtente" type="text" onchange="validateFormElem(this, document.getElementById('errorNome'), lettersOnlyMessage)" pattern="[A-Za-z]+" required/>
 					<span id="errorNome" class="error"></span><br/>
 				</div>
 				

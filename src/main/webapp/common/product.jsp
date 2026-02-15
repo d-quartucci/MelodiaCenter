@@ -65,8 +65,8 @@
 			<h2>Le recensioni dei nostri utenti:</h2>
 			<c:forEach var="r" items="${listaRecensioni}">
 				<div id="recensione-${r.recensione.id}" class="recensione">
-					<h3 id="recensione-${r.utente.nome}" class="recensioneNome">${r.utente.nome} - ${r.recensione.voto}/5</h3>
-					<p class="bodyRecensione">${r.recensione.testo}</p>
+					<h3 id="recensione-${r.utente.nome}" class="recensioneNome">Il nostro cliente <i>${r.utente.nome}</i> ha votato ${r.recensione.voto}/5!</h3>
+					<p class="bodyRecensione">" ${r.recensione.testo} "</p>
 				</div>
 			</c:forEach>
 		</c:if>

@@ -571,21 +571,32 @@ a:hover {
 }
 
 #sezioneRecensioni {
-	width: 80%;
+	width: 70%;
 	margin: 20px 10%;
 	clear: both;
 }
 
 #sezioneRecensioni .recensione {
-	margin-top: 30px;
-	border: 3px solid gray;
-	border-radius: 6px;
+	margin-top: 20px;
+	border: 3px dotted gray;
+	border-radius: 30px;
 	line-height: 1.8em;
+	padding-bottom: 20px;
+}
+
+#sezioneRecensioni h3 {
+	margin-left: 20px;
 }
 
 #sezioneRecensioni .bodyRecensione {
 	border: 3px groove gray;
-	padding: 10px;
+	border-radius: 20px;
+	padding: 20px;
+	width: 90%;
+	margin: 0 auto;
+	background-color: #FFA15C;
+	font-style: italic;
+	font-size: 1.1em;
 }
 
 #scriviRecensione {
@@ -602,12 +613,18 @@ a:hover {
 	resize: none;
 	width: 90%;
 	height: 100px;
+	margin-left: 20px;
 }
 
 #scriviRecensione button {
 	width: 10%;
 	margin-top: 10px;
 	display: block;
+	margin-left: 20px;
+}
+
+#scriviRecensione input[type="range"]{
+	margin-left: 20px;
 }
 
 .recensione {
@@ -682,7 +699,7 @@ a:hover {
 	font-size: smaller;
 }
 
-#carrelloVuoto h2 {
+#carrelloVuoto h3 {
 	padding-left: 20px;
 }
 
@@ -871,7 +888,7 @@ a:hover {
 	padding: 10px;
 }
 
-#sezioneConsulenze h2, #sezioneOrdini h2, #sezioneWishlist h2, #sezioneVuotaWishlist h2{
+#sezioneConsulenze h3, #sezioneOrdini h3, #sezioneWishlist h3, #sezioneVuotaWishlist h3{
 	margin-left: 20px;
 }
 
