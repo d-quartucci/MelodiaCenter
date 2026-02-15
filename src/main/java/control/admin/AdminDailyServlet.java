@@ -11,11 +11,9 @@ import model.dao.OrdineDAO;
 import model.dao.UtenteDAO;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;

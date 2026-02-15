@@ -6,9 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Consulenza;
-import model.Ordine;
 import model.dao.ConsulenzaDAO;
-import model.dao.OrdineDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;

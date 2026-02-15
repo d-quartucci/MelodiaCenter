@@ -17,7 +17,7 @@
 
 <!-- Sezione mostrata quando il carrello è vuoto -->
 <section class="contenitore" id="carrelloVuoto" style="<c:if test='${not empty carrello.listaItem}'>display:none;</c:if>">
-    <h2>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
+    <h3>Il carrello è vuoto! Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
 </section>
 
 <!-- Sezione mostrata quando il carrello non è vuoto -->
@@ -62,7 +62,7 @@
 
 </section>
 </c:if>
-
+<div id="error"></div>
 <jsp:include page="/fragments/footer.jsp"/>
 </body>
 

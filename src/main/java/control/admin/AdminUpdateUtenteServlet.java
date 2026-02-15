@@ -5,20 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Ordine;
 import model.Utente;
-import model.dao.OrdineDAO;
 import model.dao.UtenteDAO;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 
 import javax.sql.DataSource;
-
-import org.json.JSONArray;
 
 @WebServlet("/admin/UpdateUtente")
 public class AdminUpdateUtenteServlet extends HttpServlet {

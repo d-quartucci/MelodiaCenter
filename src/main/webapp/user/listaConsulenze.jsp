@@ -30,7 +30,7 @@
 	<c:if test="${empty consulenzaList}">
 		<h1 class="presentazione">Non hai ancora fatto alcuna richiesta al nostro team.</h1>
 		<section id="sezioneConsulenze" class="contenitore">
-			<h2>Per creare una richiesta, vai alla pagina del prodotto di interesse!</h3>
+			<h3>Per creare una richiesta, vai alla pagina del prodotto di interesse!</h3>
 		</section>
 	</c:if>
 	

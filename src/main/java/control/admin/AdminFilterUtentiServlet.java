@@ -10,14 +10,11 @@ import model.Utente;
 import model.dao.UtenteDAO;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
-
-import org.json.JSONArray;
 
 @WebServlet("/admin/FilterUtenti")
 public class AdminFilterUtentiServlet extends HttpServlet {

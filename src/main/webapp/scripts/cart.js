@@ -1,3 +1,4 @@
+let error = document.getElementById("error");
 function rimuoviUno(idProdotto){
 	let quantita = parseInt(document.getElementById(idProdotto + "Quantita").value);
 	if(quantita > 1)
@@ -10,7 +11,7 @@ function rimuoviUno(idProdotto){
 						document.getElementById(idProdotto + "Quantita").value = quantita - 1;
 						aggiornaPrezzo(xhr.responseText);
 					} else {
-						alert("Errore: riprova più tardi!");
+						error.innerHTML= "Errore: riprova più tardi!";
 					}
 				}
 			}
@@ -29,7 +30,7 @@ function aggiungiUno(idProdotto){
 				document.getElementById(idProdotto + "Quantita").value = quantita + 1;
 				aggiornaPrezzo(xhr.responseText);
 			} else {
-				alert("Errore: riprova più tardi!");
+				error.innerHTML= "Errore: riprova più tardi!";
 			}
 		}
 	}
@@ -50,7 +51,7 @@ function cambiaQuantita(idProdotto){
 			if(xhr.status == 200){
 				aggiornaPrezzo(xhr.responseText);
 			} else {
-				alert("Errore: riprova più tardi!");
+				error.innerHTML= "Errore: riprova più tardi!";
 			}
 		}
 	}
@@ -86,7 +87,7 @@ function rimuoviDalCarrello(idProdotto){
 					aggiornaPrezzo(xhr.responseText);
 				}
 			} else {
-				alert("Errore: riprova più tardi!");
+				error.innerHTML= "Errore: riprova più tardi!";
 			}
 		}
 	}
@@ -115,7 +116,7 @@ function svuotaCarrello(){
 						messaggioVuoto.style.display = "block";
 					}	
 				} else {
-					alert("Errore: riprova più tardi!");
+					error.innerHTML= "Errore: riprova più tardi!";
 				}
 			}
 		}

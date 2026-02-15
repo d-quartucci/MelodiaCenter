@@ -8,9 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import model.Categoria;
 import model.Prodotto;
-import model.dao.CategoriaDAO;
 import model.dao.ProdottoDAO;
 
 import java.io.File;
@@ -19,7 +17,6 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import javax.sql.DataSource;
 

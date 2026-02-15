@@ -24,7 +24,7 @@
 	<c:if test="${empty listaOrdini}">
 		<h1 class="presentazione">Non hai ancora effettuato un ordine!</h1>
 		<section id="sezioneOrdini" class="contenitore">
-			<h2>Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
+			<h3>Comincia la tua ricerca da <a href="${pageContext.request.contextPath}/catalog">qui</a>!</h3>
 		</section>
 	</c:if>
 	<jsp:include page="/fragments/footer.jsp"/>
