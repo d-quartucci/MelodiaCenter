@@ -22,23 +22,24 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 	
 	public synchronized void doSaveOrUpdate(Recensione bean) throws SQLException {
 		
-		String query1= "INSERT INTO recensione (UtenteID, ProdottoID, Voto, Testo, DataInserimento) VALUES (?, ?, ?, ?, ?)";
-		String query2= "UPDATE recensione SET UtenteID=?, ProdottoID=?, Voto=?, Testo=?, DataInserimento=? WHERE ID=?";
+		String queryUpdate= "UPDATE recensione SET UtenteID=?, ProdottoID=?, Voto=?, Testo=?, DataInserimento=? WHERE ID=?";
+		String querySave= "INSERT INTO recensione (UtenteID, ProdottoID, Voto, Testo, DataInserimento) VALUES (?, ?, ?, ?, ?)";
 		
 		if(bean.getId() > 0) {
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2)){
+					PreparedStatement ps = conn.prepareStatement(queryUpdate)){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setInt(2, bean.getProdottoId());
 				ps.setInt(3, bean.getVoto());
 				ps.setString(4, bean.getTesto());
 				ps.setDate(5, bean.getDataIns());
+				ps.setInt(6, bean.getId());
 				ps.executeUpdate();
 			}
 		}
 		else {
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query1)){
+					PreparedStatement ps = conn.prepareStatement(querySave)){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setInt(2, bean.getProdottoId());
 				ps.setInt(3, bean.getVoto());
@@ -127,6 +128,21 @@ public class RecensioneDAO implements GenericDAO <Recensione, Integer>{
 		}
 		return null;
 		
+	}
+	
+	public synchronized Recensione doRetrieveByUtenteProdotto(int UtenteID, int ProdottoID) throws SQLException{
+		String query = "SELECT * FROM Recensione WHERE UtenteID = ? AND ProdottoID = ?";
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query);){
+				ps.setInt(1, UtenteID);
+				ps.setInt(2, ProdottoID);
+				ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return mapResultSetToBean(rs);
+			}	
+		}
+		return null;
 	}
 	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException {
