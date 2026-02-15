@@ -22,13 +22,13 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 	
 	public synchronized void doSaveOrUpdate(Ordine bean) throws SQLException {
 		
-		String query1 = "UPDATE ordine SET UtenteID = ?, DataOra = ?, Totale = ?, IndirizzoSpedizione = ? WHERE ID = ?";
-		String query2 = "INSERT INTO ordine (UtenteID, DataOra, Totale, IndirizzoSpedizione ) VALUES (?, ?, ?, ?)";
+		String queryUpdate = "UPDATE ordine SET UtenteID = ?, DataOra = ?, Totale = ?, IndirizzoSpedizione = ? WHERE ID = ?";
+		String querySave = "INSERT INTO ordine (UtenteID, DataOra, Totale, IndirizzoSpedizione ) VALUES (?, ?, ?, ?)";
 		
 		//Update
 		if(bean.getId() > 0){
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query1);){
+					PreparedStatement ps = conn.prepareStatement(queryUpdate);){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setTimestamp(2, bean.getData());
 				ps.setBigDecimal(3, bean.getTotale());
@@ -39,7 +39,7 @@ public class OrdineDAO implements GenericDAO <Ordine, Integer>{
 		//Insert con recupero ID, in questo caso necessario per l'eventuale creazione di oggetti RigaOrdine
 		}else {
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2, PreparedStatement.RETURN_GENERATED_KEYS);){
+					PreparedStatement ps = conn.prepareStatement(querySave, PreparedStatement.RETURN_GENERATED_KEYS);){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setTimestamp(2, bean.getData());
 				ps.setBigDecimal(3, bean.getTotale());

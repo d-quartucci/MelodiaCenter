@@ -21,12 +21,12 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 	
 	public synchronized void doSaveOrUpdate(RigaOrdine bean) throws SQLException {
 		
-		String query1 = "UPDATE rigaordine SET OrdineID = ?, ProdottoID = ?, ProdottoNome = ?, Quantita = ?, PrezzoAcquisto = ? WHERE ID = ?";
-		String query2 = "INSERT INTO rigaordine (OrdineID, ProdottoID, ProdottoNome, Quantita, PrezzoAcquisto) VALUES (?, ?, ?, ?, ?)";
+		String queryUpdate = "UPDATE rigaordine SET OrdineID = ?, ProdottoID = ?, ProdottoNome = ?, Quantita = ?, PrezzoAcquisto = ? WHERE ID = ?";
+		String querySave = "INSERT INTO rigaordine (OrdineID, ProdottoID, ProdottoNome, Quantita, PrezzoAcquisto) VALUES (?, ?, ?, ?, ?)";
 		
 		if(bean.getId()>0) {
 			try(Connection con = ds.getConnection(); 
-					PreparedStatement ps = con.prepareStatement(query1);){
+					PreparedStatement ps = con.prepareStatement(queryUpdate);){
 				ps.setInt(1,bean.getOrdineId());
 				ps.setInt(2,bean.getProdottoId());
 				ps.setString(3, bean.getProdottoNome());
@@ -39,7 +39,7 @@ public class RigaOrdineDAO implements GenericDAO<RigaOrdine, Integer> {
 		}
 		else {
 			try (Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2)){
+					PreparedStatement ps = conn.prepareStatement(querySave)){
 				ps.setInt(1, bean.getOrdineId());
 				ps.setInt(2, bean.getProdottoId());
 				ps.setString(3, bean.getProdottoNome());

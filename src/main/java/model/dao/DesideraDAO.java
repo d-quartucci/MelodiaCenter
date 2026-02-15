@@ -21,12 +21,12 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 	
 	public synchronized void doSaveOrUpdate(Desidera bean) throws SQLException {
 		
-		String query1 = "UPDATE desidera SET DataAggiunta=? WHERE UtenteID=? AND ProdottoID=?";
-		String query2 = "INSERT INTO desidera (UtenteID, ProdottoID, DataAggiunta) VALUES (?, ?, ?)";
+		String queryUpdate = "UPDATE desidera SET DataAggiunta=? WHERE UtenteID=? AND ProdottoID=?";
+		String querySave = "INSERT INTO desidera (UtenteID, ProdottoID, DataAggiunta) VALUES (?, ?, ?)";
 		
 		if(doRetrieveByKey(bean.getKey()) != null) {
 		    try (Connection conn = ds.getConnection();
-		    		PreparedStatement ps = conn.prepareStatement(query1)) {   
+		    		PreparedStatement ps = conn.prepareStatement(queryUpdate)) {   
 				ps.setDate(1, bean.getDataAggiunta());
 				ps.setInt(2, bean.getKey().getFirst());
 				ps.setInt(3, bean.getKey().getSecond());
@@ -35,7 +35,7 @@ public class DesideraDAO implements GenericDAO<Desidera, DesideraKey>{
 		}
 		else {
 			try (Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2)){
+					PreparedStatement ps = conn.prepareStatement(querySave)){
 				ps.setInt(1, bean.getKey().getFirst());
 				ps.setInt(2, bean.getKey().getSecond());
 				ps.setDate(3, bean.getDataAggiunta());

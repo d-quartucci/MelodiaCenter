@@ -20,12 +20,12 @@ public class CategoriaDAO implements GenericDAO <Categoria, Integer> {
 	
 	public synchronized void doSaveOrUpdate(Categoria bean) throws SQLException {
 		
-		String query1 = "UPDATE categoria SET Nome = ?, Descrizione = ? WHERE ID = ?";
-		String query2 = "INSERT INTO categoria (Nome, Descrizione) VALUES (?, ?)";
+		String queryUpdate = "UPDATE categoria SET Nome = ?, Descrizione = ? WHERE ID = ?";
+		String querySave = "INSERT INTO categoria (Nome, Descrizione) VALUES (?, ?)";
 		
 		if(bean.getId() > 0){
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query1);){
+					PreparedStatement ps = conn.prepareStatement(queryUpdate);){
 				ps.setString(1, bean.getNome());
 				ps.setString(2, bean.getDescr());
 				ps.setInt(3, bean.getId());
@@ -34,7 +34,7 @@ public class CategoriaDAO implements GenericDAO <Categoria, Integer> {
 		
 		}else {
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2);){
+					PreparedStatement ps = conn.prepareStatement(querySave);){
 				ps.setString(1, bean.getNome());
 				ps.setString(2, bean.getDescr());
 				ps.executeUpdate();

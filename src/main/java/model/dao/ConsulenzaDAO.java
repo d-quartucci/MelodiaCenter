@@ -21,12 +21,12 @@ public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 	
 	public synchronized void doSaveOrUpdate(Consulenza bean) throws SQLException {
 		
-		String query1 = "UPDATE consulenza SET UtenteID = ?, MessaggioUtente = ?, RispostaAdmin = ?, DataRichiesta = ?, isAperto = ? WHERE ID = ?";
-		String query2 = "INSERT INTO consulenza (UtenteID, MessaggioUtente, RispostaAdmin, DataRichiesta, isAperto) VALUES (?, ?, ?, ?, ?)";
+		String queryUpdate = "UPDATE consulenza SET UtenteID = ?, MessaggioUtente = ?, RispostaAdmin = ?, DataRichiesta = ?, isAperto = ? WHERE ID = ?";
+		String querySave = "INSERT INTO consulenza (UtenteID, MessaggioUtente, RispostaAdmin, DataRichiesta, isAperto) VALUES (?, ?, ?, ?, ?)";
 		
 		if(bean.getId() > 0){
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query1);){
+					PreparedStatement ps = conn.prepareStatement(queryUpdate);){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setString(2, bean.getMessUtente());
 				ps.setString(3, bean.getRispAdmin());
@@ -38,7 +38,7 @@ public class ConsulenzaDAO implements GenericDAO<Consulenza, Integer>{
 		
 		}else {
 			try(Connection conn = ds.getConnection();
-					PreparedStatement ps = conn.prepareStatement(query2);){
+					PreparedStatement ps = conn.prepareStatement(querySave);){
 				ps.setInt(1, bean.getUtenteId());
 				ps.setString(2, bean.getMessUtente());
 				ps.setString(3, bean.getRispAdmin());
