@@ -42,15 +42,24 @@ public class CreateRecensioneServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/common/error.jsp");
 		    return;
 		}
-		Recensione rBean = new Recensione();
-		rBean.setUtenteId(user.getId());
-		rBean.setProdottoId(idProd);
-		rBean.setVoto(voto);
-		rBean.setTesto(request.getParameter("recensioneInput"));
-		rBean.setDataIns(new Date(System.currentTimeMillis()));
+		Recensione rBean;
 		
 		RecensioneDAO rDAO = new RecensioneDAO(ds);
 		try {
+			rBean = rDAO.doRetrieveByUtenteProdotto(user.getId(), idProd);
+			//Se non esisteva già una recensione precedente, la devo creare (verrà fatto Save)
+			if(rBean == null) {
+				rBean = new Recensione();
+				rBean.setUtenteId(user.getId());
+				rBean.setProdottoId(idProd);
+				rBean.setVoto(voto);
+				rBean.setTesto(request.getParameter("recensioneInput"));
+				rBean.setDataIns(new Date(System.currentTimeMillis()));
+			} else { //Se la recensione già esisteva, verrà semplicemente aggiornata (verrà fatto Update)
+				rBean.setVoto(voto);
+				rBean.setTesto(request.getParameter("recensioneInput"));
+				rBean.setDataIns(new Date(System.currentTimeMillis()));
+			}
 			rDAO.doSaveOrUpdate(rBean);
 		} catch(SQLException ex) {
 			ex.printStackTrace();

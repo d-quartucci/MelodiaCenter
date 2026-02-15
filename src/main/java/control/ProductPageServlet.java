@@ -168,7 +168,7 @@ public class ProductPageServlet extends HttpServlet {
 					}
 				}
 			}
-
+			request.setAttribute("haRecensito", haRecensito);
 			boolean puoRecensire = isLogged && !haRecensito && haAcquistato;
 			request.setAttribute("puoRecensire", puoRecensire);
 			
