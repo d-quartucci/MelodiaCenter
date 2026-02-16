@@ -18,7 +18,7 @@ function validateFormElem(formElem, errorSpan, errorMessage){
 	if(formElem.validity.valueMissing){ //Controllo se il campo è vuoto
 		errorSpan.innerHTML = emptyFieldErrorMessage;
 	} else {
-		errorSpan.innerHTML = errorMessage; //Se il campo non è vuoto e non vi sono errori da customValidity(), mostro l'altro errore
+		errorSpan.innerHTML = errorMessage; //Se il campo non è vuoto, mostro l'altro errore
 	}
 	return false; //Vi sono errori
 }

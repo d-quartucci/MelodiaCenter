@@ -1103,6 +1103,12 @@ a:hover {
 	float: right;
 }
 
+#sezioneLogin .riga span {
+    display: block;
+    clear: both;
+    margin-top: 5px;
+}
+
 
 @media screen and (max-width: 1250px){
 	#sezioneLogin .contenitore{
@@ -1171,6 +1177,12 @@ a:hover {
 	width: 75px;
     height: 35px;
     float: right;
+}
+
+#sezioneRegister .riga span {
+    display: block;
+    clear: both;
+    margin-top: 5px;
 }
 
 @media screen and (max-width: 1250px){
