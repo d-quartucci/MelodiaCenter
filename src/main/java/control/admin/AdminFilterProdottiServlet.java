@@ -37,7 +37,7 @@ public class AdminFilterProdottiServlet extends HttpServlet {
 			ArrayList<Categoria> categorie = cDAO.doRetrieveAll();
 			
 			String ricerca = request.getParameter("barraDiRicerca");
-			String ordine = request.getParameter("ordina");
+			String ordine = request.getParameter("filtroOrdina");
 			String categoria = request.getParameter("filtroCtg");
 			 
 			if(ricerca == null)

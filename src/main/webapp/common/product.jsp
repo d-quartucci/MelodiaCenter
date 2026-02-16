@@ -57,21 +57,7 @@
 </section>
 
 <section id="sezioneRecensioni">
-	<section id="leggiRecensioni">
-		<c:if test="${empty listaRecensioni}">
-			<h2>Non ci sono ancora recensioni per questo prodotto!</h2>
-		</c:if>
-		<c:if test="${not empty listaRecensioni}">
-			<h2>Le recensioni dei nostri utenti:</h2>
-			<c:forEach var="r" items="${listaRecensioni}">
-				<div id="recensione-${r.recensione.id}" class="recensione">
-					<h3 id="recensione-${r.utente.nome}" class="recensioneNome">Il nostro cliente <i>${r.utente.nome}</i> ha votato ${r.recensione.voto}/5!</h3>
-					<p class="bodyRecensione">" ${r.recensione.testo} "</p>
-				</div>
-			</c:forEach>
-		</c:if>
-	</section>
-	
+
 	<c:if test="${puoRecensire}">
 		<section id="scriviRecensione">
 			<form name="inviaRecensione" method="POST" action="${pageContext.request.contextPath}/user/CreateRecensioneServlet?prodottoId=${prodotto.id}">
@@ -93,6 +79,21 @@
 			</form>
 		</section>
 	</c:if>
+	
+	<section id="leggiRecensioni">
+		<c:if test="${empty listaRecensioni}">
+			<h2>Non ci sono ancora recensioni per questo prodotto!</h2>
+		</c:if>
+		<c:if test="${not empty listaRecensioni}">
+			<h2>Le recensioni dei nostri utenti:</h2>
+			<c:forEach var="r" items="${listaRecensioni}">
+				<div id="recensione-${r.recensione.id}" class="recensione">
+					<h3 id="recensione-${r.utente.nome}" class="recensioneNome">Il nostro cliente <i>${r.utente.nome}</i> ha votato ${r.recensione.voto}/5!</h3>
+					<p class="bodyRecensione">" ${r.recensione.testo} "</p>
+				</div>
+			</c:forEach>
+		</c:if>
+	</section>
 </section>
 	
 <jsp:include page="/fragments/footer.jsp"/>

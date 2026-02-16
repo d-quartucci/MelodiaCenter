@@ -34,21 +34,7 @@
     			</fieldset>
     		</form>
     	</section >
-    	 <section class= "contenitore" id="filtriCategorieAdmin">
-				<h2>Filtro Categorie:</h2>
-				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/FilterCategoria" >
-				
-					<label for="filtroCtg">Seleziona categoria:</label>
-					<select class="menuTendina" id= "tendaCtg" name="tendaCtg">
-						<option value = "0" ${param.filtroCtg == null || param.filtroCtg == '0' ? 'selected' : ''}>Tutte</option>
-						<c:forEach var= "c" items= "${categorie}">
-							<option value = "${c.id}" ${param.filtroCtg == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
-						</c:forEach>
-					</select>
-			
-					<button class= "bottoneMod" id="FiltroCtg" type="submit">Filtra</button>
-				</form>
-			</section>
+    	 
 			<section class= "contenitore" id="listaCtg">
 			<h2>Lista Categorie:</h2>
 				<table class= "tabellaAdmin" id="tabellaCtg">

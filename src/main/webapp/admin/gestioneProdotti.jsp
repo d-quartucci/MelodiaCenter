@@ -69,10 +69,10 @@
 				
 					<label for="filtroOrdina">ORDINA:</label>
 					<select class="menuTendina" id="filtroOrdina" name="filtroOrdina">
-						<option value="prezzoCrescente" ${param.ordina == "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
-						<option value="prezzoDecrescente" ${param.ordina == "prezzoDecrescente" ? "selected" : ""}>Prezzo Decrescente</option>
-						<option value="vendutiCrescente" ${param.ordina == "VendutiCrescente" ? "selected" : ""}>Quantità Crescente</option>
-						<option value="vendutiDecrescente" ${param.ordina == "VendutiDecrescente" ? "selected" : ""}>Quantità Decrescente</option>
+						<option value="prezzoCrescente" ${param.filtroOrdina == "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
+						<option value="prezzoDecrescente" ${param.filtroOrdina == "prezzoDecrescente" ? "selected" : ""}>Prezzo Decrescente</option>
+						<option value="vendutiCrescente" ${param.filtroOrdina == "vendutiCrescente" ? "selected" : ""}>Quantità Crescente</option>
+						<option value="vendutiDecrescente" ${param.filtroOrdina == "vendutiDecrescente" ? "selected" : ""}>Quantità Decrescente</option>
 					</select>
 			
 					<button class="bottoneFiltro" id="FiltroProd" type="submit">Filtra</button>
@@ -98,10 +98,10 @@
     					<c:if test= "${not empty prodotti}">
 							<c:forEach var= "p" items="${prodotti}">
 								<tr>
-									<td>${p.id}</td>
+									<td><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">#${p.id}</a></td>
 									<c:forEach var="c" items="${categorie}">
 	               						 <c:if test="${c.id == p.categoriaId}">
-	                   	 					<td>Cd:${c.id}<br>(${c.nome})</td>
+	                   	 					<td>ID:${c.id}<br>(${c.nome})</td>
                 						</c:if>
 									</c:forEach>
 									<td id= "tdImage">
