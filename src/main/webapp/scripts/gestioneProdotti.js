@@ -69,10 +69,8 @@ function eliminaProd(id){
 						}, 10000);
 			} else if (this.status === 403) {
 				ErrorSpan.innerHTML = "Errore: Il prodotto è presente in un ordine!";
-				location.reload();
 			} else if (this.status === 404){
 				ErrorSpan.innerHTML= "Errore: Il prodotto non trovato!";
-				location.reload();
 			}
 	 }
 	 

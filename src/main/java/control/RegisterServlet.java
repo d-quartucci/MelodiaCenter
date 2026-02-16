@@ -21,7 +21,7 @@ public class RegisterServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		//L'utente ha già fatto login
 		if(session != null && session.getAttribute("utente") != null) {
-			response.sendRedirect(request.getContextPath() + "/common/index.jsp");
+			response.sendRedirect(request.getContextPath() + "/home");
 			return;
 		}else {
 			request.getRequestDispatcher("/common/register.jsp").forward(request, response);
