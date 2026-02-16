@@ -51,7 +51,7 @@
 						<c:if test= "${not empty ordini}">
 							<c:forEach var="o" items="${ordini}">
 								<tr>
-									<td>${o.id}</td>
+									<td><a href="${pageContext.request.contextPath}/user/order?id=${o.id}">#${o.id}</a></td>
 									<td>${o.utenteId}</td>
 									<td>${o.data}</td>
 									<td>${o.totale}€</td>
