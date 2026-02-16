@@ -261,6 +261,7 @@ a:hover {
 	width: 40%;
 	text-align: center;
 	margin-left: 20px;
+	
 	height: 150px;
 }
 
@@ -418,6 +419,12 @@ a:hover {
 	width: 90%;
 	margin-top: 20px;
 	padding: 10px 0;
+}
+
+#BottoneFiltroCtg{
+  background-color: #F57F3C;
+  border: 2px solid;
+  color: white;
 }
 
 /* Sezione contenitore prodotti catalogo */
@@ -686,13 +693,22 @@ a:hover {
 
 }
 
+#pulsanteAggiungiCarrello, #pulsanteAggiungiWishlist, #pulsanteConsulenza, #recensioneSubmit{
+	background-color: #F57F3C;
+  	border: 2px solid;
+ 	color: white;
+}
+
 /* Sezione Carrello */
 
 #sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
 	width: 50%;
 	margin: 30px auto;
-	overflow: scroll;
 	padding: 10px;
+}
+
+#sezioneCarrello, #carrelloVuoto{
+	overflow: scroll;
 }
 
 #sezioneCarrello{
@@ -747,6 +763,11 @@ a:hover {
 	margin-bottom: 20px;
 }
 
+#bottoneRimuoviProdCart, #svuotaCarrello, #checkout{
+	background-color: #F57F3C;
+  	border: 2px solid;
+ 	color: white;
+}
 
 @media screen and (max-width: 1250px){
 	#sezioneCarrello, #carrelloVuoto, #introduzioneCarrello{
@@ -807,6 +828,12 @@ a:hover {
 	#informazioniUtente, #presentazioneCheckout, #sezioneCheckoutForm  {
 		width: 95%
 	}
+}
+
+#bottoneEffettuaAcquisto{
+	background-color: #F57F3C;
+    border: 2px solid;
+    color: white
 }
 
 /* Classe riutilizzata nelle sezioni successive */
@@ -1082,6 +1109,7 @@ a:hover {
 #sezioneLogin input[type="text"], #sezioneLogin input[type="password"]{
 	width: 45%;
 	float: right;
+  	border: 2px solid #F57F3C;
 }
 
 #ricordaEmail label{
@@ -1101,6 +1129,9 @@ a:hover {
 	height: 30px;
 	margin-top: 20px;
 	float: right;
+	background-color: #F57F3C;
+    border: 2px solid;
+    color: white
 }
 
 #sezioneLogin .riga span {
@@ -1108,6 +1139,7 @@ a:hover {
     clear: both;
     margin-top: 5px;
 }
+
 
 
 @media screen and (max-width: 1250px){
@@ -1130,6 +1162,7 @@ a:hover {
 #sezioneRegister .contenitore {
 	width: 40%;
 	margin: 20px auto;
+	
 }
 
 #sezioneRegister fieldset {
@@ -1171,12 +1204,16 @@ a:hover {
 #sezioneRegister input[type="text"], #sezioneRegister input[type="password"], #sezioneRegister input[type="tel"]{
 	width: 45%;
 	float: right;
+	border: 2px solid #F57F3C;
 }
 
 #sezioneRegister button {
 	width: 75px;
     height: 35px;
     float: right;
+    background-color: #F57F3C;
+    border: 2px solid;
+    color: white
 }
 
 #sezioneRegister .riga span {
@@ -1313,7 +1350,6 @@ a:hover {
 	}
 	
 	#Utenti td, #Ordini td{
-		
 		padding: 6px 3px;
 		
 	}
@@ -1492,7 +1528,6 @@ label {
     	overflow-y:scroll;
     }
     
-
 }
 
 @media screen and (max-width: 900px) {
@@ -1678,7 +1713,7 @@ td.TastiUtenti{
 #tabellaProdotti td:nth-child(8) .menuTendina,
 #tabellaProdotti td:nth-child(9) .menuTendina {
     width: 50%;
-    min-width: 60px;
+    min-width: 100px;
 }
 
 #tabellaProdotti td:nth-child(5) input[type="text"] {
@@ -1688,6 +1723,11 @@ td.TastiUtenti{
 
 #ErrorSpan{
 	position:relative;
+}
+
+.MenuTabella{
+	
+	
 }
 
 @media screen and (max-width: 1670px){
@@ -1707,21 +1747,9 @@ td.TastiUtenti{
 	}
 	
 	#listProdotti{
-		margin-left:0;
-	}
-	
-	#tabellaProdotti td {
-        display:block;
-    }
-	
-	#tabellaProdotti th{
-		display:none;
+		overflow-x:auto;
 	}
 
-	#listProdotti {
-      	overflow-x:auto;
-    }
-    
     #filtriProdottiAdmin{
 		width: 50%;
 	}
@@ -1734,8 +1762,6 @@ td.TastiUtenti{
 		width: 52%;	
 	}
 }
-
-
 
 /*Gestione Categoria*/
 
@@ -1791,7 +1817,6 @@ td.TastiUtenti{
 	#listaCtg{
 		margin-left:0;
 	}
-	
 }
 
 @media screen and (max-width: 1400px) {
@@ -1806,5 +1831,4 @@ td.TastiUtenti{
 	#listaCtg{
       	overflow-x:auto;
     }
-    
 }

@@ -43,7 +43,7 @@
 				value="${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}" oninput="aggiornaSpan()"> 
 			<span id="prezzoFiltroVisual">${param.prezzoFiltro == null ? prezzoMax : param.prezzoFiltro}€</span><br>
 			
-			<button type="submit">Applica filtri</button>
+			<button id="BottoneFiltroCtg" type="submit">Applica filtri</button>
 		</form>
 	</section>
 	

@@ -121,15 +121,15 @@
 									<td><textarea  class="TextAreaAdmin" id="descr_${p.id}" disabled>${p.descrizione}</textarea></td>
 									<td>${p.quantitaVendute}</td>
 									<td >
-										<select class="menuTendina" id= "attivo_${p.id}" disabled > 
-											<option value = "true" ${p.attivo == "true" ? "selected" : ""} >SI</option>
-											<option value = "false" ${p.attivo == "false" ? "selected" : ""}>NO</option>
+										<select class="menuTendina" class="MenuTabella" id= "attivo_${p.id}" disabled > 
+											<option value = "true" ${p.attivo == "true" ? "selected" : ""} >ATTIVO</option>
+											<option value = "false" ${p.attivo == "false" ? "selected" : ""}>NO ATTIVO</option>
 										</select>
 									</td>
 									<td >
-										<select class="menuTendina" id="evidenza_${p.id}" disabled> 
-											<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >SI</option>
-											<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>NO</option>
+										<select class="menuTendina" class="MenuTabella" id="evidenza_${p.id}" disabled> 
+											<option value = "true" ${p.evidenza == "true" ? "selected" : ""} >EVID.</option>
+											<option value = "false" ${p.evidenza == "false" ? "selected" : ""}>NO EVID.</option>
 										</select>
 									</td>
 

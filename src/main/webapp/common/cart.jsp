@@ -44,7 +44,7 @@
 					<input id="${item.prodotto.id}Quantita" type="text" size="3" value="${item.quantita}" oninput="cambiaQuantita(${item.prodotto.id})">
 					<button class="pulsanteOpCarrello" id="${item.prodotto.id}AggiungiUno" onclick="aggiungiUno(${item.prodotto.id})">+</button>
 				</td>
-				<td><button name="rimuoviDalCarrello" onclick="rimuoviDalCarrello(${item.prodotto.id})">Rimuovi!</button></td>
+				<td><button id="bottoneRimuoviProdCart" name="rimuoviDalCarrello" onclick="rimuoviDalCarrello(${item.prodotto.id})">Rimuovi!</button></td>
 			</tr>
 		</c:forEach>
 	

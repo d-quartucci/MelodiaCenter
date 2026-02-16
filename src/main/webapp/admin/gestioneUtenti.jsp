@@ -57,10 +57,10 @@
 									<td id= "nome_${u.id}">${u.nome}</td>
 									<td id= "cognome_${u.id}">${u.cognome}</td>
 									<td>
-										<input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>
+										<input type= "text" id= "email_${u.id}" value= "${u.email}" disabled>
 										<br>
 											
-										<button type = "button" class= "bottoneMod" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
+										<button type= "button" class= "bottoneMod" id= "mod_${u.id}" onclick= "abilitaModifica(${u.id})"> Modifica</button>
 									</td>	
 									<td id="TastoMod">
 										<select class="menuTendina" id= "ruolo_${u.id}"> 

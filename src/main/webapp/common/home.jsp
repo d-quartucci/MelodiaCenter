@@ -49,7 +49,6 @@
 			<div class="informazioniProdotto contenitore">
 				<h3><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a></h3>
 				<p class="prezzo">${p.prezzoAttuale}€</p>
-				<p class="descrizioneProdotto">${p.descrizione}</p>
 			</div>
 		</div>
 	</c:forEach>
@@ -65,7 +64,6 @@
 			<div class="informazioniProdotto contenitore">
 				<h3><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">${p.nome}</a></h3>
 				<p class="prezzo">${p.prezzoAttuale}€</p>
-				<p class="descrizioneProdotto">${p.descrizione}</p>
 			</div>
 		</div>
 	</c:forEach>

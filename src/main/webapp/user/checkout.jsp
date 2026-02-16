@@ -72,7 +72,7 @@
 			<span id="errorCVC"></span><br>
 		</div>
 		
-		<button type="submit">Effettua acquisto!</button>
+		<button id= "bottoneEffettuaAcquisto" type="submit">Effettua acquisto!</button>
 	</form>
 	</section>
 	
