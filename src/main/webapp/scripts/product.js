@@ -51,5 +51,3 @@ function aggiornaSpan(){
 	let span = document.getElementById("spanVoto");
 	span.innerHTML = document.getElementById("voto").value;
 }
-
-window.onload()
