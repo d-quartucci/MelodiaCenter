@@ -625,6 +625,7 @@ a:hover {
 
 #scriviRecensione button {
 	width: 10%;
+	height: 40px;
 	margin-top: 10px;
 	display: block;
 	margin-left: 20px;
@@ -644,6 +645,17 @@ a:hover {
 
 #sezioneNotLogged {
 	font-size: 0.9em;
+}
+
+#pulsanteAggiungiCarrello, #pulsanteAggiungiWishlist, #pulsanteConsulenza, #recensioneSubmit{
+	background-color: #F57F3C;
+  	border: 2px solid;
+ 	color: white;
+}
+
+#pulsanteAggiungiCarrello:disabled, #pulsanteAggiungiWishlist:disabled, #pulsanteConsulenza:disabled, #recensioneSubmit:disabled {
+	cursor: not-allowed;
+	opacity: 0.7;
 }
 
 @media screen and (max-width: 1250px) {
@@ -691,12 +703,6 @@ a:hover {
 		padding: 0;
 	}
 
-}
-
-#pulsanteAggiungiCarrello, #pulsanteAggiungiWishlist, #pulsanteConsulenza, #recensioneSubmit{
-	background-color: #F57F3C;
-  	border: 2px solid;
- 	color: white;
 }
 
 /* Sezione Carrello */
@@ -818,6 +824,12 @@ a:hover {
 	margin: 10px 0 10px 10px;
 }
 
+#sezioneCheckoutForm span {
+	display: block;
+    clear: both;
+    margin-top: 5px;
+}
+ 
 @media screen and (max-width: 1250px){
 	#informazioniUtente, #presentazioneCheckout, #sezioneCheckoutForm  {
 		width: 70%
@@ -1140,8 +1152,6 @@ a:hover {
     margin-top: 5px;
 }
 
-
-
 @media screen and (max-width: 1250px){
 	#sezioneLogin .contenitore{
 		width: 70%
@@ -1214,6 +1224,11 @@ a:hover {
     background-color: #F57F3C;
     border: 2px solid;
     color: white
+}
+
+#sezioneRegister button:disabled{
+	cursor: not-allowed;
+	opacity: 0.7;
 }
 
 #sezioneRegister .riga span {
@@ -1723,11 +1738,6 @@ td.TastiUtenti{
 
 #ErrorSpan{
 	position:relative;
-}
-
-.MenuTabella{
-	
-	
 }
 
 @media screen and (max-width: 1670px){
