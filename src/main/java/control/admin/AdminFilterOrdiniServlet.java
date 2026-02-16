@@ -24,7 +24,7 @@ public class AdminFilterOrdiniServlet extends HttpServlet {
     }
 
 
-	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
 	
@@ -63,8 +63,8 @@ public class AdminFilterOrdiniServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 	
 }

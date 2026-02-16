@@ -1,3 +1,38 @@
+function validateForm(formElem, errorSpan){
+	
+	if(formElem.validity.valueMissing){//Campo vuoto
+		errorSpan.innerHTML = "Campo vuoto";
+		return false;
+	}else if(formElem.validity.tooShort){//Per la descrizione se è troppo corta 
+		errorSpan.innerHTML = "Descrizione troppo corta min 50";
+		return false;
+	}else if(formElem.validity.rangeUnderflow) {//Nel caso si inserisce come valore 0
+	    errorSpan.innerHTML = "Il prezzo deve essere maggiore di 0";
+		return false;
+	}
+	
+	errorSpan.innerHTML = "";
+	return true;
+}
+
+function validateImg(fileInput, errorSpan){
+	if(fileInput.files.length === 0) {
+	    errorSpan.innerHTML = "Seleziona un'immagine!";
+	    return false;
+	}
+
+	const file = fileInput.files[0];
+	const maxSize = 5 * 1024 * 1024; // 5MB
+
+	if(file.size > maxSize) {
+	    errorSpan.innerHTML = "L'immagine non deve superare i 5MB!";
+	    fileInput.value = "";
+	    return false;
+	}
+	return true;
+}
+
+
 function abilitaModifica(id){
 	
 	const bMod = document.getElementById("mod_"+id);
@@ -12,19 +47,12 @@ function abilitaModifica(id){
 		bMod.innerText = "Applica";
 		
 	}else if (bMod.innerText == "Applica" ){
-		
 		salvaModifica(id);
-		document.getElementById("nome_" + id).disabled = true;
-		document.getElementById("prezzo_" + id).disabled = true;
-		document.getElementById("descr_" + id).disabled = true;
-		document.getElementById("attivo_" + id).disabled = true;
-		document.getElementById("evidenza_" + id).disabled = true;
-
-		bMod.innerText = "Modifica";
 	}
 }
 
 function salvaModifica(id){
+	const bMod = document.getElementById("mod_" + id);
 	const nome = document.getElementById("nome_" + id).value;
 	const prezzo = document.getElementById("prezzo_" + id).value;
 	const descr = document.getElementById("descr_" + id).value;
@@ -39,6 +67,14 @@ function salvaModifica(id){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
 				ErrorSpan.innerHTML = nome + ": Salvataggio effettuato!";
+				document.getElementById("nome_" + id).disabled = true;
+				document.getElementById("prezzo_" + id).disabled = true;
+				document.getElementById("descr_" + id).disabled = true;
+				document.getElementById("attivo_" + id).disabled = true;
+				document.getElementById("evidenza_" + id).disabled = true;
+
+				bMod.innerText = "Modifica";
+				
 				setTimeout(function(){
 							ErrorSpan.innerHTML = "";
 							}, 10000);
@@ -54,24 +90,28 @@ function salvaModifica(id){
 	
 }
 
-
 function eliminaProd(id){
+	
+	const ErrorSpan = document.getElementById("error_" + id);
+	const riga = document.getElementById("riga_" + id);
+	const nome = document.getElementById("nome_" + id).value;
 	 let xhr = new XMLHttpRequest();
 	 const url = contextPath + "/admin/DeleteProdotto?id="+ id;
-	 const ErrorSpan = document.getElementById("error_" + id);
+	 
 	 
 	 xhr.onreadystatechange = function(){
 	 	if(this.readyState === 4 ){
 	 		if(this.status === 200)
-				ErrorSpan.innerHTML = "Eliminazione effettuata!";
-				setTimeout(function(){
-						ErrorSpan.innerHTML = "";
-						}, 10000);
+				ErrorSpan.innerHTML = nome +  ": Eliminazione effettuata!";
+				riga.remove();
 			} else if (this.status === 403) {
-				ErrorSpan.innerHTML = "Errore: Il prodotto è presente in un ordine!";
+				ErrorSpan.innerHTML = nome +  ": Errore: Il prodotto è presente in un ordine!";
 			} else if (this.status === 404){
-				ErrorSpan.innerHTML= "Errore: Il prodotto non trovato!";
+				ErrorSpan.innerHTML = nome + ": Errore: Il prodotto non trovato!";
 			}
+			setTimeout(function(){
+					ErrorSpan.innerHTML = "";
+					}, 10000);
 	 }
 	 
 	 xhr.open("GET", url, true);

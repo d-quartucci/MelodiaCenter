@@ -32,11 +32,11 @@ public class AdminDeleteProdotto extends HttpServlet {
 			RigaOrdineDAO rDAO = new RigaOrdineDAO(ds);
 			
 			//Se il prodotto non esiste 
-			if(pDAO.doRetrieveByKey(id)==null) {
+			if(pDAO.doRetrieveByKeyAdmin(id)==null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			}
 			//Se il prodotto esiste e si trova in una riga ordine rifiuto la richiesta di cancellazione
-			else if(pDAO.doRetrieveByKey(id)!=null && rDAO.doRetrieveByProdottoID(id) != null){
+			else if(pDAO.doRetrieveByKeyAdmin(id)!=null && rDAO.doRetrieveByProdottoID(id) != null){
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			}
 			//Se il prodotto esiste e non è stato ordinato almeno una volta allora si può cancellare
@@ -44,7 +44,6 @@ public class AdminDeleteProdotto extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_OK);
 				pDAO.doDeleteByKey(id);
 			}
-			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 			request.getSession().setAttribute("errorMessage", "Errore cancellazione del prodotto: " + ex.getMessage());

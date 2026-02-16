@@ -37,18 +37,18 @@
     		</section>
     		<section class= "contenitore" id=listOrdini>
     			<h1>Lista Ordini</h1>
-    			<table class= "tabellaAdmin">
-    				<thead id = "testaTableOrdini">
-    					<tr>
-    						<th>Cod.Ordine</th>
-							<th>Cod.Utente</th>
-							<th>Data</th>
-							<th>Totale</th>
-							<th>IndirizzoSpedizione</th>
-    					</tr>
-    				</thead>
-    				<tbody id = "corpoTableOrdini">
-						<c:if test= "${not empty ordini}">
+    			<c:if test= "${not empty ordini}">
+    				<table class= "tabellaAdmin">
+    					<thead id = "testaTableOrdini">
+    						<tr>
+    							<th>Cod.Ordine</th>
+								<th>Cod.Utente</th>
+								<th>Data</th>
+								<th>Totale</th>
+								<th>IndirizzoSpedizione</th>
+    						</tr>
+    					</thead>
+    					<tbody id = "corpoTableOrdini">
 							<c:forEach var="o" items="${ordini}">
 								<tr>
 									<td><a href="${pageContext.request.contextPath}/user/order?id=${o.id}">#${o.id}</a></td>

@@ -38,26 +38,28 @@
     		</section>
     		<section class= "contenitore" id=listUtenti>
     			<h1>Lista Utenti</h1>
-    			<table class= "tabellaAdmin">
-    				<thead>
-    					<tr>
-    						<th>Cod.Utente</th>
-							<th>Nome</th>
-							<th>Cognome</th>
-							<th>Email</th>
-							<th>Ruolo</th>
-							<th>Data Registrazione</th>
-    					</tr>
-    				</thead>
-    				<tbody>
-    					<c:if test= "${not empty utenti}">
+    			<c:if test= "${not empty utenti}">
+    				<table class= "tabellaAdmin">
+    					<thead>
+    						<tr>
+    							<th>Cod.Utente</th>
+								<th>Nome</th>
+								<th>Cognome</th>
+								<th>Email</th>
+								<th>Ruolo</th>
+								<th>Data Registrazione</th>
+    						</tr>
+    					</thead>
+    					<tbody>
 							<c:forEach var="u" items="${utenti}">				
 								<tr>
 									<td>${u.id}</td>
-									<td>${u.nome}</td>
-									<td>${u.cognome}</td>
+									<td id= "nome_${u.id}">${u.nome}</td>
+									<td id= "cognome_${u.id}">${u.cognome}</td>
 									<td>
-										<input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>			
+										<input type = "text" id= "email_${u.id}" value= "${u.email}" disabled>
+										<br>
+											
 										<button type = "button" class= "bottoneMod" id= "mod_${u.id}" onclick = "abilitaModifica(${u.id})"> Modifica</button>
 									</td>	
 									<td id="TastoMod">
@@ -69,18 +71,18 @@
 									</td>
 									<td>${u.dataRegistrazione}</td>
 								</tr>
-								 <h5 id= "ErrorSpan">
-									<span id="error_${c.id}" class="error"></span>
+								<h5 id= "ErrorSpan">
+										<span id="error_${u.id}" class="error"></span>
 								</h5>
 							</c:forEach>
-						</c:if>
 						<c:if test="${empty utenti}">
                 			<h2 class="emptyTable">Nessun utente presente!</h2>
     					</c:if>
-    				</tbody>
-    			</table>
+    					</tbody>
+    				</table>
+    			</c:if>
     		</section>
-    </main>
+   	 </main>
 		 <!-- FOOTER -->
     <%@ include file="/fragments/footer.jsp" %>
     

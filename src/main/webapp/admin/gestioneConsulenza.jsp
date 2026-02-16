@@ -43,8 +43,8 @@
     		</form>
     	</section>
     	<section id="listaConsulenza">
+    	<h1 id="labelListConsulenze">Le tue richieste di consulenza:</h1>
 			<c:if test="${not empty consulenze}">
-				<h1 id="labelListConsulenze">Le tue richieste di consulenza:</h1>
 				<section id="sezioneConsulenze" class="contenitore">
 					<c:forEach var="c" items="${consulenze}">
 						<div id="consulenzaDiv-${c.id}" class="consulenzaDiv">

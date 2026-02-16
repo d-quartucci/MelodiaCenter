@@ -25,10 +25,11 @@
     				
     				<label for = "nome">Nome</label>
     				<br>
-    				<input type = "text" id="nome" name="nome" placeholder = "Nome categoria..." required><br>
-
-    				<label for = "descrizione">Descrizione </label><br>
-    				<textarea class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci categoria..." required></textarea>
+    				<input type = "text" id="nome" name="nome" placeholder = "Nome categoria..." onchange="validateForm(this, document.getElementById('errorNameCtg'))" required>
+					<span id= "errorNameCtg" class="error" ></span>
+					<br>
+    				<label for = "descrizione">Descrizione </label> <span id= "errorDescrCtg" class="error" ></span><br>
+    				<textarea class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci categoria..." onchange="validateForm(this, document.getElementById('errorDescrCtg'))" minlength="20" required></textarea>
     				<br>
     				<button class= "bottoneMod" type="submit" id="submitC">Salva</button>
     			</fieldset>
@@ -36,7 +37,8 @@
     	</section >
     	 
 			<section class= "contenitore" id="listaCtg">
-			<h2>Lista Categorie:</h2>
+				<h2>Lista Categorie:</h2>
+			<c:if test= "${not empty ctgFiltrate}">
 				<table class= "tabellaAdmin" id="tabellaCtg">
 					<thead id="testaTableCategoria">
 						 <tr>
@@ -46,7 +48,6 @@
     					</tr>
 					</thead>
 					<tbody id="corpoTableCategoria">
-						<c:if test= "${not empty ctgFiltrate}">
 							<c:forEach var="c" items="${ctgFiltrate}">
 								 <tr>
     								<td>${c.id}</td>

@@ -1,18 +1,14 @@
 function abilitaModifica(id){
 	
 	const bMod = document.getElementById("mod_"+id);
+	const emailInput= document.getElementById("email_"+id);
 	
 	if(bMod.innerText == "Modifica" ){
-		
-		document.getElementById("email_"+id).disabled = false;
-		
+		emailInput.disabled = false;
 		bMod.innerText = "Applica";
 		
 	}else if (bMod.innerText == "Applica" ){
 		applicaModifica(id);
-		document.getElementById("email_"+id).disabled = true;
-
-		bMod.innerText = "Modifica";
 	}
 	
 }
@@ -20,30 +16,34 @@ function abilitaModifica(id){
 function applicaModifica(id){
 	const emailId= document.getElementById("email_"+id);
 	const uEmail = emailId.value;
-	const errorEmail = document.getElementById("errorEmail_"+id);
+	const errorEmail = document.getElementById("error_"+id);
+	const nome = document.getElementById("nome_"+id).innerText;
+	const cognome = document.getElementById("cognome_"+id).innerText;
 	
 	let pattern = /^\S+@\S+\.\S+$/g;
 	
 	if(uEmail.match(pattern)){
 		errorEmail.innerHTML = "";
 		validateEmail(id);
-		salvaModifica(id, "email", uEmail);
-		emailId.disabled = true;
 	}else{
 		if(uEmail.trim() === ""){ //Controllo se il campo è vuoto
-			alert("Errore: Campo vuoto!");
-			location.reload();
+			errorEmail.innerHTML =nome + " " + cognome + "- Errore: Campo vuoto!";
 		} else {
-			alert("Errore: Email non valida!");
-			location.reload();
+			errorEmail.innerHTML =nome + " " + cognome + "- Errore: Email non valida!";
+
 		}
+		setTimeout(function(){
+				errorEmail.innerHTML = "";
+				}, 10000);
 	}
-		
+
 }
 
 function salvaModifica(id, campo, valore){
 	
-	const errorEmail = document.getElementById("errorEmail_"+id);
+	const errorEmail = document.getElementById("error_"+id);
+	const nome = document.getElementById("nome_"+id).innerText;
+	const cognome = document.getElementById("cognome_"+id).innerText;
 	
 	let xhr = new XMLHttpRequest();
 	const url = contextPath + "/admin/UpdateUtente";
@@ -51,18 +51,18 @@ function salvaModifica(id, campo, valore){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 ){
 			if(this.status === 200){
-				errorEmail.innerHTML ="Salvataggio effettuato!";
-				setTimeout(function(){
-						ErrorSpan.innerHTML = "";
-						}, 10000);
+				errorEmail.innerHTML =nome + " " + cognome + ": Salvataggio effettuato!";
+				emailInput.disabled = true;
+				bMod.innerText = "Modifica";
 			}else if(this.status === 400){
-				alert("Errore: Campo non valido!");
-				location.reload();
+				errorEmail.innerHTML =nome + " " + cognome + "- Errore: Campo non valido!";
 			}else if(this.status === 404){
-				alert("Errore: Utente non trovato!");
-				location.reload();
+			errorEmail.innerHTML =nome + " " + cognome +"- Errore: Utente non trovato!";	
 			}
 		}
+		setTimeout(function(){
+				errorEmail.innerHTML = "";
+				}, 10000);
 	}
 	
 	xhr.open("POST", url, true);
@@ -74,7 +74,9 @@ function salvaModifica(id, campo, valore){
 function validateEmail(id){
 	
 	const uEmail= document.getElementById("email_"+id).value;
-	const errorEmail = document.getElementById("errorEmail_"+id);
+	const errorEmail = document.getElementById("error_"+id);
+	const nome = document.getElementById("nome_"+id).innerText;
+	const cognome = document.getElementById("cognome_"+id).innerText;
 	
 	let xhr = new XMLHttpRequest();
 	let url = contextPath + "/CheckEmailServlet?email=" + encodeURIComponent(uEmail);
@@ -84,17 +86,16 @@ function validateEmail(id){
 				if(this.status===200){
 					let esiste = this.responseText.trim();
 						if(esiste === "true"){
-							alert("Errore: Email già usata!");
-							location.reload();
+							errorEmail.innerHTML =nome + " " + cognome +"- Errore: Email già usata!";
 						}
-						else{
-							errorEmail.innerHTML = "Email valida!";
-							setTimeout(function(){
-									ErrorSpan.innerHTML = "";
-									}, 10000);
+						else{//Se email è valida e non è già usata allora la salvo
+							salvaModifica(id, "email", uEmail);
 						}
-					}
 				}
-		}
-		xhr.send();
+			}
+			setTimeout(function(){
+					errorEmail.innerHTML = "";
+					}, 10000);
+	}
+	xhr.send();
 }

@@ -24,29 +24,34 @@
     				<legend ><h2>Crea Prodotto</h2></legend>
     				<label for="nome">Nome </label>
     				<br>
-    				<input type="text" id="nome" name="nome" placeholder= "Nome prodotto..." required>
+    				<input type="text" id="nome" name="nome" placeholder= "Nome prodotto..." onchange="validateForm(this, document.getElementById('errorName'))" required>
+    				<span id= "errorName" class="error" ></span>
     				<br>
     				<label for="categoria">Categoria</label>
     				<br>
-    				<select class="menuTendina" id = "categoria" name="categoria" required>
-        				<option value="">Seleziona Categoria</option>
+    				<select class="menuTendina" id = "categoria" name="categoria" onchange="validateForm(this, document.getElementById('errorCtg'))" required>
+        				<option value="0">Seleziona Categoria</option>
         				<c:forEach var="c" items="${categorie}">
 							<option value="${c.id}">${c.nome}</option>
 						</c:forEach>
     				</select>
+    				<span id= "errorCtg" class="error" ></span>
     				<br>
     				
     				<label for = "prezzo">Prezzo </label>
     				<br>
-    				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="0" placeholder= "0.00" required><br>
-    				
-    				<label id="labelDescr" for = "descrizione">Descrizione</label>
+    				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="1" placeholder= "0.00" onchange="validateForm(this, document.getElementById('errorPrezzo'))" required>
+    				<span id= "errorPrezzo" class="error" ></span>
     				<br>
-    				<textarea  class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." required></textarea><br>
-    				
+    				<label id="labelDescr" for = "descrizione">Descrizione</label>   <span id= "errorDescr" class="error" ></span>
+    				<br>
+    				<textarea  class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci descrizione prodotto...." onchange="validateForm(this, document.getElementById('errorDescr'))" minlength="50" required ></textarea>
+    				<br>
+
     				<label for = "image">Inserisci un immagine: </label>
     				<br>
-    				<input type="file" id="image" name="image" accept="image/*" required><br><br>
+    				<input type="file" id="image" name="image" accept="image/*" on="validateImg(this, document.getElementById('errorImg'))"required><br><br>
+    				<span id= "errorImg" class="error" ></span>
     				
     				<button type="submit" id="submitP" class="bottoneFiltro">Salva</button>
     			</fieldset>
@@ -55,10 +60,11 @@
     	 <section class= "contenitore" id="filtriProdottiAdmin">
 				<h2>Filtri Prodotti:</h2>
 				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/FilterProdotti" >
-				
+				<span class="sezioneFiltro">
 					<label for="barraDiRicerca">RICERCA:</label>	
 					<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Nome prodotto..." value="${param.barraDiRicerca}">
-				
+				</span>
+				<span class="sezioneFiltro">
 					<label id= "labelCtg" for="filtroCtg">CATEGORIA:</label>
 					<select class="menuTendina" id= "filtroCtg" name="filtroCtg">
 						<option value = "0" ${param.filtroCtg == null || param.filtroCtg == '0' ? 'selected' : ''}>Tutte</option>
@@ -66,20 +72,23 @@
 							<option value = "${c.id}" ${param.filtroCtg == c.id.toString() ? 'selected' : ''}>${c.nome}</option>
 						</c:forEach>
 					</select>
-				
-					<label for="filtroOrdina">ORDINA:</label>
+				</span>
+				<span class="sezioneFiltro">
+					<label id= "labelOrd" for="filtroOrdina">ORDINA:</label>
 					<select class="menuTendina" id="filtroOrdina" name="filtroOrdina">
 						<option value="prezzoCrescente" ${param.filtroOrdina == "prezzoCrescente" ? "selected" : ""}>Prezzo Crescente</option>
 						<option value="prezzoDecrescente" ${param.filtroOrdina == "prezzoDecrescente" ? "selected" : ""}>Prezzo Decrescente</option>
 						<option value="vendutiCrescente" ${param.filtroOrdina == "vendutiCrescente" ? "selected" : ""}>Quantità Crescente</option>
 						<option value="vendutiDecrescente" ${param.filtroOrdina == "vendutiDecrescente" ? "selected" : ""}>Quantità Decrescente</option>
 					</select>
-			
+				</span>
+				
 					<button class="bottoneFiltro" id="FiltroProd" type="submit">Filtra</button>
 				</form>
 		</section>
-    	<section class= "contenitore"  id=listProdotti>
+    	<section class= "contenitore"  id= "listProdotti">
     			<h2>Lista Prodotti:</h2>
+    		<c:if test= "${not empty prodotti}">
     			<table class= "tabellaAdmin" id ="tabellaProdotti">
     				<thead id = "testaTableProdotti">
     					<tr>
@@ -95,9 +104,8 @@
     					</tr>
     			</thead>
     				<tbody id= "corpoTableProdotti">
-    					<c:if test= "${not empty prodotti}">
 							<c:forEach var= "p" items="${prodotti}">
-								<tr>
+								<tr id= "riga_${p.id}">
 									<td><a href="${pageContext.request.contextPath}/product?prodottoId=${p.id}">#${p.id}</a></td>
 									<c:forEach var="c" items="${categorie}">
 	               						 <c:if test="${c.id == p.categoriaId}">
@@ -136,12 +144,12 @@
 										<span id="error_${p.id}" class="error"></span>
 									</h5>
 							</c:forEach>
-						</c:if>
-						<c:if test="${empty prodotti}">
-                			<h2 class="emptyTable">Nessun prodotto presente!</h2> 
-   						</c:if>
     				</tbody>
     			</table>
+    		</c:if>
+    		<c:if test="${empty prodotti}">
+                <h2 class="emptyTable">Nessun prodotto presente!</h2> 
+   			</c:if>
     	</section>
     </main>
         <!-- FOOTER -->

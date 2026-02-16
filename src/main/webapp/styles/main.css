@@ -1569,8 +1569,7 @@ label {
 
 #FormCreazione{
 	padding-top:0;
-	padding-bottom:50px;
-	width: 280px;
+	padding-bottom:60px;
 }
 
 
@@ -1581,7 +1580,6 @@ label {
 }
 
 #listProdotti{
-	margin-left: 240px; 
     margin-bottom: 30px;
     padding: 20px 20px;
     padding-bottom: 60px;
@@ -1598,7 +1596,7 @@ label {
 
 #FormProdotto{
 	margin-bottom: 20px;
-	width: 50%;
+	width: 60%;
 }
 
 #filtriProdottiAdmin{
@@ -1611,7 +1609,6 @@ label {
 	margin-top:0;
 	margin-left: 20px; 
 	margin-bottom:0;
-	
 }
 
 #nome, #prezzo, #descr{
@@ -1630,7 +1627,7 @@ label {
 }
 
 #categoria{
-	width:58%;
+	width:57%;
 	margin-bottom:6px;	
 }
 
@@ -1693,16 +1690,26 @@ td.TastiUtenti{
 	position:relative;
 }
 
-@media screen and (max-width: 1650px){
-		.MenuGestione{
- 	 	margin-bottom: 150px;
+@media screen and (max-width: 1670px){
+	.MenuGestione{
+ 	 	margin-bottom: 0px;
 	}
-		#listProdotti{
-		margin-left:0;
+	
+	#FiltroProd{
+		position: sticky;
 	}
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1650px){
+	
+	.MenuGestione{
+ 	 	margin-bottom: 150px;
+	}
+	
+	#listProdotti{
+		margin-left:0;
+	}
+	
 	#tabellaProdotti td {
         display:block;
     }
@@ -1715,20 +1722,20 @@ td.TastiUtenti{
       	overflow-x:auto;
     }
     
-    #ordinaData{
-    	float:left;
-    }
-}
-
-@media screen and (max-width: 900px) {
-	#listProdotti{
-		margin-left:0;
+    #filtriProdottiAdmin{
+		width: 50%;
 	}
 	
-	#FiltroProd{
-		position:absolute;
-    }
+	.sezioneFiltro{
+		display:block;
+	}
+	
+	#barraDiRicerca, #filtroCtg, #filtroOrdina{
+		width: 52%;	
+	}
 }
+
+
 
 /*Gestione Categoria*/
 
