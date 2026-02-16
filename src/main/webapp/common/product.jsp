@@ -72,9 +72,9 @@
 	<c:if test="${haRecensito}">
 	<section id="scriviRecensione">
 			<form name="inviaRecensione" method="POST" action="${pageContext.request.contextPath}/user/CreateRecensioneServlet?prodottoId=${prodotto.id}">
-				<h3>Hai recensito questo prodotto in precedenza!</h3>
-				<textarea id="recensioneInput" name="recensioneInput" placeholder="Aggiorna qui la tua recensione..." oninput="verificaContenuto('recensioneInput', 'recensioneSubmit')"></textarea>
-				<input id="voto" name="voto" type="range" min="1" max="5" step="1" value="5" oninput="aggiornaSpan()"> <span id="spanVoto">5</span>
+				<h3>Hai recensito questo prodotto in precedenza! (${recensionePassata.dataIns})</h3>
+				<textarea id="recensioneInput" name="recensioneInput" placeholder="Aggiorna qui la tua recensione..." oninput="verificaContenuto('recensioneInput', 'recensioneSubmit')">${recensionePassata.testo}</textarea>
+				<input id="voto" name="voto" type="range" min="1" max="5" step="1" value="${recensionePassata.voto}" oninput="aggiornaSpan()"> <span id="spanVoto">${recensionePassata.voto}</span>
 				<button id="recensioneSubmit" name="recensioneSubmit" type="submit" disabled>Invia!</button>
 			</form>
 		</section>

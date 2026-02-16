@@ -140,14 +140,18 @@ public class ProductPageServlet extends HttpServlet {
 			}
 			request.setAttribute("listaRecensioni", recensioniUtente);
 			
+			Recensione recensionePassata = null;
 			//Se trovo una recensione con id dell'utente pari a quella dell'utente che ha fatto la richiesta vuol dire che
 			//l'utente ha già scritto una recensione in passato per il prodotto di cui sta visualizzando la pagina
 			for(Recensione rec : listaRecensioni) {
 				if(isLogged && rec.getUtenteId() == idUser) {
+					recensionePassata = rec;
 					haRecensito = true;
 					break;
 				}
 			}
+			//Mostro all'utente la sua recensione passata
+			request.setAttribute("recensionePassata", recensionePassata);
 			
 			//Controllo se l'utente ha acquistato il prodotto in passato
 			boolean haAcquistato = false;
