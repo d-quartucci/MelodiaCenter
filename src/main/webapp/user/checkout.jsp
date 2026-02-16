@@ -34,7 +34,7 @@
 			<span id="errorVia"></span><br>
 				
 			<label for="civico">Civico: </label>
-			<input id="civico" name="civico" type="text" required pattern="^[0-9]+(-[A-Za-z])?$" onchange='validateFormElem(this, document.getElementById("errorCivico"), civicoErrorMessage)'>
+			<input id="civico" name="civico" type="text" required pattern="^[0-9]+([/][A-Za-z])?$" onchange='validateFormElem(this, document.getElementById("errorCivico"), civicoErrorMessage)'>
 			<span id="errorCivico"></span><br>
 				
 			<label for="cap">CAP: </label>
