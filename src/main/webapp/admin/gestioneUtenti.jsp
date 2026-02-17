@@ -75,11 +75,11 @@
 										<span id="error_${u.id}" class="error"></span>
 								</h5>
 							</c:forEach>
-						<c:if test="${empty utenti}">
-                			<h2 class="emptyTable">Nessun utente presente!</h2>
-    					</c:if>
     					</tbody>
     				</table>
+    			</c:if>
+    			<c:if test="${empty utenti}">
+                	<h2 class="emptyTable">Nessun utente presente!</h2>
     			</c:if>
     		</section>
    	 </main>

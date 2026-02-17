@@ -64,12 +64,12 @@
 									<span id="error_${c.id}" class="error"></span>
 								</h5>
 							</c:forEach>
-						</c:if>
-						<c:if test= "${empty ctgFiltrate}">
-							<h2 class="emptyTable">Non ci sono categorie!</h2>
-						</c:if>
 					</tbody>
 				</table>
+			</c:if>
+			<c:if test= "${empty ctgFiltrate}">
+				<h2 class="emptyTable">Non ci sono categorie!</h2>
+			</c:if>
 			</section>
 		</main>
         <!-- FOOTER -->

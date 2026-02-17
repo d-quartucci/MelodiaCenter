@@ -58,12 +58,12 @@
 									<td>${o.indSpedizione}</td>
 								</tr>
 							</c:forEach>
-						</c:if>
-						<c:if test="${empty ordini}">
-                			<h2 class="emptyTable">Nessun ordine presente!</h2> 
-   						</c:if>
-    				</tbody>
-    			</table>
+    					</tbody>
+    				</table>
+    			</c:if>
+				<c:if test="${empty ordini}">
+               	 	<h2 class="emptyTable">Nessun ordine presente!</h2> 
+   				</c:if>
     		</section>
     	</main>
 		 <!-- FOOTER -->
