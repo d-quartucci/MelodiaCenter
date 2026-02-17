@@ -20,9 +20,6 @@ import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
 
-/**
- * Servlet implementation class AdminNuovoProdottoServlet
- */
 @WebServlet(value="/admin/NuovoProdotto", initParams = {
 		@WebInitParam (name = "fileUpload", value= "images"),//nome della cartella images
 		@WebInitParam(name = "uploadPath", value = "C:/progettoTSW/images/")
@@ -30,7 +27,7 @@ import javax.sql.DataSource;
 @MultipartConfig(
 	    fileSizeThreshold = 1024 * 1024 * 2, //2MB
 	    maxFileSize = 1024 * 1024 * 5,      // 5MB
-	    maxRequestSize = 1024 * 1024 * 10)	// 50MB)
+	    maxRequestSize = 1024 * 1024 * 10)	// 10MB)
 
 public class AdminNuovoProdottoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -99,5 +96,4 @@ public class AdminNuovoProdottoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
-
 }

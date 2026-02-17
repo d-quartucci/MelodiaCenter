@@ -9,6 +9,9 @@ function validateForm(formElem, errorSpan){
 	}else if(formElem.validity.rangeUnderflow) {//Nel caso si inserisce come valore 0
 	    errorSpan.innerHTML = "Il prezzo deve essere maggiore di 0";
 		return false;
+	}else if (formElem.tagName === "SELECT" && formElem.value === "0") {
+	    errorSpan.innerHTML = "Seleziona una categoria valida";
+	    return false;
 	}
 	
 	errorSpan.innerHTML = "";
@@ -32,6 +35,31 @@ function validateImg(fileInput, errorSpan){
 	return true;
 }
 
+function validateProdotto() {
+    let valido = true;
+
+    if (!validateForm(document.getElementById("nome"), document.getElementById("errorName"))) {
+        valido = false;
+    }
+
+    if (!validateForm(document.getElementById("categoria"), document.getElementById("errorCtg"))) {
+        valido = false;
+    }
+
+    if (!validateForm(document.getElementById("prezzo"), document.getElementById("errorPrezzo"))) {
+        valido = false;
+    }
+
+    if (!validateForm(document.getElementById("descr"), document.getElementById("errorDescr"))) {
+        valido = false;
+    }
+
+    if (!validateImg(document.getElementById("image"), document.getElementById("errorImg"))) {
+        valido = false;
+    }
+
+    return valido; //Se è false, il form non viene inviato
+}
 
 function abilitaModifica(id){
 	

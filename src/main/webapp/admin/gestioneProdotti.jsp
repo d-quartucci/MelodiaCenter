@@ -19,7 +19,7 @@
 			<%@ include file = "/fragments/adminMenu.jsp"%>
 		</aside>
     	<section id= "SezioneCreaProdotto">
-    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/NuovoProdotto" enctype="multipart/form-data">
+    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/NuovoProdotto" onsubmit= "validateProdotto()" enctype="multipart/form-data">
     			<fieldset id= "FormCreazione" class= "contenitore">
     				<legend ><h2>Crea Prodotto</h2></legend>
     				<label for="nome">Nome </label>
@@ -40,7 +40,7 @@
     				
     				<label for = "prezzo">Prezzo </label>
     				<br>
-    				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="1" placeholder= "0.00" onchange="validateForm(this, document.getElementById('errorPrezzo'))" required>
+    				<input type = "number" id="prezzo" name="prezzo" step="0.01" min="1" placeholder= "0.00" pattern="^([0-9]){1,}$" onchange="validateForm(this, document.getElementById('errorPrezzo'))" required>
     				<span id= "errorPrezzo" class="error" ></span>
     				<br>
     				<label id="labelDescr" for = "descrizione">Descrizione</label>   <span id= "errorDescr" class="error" ></span>
@@ -50,7 +50,7 @@
 
     				<label for = "image">Inserisci un immagine: </label>
     				<br>
-    				<input type="file" id="image" name="image" accept="image/*" on="validateImg(this, document.getElementById('errorImg'))"required><br><br>
+    				<input type="file" id="image" name="image" accept="image/*" onchange="validateImg(this, document.getElementById('errorImg'))" required><br><br>
     				<span id= "errorImg" class="error" ></span>
     				
     				<button type="submit" id="submitP" class="bottoneFiltro">Salva</button>
