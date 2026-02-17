@@ -718,7 +718,7 @@ a:hover {
 }
 
 #sezioneCarrello, #carrelloVuoto{
-	overflow: scroll;
+	overflow: auto;
 }
 
 #sezioneCarrello{
@@ -786,11 +786,14 @@ a:hover {
 	}
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 600px){
 	#tabellaCarrello button {
 		padding: 5px;
+		display:block;
+		margin-left:18px;
 	}
 }
+
 
 /* Sezione Checkout */
 
@@ -1332,7 +1335,6 @@ a:hover {
 #Ordini, #Utenti {
 	margin-bottom: 30px;
 	padding:20px;
-	overflow-y:scroll;
 }
 
 #Ordini p, #Utenti p {
@@ -1398,14 +1400,13 @@ a:hover {
 	}
 
 		#Ordini, #Utenti{
-		overflow-x:auto;
+		overflow-x:scroll;
 	}
 	
 	.MenuGestione{
  	 	margin-bottom: 150px;
 	}
 }
-
 
 /*Pagina gestione Utenti */
 
@@ -1414,11 +1415,6 @@ a:hover {
 	padding: 20px 20px;	
 	padding-bottom: 60px;
 }
-
-#listUtenti{
-	overflow-y:scroll;
-}
-
 
 #filtriUtentiAdmin{
 	margin-right: 50%;
@@ -1548,7 +1544,7 @@ label {
     }
     
      #listUtenti{
-    	overflow-y:scroll;
+    	overflow-x:auto;
     }
     
 }
@@ -1587,9 +1583,6 @@ label {
 	padding-bottom: 60px;
 }
 
-#listUtenti{
-	overflow-y:scroll;
-}
 
 #filtriOrdiniAdmin{
 	margin-right: 50%;
