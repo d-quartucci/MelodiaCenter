@@ -29,7 +29,7 @@
 					<span id= "errorNameCtg" class="error" ></span>
 					<br>
     				<label for = "descrizione">Descrizione </label> <span id= "errorDescrCtg" class="error" ></span><br>
-    				<textarea class="TextAreaAdmin" id="descr" name="descr" rows = 5  cols = 30 placeholder = "Inserisci categoria..." onchange="validateForm(this, document.getElementById('errorDescrCtg'))" minlength="20" required></textarea>
+    				<textarea class="TextAreaAdmin" id="descr" name="descr" placeholder = "Inserisci categoria..." onchange="validateForm(this, document.getElementById('errorDescrCtg'))" minlength="20" required></textarea>
     				<br>
     				<button class= "bottoneMod" type="submit" id="submitC">Salva</button>
     			</fieldset>
@@ -52,7 +52,7 @@
 								 <tr>
     								<td>${c.id}</td>
 									<td><input class="inputBox" type="text" id= "nome_${c.id}" value= "${c.nome}" disabled></td>
-									<td><input class="inputBox" type="text" id= "descr_${c.id}" value= "${c.descr}" disabled></td>
+									<td><textarea class="TextAreaAdmin" id= "descr_${c.id}" disabled>${c.descr}</textarea></td>
 									<td class= "TastiUtenti" id= "tastoMod">
 										<button class= "bottoneMod" type="button" id= "mod_${c.id}" onclick = "abilitaModifica(${c.id})"> Modifica</button>
 									</td>

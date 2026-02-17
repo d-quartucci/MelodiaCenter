@@ -14,11 +14,11 @@ function validateForm(formElem, errorSpan){
 function validateCategoria() {
     let valido = true;
 
-    if (!validateForm(document.getElementById("nome"), document.getElementById("errorNameCtg"))) {
+    if (!validateForm(document.getElementById("nomeCtg"), document.getElementById("errorNameCtg"))) {
         valido = false;
     }
 
-    if (!validateForm(document.getElementById("descr"), document.getElementById("errorDescrCtg"))) {
+    if (!validateForm(document.getElementById("descrCtg"), document.getElementById("errorDescrCtg"))) {
         valido = false;
     }
 

@@ -59,7 +59,7 @@
     	</section>
     	 <section class= "contenitore" id="filtriProdottiAdmin">
 				<h2>Filtri Prodotti:</h2>
-				<form id="formFiltri" name="formFiltri" method="GET" action="${pageContext.request.contextPath}/admin/FilterProdotti" >
+				<form id="formFiltri" name="formFiltri" method="POST" action="${pageContext.request.contextPath}/admin/FilterProdotti" >
 				<span class="sezioneFiltro">
 					<label for="barraDiRicerca">RICERCA:</label>	
 					<input type="text" id="barraDiRicerca" name="barraDiRicerca" placeholder="Nome prodotto..." value="${param.barraDiRicerca}">

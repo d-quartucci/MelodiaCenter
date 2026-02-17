@@ -20,7 +20,7 @@
 		</aside>
     		<section class= "contenitore" id="filtriOrdiniAdmin">
     			<h1>Filtri Ordini</h1>
-    			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/FilterOrdini">
+    			<form id= "formFiltriAdmin"name= "formFiltriAdmin" method="POST" action = "${pageContext.request.contextPath}/admin/FilterOrdini">
     				<label for = "dataFrom">DAL: </label>
     				<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     				<br>

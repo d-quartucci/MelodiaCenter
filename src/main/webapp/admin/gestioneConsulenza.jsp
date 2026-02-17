@@ -19,7 +19,7 @@
 		</aside>
 	    <section class= "contenitore" id="filtriConsulenzaAdmin">
 			<h1>Filtri Consulenze</h1>
-    		<form id= "formFiltriAdmin" method="GET" action = "${pageContext.request.contextPath}/admin/FilterConsulenze">
+    		<form id= "formFiltriAdmin" method="POST" action = "${pageContext.request.contextPath}/admin/FilterConsulenze">
     			<label for = "dataFrom">DAL: </label>
     			<input type= "date" id= "dataFrom" name = "dataIn" value="${defaultIn}">
     			<br>
