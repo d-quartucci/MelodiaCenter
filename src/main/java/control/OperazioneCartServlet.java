@@ -31,75 +31,77 @@ public class OperazioneCartServlet extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("ds");
 		
 		HttpSession sessione = request.getSession(true);
-		Carrello carrello = (Carrello) sessione.getAttribute("carrello");
-		
-		if(carrello == null) {
-			carrello = new Carrello();
-			sessione.setAttribute("carrello", carrello);
-		}
-		
-		String azione = request.getParameter("act");
-		
-		//La quantità per tutte le operazioni è sempre "1", eccetto per l'operazione di modifica diretta della quantità
-		int quantita = 1;
-		if("mod".equals(azione)) {
-			try{
-				quantita = Integer.parseInt(request.getParameter("q"));
+		synchronized(sessione) {
+			Carrello carrello = (Carrello) sessione.getAttribute("carrello");
+			
+			if(carrello == null) {
+				carrello = new Carrello();
+				sessione.setAttribute("carrello", carrello);
+			}
+			
+			String azione = request.getParameter("act");
+			
+			//La quantità per tutte le operazioni è sempre "1", eccetto per l'operazione di modifica diretta della quantità
+			int quantita = 1;
+			if("mod".equals(azione)) {
+				try{
+					quantita = Integer.parseInt(request.getParameter("q"));
+				} catch(NumberFormatException ex) {
+					response.sendError(400, "Errore: quantità non valida.");
+					return;
+				}
+				if(quantita <= 0) {
+					response.sendError(400, "Errore: quantità non valida.");
+					return;
+				}
+			}
+			
+			int idProd;
+			try {
+				idProd = Integer.parseInt(request.getParameter("id"));
 			} catch(NumberFormatException ex) {
-				response.sendError(400, "Errore: quantità non valida.");
+				response.sendError(400, "Errore: id del prodotto non valido.");
 				return;
 			}
-			if(quantita <= 0) {
-				response.sendError(400, "Errore: quantità non valida.");
+			
+			Prodotto prod = null;
+			ProdottoDAO pDAO = new ProdottoDAO(ds); 
+			try{
+				prod = pDAO.doRetrieveByKey(idProd);
+			} catch(SQLException ex) {
+				ex.printStackTrace();
+				response.sendError(500, "Errore nel database:"  + ex.getMessage());
 				return;
 			}
+			//Se è stata fatta una richiesta per un prodotto non valido --> errore
+			if(prod == null) {
+				response.sendError(400, "Errore: prodotto non valido.");
+				return;
+			}
+			
+			CarrelloItem item = new CarrelloItem(prod, quantita);
+			
+			if("add".equals(azione)) {
+				carrello.addItem(item);
+			} else if("rem".equals(azione)) {
+				carrello.removeItem(item);
+			} else if("mod".equals(azione)) {
+				carrello.modificaQuantita(idProd, quantita);
+			} else if("dec".equals(azione)) {
+				carrello.decrementaQuantita(idProd);
+			}
+			
+			//Aggiorna il carrello in sessione
+			sessione.setAttribute("carrello", carrello);
+			
+			//Risposta JSON
+			response.setContentType("application/json");
+			BigDecimal totale = carrello.getPrezzoTotale();
+			JSONObject json = new JSONObject();
+			json.put("totale", totale.toPlainString());
+			
+			response.getWriter().write(json.toString());
 		}
-		
-		int idProd;
-		try {
-			idProd = Integer.parseInt(request.getParameter("id"));
-		} catch(NumberFormatException ex) {
-			response.sendError(400, "Errore: id del prodotto non valido.");
-			return;
-		}
-		
-		Prodotto prod = null;
-		ProdottoDAO pDAO = new ProdottoDAO(ds); 
-		try{
-			prod = pDAO.doRetrieveByKey(idProd);
-		} catch(SQLException ex) {
-			ex.printStackTrace();
-			response.sendError(500, "Errore nel database:"  + ex.getMessage());
-			return;
-		}
-		//Se è stata fatta una richiesta per un prodotto non valido --> errore
-		if(prod == null) {
-			response.sendError(400, "Errore: prodotto non valido.");
-			return;
-		}
-		
-		CarrelloItem item = new CarrelloItem(prod, quantita);
-		
-		if("add".equals(azione)) {
-			carrello.addItem(item);
-		} else if("rem".equals(azione)) {
-			carrello.removeItem(item);
-		} else if("mod".equals(azione)) {
-			carrello.modificaQuantita(idProd, quantita);
-		} else if("dec".equals(azione)) {
-			carrello.decrementaQuantita(idProd);
-		}
-		
-		//Aggiorna il carrello in sessione
-		sessione.setAttribute("carrello", carrello);
-		
-		//Risposta JSON
-		response.setContentType("application/json");
-		BigDecimal totale = carrello.getPrezzoTotale();
-		JSONObject json = new JSONObject();
-		json.put("totale", totale.toPlainString());
-		
-		response.getWriter().write(json.toString());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
