@@ -281,6 +281,16 @@ public class ProdottoDAO implements GenericDAO<Prodotto, Integer> {
 		return listaProdotti;
 	}
 	
+	public synchronized void aggiornaVendite(Integer key, int nuoveVendite) throws SQLException{
+		String stmt = "UPDATE prodotto SET QuantitaVendute = QuantitaVendute + ? WHERE ID = ?";
+		try(Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(stmt)){
+			ps.setInt(1, nuoveVendite);
+			ps.setInt(2, key);
+			ps.executeUpdate();
+		}
+	}
+	
 	public synchronized boolean doDeleteByKey(Integer key) throws SQLException{
 		String querySQL = "DELETE FROM Prodotto WHERE ID = ?";
 		int test;

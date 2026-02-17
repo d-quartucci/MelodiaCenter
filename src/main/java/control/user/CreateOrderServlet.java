@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import model.Carrello;
 import model.CarrelloItem;
 import model.Ordine;
+import model.Prodotto;
 import model.RigaOrdine;
 import model.Utente;
 import model.dao.OrdineDAO;
@@ -66,8 +67,7 @@ public class CreateOrderServlet extends HttpServlet {
 			
 			//Mi serve ad aggiornare le vendite del singolo prodotto nel DB
 			ProdottoDAO pDAO = new ProdottoDAO(ds);
-			
-			int temp;
+
 			//Per ogni elemento del carrello avremo una diversa RigaOrdine
 			for(CarrelloItem item : cartItems) {
 				RigaOrdine row = new RigaOrdine();
@@ -79,9 +79,7 @@ public class CreateOrderServlet extends HttpServlet {
 				roDAO.doSaveOrUpdate(row);
 				
 				//Aggiungo la quantità comprata al numero di prodotti di quel tipo venduti
-				temp = item.getProdotto().getQuantitaVendute();
-				item.getProdotto().setQuantitaVendute(temp + row.getQuant());
-				pDAO.doSaveOrUpdate(item.getProdotto());
+				pDAO.aggiornaVendite(item.getProdotto().getId(), item.getQuantita());
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
