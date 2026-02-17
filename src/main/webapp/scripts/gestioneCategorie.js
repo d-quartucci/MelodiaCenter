@@ -4,12 +4,27 @@ function validateForm(formElem, errorSpan){
 		return false;
 	}
 	else if(formElem.validity.tooShort){
-		errorSpan.innerHTML = "Descrizione troppo corta min20";
+		errorSpan.innerHTML = "Descrizione troppo corta (minimo 20)";
 		return false
 	}
 	errorSpan.innerHTML = "";
 	return true;
 }
+
+function validateCategoria() {
+    let valido = true;
+
+    if (!validateForm(document.getElementById("nome"), document.getElementById("errorNameCtg"))) {
+        valido = false;
+    }
+
+    if (!validateForm(document.getElementById("descr"), document.getElementById("errorDescrCtg"))) {
+        valido = false;
+    }
+
+    return valido;
+}
+
 
 
 function abilitaModifica(id){

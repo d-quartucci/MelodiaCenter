@@ -19,7 +19,7 @@
 			<%@ include file = "/fragments/adminMenu.jsp"%>
 		</aside>
 		<section id= "creazioneCategoria">
-    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" action = "${pageContext.request.contextPath}/admin/nuovaCategoria">
+    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" onsubmit = "validateCategoria()"action = "${pageContext.request.contextPath}/admin/nuovaCategoria">
     			<fieldset class= "contenitore" id= "FormCreaCtg">
     				<legend><h2>Crea Categoria</h2></legend>
     				
