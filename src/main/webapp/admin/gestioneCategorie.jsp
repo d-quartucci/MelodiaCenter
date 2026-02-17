@@ -19,7 +19,7 @@
 			<%@ include file = "/fragments/adminMenu.jsp"%>
 		</aside>
 		<section id= "creazioneCategoria">
-    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" onsubmit = "validateCategoria()"action = "${pageContext.request.contextPath}/admin/nuovaCategoria">
+    		<form id = "FormCategoria" name = "FormCategoria" method = "POST" onsubmit = "return validateCategoria()"action = "${pageContext.request.contextPath}/admin/nuovaCategoria">
     			<fieldset class= "contenitore" id= "FormCreaCtg">
     				<legend><h2>Crea Categoria</h2></legend>
     				
@@ -49,7 +49,7 @@
 					</thead>
 					<tbody id="corpoTableCategoria">
 							<c:forEach var="c" items="${ctgFiltrate}">
-								 <tr>
+								 <tr id="riga_${c.id}">
     								<td>${c.id}</td>
 									<td><input class="inputBox" type="text" id= "nome_${c.id}" value= "${c.nome}" disabled></td>
 									<td><textarea class="TextAreaAdmin" id= "descr_${c.id}" disabled>${c.descr}</textarea></td>

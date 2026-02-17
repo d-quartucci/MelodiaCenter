@@ -74,6 +74,10 @@
 	width: 35px;
 	height: 35px;
 	padding: 5px;
+	background-color: white;
+  	border: 2px solid;
+  	border-radius: 10px;
+  	color: #F57F3C;
 }
 
 .userArea {
@@ -966,7 +970,7 @@ a:hover {
 }
 
 #rispondiConsulenza {
-	width: 70%;
+	width: 71%;
 	margin: 20px auto;
 	overflow: hidden;
 }
@@ -996,6 +1000,10 @@ a:hover {
 @media screen and (max-width: 650px){
 	#sezioneConsulenze, #sezioneMessaggiConsulenza, #rispondiConsulenza, #sezioneOrdini {
 		width: 90%;
+	}
+	
+	#rispondiConsulenza button {
+		margin: 10px 15% 10px 85%;
 	}
 }
 

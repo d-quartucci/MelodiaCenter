@@ -19,7 +19,7 @@
 			<%@ include file = "/fragments/adminMenu.jsp"%>
 		</aside>
     	<section id= "SezioneCreaProdotto">
-    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/NuovoProdotto" onsubmit= "validateProdotto()" enctype="multipart/form-data">
+    		<form id = "FormProdotto" name = "FormProdotto" method = "POST" action = "${pageContext.request.contextPath}/admin/NuovoProdotto" onsubmit= "return validateProdotto()" enctype="multipart/form-data">
     			<fieldset id= "FormCreazione" class= "contenitore">
     				<legend ><h2>Crea Prodotto</h2></legend>
     				<label for="nome">Nome </label>

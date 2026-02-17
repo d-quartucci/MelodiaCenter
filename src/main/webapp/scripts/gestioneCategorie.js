@@ -74,6 +74,7 @@ function salvaModifica(id){
 function eliminaCtg(id){
 	const nome = document.getElementById("nome_" + id).value;
 	const ErrorSpan = document.getElementById("error_" + id);
+	const riga = document.getElementById("riga_" + id);
 	
 	 let xhr = new XMLHttpRequest();
 	 const url = contextPath + "/admin/DeleteCategoria?id="+ id;
@@ -84,9 +85,9 @@ function eliminaCtg(id){
 				ErrorSpan.innerHTML = nome + ": Eliminazione avvenuta con successo!";
 				riga.remove();
 			} else if (this.status === 403) {
-				ErrorSpan.innerHTML = nome + "- Errore: La categoria utilizzata!";
+				ErrorSpan.innerHTML = nome + " - Errore: La categoria è utilizzata!";
 			} else if (this.status === 404){
-				ErrorSpan.innerHTML = nome + "- Errore: Categoria non trovata!";
+				ErrorSpan.innerHTML = nome + " - Errore: Categoria non trovata!";
 			}
 			
 		}
