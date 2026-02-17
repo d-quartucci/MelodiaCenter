@@ -4,7 +4,7 @@ function validateForm(formElem, errorSpan){
 		errorSpan.innerHTML = "Campo vuoto";
 		return false;
 	}else if(formElem.validity.tooShort){//Per la descrizione se è troppo corta 
-		errorSpan.innerHTML = "Descrizione troppo corta min 50";
+		errorSpan.innerHTML = "Descrizione troppo corta (minimo 50)";
 		return false;
 	}else if(formElem.validity.rangeUnderflow) {//Nel caso si inserisce come valore 0
 	    errorSpan.innerHTML = "Il prezzo deve essere maggiore di 0";
