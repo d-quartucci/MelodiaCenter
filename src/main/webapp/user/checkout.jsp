@@ -30,7 +30,7 @@
 		<h2>Inserisci l'indirizzo di consegna:</h2>
 		<div id="inserisciIndirizzo">
 			<label for="via">Via: </label>
-			<input id="via" name="via" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorVia"), lettersOnlyMessage)'>
+			<input id="via" name="via" type="text" required pattern="[A-Za-zÀÈÉÌÒÙàèéìòù]+(['\s][A-Za-zÀÈÉÌÒÙàèéìòù]+)*" onchange='validateFormElem(this, document.getElementById("errorVia"), lettersOnlyMessage)'>
 			<span id="errorVia"></span><br>
 				
 			<label for="civico">Civico: </label>
@@ -42,21 +42,21 @@
 			<span id="errorCAP"></span><br>
 				
 			<label for="citta">Città: </label>
-			<input id="citta" name="citta" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorCitta"), lettersOnlyMessage)'>
+			<input id="citta" name="citta" type="text" required pattern="^[A-Za-zÀÈÉÌÒÙàèéìòù]+(['\s][A-Za-zÀÈÉÌÒÙàèéìòù]+)*$" onchange='validateFormElem(this, document.getElementById("errorCitta"), lettersOnlyMessage)'>
 			<span id="errorCitta"></span><br>
 				
 			<label for="provincia">Provincia: </label>
-			<input id="provincia" name="provincia" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorProvincia"), lettersOnlyMessage)'>
+			<input id="provincia" name="provincia" type="text" required pattern="^[A-Za-zÀÈÉÌÒÙàèéìòù]+(['\s][A-Za-zÀÈÉÌÒÙàèéìòù]+)*$" onchange='validateFormElem(this, document.getElementById("errorProvincia"), lettersOnlyMessage)'>
 			<span id="errorProvincia"></span><br>
 		</div>
 		<h2>Inserisci il metodo di pagamento:</h2>
 		<div id="inserisciPagamento">
 			<label for="nome">Nome: </label>
-			<input id="nomeCheckout" name="nome" type="text" required pattern="^[A-Za-z\s]+$" onchange='validateFormElem(this, document.getElementById("errorNome"), lettersOnlyMessage)'>
+			<input id="nomeCheckout" name="nome" type="text" required pattern="^[A-Za-zÀÈÉÌÒÙàèéìòù]+(['\s][A-Za-zÀÈÉÌÒÙàèéìòù]+)*$" onchange='validateFormElem(this, document.getElementById("errorNome"), lettersOnlyMessage)'>
 			<span id="errorNome"></span><br>
 			
 			<label for="cognome">Cognome: </label>
-			<input id="cognome" name="cognome" type="text" pattern="^[A-Za-z\s]+$" required onchange='validateFormElem(this, document.getElementById("errorCognome"), lettersOnlyMessage)'>
+			<input id="cognome" name="cognome" type="text" pattern="^[A-Za-zÀÈÉÌÒÙàèéìòù]+(['\s][A-Za-zÀÈÉÌÒÙàèéìòù]+)*$" required onchange='validateFormElem(this, document.getElementById("errorCognome"), lettersOnlyMessage)'>
 			<span id="errorCognome"></span><br>
 			
 			<label for="provider">Provider: </label>
