@@ -24,7 +24,8 @@ import javax.sql.DataSource;
  * Servlet implementation class AdminNuovoProdottoServlet
  */
 @WebServlet(value="/admin/NuovoProdotto", initParams = {
-		@WebInitParam (name = "fileUpload", value= "images")//nome della cartella images
+		@WebInitParam (name = "fileUpload", value= "images"),//nome della cartella images
+		@WebInitParam(name = "uploadPath", value = "C:/progettoTSW/images/")
 })
 @MultipartConfig(
 	    fileSizeThreshold = 1024 * 1024 * 2, //2MB
@@ -40,7 +41,7 @@ public class AdminNuovoProdottoServlet extends HttpServlet {
     }
     
     public void init() {
-    	SAVE_DIR = getServletConfig().getInitParameter("fileUpload") ; //La locazione di dove verrà salvato il file
+    	SAVE_DIR = getServletConfig().getInitParameter("uploadPath") ; //La locazione di dove verrà salvato il file
     }
 
 	
@@ -54,16 +55,16 @@ public class AdminNuovoProdottoServlet extends HttpServlet {
 			String savePath = request.getServletContext().getRealPath("") + SAVE_DIR;
 			File fileDir = new File(savePath);
 			
-			//Se la cartella non esiste la crea
+			//Se le cartelle non esistono le crea
 			if(!fileDir.exists()) {
-				fileDir.mkdir();
+				fileDir.mkdirs();
 			}
 			//recupero il file dal form
 			Part filePart = request.getPart("image");
 			String fileName = filePart.getSubmittedFileName();
 			
 			//salvo l'immagine sul disco
-			filePart.write(savePath + File.separator + fileName);
+			filePart.write(SAVE_DIR + File.separator + fileName);
 			System.out.println("L'immagine è stata salvata qui: " + savePath);
 			
 			String nome = request.getParameter("nome");
@@ -96,7 +97,7 @@ public class AdminNuovoProdottoServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		doPost(request, response);
 	}
 
 }

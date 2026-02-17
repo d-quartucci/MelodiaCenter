@@ -58,25 +58,27 @@ function salvaModifica(id){
 
 function eliminaCtg(id){
 	const nome = document.getElementById("nome_" + id).value;
+	const ErrorSpan = document.getElementById("error_" + id);
 	
 	 let xhr = new XMLHttpRequest();
 	 const url = contextPath + "/admin/DeleteCategoria?id="+ id;
 	 
 	 xhr.onreadystatechange = function(){
 	 	if(this.readyState === 4 ){
-	 		if(this.status === 200)
+	 		if(this.status === 200){
 				ErrorSpan.innerHTML = nome + ": Eliminazione avvenuta con successo!";
-				
+				riga.remove();
 			} else if (this.status === 403) {
 				ErrorSpan.innerHTML = nome + "- Errore: La categoria utilizzata!";
 			} else if (this.status === 404){
 				ErrorSpan.innerHTML = nome + "- Errore: Categoria non trovata!";
 			}
-			setTimeout(function(){
-						ErrorSpan.innerHTML = "";
-					   }, 10000);
+			
+		}
+		setTimeout(function(){
+				ErrorSpan.innerHTML = "";
+		}, 10000);
 	 }
-	 
 	 xhr.open("GET", url, true);
 	 xhr.send();
 }

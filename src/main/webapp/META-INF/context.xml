@@ -11,4 +11,13 @@
         driverClassName="com.mysql.cj.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/melodiacenterdb?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"
     />
+    
+    <Resources>
+        <PostResources
+            className="org.apache.catalina.webresources.DirResourceSet"
+            base="C:/progettoTSW/images/"
+            webAppMount="/images"
+        />
+    </Resources>
+    
 </Context>

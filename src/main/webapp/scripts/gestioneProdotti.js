@@ -75,11 +75,11 @@ function salvaModifica(id){
 
 				bMod.innerText = "Modifica";
 				
-				setTimeout(function(){
-							ErrorSpan.innerHTML = "";
-							}, 10000);
 			}
 		}
+		setTimeout(function(){
+					ErrorSpan.innerHTML = "";
+					}, 10000);
 	}
 	
 	xhr.open("POST", url, true);
@@ -101,7 +101,7 @@ function eliminaProd(id){
 	 
 	 xhr.onreadystatechange = function(){
 	 	if(this.readyState === 4 ){
-	 		if(this.status === 200)
+	 		if(this.status === 200){
 				ErrorSpan.innerHTML = nome +  ": Eliminazione effettuata!";
 				riga.remove();
 			} else if (this.status === 403) {
@@ -109,10 +109,11 @@ function eliminaProd(id){
 			} else if (this.status === 404){
 				ErrorSpan.innerHTML = nome + ": Errore: Il prodotto non trovato!";
 			}
-			setTimeout(function(){
+		}
+		setTimeout(function(){
 					ErrorSpan.innerHTML = "";
-					}, 10000);
-	 }
+					}, 10000); 
+	}
 	 
 	 xhr.open("GET", url, true);
 	 xhr.send();
