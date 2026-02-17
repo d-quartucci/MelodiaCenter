@@ -20,7 +20,9 @@ public class EmptyCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessione = request.getSession(false);
 		if(sessione != null) {
-			sessione.removeAttribute("carrello");
+			synchronized(sessione) {
+				sessione.removeAttribute("carrello");
+			}
 		}		
 	}
 

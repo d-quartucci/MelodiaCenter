@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpSession;
 import model.Carrello;
 import model.CarrelloItem;
 import model.Ordine;
-import model.Prodotto;
 import model.RigaOrdine;
 import model.Utente;
 import model.dao.OrdineDAO;
@@ -37,59 +36,60 @@ public class CreateOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		HttpSession session = request.getSession();
-		Carrello cart = (Carrello) session.getAttribute("carrello");
-		ArrayList<CarrelloItem> cartItems = cart.getListaItem();
-		Utente user = (Utente) session.getAttribute("utente");
-		
-		Ordine order = new Ordine();
-		order.setUtenteId(user.getId());
-		order.setTotale(cart.getPrezzoTotale());
-		order.setData(Timestamp.valueOf(LocalDateTime.now()));
-		
-		String via = request.getParameter("via");
-		String civico = request.getParameter("civico");
-		String citta = request.getParameter("citta");
-		String provincia = request.getParameter("provincia");
-		String cap = request.getParameter("cap");
-
-		String indirizzo = via + " " + civico + ", " + citta + " (" + provincia + ") " + cap;
-		order.setIndSpedizione(indirizzo);
-		
-		OrdineDAO oDAO = new OrdineDAO(ds);
-		
-		try {
-			//Per "OrderDAO" doSaveOrUpdate salva anche l'id dell'ordine generato nel bean
-			//Ci serve l'id dell'ordine per creare nella maniera corretta i bean RigaOrdine
-			oDAO.doSaveOrUpdate(order); 
+		synchronized(session) {
+			Carrello cart = (Carrello) session.getAttribute("carrello");
+			ArrayList<CarrelloItem> cartItems = cart.getListaItem();
+			Utente user = (Utente) session.getAttribute("utente");
+			Ordine order = new Ordine();
+			order.setUtenteId(user.getId());
+			order.setTotale(cart.getPrezzoTotale());
+			order.setData(Timestamp.valueOf(LocalDateTime.now()));
 			
-			//A questo punto creo i bean RigaOrdine e li inserisco nel DB
-			RigaOrdineDAO roDAO = new RigaOrdineDAO(ds);
-			
-			//Mi serve ad aggiornare le vendite del singolo prodotto nel DB
-			ProdottoDAO pDAO = new ProdottoDAO(ds);
+			String via = request.getParameter("via");
+			String civico = request.getParameter("civico");
+			String citta = request.getParameter("citta");
+			String provincia = request.getParameter("provincia");
+			String cap = request.getParameter("cap");
 
-			//Per ogni elemento del carrello avremo una diversa RigaOrdine
-			for(CarrelloItem item : cartItems) {
-				RigaOrdine row = new RigaOrdine();
-				row.setOrdineId(order.getId());
-				row.setProdottoId(item.getProdotto().getId());
-				row.setProdottoNome(item.getProdotto().getNome());
-				row.setPrezzoAcq(item.getProdotto().getPrezzoAttuale().multiply(BigDecimal.valueOf(item.getQuantita())));
-				row.setQuant(item.getQuantita());
-				roDAO.doSaveOrUpdate(row);
+			String indirizzo = via + " " + civico + ", " + citta + " (" + provincia + ") " + cap;
+			order.setIndSpedizione(indirizzo);
+			
+			OrdineDAO oDAO = new OrdineDAO(ds);
+			
+			try {
+				//Per "OrderDAO" doSaveOrUpdate salva anche l'id dell'ordine generato nel bean
+				//Ci serve l'id dell'ordine per creare nella maniera corretta i bean RigaOrdine
+				oDAO.doSaveOrUpdate(order); 
 				
-				//Aggiungo la quantità comprata al numero di prodotti di quel tipo venduti
-				pDAO.aggiornaVendite(item.getProdotto().getId(), item.getQuantita());
+				//A questo punto creo i bean RigaOrdine e li inserisco nel DB
+				RigaOrdineDAO roDAO = new RigaOrdineDAO(ds);
+				
+				//Mi serve ad aggiornare le vendite del singolo prodotto nel DB
+				ProdottoDAO pDAO = new ProdottoDAO(ds);
+
+				//Per ogni elemento del carrello avremo una diversa RigaOrdine
+				for(CarrelloItem item : cartItems) {
+					RigaOrdine row = new RigaOrdine();
+					row.setOrdineId(order.getId());
+					row.setProdottoId(item.getProdotto().getId());
+					row.setProdottoNome(item.getProdotto().getNome());
+					row.setPrezzoAcq(item.getProdotto().getPrezzoAttuale().multiply(BigDecimal.valueOf(item.getQuantita())));
+					row.setQuant(item.getQuantita());
+					roDAO.doSaveOrUpdate(row);
+					
+					//Aggiungo la quantità comprata al numero di prodotti di quel tipo venduti
+					pDAO.aggiornaVendite(item.getProdotto().getId(), item.getQuantita());
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+				session.setAttribute("errorMessage", "Errore durante la creazione dell'ordine: " + ex.getMessage());
+			    response.sendRedirect(request.getContextPath() + "/common/error.jsp");
+			    return;
 			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			session.setAttribute("errorMessage", "Errore durante la creazione dell'ordine: " + ex.getMessage());
-		    response.sendRedirect(request.getContextPath() + "/common/error.jsp");
-		    return;
+			//Svuoto il carrello
+			session.removeAttribute("carrello");
+			response.sendRedirect(request.getContextPath() + "/user/terminato");
 		}
-		//Svuoto il carrello
-		session.removeAttribute("carrello");
-		response.sendRedirect(request.getContextPath() + "/user/terminato");
 	}
 
 
